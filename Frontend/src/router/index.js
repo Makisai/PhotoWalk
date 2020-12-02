@@ -6,12 +6,48 @@ Vue.use(VueRouter)
 const routes = [
   
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/',
+    name: 'LandingPage',
+    //macht Lazy loading der Seite, sodass sie nicht immer geladen werden muss
+    component: () => import('../views/LandingPage.vue')
+  },
+  {
+    path: '/page',
+    name: 'PageLayout',
+    component: () => import( '../views/PageLayout.vue'),
+    //nested routing - hier ein Array wie oben const routes
+    children: [
+      {
+        path: 'start',
+        name: 'Start',
+        component: () => import('../views/Start.vue')
+      },
+      {
+        path: 'overview',
+        name: 'WalksOverview',
+        component: () => import('../views/WalksOverview.vue')
+      },
+      {
+        path: 'detail',
+        name: 'WalksDetail',
+        component: () => import('../views/WalksDetail.vue')
+      },
+      {
+        path: 'photos',
+        name: 'MyPhotos',
+        component: () => import('../views/MyPhotos.vue')
+      },
+      {
+        path: 'friends',
+        name: 'MyFriends',
+        component: () => import('../views/MyFriends.vue')
+      },
+      {
+        path: 'settings',
+        name: 'Settings',
+        component: () => import('../views/Settings.vue')
+      }
+    ]
   }
 ]
 
