@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const db = require("./app/models");
+//const db = require("./app/models");
 const session = require("express-session");
 const passport = require("passport");
 require("./app/config/passport.config")(passport);
@@ -20,6 +20,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+const db = require("./app/models");
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
 db.sequelize.sync(/*{force:true}*/).then(() => {
     console.log("Drop and re-sync db.");

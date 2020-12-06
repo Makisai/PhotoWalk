@@ -1,5 +1,5 @@
 module.exports = app => {
-    const user = require('../contollers/user.controller');
+    const user = require('../controllers/user.controller');
 
     var router = require('express').Router();
 
@@ -9,4 +9,5 @@ module.exports = app => {
     //Registrierung
     router.post('/register', user.register);
 
+    app.use('/api/users', router);
 }

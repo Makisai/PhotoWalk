@@ -1,4 +1,8 @@
+const express = require("express");
 const db = require("../models");
+const User = db.users;
+const OP = db.Sequelize.Op;
+
 const { deserializeUser } = require('../config/passport.config');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -23,7 +27,7 @@ exports.register = (req,res,next) => {
 
     //TODO Überprüfen, ob die E-Mail eine E-Mail ist
     //Überprüfen, ob password und password2 übereinstimmen
-    if(password.equals(password2)) {
+    if(password !== password2) {
         errors.push({msg: 'Passwords don\'t match'});
     }
 
@@ -31,9 +35,9 @@ exports.register = (req,res,next) => {
     if (password.length <8) {
         errors.push({msg: 'Password has to have at least 8 characters'});
     }
-
+    /*
     if(errors.length > 0) {
-        res.render('register', {
+        res.json('register', {
             errors,
             username,
             email,
@@ -41,26 +45,31 @@ exports.register = (req,res,next) => {
             password2
         })
     }
+    */
     //Validierung erfolgreich
     else{
-        User.findOne({email: email, username: username}).then(user => {
-            if (user.email){
+        User.findAll({ email: {
+                [OP.eq]: email
+            }}).then(user => {
+            if (user){
                 //Überprüfung, ob die E-Mail bereits existiert
-                errors.push({msg: 'Email is already used'});
+                throw errors.push({msg: 'Email is already used'})
             }
-            if(user.username) {
+            //if(user.username) {
                 //Überprüfung, ob der Username bereits vergeben ist
-                errors.push({msg: 'Username is already used'});
-            }
+            //    errors.push({msg: 'Username is already used'});
+            //}
+            /*
             if(errors.length > 0) {
-                res.render('register', {
+                res.json('register', {
                     errors,
                     username,
                     email,
                     password,
                     password2
                 })
-            }
+            }*/
+
             else {
                 const newUser = new db.User({
                     username,email,password

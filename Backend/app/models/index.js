@@ -24,7 +24,7 @@ db.sequelize = sequelize;
 db.photowalks = require("./photowalk.model.js")(sequelize, Sequelize);
 db.challenges = require("./challenge.model.js")(sequelize, Sequelize);
 db.photos = require("./photo.model.js")(sequelize, Sequelize);
-db.users = require("./user.model.js")(sequelize,Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
 
 //Hinzufügen von foreign Keys zu Modellen
 db.photowalks.hasMany(db.challenges, {as: "challenges"});

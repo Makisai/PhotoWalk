@@ -1,6 +1,6 @@
 const LocalStrategy = require("passport-local");
 const postgres = require("pg");
-const bcrypt = require("bcrypt.js");
+const bcrypt = require("bcryptjs");
 
 const User = require("../models/user.model");
 
