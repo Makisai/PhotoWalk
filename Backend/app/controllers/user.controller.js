@@ -21,7 +21,7 @@ exports.register = (req,res,next) => {
     let errors= [];
 
     //Überprüfen, ob alle notwendigen Felder ausgefüllt sind
-    if(!username || !email || !password || password2) {
+    if(!username || !email || !password || !password2) {
         errors.push({msg: 'Please fill out all fields'});
     }
 
@@ -30,63 +30,66 @@ exports.register = (req,res,next) => {
     if(password !== password2) {
         errors.push({msg: 'Passwords don\'t match'});
     }
-
     //Passwordlänge überprüfen
-    if (password.length <8) {
+    if (password.length < 8) {
         errors.push({msg: 'Password has to have at least 8 characters'});
     }
-    /*
+
     if(errors.length > 0) {
-        res.json('register', {
+        res.json(400, {
             errors,
             username,
             email,
             password,
             password2
         })
-    }
-    */
-    //Validierung erfolgreich
-    else{
-        User.findAll({ email: {
-                [OP.eq]: email
-            }}).then(user => {
-            if (user){
-                //Überprüfung, ob die E-Mail bereits existiert
-                throw errors.push({msg: 'Email is already used'})
-            }
-            //if(user.username) {
-                //Überprüfung, ob der Username bereits vergeben ist
-            //    errors.push({msg: 'Username is already used'});
-            //}
-            /*
-            if(errors.length > 0) {
-                res.json('register', {
-                    errors,
-                    username,
-                    email,
-                    password,
-                    password2
-                })
-            }*/
-
-            else {
-                const newUser = new db.User({
-                    username,email,password
-                });
-
-                //Password wird gehasht
-                bcrypt.genSalt(10, (err,salt) => {
-                    bcrypt.hash(newUser.password,salt, (err,hash)=> {
-                        if(err) throw err;
-                        //Hash als Passwort setzten
-                        newUser.password(hash);
-                        //User speichern
-                        newUser.save().then(user => {res.redirect('.');
-                        }).catch(err => console.log(err));
+    } else {
+            User.findAll({
+                where: {
+                    email: {
+                        [OP.like]: email
+                    }
+                }
+            })
+            .then(user => {
+                if (user.email) {
+                    //Überprüfung, ob die E-Mail bereits existiert
+                    errors.push({msg: 'Email is already used'})
+                }
+                if (user.username) {
+                    // Überprüfung, ob der Username bereits vergeben ist
+                    errors.push({msg: 'Username is already used'});
+                }
+                if (errors.length > 0) {
+                    res.json(400, {
+                        errors,
+                        username,
+                        email,
+                        password,
+                        password2
+                    })
+                    //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
+                } else {
+                    const newUser = new User({
+                        username, email, password
                     });
-                });
-            }
-        });
+
+                    //Password wird gehasht
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(newUser.password, salt, (err, hash) => {
+                            if (err) throw err;
+                            //Hash als Passwort setzten
+                            newUser.password = hash;
+                            //User speichern und statusmeldung zurückgeben, das es geklappt hat
+                            newUser.save().then(user => {
+                                res.json(201, {});
+                            }).catch(err => console.log(err));
+                        });
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 };

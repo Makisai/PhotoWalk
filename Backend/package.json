@@ -4,6 +4,7 @@
   "description": "backend of photoWalk application",
   "main": "index.js",
   "scripts": {
+    "start_backend": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
