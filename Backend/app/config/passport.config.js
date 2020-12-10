@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const db = require("../models");
 const OP = db.Sequelize.Op;
 
-const User = require("../models/user.model");
+const User = db.users;
 
 //Checken ob eingegebene E-Mail-Adresse schon in der DB vorhanden ist
 module.exports = function(passport) {
@@ -17,7 +17,7 @@ module.exports = function(passport) {
                 }
                 //Checken ob Passwort zur eingegebenen E-Mail-Adresse existiert/richtig ist
                 bcrypt.compare(password, user.password, (err,isMatch) => {
-                    if(err) throw err;
+                    if(err) return err;
                     if(isMatch) {return done(null,user);
                     } else{
                         return done(null, false, {message: 'password is incorrect'});

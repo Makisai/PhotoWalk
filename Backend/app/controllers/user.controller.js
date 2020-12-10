@@ -10,11 +10,15 @@ const passport = require('passport');
 
 //Login Prozess
 exports.login = (req,res,next) => {
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect:'/login'
+    passport.authenticate('local', (err, user) => {
+        req.logIn(user, function(err) {
+            if (err) {
+                return res.json(400, {});
+            }
+            return res.json(200, {})
+        });
     })(req,res,next);
-}
+};
 
 exports.register = (req,res,next) => {
     const {username,email,password,password2} = req.body;
