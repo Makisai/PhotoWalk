@@ -1,15 +1,16 @@
-const LocalStrategy = require("passport-local");
-const postgres = require("pg");
+const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const db = require("../models");
+const OP = db.Sequelize.Op;
 
 const User = require("../models/user.model");
 
 //Checken ob eingegebene E-Mail-Adresse schon in der DB vorhanden ist
 module.exports = function(passport) {
     passport.use(
-        new LocalStrategy({userNameField: 'email'}, (email, password, done) => {
+        new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
             //Match User
-            User.findOne({email: email})
+            User.findOne({where:{ email: email}})
                 .then(user => {
                 if(!user){
                     return done(null, false, {message: 'This email is not registered'});

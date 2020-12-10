@@ -6,12 +6,12 @@ const OP = db.Sequelize.Op;
 const { deserializeUser } = require('../config/passport.config');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const passport = require('../config/passport.config');
+const passport = require('passport');
 
 //Login Prozess
-exports.login = (req,res) => {
+exports.login = (req,res,next) => {
     passport.authenticate('local', {
-        sucessRedirect: '/',
+        successRedirect: '/',
         failureRedirect:'/login'
     })(req,res,next);
 }
@@ -44,52 +44,49 @@ exports.register = (req,res,next) => {
             password2
         })
     } else {
-            User.findAll({
-                where: {
-                    email: {
-                        [OP.like]: email
-                    }
+        //User datensatz finden anhand der email
+        User.findAll({
+            where: {
+                email: {
+                    [OP.like]: email
                 }
-            })
-            .then(user => {
-                if (user.email) {
-                    //Überprüfung, ob die E-Mail bereits existiert
-                    errors.push({msg: 'Email is already used'})
-                }
-                if (user.username) {
-                    // Überprüfung, ob der Username bereits vergeben ist
-                    errors.push({msg: 'Username is already used'});
-                }
-                if (errors.length > 0) {
-                    res.json(400, {
-                        errors,
-                        username,
-                        email,
-                        password,
-                        password2
-                    })
-                    //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
-                } else {
-                    const newUser = new User({
-                        username, email, password
-                    });
+            }
+        })
+        .then(user => {
+            //Überprüfung, ob die E-Mail bereits existiert und Rückgabe einer Liste mit allen gefundenen usern
+            if (user[0] && user[0].email) {
+                errors.push({msg: 'Email is already used'})
+            }
+            if (errors.length > 0) {
+                res.json(400, {
+                    errors,
+                    username,
+                    email,
+                    password,
+                    password2
+                })
+                //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
+            } else {
+                const newUser = new User({
+                    username, email, password
+                });
 
-                    //Password wird gehasht
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(newUser.password, salt, (err, hash) => {
-                            if (err) throw err;
-                            //Hash als Passwort setzten
-                            newUser.password = hash;
-                            //User speichern und statusmeldung zurückgeben, das es geklappt hat
-                            newUser.save().then(user => {
-                                res.json(201, {});
-                            }).catch(err => console.log(err));
-                        });
+                //Password wird gehasht
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err;
+                        //Hash als Passwort setzten
+                        newUser.password = hash;
+                        //User speichern und statusmeldung zurückgeben, das es geklappt hat
+                        newUser.save().then(user => {
+                            res.json(201, {});
+                        }).catch(err => console.log(err));
                     });
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 };
