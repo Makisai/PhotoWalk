@@ -3,6 +3,8 @@ module.exports = app => {
 
     var router = require('express').Router();
 
+    router.get('/', user.findOneUser);
+
     //Einloggen
     router.post('/login', user.login);
 

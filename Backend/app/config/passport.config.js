@@ -26,13 +26,23 @@ module.exports = function(passport) {
             }).catch(err => console.log(err));
         })
     );
+
     passport.serializeUser((user, done) => {
         done(null, user.id);
     });
 
     passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => {
-            done(err,user);
+        User.findOneUser(id, (err, user) => {
+            if (err) { return err; }
+            done(null, user);
         });
     });
+
+    // passport.deserializeUser((id, done) => {
+    //     User.findOneUser(id)
+    //         .then((user) => {
+    //             done(null, user);
+    //         })
+    //         .catch(err => done(err))
+    // });
 }

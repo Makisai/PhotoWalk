@@ -1,8 +1,9 @@
 module.exports = {
     ensureAuthentication: function(req,res,next) {
         if(req.isAuthenticated()) {
-            return next();
+            next();
+        }else {
+            res.json(401, {message: "You are not authenticated to view this site!"});
         }
-        //TODO Error Message an Frontend übergeben ("Please log in to view this site");
     }
 }

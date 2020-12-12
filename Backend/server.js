@@ -1,16 +1,18 @@
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//const db = require("./app/models");
+const db = require("./app/models");
 const session = require("express-session");
 const passport = require("passport");
 require("./app/config/passport.config")(passport);
+const SessionStore = require('express-session-sequelize')(session.Store);
+
+const sequelizeSessionStore = new SessionStore({
+    db: db.sequelize
+});
 
 const app = express();
-
-//Passport Initialisierung
-app.use(passport.initialize());
-app.use(passport.session());
 
 var corsOptions = {
     origin: "http://localhost:8081"
@@ -20,14 +22,27 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-const db = require("./app/models");
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
 db.sequelize.sync(/*{force:true}*/).then(() => {
     console.log("Drop and re-sync db.");
 });
 
+//Passport Initialisierung
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Session use
-app.use(session({secret: 'secret', resave:true, saveUninitialized:false}))
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    store: sequelizeSessionStore,
+    resave:true,
+    saveUninitialized:true,
+    cookie: {
+        maxAge: 1000 * 5
+    }
+}));
+
 
 //übergeben der Routen
 require("./app/routes/photowalk.routes")(app);

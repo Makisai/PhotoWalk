@@ -8,6 +8,21 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+//Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
+exports.findOneUser = (req,res) => {
+    const id = req.params.id;
+
+    User.findOne(id,  {} )
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving User with id=" + id
+            });
+        });
+};
+
 //Login Prozess
 exports.login = (req,res,next) => {
     passport.authenticate('local', (err, user) => {
@@ -15,6 +30,7 @@ exports.login = (req,res,next) => {
             if (err) {
                 return res.json(400, {});
             }
+            req.isAuthenticated()
             return res.json(200, {})
         });
     })(req,res,next);
