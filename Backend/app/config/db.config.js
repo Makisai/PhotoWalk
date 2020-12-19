@@ -2,9 +2,9 @@
 //Datenbank Verbindungs Parameter
 module.exports = {
     HOST: "localhost",
-    USER: "michelleweck",
+    USER: "mike",
     PASSWORD: "password",
-    DB: "ProbeAPI_DB",
+    DB: "mikesdb",
     dialect: "postgres",
     pool: {
         max: 10,
