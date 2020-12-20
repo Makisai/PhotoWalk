@@ -25,6 +25,7 @@ db.photowalks = require("./photowalk.model.js")(sequelize, Sequelize);
 db.challenges = require("./challenge.model.js")(sequelize, Sequelize);
 db.photos = require("./photo.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.friendships = require("./friendship.model.js")(sequelize, Sequelize);
 
 //Hinzufügen von foreign Keys zu Modellen
 db.photowalks.hasMany(db.challenges, {as: "challenges"});
@@ -39,5 +40,23 @@ db.photos.belongsTo(db.challenges, {
     as: "challenge"
 });
 
-//TODO:  Many to Many Beziehungen für Freunde und Likes
+db.users.hasMany(db.photos, {as: "user_photos"});
+db.photos.belongsTo(db.users, {
+    foreignKey: "userId",
+    as: "user"
+});
+
+db.users.belongsToMany(db.photos, {through: 'Likes'});
+db.photos.belongsToMany(db.users, {through: 'Likes'});
+
+db.friendships.belongsTo(db.users, {
+    foreignKey: "user1_id",
+    as: "user1"
+});
+db.friendships.belongsTo(db.users, {
+    foreignKey: "user2_id",
+    as: "user2"
+})
+
+
 module.exports = db;

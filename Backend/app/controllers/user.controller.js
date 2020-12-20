@@ -3,6 +3,7 @@ const db = require("../models");
 const User = db.users;
 const OP = db.Sequelize.Op;
 
+const { serializeUser } = require('../config/passport.config');
 const { deserializeUser } = require('../config/passport.config');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -28,6 +29,7 @@ exports.login = (req,res,next) => {
     passport.authenticate('local', (err, user) => {
         req.logIn(user, function(err) {
             if (err) {
+                console.log(err);
                 return res.json(400, {});
             }
             req.isAuthenticated()
