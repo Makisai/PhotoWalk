@@ -1,6 +1,49 @@
 const db = require("../models");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
+let allowedMimes = [ 'png', 'jpeg', 'jpg'];
+
+exports.upload = (req,res) => {
+    try {
+        // Abfrage, ob file vorhanden, und erlaubter Mimetype ist
+        // hier muesste evtl auch User abgefragt werden
+        if(req.files && req.files.mimetype in allowedMimes) {
+            //Use the name of the input field  to retrieve the uploaded file
+            // inputField ist der Name des Inputfeld in Html
+            let inputField = req.files.inputField;
+
+            //Use the mv() method to place the file in upload directory
+            // speichert bild als jpg ab
+            inputField.mv('./Bilder' + inputfield.name + '.jpg');
+            
+            //send response
+            res.send({
+                status: true,
+                message: 'File is uploaded',
+                data: {
+                    name: inputField.name,
+                    mimetype: inputField.mimetype,
+                    size: inputField.size,
+                    // userID : req.body.userID,
+                    // challengeID: req.body.challengeID
+                }
+            });
+
+        } else  {
+            
+            res.send({
+                status: false,
+                message: 'No file uploaded'
+            });
+            
+            
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+
+
 
 //Erstellen eines Datensatzes für ein Foto
 exports.create = (req, res) => {
