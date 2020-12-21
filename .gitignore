@@ -1,2 +1,4 @@
 .idea
 .pdf
+node_modules
+db.config.js
