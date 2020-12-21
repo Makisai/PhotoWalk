@@ -11,8 +11,12 @@ var corsOptions = {
     origin: "http://localhost:8081"
 };
 // benutzt upload middleware
+// es wird ein temporaerer ordner eingestellt
+// und, dass Bilder maximl 2mb groß sein duerfen fuer upload
 app.use(fileUpload({
     //2MB max file(s) size
+    useTempFiles : true,
+    tempFileDir : '/Bilder',
     limits: { 
         fileSize: 2 * 1024 * 1024 * 1024 
     },
