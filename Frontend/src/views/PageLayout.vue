@@ -2,6 +2,8 @@
   <v-app>
     <v-app-bar class="gradient" app>
       <v-toolbar-title>Application</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <Logout/>
     </v-app-bar>
 
     <v-main>
@@ -19,8 +21,10 @@
 </template>
 
 <script>
+import Logout from "../components/Logout";
 export default {
   name: 'Layout',
+  components: {Logout},
 }
 </script>
 
