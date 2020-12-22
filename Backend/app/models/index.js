@@ -25,19 +25,45 @@ db.photowalks = require("./photowalk.model.js")(sequelize, Sequelize);
 db.challenges = require("./challenge.model.js")(sequelize, Sequelize);
 db.photos = require("./photo.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.friendships = require("./friendship.model.js")(sequelize, Sequelize);
+db.likes = require("./like.model.js")(sequelize, Sequelize);
 
 //Hinzufügen von foreign Keys zu Modellen
+
+//Photowalks hat viele Challenges (One-To-Many)
 db.photowalks.hasMany(db.challenges, {as: "challenges"});
 db.challenges.belongsTo(db.photowalks, {
     foreignKey: "photowalkId",
     as: "photowalk"
 });
 
+//Zu Challenges gehören viele Photos (One-To-Many)
 db.challenges.hasMany(db.photos, {as: "photos"});
 db.photos.belongsTo(db.challenges, {
     foreignKey: "challengeId",
     as: "challenge"
 });
 
-//TODO:  Many to Many Beziehungen für Freunde und Likes
+//Ein User hat viele Photos (One-To-Many)
+db.users.hasMany(db.photos, {as: "user_photos"});
+db.photos.belongsTo(db.users, {
+    foreignKey: "userId",
+    as: "user"
+});
+
+//Ein Photo wird von vielen Usern geliked/Ein User vergibt viele Likes an Photos (Many-To-Many)
+db.users.belongsToMany(db.photos, {through: db.likes});
+db.photos.belongsToMany(db.users, {through: db.likes});
+
+//Ein User hat viele Freunde/Ein User ist mit vielen Usern befreundet (Many-To-Many)
+db.friendships.belongsTo(db.users, {
+    foreignKey: "user1_id",
+    as: "user1"
+});
+db.friendships.belongsTo(db.users, {
+    foreignKey: "user2_id",
+    as: "user2"
+});
+
+
 module.exports = db;
