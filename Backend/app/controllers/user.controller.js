@@ -3,17 +3,16 @@ const db = require("../models");
 const User = db.users;
 const OP = db.Sequelize.Op;
 
-const { deserializeUser } = require('../config/passport.config');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 const uuid = require('uuid');
 
+//TODO Warum 2 mal User Datensatz suchen?
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
     const id = req.params.id;
-
     User.findOne(id,  {} )
         .then(data => {
             res.send(data);
@@ -29,9 +28,11 @@ exports.findOneUser = (req,res) => {
 exports.findByUsername = (req,res) => {
     const username = req.params.username;
 
-    User.findAll({where: {username: username}})
+    User.findAll({where: {username}})
         .then(data => {
-            res.send(data);
+            //res.send(data);
+            //TODO hier nur username zurückgeben! Nie den Token und das PW mitsenden
+            res.json(200, data);
         })
         .catch(err => {
             res.status(500).send({
