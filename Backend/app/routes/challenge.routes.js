@@ -3,7 +3,7 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    router.get("/", challenge.findAll);
+    router.get("/photowalk/:id", challenge.findAllByPhotowalk);
 
     router.get("/:id", challenge.findOne);
 

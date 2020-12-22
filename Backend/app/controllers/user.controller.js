@@ -24,6 +24,22 @@ exports.findOneUser = (req,res) => {
         });
 };
 
+//User nach Username suchen (Um dann eine neue Freundesanfrage zu senden)
+exports.findByUsername = (req,res) => {
+    const username = req.params.username;
+
+    User.findAll({where: {username: username}})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving the user."
+            });
+        });
+};
+
 //Login Prozess
 exports.login = (req,res,next) => {
     passport.authenticate('local', (err, user) => {

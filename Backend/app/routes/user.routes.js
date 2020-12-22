@@ -5,6 +5,9 @@ module.exports = app => {
 
     router.get('/', user.findOneUser);
 
+    //User nach Username suchen
+    router.get('/:username', user.findByUsername)
+
     //Einloggen
     router.post('/login', user.login);
 

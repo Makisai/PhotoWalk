@@ -49,6 +49,8 @@ require("./app/routes/photowalk.routes")(app);
 require("./app/routes/challenge.routes")(app);
 require("./app/routes/photo.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/friendship.routes")(app);
+require("./app/routes/like.routes")(app);
 
 //starten vom Server
 const PORT = process.env.PORT || 8080;

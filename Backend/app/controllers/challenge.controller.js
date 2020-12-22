@@ -3,9 +3,9 @@ const Challenge = db.challenges;
 //Operationen von Sequelize nutzbar machen
 const OP = db.Sequelize.Op;
 
-//Alle Challenges aus der Datenbank auslesen und als json senden
-exports.findAll = (req,res) => {
-    Challenge.findAll({ include: ["photos"] })
+//Alle Challenges eines Photowalks aus der Datenbank auslesen und als json senden
+exports.findAllByPhotowalk = (req,res) => {
+    Challenge.findAll({where: {photowalkId:req.params.id}},{ include: ["photos"] })
     .then(data => {
         res.send(data);
     })
