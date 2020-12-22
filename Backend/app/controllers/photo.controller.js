@@ -13,7 +13,8 @@ exports.create = (req, res) => {
 
     const photo = {
         photo_link: req.body.photo_link,
-        challengeId: req.body.challengeId
+        challengeId: req.body.challengeId,
+        userId: req.body.userId
     };
 
     Photo.create(photo)

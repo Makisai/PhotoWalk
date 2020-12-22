@@ -4,18 +4,28 @@
   "description": "backend of photoWalk application",
   "main": "index.js",
   "scripts": {
+    "start_backend": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "connect-session-sequelize": "^7.0.4",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-session-sequelize": "^2.3.0",
+    "node": "^15.3.0",
+    "passport": "^0.4.1",
+    "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.1"
   }
 }
