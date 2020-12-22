@@ -1,3 +1,5 @@
+const passport = require('passport');
+
 module.exports = app => {
     const user = require('../controllers/user.controller');
 
@@ -7,6 +9,9 @@ module.exports = app => {
 
     //Einloggen
     router.post('/login', user.login);
+
+    //Ausloggen
+    router.post('/logout', passport.authenticate('bearer', { session: false }), user.logout);
 
     //Registrierung
     router.post('/register', user.register);

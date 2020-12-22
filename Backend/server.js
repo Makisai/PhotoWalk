@@ -27,10 +27,6 @@ db.sequelize.sync(/*{force:true}*/).then(() => {
     console.log("Drop and re-sync db.");
 });
 
-//Passport Initialisierung
-app.use(passport.initialize());
-app.use(passport.session());
-
 //Session use
 app.use(cookieParser());
 app.use(session({
@@ -43,6 +39,9 @@ app.use(session({
     }
 }));
 
+//Passport Initialisierung
+app.use(passport.initialize());
+app.use(passport.session());
 
 //übergeben der Routen
 require("./app/routes/photowalk.routes")(app);

@@ -8,6 +8,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+const uuid = require('uuid');
+
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
     const id = req.params.id;
@@ -25,16 +27,40 @@ exports.findOneUser = (req,res) => {
 
 //Login Prozess
 exports.login = (req,res,next) => {
-    passport.authenticate('local', (err, user) => {
-        req.logIn(user, function(err) {
-            if (err) {
-                return res.json(400, {});
+    const {email, password} = req.body;
+    User.findOne({
+        where: {
+            email
+        }
+    }).then((user) => {
+        //Checken ob Passwort zur eingegebenen E-Mail-Adresse existiert/richtig ist
+        bcrypt.compare(password, user.password, (err,isMatch) => {
+            if(err) return err;
+            if(isMatch) {
+                if(user.token === ''){
+                    const token = uuid.v4()
+                    User.update({ token }, {where: {email}});
+                    return res.json(200, {username: user.username, token});
+                }else{
+                    return res.json(200, {username: user.username, token: user.token});
+                }
+            } else{
+                return res.json(401, {message: 'password is incorrect'});
             }
-            req.isAuthenticated()
-            return res.json(200, {})
         });
-    })(req,res,next);
+    })
+  //  return res.json(200, {})
 };
+
+exports.logout = (req,res) => {
+    const token = req.user.token
+    User.update({ token: "" }, {
+        where: {
+            token
+        }
+    });
+    res.json(200, {message: 'your logged out'});
+}
 
 exports.register = (req,res,next) => {
     const {username,email,password,password2} = req.body;
@@ -88,7 +114,7 @@ exports.register = (req,res,next) => {
                 //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
             } else {
                 const newUser = new User({
-                    username, email, password
+                    username, email, password,token:uuid.v4()
                 });
 
                 //Password wird gehasht
