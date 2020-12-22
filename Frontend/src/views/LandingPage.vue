@@ -7,6 +7,7 @@
     <v-main>
       <p>LANDING PAGE</p>
       <MasterButton v-bind:title="'Start'" v-bind:target="'Start'"/>
+      <Login></Login>
     </v-main>
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
@@ -20,9 +21,10 @@
 
 <script>
 import MasterButton from "../components/MasterButton";
+import Login from "../components/Login";
 export default {
   name: 'LandingPage',
-  components: {MasterButton},
+  components: {Login, MasterButton},
 }
 </script>
 

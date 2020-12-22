@@ -19,5 +19,7 @@ module.exports = app => {
     //Registrierung
     router.post('/register', user.register);
 
+    router.get('/is_logged_in', passport.authenticate('bearer', { session: false }),user.isloggedin);
+
     app.use('/api/users', router);
 }
