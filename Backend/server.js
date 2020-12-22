@@ -10,6 +10,13 @@ const app = express();
 var corsOptions = {
     origin: "http://localhost:8081"
 };
+
+
+//setup
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
 // benutzt upload middleware
 // es wird ein temporaerer ordner eingestellt
 // und, dass Bilder maximl 2mb groß sein duerfen fuer upload
@@ -21,12 +28,6 @@ app.use(fileUpload({
         fileSize: 2 * 1024 * 1024 * 1024 
     },
 }));
-
-//setup
-app.use(cors(corsOptions));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
 db.sequelize.sync(/*{force:true}*/).then(() => {
     console.log("Drop and re-sync db.");
