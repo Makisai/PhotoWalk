@@ -3,7 +3,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Challenge = sequelize.define("challenge", {
         description: {
-            type: Sequelize.STRING(4000)
+            type: Sequelize.STRING(4000),
+            allowNull: false
         }
     }, {
         timestamps: false

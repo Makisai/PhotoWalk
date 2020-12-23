@@ -3,19 +3,24 @@
 module.exports = (sequelize, Sequelize) => {
     const Photowalk = sequelize.define("photowalk", {
         name: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         length: {
-            type: Sequelize.FLOAT
+            type: Sequelize.FLOAT,
+            allowNull: false
         },
         region: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         route: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         description: {
-            type: Sequelize.STRING(4000)
+            type: Sequelize.STRING(4000),
+            allowNull: false
         },
     }, {
         timestamps: false

@@ -3,7 +3,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Photo = sequelize.define("photo", {
         photo_link: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         }
     }, {
         timestamps: false

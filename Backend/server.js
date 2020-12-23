@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
-db.sequelize.sync(/*{force:true}*/).then(() => {
+db.sequelize.sync({/*force:true*/}).then(() => {
     console.log("Drop and re-sync db.");
 });
 
