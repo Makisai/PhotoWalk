@@ -30,8 +30,8 @@ exports.create = (req, res) => {
 };
 
 //Alle Foto Datensätze aus der Datenbank auslesen und als json senden
-exports.findAll = (req,res) => {
-    Photo.findAll({})
+exports.findAllByUserId = (req,res) => {
+    Photo.findAll({where: {userId:req.params.id}})
     .then(data => {
         res.send(data);
     })

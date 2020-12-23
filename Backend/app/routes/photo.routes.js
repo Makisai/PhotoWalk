@@ -6,7 +6,7 @@ module.exports = app => {
 
     router.post("/", passport.authenticate('bearer', { session: false }), photo.create);
 
-    router.get("/", passport.authenticate('bearer', { session: false }), photo.findAll);
+    router.get("/user/:id", passport.authenticate('bearer', { session: false }), photo.findAllByUserId);
 
     router.get("/:id", passport.authenticate('bearer', { session: false }), photo.findOne);
 
