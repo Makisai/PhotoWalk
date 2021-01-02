@@ -5,8 +5,6 @@ module.exports = app => {
 
     var router = require('express').Router();
 
-    router.get('/', user.findOneUser);
-
     //User nach Username suchen
     router.get('/search/:username', passport.authenticate('bearer', { session: false }), user.findByUsername)
 

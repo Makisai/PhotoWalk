@@ -6,8 +6,9 @@
 
     <v-main>
       <p>LANDING PAGE</p>
-      <MasterButton v-bind:title="'Start'" v-bind:target="'Start'"/>
-      <Login></Login>
+      <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>
+      <v-spacer></v-spacer>
+      <LoginDialog/>
     </v-main>
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
@@ -20,11 +21,11 @@
 </template>
 
 <script>
-import MasterButton from "../components/MasterButton";
-import Login from "../components/Login";
+import NavigationButton from "../components/NavigationButton";
+import LoginDialog from "../components/LoginDialog";
 export default {
   name: 'LandingPage',
-  components: {Login, MasterButton},
+  components: {LoginDialog, NavigationButton},
 }
 </script>
 

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "MasterButton",
+  name: "NavigationButton",
   props: {
     title: {
       type: String,
@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .button{
-  background: linear-gradient(90.29deg, #F06292 0.19%, #00BCD4 99.75%);
+  background: linear-gradient(90.29deg, #F06292, #00BCD4);
   border-radius: 4px;
   color: white;
 }
