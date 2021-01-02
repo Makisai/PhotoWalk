@@ -70,5 +70,28 @@ exports.acceptFriendship = (req,res) => {
                 err.message || "Some error occurred while updating."
         });
     });
+}
 
+exports.deleteFriendship = (req,res) => {
+    const id = req.params.id;
+
+    Friendship.destroy({
+        where: {id:id}
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Friendship was deleted sucessfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete Friendship with id=${id}. Maybe Tutorial was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Friendship with id=" + id
+            });
+        });
 }

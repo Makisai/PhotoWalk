@@ -10,6 +10,9 @@ module.exports = app => {
     //User nach Username suchen
     router.get('/search/:username', passport.authenticate('bearer', { session: false }), user.findByUsername)
 
+    //UserInfos ausgeben für Einstellungen Seite
+    router.get('/info/:id', passport.authenticate('bearer', { session: false }), user.getUserInfo)
+
     //Einloggen
     router.post('/login', user.login);
 
@@ -18,6 +21,18 @@ module.exports = app => {
 
     //Registrierung
     router.post('/register', user.register);
+
+    //Username updaten
+    router.put('/updateUsername', passport.authenticate('bearer', { session: false }), user.updateUsername);
+
+    //Profilbild ändern
+    router.put('/updateProfilBild', passport.authenticate('bearer', { session: false }), user.updateProfilBild);
+
+    //Passwort ändern
+    //TODO nur möglich bei lokalem Login
+
+    //User löschen
+    router.delete('/deleteUser/:id',  passport.authenticate('bearer', { session: false }), user.deleteUser)
 
     app.use('/api/users', router);
 }

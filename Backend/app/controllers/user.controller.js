@@ -9,7 +9,6 @@ const passport = require('passport');
 
 const uuid = require('uuid');
 
-//TODO Warum 2 mal User Datensatz suchen?
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
     const id = req.params.id;
@@ -28,10 +27,8 @@ exports.findOneUser = (req,res) => {
 exports.findByUsername = (req,res) => {
     const username = req.params.username;
 
-    User.findAll({where: {username}})
+    User.findAll({attributes: ['username', 'profile_picture'],where: {username}})
         .then(data => {
-            //res.send(data);
-            //TODO hier nur username zurückgeben! Nie den Token und das PW mitsenden
             res.json(200, data);
         })
         .catch(err => {
@@ -40,6 +37,62 @@ exports.findByUsername = (req,res) => {
                     err.message || "Some error occurred while retrieving the user."
             });
         });
+};
+
+exports.getUserInfo = (req,res) => {
+    const id = req.params.id;
+
+    User.findOne({
+        attributes: ['username', 'email', 'profile_picture'],
+        where: {
+            id
+        }
+    }).then(data => {
+        res.send(data);
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving UserInfo with id=" + id
+            });
+        });
+};
+
+exports.updateUsername = (req,res) => {
+    const id = req.body.id;
+    const newUsername = req.body.newUsername;
+
+    User.update(
+        {username: newUsername},
+        {where: {id:id}}
+    ).then(
+        res.status(200).send({
+            message: "Username sucessfully updated."
+        })
+    ).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating."
+        });
+    });
+};
+
+exports.updateProfilBild = (req,res) => {
+    const id = req.body.id;
+    const newProfilBild = req.body.newProfilBild;
+
+    User.update(
+        {profile_picture: newProfilBild},
+        {where: {id:id}}
+    ).then(
+        res.status(200).send({
+            message: "Profilbild sucessfully updated."
+        })
+    ).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating."
+        });
+    });
 };
 
 //Login Prozess
@@ -153,3 +206,27 @@ exports.register = (req,res,next) => {
         })
     }
 };
+
+exports.deleteUser= (req,res) => {
+    const id = req.params.id;
+
+    User.destroy({
+        where: {id:id}
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "User was deleted sucessfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete User with id=${id}. Maybe User was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete User with id=" + id
+            });
+        });
+}
