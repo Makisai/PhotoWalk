@@ -31,7 +31,7 @@
                 <v-divider></v-divider>
               </v-col>
               <v-col cols = "12" v-if="error">
-                <p class="error">{{error}}</p>
+                <p class="error">{{$t(error)}}</p>
               </v-col>
               <v-col cols = "12">
                 <v-text-field
@@ -110,7 +110,7 @@ export default {
             this.$router.push({name: 'Start'});
           })
       .catch((error) => {
-        this.error = 'Your USERNAME or PASSWORD is not Correct';
+        this.error = 'error.login';
         console.log("FEHLER", error);
       })
     }
