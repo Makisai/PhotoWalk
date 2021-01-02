@@ -31,7 +31,19 @@ exports.create = (req, res) => {
 
 //Alle Foto Datensätze aus der Datenbank auslesen und als json senden
 exports.findAllByUserId = (req,res) => {
-    Photo.findAll({where: {userId:req.params.id}})
+    const id = req.params.id;
+    const escapedId = db.sequelize.escape(`%${id}%`);
+    Photo.findAll({attributes: {include: [
+        [
+            db.sequelize.literal(`(
+                SELECT COUNT(likes."photoId")
+                FROM likes 
+                WHERE likes."photoId" = id
+                 
+            )`,
+            ), 'likeCount'
+        ]
+            ]},where: {userId:id}})
     .then(data => {
         res.send(data);
     })
@@ -59,7 +71,6 @@ exports.findOne = (req,res) => {
 };
 
 //Löscht einen Foto Datensatz anhand eines gesetzen Parameters(ID)
-//TODO: Überprüfen ob current USER auch der OWNER des FOTOS ist
 exports.delete = (req,res) => {
     const id = req.params.id;
 
