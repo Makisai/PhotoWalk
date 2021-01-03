@@ -1,10 +1,13 @@
 <template>
   <v-app>
     <v-app-bar class="gradient" app>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white">
+      </v-app-bar-nav-icon>
+      <v-toolbar-title>Photowalk</v-toolbar-title>
       <v-spacer></v-spacer>
       <Logout/>
     </v-app-bar>
+    <Navigation-drawer :drawer="drawer"/>
 
     <v-main>
       <router-view/>
@@ -12,7 +15,10 @@
 
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
-        <v-col cols="12">
+        <v-col cols="6">
+          <LocaleChange/>
+        </v-col>
+        <v-col cols="6">
           {{ new Date().getFullYear() }} — Photowalk
         </v-col>
       </v-row>
@@ -22,9 +28,16 @@
 
 <script>
 import Logout from "../components/Logout";
+import NavigationDrawer from "../components/NavigationDrawer";
+import LocaleChange from "../components/LocaleChange";
 export default {
   name: 'Layout',
-  components: {Logout},
+  components: {LocaleChange, NavigationDrawer, Logout},
+  data(){
+    return {
+      drawer:false,
+    }
+}
 }
 </script>
 
