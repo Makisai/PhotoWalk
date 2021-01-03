@@ -1,5 +1,12 @@
 {
   "error":{
     "login":"Your EMAIL or PASSWORD is not correct!"
+  },
+  "pages":{
+    "friends": "Friends",
+    "photos": "My Photos",
+    "settings":"Settings",
+    "overview": "All Photowalks",
+    "details": "Photowalk"
   }
 }
