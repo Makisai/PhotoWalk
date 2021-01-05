@@ -5,7 +5,6 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title>Photowalk</v-toolbar-title>
       <v-spacer></v-spacer>
-      <Logout/>
     </v-app-bar>
     <Navigation-drawer :drawer="drawer"/>
 
@@ -27,12 +26,11 @@
 </template>
 
 <script>
-import Logout from "../components/Logout";
 import NavigationDrawer from "../components/NavigationDrawer";
 import LocaleChange from "../components/LocaleChange";
 export default {
   name: 'Layout',
-  components: {LocaleChange, NavigationDrawer, Logout},
+  components: {LocaleChange, NavigationDrawer},
   data(){
     return {
       drawer:false,
