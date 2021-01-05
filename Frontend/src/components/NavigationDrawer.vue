@@ -26,6 +26,16 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <template v-slot:append>
+      <v-list-item @click="signout">
+        <v-list-item-icon>
+          <v-icon color="primary">mdi-logout</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title align="left">Logout</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </template>
   </v-navigation-drawer>
 </template>
 
@@ -35,9 +45,10 @@ export default {
   data () {
     return {
       items:[
-        {title:'pages.photos',icon:'mdi-image',target:"MyPhotos"},
-        {title:'pages.friends',icon:'mdi-account-supervisor-circle',target: "MyFriends"},
-        {title:'pages.overview',icon:'mdi-map',target:"WalksOverview"},
+        {title:'pages.photos',icon:'mdi-image',target:'MyPhotos'},
+        {title:'pages.friends',icon:'mdi-account-supervisor-circle',target: 'MyFriends'},
+        {title:'pages.overview',icon:'mdi-map',target:'WalksOverview'},
+        {title:'pages.settings',icon:'mdi-cog',target:'Settings'},
       ],
       right: null,
     }
@@ -51,6 +62,13 @@ export default {
   methods: {
     navigation(target) {
       this.$router.push({name:target});
+    },
+    signout() {
+      this.axios.post('users/logout',{},{headers: {'Authorization': `Bearer ${this.$store.state.user.token}`}})
+          .then(()=>{
+            this.$store.commit('setToken','XXX');
+            this.$router.push({name: 'LandingPage'})
+          })
     }
   }
 }

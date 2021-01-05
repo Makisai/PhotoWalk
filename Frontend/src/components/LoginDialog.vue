@@ -49,7 +49,7 @@
                     :type="showeye ? 'text' : 'password'"
                     name="input-pw"
                     filled
-                    label="Email"
+                    label="Password"
                     hint="At least 8 characters"
                     prepend-inner-icon="mdi-lock"
                     value=""
@@ -65,7 +65,10 @@
                 <p>Forgot password?</p>
               </v-col>
               <v-col cols="12">
-                <p>No account yet? Register</p>
+                <p>No account yet? <a @click="showRegisterForm">Register</a></p>
+              </v-col>
+              <v-col v-if="registerForm" cols="12">
+                <RegisterForm/>
               </v-col>
             </v-row>
           </v-container>
@@ -86,8 +89,10 @@
 </template>
 
 <script>
+import RegisterForm from "./RegisterForm";
 export default {
   name: 'LoginDialog',
+  components: {RegisterForm},
   data () {
     return{
       dialog: false,
@@ -95,6 +100,7 @@ export default {
       email: '',
       password: '',
       error: '',
+      registerForm: false,
       rules: {
         required: value => !!value || 'Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
@@ -113,6 +119,9 @@ export default {
         this.error = 'error.login';
         console.log("FEHLER", error);
       })
+    },
+    showRegisterForm(){
+      this.registerForm = true;
     }
   }
 }
