@@ -6,14 +6,14 @@
         max-width="400px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on" class="button ma-8">
+        <v-btn v-bind="attrs" v-on="on" class="mainGradient ma-8">
           START EXPLORING
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>
-          <span v-if="registerForm">REGISTER</span>
-          <span v-else>LOGIN</span>
+        <v-card-title class="mainGradient">
+          <span class="centerspan" v-if="registerForm">REGISTER</span>
+          <span class="centerspan" v-else>LOGIN</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -37,12 +37,12 @@
               <v-col v-if="registerForm" cols="12">
                 <RegisterForm/>
               </v-col>
-              <v-col cols="12">
-                <p v-if="!registerForm">Forgot password?</p>
+              <v-col class="py-1" cols="12">
+                <p class="ma-0" v-if="!registerForm">Forgot password?</p>
               </v-col>
-              <v-col cols="12">
-                <p v-if="registerForm">Already got an account? <a @click="showLoginForm">Login</a> </p>
-                <p v-else>No account yet? <a @click="showRegisterForm">Register</a></p>
+              <v-col class="py-1" cols="12">
+                <p class="ma-0" v-if="registerForm">Already got an account? <a @click="showLoginForm">Login</a> </p>
+                <p class="ma-0" v-else>No account yet? <a @click="showRegisterForm">Register</a></p>
               </v-col>
             </v-row>
           </v-container>
@@ -82,9 +82,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button{
+.mainGradient{
   background: linear-gradient(90.29deg, #F06292 0.19%, #00BCD4 99.75%);
   border-radius: 4px;
   color: white;
+}
+.centerspan{
+  width: 100%;
 }
 </style>

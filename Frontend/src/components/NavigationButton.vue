@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="navigation()" class="button">{{title}}</v-btn>
+  <v-btn @click="navigation()" class="mainGradient">{{title}}</v-btn>
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button{
+.mainGradient{
   background: linear-gradient(90.29deg, #F06292, #00BCD4);
   border-radius: 4px;
   color: white;

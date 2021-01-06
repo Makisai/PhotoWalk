@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols = "12">
+    <v-col class="py-2" cols = "12">
       <v-text-field
           filled
           label="Email"
@@ -9,16 +9,16 @@
           v-model="email"
       ></v-text-field>
     </v-col>
-    <v-col cols = "12">
+    <v-col class="py-2" cols = "12">
       <v-text-field
           filled
           label="Username"
-          prepend-inner-icon="mdi-user"
+          prepend-inner-icon="mdi-account"
           color="primary"
           v-model="username"
       ></v-text-field>
     </v-col>
-    <v-col cols="12">
+    <v-col class="py-2" cols="12">
       <v-text-field
           :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
@@ -33,23 +33,23 @@
           v-model="password"
       ></v-text-field>
     </v-col>
+<!--    <v-col class="py-2" cols="12">-->
+<!--      <v-text-field-->
+<!--          :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"-->
+<!--          :rules="[rules.required, rules.min]"-->
+<!--          :type="showeye ? 'text' : 'password'"-->
+<!--          name="confirm-pw"-->
+<!--          filled-->
+<!--          label="Confirm Password"-->
+<!--          hint="At least 8 characters"-->
+<!--          prepend-inner-icon="mdi-lock"-->
+<!--          class="input-group&#45;&#45;focused"-->
+<!--          @click:append="showeye = !showeye"-->
+<!--          v-model="password2"-->
+<!--      ></v-text-field>-->
+<!--    </v-col>-->
     <v-col cols="12">
-      <v-text-field
-          :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
-          :type="showeye ? 'text' : 'password'"
-          name="confirm-pw"
-          filled
-          label="Confirm Password"
-          hint="At least 8 characters"
-          prepend-inner-icon="mdi-lock"
-          class="input-group--focused"
-          @click:append="showeye = !showeye"
-          v-model="password2"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="12">
-      <v-btn block class="button" @click="signup">REGISTER</v-btn>
+      <v-btn block class="mainGradient" @click="signup">REGISTER</v-btn>
     </v-col>
     <v-col v-if="registered" cols="12">
       <p>You've sucessfully registerd. Check your E-mail for details!</p>
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     signup(){
-      this.axios.post('users/register', {email: this.email,username: this.username, password: this.password, password2:this.password2})
+      this.axios.post('users/register', {email: this.email,username: this.username, password: this.password, password2:this.password})
           .then(() => {
             this.registered = true;
           })
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button{
+.mainGradient{
   background: linear-gradient(90.29deg, #F06292 0.19%, #00BCD4 99.75%);
   border-radius: 4px;
   color: white;

@@ -22,7 +22,7 @@
 
 <script>
 import NavigationButton from "../components/NavigationButton";
-import LoginDialog from "../components/LoginDialog";
+import LoginDialog from "../components/usermanagement/LoginDialog";
 export default {
   name: 'LandingPage',
   components: {LoginDialog, NavigationButton},
