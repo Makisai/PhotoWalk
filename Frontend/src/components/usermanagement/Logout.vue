@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <v-btn text @click="signout" class="logout-btn">Logout</v-btn>
-  </div>
+  <v-list-item @click="signout">
+    <v-list-item-icon>
+      <v-icon color="primary">mdi-logout</v-icon>
+    </v-list-item-icon>
+    <v-list-item-content>
+      <v-list-item-title align="left">Logout</v-list-item-title>
+    </v-list-item-content>
+  </v-list-item>
 </template>
 
 <script>
@@ -21,7 +26,5 @@ export default {
 </script>
 
 <style scoped>
-.logout-btn{
-  color: white;
-}
+
 </style>
