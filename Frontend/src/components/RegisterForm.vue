@@ -9,6 +9,15 @@
           v-model="email"
       ></v-text-field>
     </v-col>
+    <v-col cols = "12">
+      <v-text-field
+          filled
+          label="Username"
+          prepend-inner-icon="mdi-user"
+          color="primary"
+          v-model="username"
+      ></v-text-field>
+    </v-col>
     <v-col cols="12">
       <v-text-field
           :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
@@ -19,7 +28,6 @@
           label="Password"
           hint="At least 8 characters"
           prepend-inner-icon="mdi-lock"
-          value=""
           class="input-group--focused"
           @click:append="showeye = !showeye"
           v-model="password"
@@ -35,14 +43,16 @@
           label="Confirm Password"
           hint="At least 8 characters"
           prepend-inner-icon="mdi-lock"
-          value=""
           class="input-group--focused"
           @click:append="showeye = !showeye"
-          v-model="passwordconfirm"
+          v-model="password2"
       ></v-text-field>
     </v-col>
     <v-col cols="12">
       <v-btn block class="button" @click="signup">REGISTER</v-btn>
+    </v-col>
+    <v-col v-if="registered" cols="12">
+      <p>You've sucessfully registerd. Check your E-mail for details!</p>
     </v-col>
   </v-row>
 </template>
@@ -54,9 +64,11 @@ export default {
     return{
       dialog: false,
       showeye: false,
+      username:'',
       email: '',
       password: '',
-      passwordconfirm:'',
+      password2:'',
+      registered: false,
       error: '',
       registerForm: false,
       rules: {
@@ -67,11 +79,9 @@ export default {
   },
   methods: {
     signup(){
-      this.axios.post('users/register', {email: this.email, password: this.password})
-          .then((response) => {
-            const token = response.data.token;
-            this.$store.commit('setToken', token);
-            this.$router.push({name: 'Start'});
+      this.axios.post('users/register', {email: this.email,username: this.username, password: this.password, password2:this.password2})
+          .then(() => {
+            this.registered = true;
           })
           .catch((error) => {
             this.error = 'error.login';
