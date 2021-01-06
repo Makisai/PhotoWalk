@@ -12,7 +12,8 @@
       </template>
       <v-card>
         <v-card-title>
-          <span>LOGIN</span>
+          <span v-if="registerForm">REGISTER</span>
+          <span v-else>LOGIN</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -30,56 +31,25 @@
               <v-col cols = "12">
                 <v-divider></v-divider>
               </v-col>
-              <v-col cols = "12" v-if="error">
-                <p class="error">{{$t(error)}}</p>
-              </v-col>
-              <v-col cols = "12">
-                <v-text-field
-                    filled
-                    label="Email"
-                    prepend-inner-icon="mdi-email"
-                    color="primary"
-                    v-model="email"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                    :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min]"
-                    :type="showeye ? 'text' : 'password'"
-                    name="input-pw"
-                    filled
-                    label="Password"
-                    hint="At least 8 characters"
-                    prepend-inner-icon="mdi-lock"
-                    value=""
-                    class="input-group--focused"
-                    @click:append="showeye = !showeye"
-                    v-model="password"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-btn block class="button" @click="signin">LOGIN</v-btn>
-              </v-col>
-              <v-col cols="12">
-                <p>Forgot password?</p>
-              </v-col>
-              <v-col cols="12">
-                <p>No account yet? <a @click="showRegisterForm">Register</a></p>
+              <v-col v-if="!registerForm" cols="12">
+                <LoginForm/>
               </v-col>
               <v-col v-if="registerForm" cols="12">
                 <RegisterForm/>
+              </v-col>
+              <v-col cols="12">
+                <p v-if="!registerForm">Forgot password?</p>
+              </v-col>
+              <v-col cols="12">
+                <p v-if="registerForm">Already got an account? <a @click="showLoginForm">Login</a> </p>
+                <p v-else>No account yet? <a @click="showRegisterForm">Register</a></p>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-              color="primary"
-              text
-              @click="dialog = false"
-          >
+          <v-btn color="primary" text @click="dialog = false">
             Close
           </v-btn>
         </v-card-actions>
@@ -90,39 +60,23 @@
 
 <script>
 import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
 export default {
   name: 'LoginDialog',
-  components: {RegisterForm},
+  components: {LoginForm, RegisterForm},
   data () {
     return{
       dialog: false,
-      showeye: false,
-      email: '',
-      password: '',
-      error: '',
       registerForm: false,
-      rules: {
-        required: value => !!value || 'Required.',
-        min: v => v.length >= 8 || 'Min 8 characters',
-      },
     };
   },
   methods: {
-    signin() {
-      this.axios.post('users/login', {email: this.email, password: this.password})
-          .then((response) => {
-            const token = response.data.token;
-            this.$store.commit('setToken', token);
-            this.$router.push({name: 'Start'});
-          })
-      .catch((error) => {
-        this.error = 'error.login';
-        console.log("FEHLER", error);
-      })
-    },
     showRegisterForm(){
       this.registerForm = true;
-    }
+    },
+    showLoginForm(){
+      this.registerForm = false;
+    },
   }
 }
 </script>
