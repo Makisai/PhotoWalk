@@ -32,7 +32,6 @@ exports.create = (req, res) => {
 //Alle Foto Datensätze aus der Datenbank auslesen und als json senden
 exports.findAllByUserId = (req,res) => {
     const id = req.params.id;
-    const escapedId = db.sequelize.escape(`%${id}%`);
     Photo.findAll({attributes: {include: [
         [
             db.sequelize.literal(`(
@@ -53,6 +52,24 @@ exports.findAllByUserId = (req,res) => {
                 err.message || "Some error occurred while retrieving photos."
         });
     });
+};
+
+exports.findAllByPhotowalkId = (req,res) => {
+    const photowalkId = req.params.id;
+    const userId = req.body.userId;
+
+    Photo.findAll({
+        //TODO Korrekte Abfrage nach challenges.photowalkId
+        })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving photos."
+            });
+        });
 };
 
 //Einen Foto Datensatz mit gesetztem Parameter(ID) finden und als json senden
@@ -84,7 +101,7 @@ exports.delete = (req,res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Photo with id=${id}. Maybe Tutorial was not found!`
+                    message: `Photo mit id=${id} wurde nicht gefunden!`
                 });
             }
         })

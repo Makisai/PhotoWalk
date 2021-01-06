@@ -95,6 +95,43 @@ exports.updateProfilBild = (req,res) => {
     });
 };
 
+exports.updatePassword = (req,res) => {
+    const id = req.body.id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    User.findOne({
+        where: {
+            id
+        }
+    }).then((user) => {
+        bcrypt.compare(oldPassword, user.password, (err,isMatch) => {
+        if(err) return err;
+        if(isMatch) {
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newPassword, salt, (err, hash) => {
+                    if (err) throw err;
+                    User.update(
+                        {password: hash},
+                        {where: {id:id}}
+                    ).then(
+                        res.status(200).send({
+                            message: "Password sucessfully updated."
+                        })
+                    ).catch(err => {
+                        res.status(500).send({
+                            message:
+                                err.message || "Some error occurred while updating."
+                        });
+                    });
+                });
+            });
+        } else{
+            return res.json(401, {message: 'current password is incorrect'});
+        }
+    })});
+};
+
 //Login Prozess
 exports.login = (req,res,next) => {
     const {email, password} = req.body;

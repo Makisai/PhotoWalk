@@ -29,7 +29,7 @@ module.exports = app => {
     router.put('/updateProfilBild', passport.authenticate('bearer', { session: false }), user.updateProfilBild);
 
     //Passwort ändern
-    //TODO nur möglich bei lokalem Login
+    router.put('/updatePassword', passport.authenticate('bearer', { session: false }), user.updatePassword);
 
     //User löschen
     router.delete('/deleteUser/:id',  passport.authenticate('bearer', { session: false }), user.deleteUser)

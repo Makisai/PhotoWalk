@@ -8,6 +8,8 @@ module.exports = app => {
 
     router.get("/user/:id", passport.authenticate('bearer', { session: false }), photo.findAllByUserId);
 
+    router.get("/photowalk/:id", passport.authenticate('bearer', { session: false }), photo.findAllByPhotowalkId);
+
     router.get("/:id", passport.authenticate('bearer', { session: false }), photo.findOne);
 
     router.delete("/:id", passport.authenticate('bearer', { session: false }), photo.delete)
