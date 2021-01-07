@@ -35,3 +35,24 @@ exports.findOne = (req,res) => {
         });
     });
 };
+
+exports.findLastPhotowalk = async (req, res) => {
+    const id = req.params.id;
+    const editedPhotowalks = await db.sequelize.query(`SELECT "photowalkId"
+                                                       FROM "challenges"
+                                                       WHERE "id" = (SELECT "challengeId"
+                                                                      FROM "photos"
+                                                                    WHERE "id" = (SELECT MAX("id")
+                                                                                    FROM "photos"
+                                                                                WHERE "userId" = ?
+                                                                                )
+                                                                    )`, {replacements: [id], type: QueryTypes.SELECT});
+    Photowalk.findOne({
+        where: {
+            id: editedPhotowalks[0].photowalkId
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+};

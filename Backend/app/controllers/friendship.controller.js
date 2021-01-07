@@ -18,23 +18,47 @@ exports.create = (req, res) => {
         return;
     }
 
-    const friendship = {
-        accepted: req.body.accepted,
-        first_move: req.body.first_move,
-        user1_id: req.body.user1_id,
-        user2_id: req.body.user2_id
-    };
-
-    Friendship.create(friendship)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Friendship"
-            });
+    if (req.body.user1_id = req.body.user2_id) {
+        res.status(400).send({
+            message: "Ids cannot be equal!"
         });
+        return;
+    }
+
+    Friendship.findAll({
+        where:  {[OP.and]: [
+                { user1_id: req.body.user1_id},
+                { user2_id: req.body.user2_id}
+            ]
+        }
+    }).then(friendship => {
+        if (friendship[0]) {
+            res.status(400).send({
+                message: "Friendship already exists"
+            });
+        }
+        else {
+            const friendship = {
+                accepted: req.body.accepted,
+                first_move: req.body.first_move,
+                user1_id: req.body.user1_id,
+                user2_id: req.body.user2_id
+            };
+
+            Friendship.create(friendship)
+                .then(data => {
+                    res.send(data);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message:
+                            err.message || "Some error occurred while creating the Friendship"
+                    });
+                });
+        }
+    });
+
+
 };
 
 //Alle Friendship Datensätze eines Users aus der Datenbank auslesen und als json senden

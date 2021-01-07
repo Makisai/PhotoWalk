@@ -1,4 +1,5 @@
 const db = require("../models");
+const {QueryTypes} = require("sequelize");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
 
@@ -54,12 +55,34 @@ exports.findAllByUserId = (req,res) => {
     });
 };
 
-exports.findAllByPhotowalkId = (req,res) => {
+//Alle Photos eines Users zu einem Photowalk und die Photos der Freunde
+//TODO richtige Umsetzung
+exports.findAllByPhotowalkId = async (req, res) => {
     const photowalkId = req.params.id;
     const userId = req.body.userId;
 
+    const photoIds = await db.sequelize.query(`SELECT "id"
+                                                FROM "photos"
+                                                WHERE "id" IN (SELECT "challengeId"
+                                                                     FROM "photos"
+                                                                     WHERE "id" = ?
+                                                       )`, {replacements: [photowalkId], type: QueryTypes.SELECT});
+
+
     Photo.findAll({
-        //TODO Korrekte Abfrage nach challenges.photowalkId
+        attributes: {
+            include: [
+                [
+                    db.sequelize.literal(`(
+                SELECT COUNT(likes."photoId")
+                FROM likes 
+                WHERE likes."photoId" = id
+                 
+            )`,
+                    ), 'likeCount'
+                ]
+            ]
+        },
         })
         .then(data => {
             res.send(data);
