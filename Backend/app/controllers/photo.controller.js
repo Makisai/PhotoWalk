@@ -59,14 +59,25 @@ exports.findAllByUserId = (req,res) => {
 //TODO richtige Umsetzung
 exports.findAllByPhotowalkId = async (req, res) => {
     const photowalkId = req.params.id;
-    const userId = req.body.userId;
+    const currentUserId = req.body.userId;
 
-    const photoIds = await db.sequelize.query(`SELECT "id"
-                                                FROM "photos"
-                                                WHERE "id" IN (SELECT "challengeId"
-                                                                     FROM "photos"
-                                                                     WHERE "id" = ?
-                                                       )`, {replacements: [photowalkId], type: QueryTypes.SELECT});
+    let challengeIds = await db.sequelize.query(`SELECT "id"
+                                                FROM "challenges"
+                                                WHERE "photowalkId" = ?
+                                                       `, {replacements: [photowalkId], type: QueryTypes.SELECT});
+
+    const challArray = challengeIds.map((challenge) => challenge.id);
+
+    let userIds = await db.sequelize.query(`SELECT "user1_id", "user2_id"
+                                                FROM "friendships"
+                                                WHERE "user1_id" = ? OR "user2_id" = ?
+                                                       `, {replacements: [currentUserId, currentUserId], type: QueryTypes.SELECT})
+
+    const userArray1 = userIds.map((user) => user.user1_id);
+
+    const userArray2 = userIds.map((user) => user.user2_id);
+
+    var userArray = userArray1.concat(userArray2);
 
 
     Photo.findAll({
@@ -83,6 +94,10 @@ exports.findAllByPhotowalkId = async (req, res) => {
                 ]
             ]
         },
+        where: { [OP.and]: [
+                {[OP.or]: [{userId: {[OP.in]: userArray }},{userId: currentUserId}]},
+                { challengeId:  {[OP.in]:challArray }}
+            ]}
         })
         .then(data => {
             res.send(data);
