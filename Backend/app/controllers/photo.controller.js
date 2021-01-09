@@ -56,7 +56,6 @@ exports.findAllByUserId = (req,res) => {
 };
 
 //Alle Photos eines Users zu einem Photowalk und die Photos der Freunde
-//TODO richtige Umsetzung
 exports.findAllByPhotowalkId = async (req, res) => {
     const photowalkId = req.params.id;
     const currentUserId = req.body.userId;
