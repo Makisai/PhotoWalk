@@ -3,10 +3,7 @@ const db = require("../models");
 const User = db.users;
 const OP = db.Sequelize.Op;
 
-const router = express.Router();
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
-
 const uuid = require('uuid');
 
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
@@ -16,7 +13,7 @@ exports.findOneUser = (req,res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(err => {
+        .catch(() => {
             res.status(500).send({
                 message: "Error retrieving User with id=" + id
             });
@@ -133,13 +130,16 @@ exports.updatePassword = (req,res) => {
 };
 
 //Login Prozess
-exports.login = (req,res,next) => {
+exports.login = (req,res) => {
     const {email, password} = req.body;
     User.findOne({
         where: {
             email
         }
     }).then((user) => {
+        if(user === null){
+            return res.json(401,{message: 'password is incorrect'})
+        }
         //Checken ob Passwort zur eingegebenen E-Mail-Adresse existiert/richtig ist
         bcrypt.compare(password, user.password, (err,isMatch) => {
             if(err) return err;
@@ -169,7 +169,11 @@ exports.logout = (req,res) => {
     res.json(200, {message: 'your logged out'});
 }
 
-exports.register = (req,res,next) => {
+exports.isloggedin = (req,res) =>{
+    res.json(200,{})
+}
+
+exports.register = (req,res) => {
     const {username,email,password,password2} = req.body;
     let errors= [];
 

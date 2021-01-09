@@ -1,7 +1,22 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
+
+const guard = (to,from,next) => {
+  Vue.axios.get('/users/is_logged_in', {headers: {
+      'Authorization': `Bearer ${store.state.user.token}`
+    }})
+      .then(()=>{
+        next();
+      })
+      .catch(()=>{
+        if(from !== '/') {
+          next('/');
+        }
+      })
+}
 
 const routes = [
   
@@ -15,6 +30,7 @@ const routes = [
     path: '/page',
     name: 'PageLayout',
     component: () => import( '../views/PageLayout.vue'),
+    beforeEnter: guard,
     //nested routing - hier ein Array wie oben const routes
     children: [
       {
