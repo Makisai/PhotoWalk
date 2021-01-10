@@ -5,7 +5,7 @@ const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für ein Foto
 exports.create = (req, res) => {
-    if (!req.body.photo_link) {
+    if (req.file == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     }
 
     const photo = {
-        photo_link: req.body.photo_link,
+        photo_link: req.file.path,
         challengeId: req.body.challengeId,
         userId: req.body.userId
     };
