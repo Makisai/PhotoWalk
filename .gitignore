@@ -4,3 +4,5 @@ Backend/app/config/db.config.js
 
 db.config.js
 node_modules
+profilePics
+uploads
