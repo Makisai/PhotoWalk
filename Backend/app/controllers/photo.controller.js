@@ -16,6 +16,7 @@ exports.create = (req, res) => {
     const photo = {
         photo_link: req.file.path,
         challengeId: req.body.challengeId,
+        //TODO User id hier löschen um angriffe zu vermeiden --> nicht vom frontend bekommen sondern vom backend(bearer token)
         userId: req.body.userId
     };
 

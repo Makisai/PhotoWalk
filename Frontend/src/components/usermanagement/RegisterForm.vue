@@ -33,21 +33,6 @@
           v-model="password"
       ></v-text-field>
     </v-col>
-<!--    <v-col class="py-2" cols="12">-->
-<!--      <v-text-field-->
-<!--          :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"-->
-<!--          :rules="[rules.required, rules.min]"-->
-<!--          :type="showeye ? 'text' : 'password'"-->
-<!--          name="confirm-pw"-->
-<!--          filled-->
-<!--          label="Confirm Password"-->
-<!--          hint="At least 8 characters"-->
-<!--          prepend-inner-icon="mdi-lock"-->
-<!--          class="input-group&#45;&#45;focused"-->
-<!--          @click:append="showeye = !showeye"-->
-<!--          v-model="password2"-->
-<!--      ></v-text-field>-->
-<!--    </v-col>-->
     <v-col cols="12">
       <v-btn block class="mainGradient" @click="signup">REGISTER</v-btn>
     </v-col>

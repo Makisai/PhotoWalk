@@ -8,5 +8,8 @@
     "settings":"Einstellungen",
     "overview": "Alle Photowalks",
     "details": "Photowalk"
+  },
+  "labels": {
+    "submit": "Senden"
   }
 }
