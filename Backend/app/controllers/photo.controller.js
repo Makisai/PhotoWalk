@@ -2,6 +2,7 @@ const db = require("../models");
 const {QueryTypes} = require("sequelize");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
+const User = db.users;
 
 //Erstellen eines Datensatzes für ein Foto
 exports.create = (req, res) => {
@@ -26,6 +27,34 @@ exports.create = (req, res) => {
             res.status(500).send({
                 message: 
                     err.message || "Some error occurred while creating the Photo"
+            });
+        });
+};
+
+// Soll das Profilbild patchen
+exports.update = (req, res) => {
+    if (req.file == undefined) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+    const currentUserId = req.params.id;
+    const photo = req.file.path;
+
+    User.update({
+        profile_picture: photo
+      }, {
+        where: {
+          id: currentUserId}
+      })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: 
+                    err.message || "Some error occurred while updating the ProfilePicture"
             });
         });
 };
