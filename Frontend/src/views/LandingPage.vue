@@ -9,6 +9,7 @@
       <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>
       <v-spacer></v-spacer>
       <LoginDialog/>
+      <PhotowalkMap/>
     </v-main>
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
@@ -23,9 +24,10 @@
 <script>
 import NavigationButton from "../components/NavigationButton";
 import LoginDialog from "../components/usermanagement/LoginDialog";
+import PhotowalkMap from "@/components/PhotowalkMap";
 export default {
   name: 'LandingPage',
-  components: {LoginDialog, NavigationButton},
+  components: {PhotowalkMap, LoginDialog, NavigationButton},
 }
 </script>
 
