@@ -1,11 +1,11 @@
 <template>
-  <div class="map">
+  <div class="container">
     <l-map
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
-        style="height: 80%"
         @update:center="centerUpdate"
+        class="map"
     >
       <l-tile-layer
         :url="url"
@@ -14,7 +14,7 @@
       <l-marker :lat-lng="currentCenter" ></l-marker>
       <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
     </l-map>
-    <v-btn @click="addPoint">add position</v-btn>
+    <v-btn v-if="walkcreation" @click="addPoint">add position</v-btn>
   </div>
 </template>
 
@@ -56,14 +56,24 @@ export default {
       this.polyline.latlngs.push([this.currentCenter.lat, this.currentCenter.lng]);
       console.log('[',this.polyline.latlngs.join('],['),']');
     },
-  }
+  },
+  props: {
+    walkcreation :{
+      type: Boolean,
+      default: false,
+    } ,
+  },
 };
 </script>
 
 <style scoped>
 .map {
   height: 700px;
-  width: 30%;
-  z-index: 1;
+  width: 95%;
+  z-index: 0;
+  margin: 15px;
+}
+.container {
+  padding: 5px;
 }
 </style>

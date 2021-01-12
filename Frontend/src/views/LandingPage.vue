@@ -1,15 +1,28 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app class="gradient">
-      <v-toolbar-title>Application</v-toolbar-title>
+    <v-app-bar
+        app class="gradient"
+        shrink-on-scroll
+        prominent
+    >
+      <v-spacer></v-spacer>
+      <v-toolbar-title>PhotoWalk</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
-      <p>LANDING PAGE</p>
-      <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>
+<!--      <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>-->
       <v-spacer></v-spacer>
-      <LoginDialog/>
-      <PhotowalkMap/>
+      <v-row>
+        <v-col cols="6">
+          <v-card class="card">
+            <PhotowalkMap/>
+          </v-card>
+        </v-col>
+        <v-col cols="6">
+          <LoginDialog/>
+        </v-col>
+      </v-row>
     </v-main>
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
@@ -22,12 +35,11 @@
 </template>
 
 <script>
-import NavigationButton from "../components/NavigationButton";
 import LoginDialog from "../components/usermanagement/LoginDialog";
 import PhotowalkMap from "@/components/PhotowalkMap";
 export default {
   name: 'LandingPage',
-  components: {PhotowalkMap, LoginDialog, NavigationButton},
+  components: {PhotowalkMap, LoginDialog},
 }
 </script>
 
@@ -35,5 +47,13 @@ export default {
 .gradient{
   background: linear-gradient(90deg, #00BCD4 0%, #E91E63 100%);
   color: white;
+}
+
+.card{
+  margin: 15px;
+}
+
+.headline{
+  justify-content: center;
 }
 </style>
