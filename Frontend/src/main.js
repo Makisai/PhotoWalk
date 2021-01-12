@@ -6,6 +6,8 @@ import store from './store'
 import router from './router'
 import {VueMasonryPlugin} from 'vue-masonry';
 import i18n from './plugins/i18n'
+import '../node_modules/leaflet/dist/leaflet.css';
+
 
 Vue.config.productionTip = false
 Vue.use(VueMasonryPlugin);
