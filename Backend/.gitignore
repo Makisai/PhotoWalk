@@ -1,4 +1,5 @@
 node_modules
-db.config.js
 app/uploads/**
 .env
+app/profilePics/**
+

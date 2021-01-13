@@ -22,7 +22,7 @@ services:
   photowalk_backend:
     build: ./Backend/
     volumes:
-      - photowalk_uploads:app/app/uploads
+      - ./photowalk_uploads:app/app/uploads
     labels:
       - "traefik.enable=true"
 
@@ -46,11 +46,11 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
-      POSTGRES_DB:
+      - "POSTGRES_USER="
+      - "POSTGRES_PASSWORD="
+      - "POSTGRES_DB="
     volumes:
-        - db-data:/var/lib/postgresql/data:rw
+        - ./db-data:/var/lib/postgresql/data:rw
     networks:
         - "photowalk"
 
