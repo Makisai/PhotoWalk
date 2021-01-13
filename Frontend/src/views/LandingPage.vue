@@ -14,12 +14,13 @@
 <!--      <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>-->
       <v-spacer></v-spacer>
       <v-row>
-        <v-col cols="6">
-          <v-card class="card">
+        <v-col cols="12" md="6">
             <PhotowalkMap/>
-          </v-card>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
+          <div class="px-2">
+          <ImageGrid/>
+          </div>
           <LoginDialog/>
         </v-col>
       </v-row>
@@ -37,9 +38,10 @@
 <script>
 import LoginDialog from "../components/usermanagement/LoginDialog";
 import PhotowalkMap from "@/components/PhotowalkMap";
+import ImageGrid from "@/components/ImageGrid";
 export default {
   name: 'LandingPage',
-  components: {PhotowalkMap, LoginDialog},
+  components: {ImageGrid, PhotowalkMap, LoginDialog},
 }
 </script>
 
@@ -47,10 +49,6 @@ export default {
 .gradient{
   background: linear-gradient(90deg, #00BCD4 0%, #E91E63 100%);
   color: white;
-}
-
-.card{
-  margin: 15px;
 }
 
 .headline{

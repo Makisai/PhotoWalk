@@ -1,0 +1,24 @@
+version: "2.0"
+
+services:
+  photowalk_frontend:
+    build: ./Frontend/
+    labels:
+      - "traefik.enable=true"
+
+      # http
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.photowalk_frontend-http.rule=Host(`stage.photowalk.online`)"
+      - "traefik.http.routers.photowalk_frontend.entrypoints=web"
+      - "traefik.http.routers.photowalk_frontend-http.middlewares=https_redirect"
+
+      # https
+      - "traefik.http.routers.photowalk_frontend.rule=Host(`stage.photowalk.online`)"
+      - "traefik.http.routers.photowalk_frontend.entrypoints=websecure"
+      - "traefik.http.routers.photowalk_frontend.tls.certresolver=myresolver"
+    networks:
+      - "web"
+
+networks:
+  web:
+    external: true
