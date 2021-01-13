@@ -18,8 +18,11 @@ services:
       - "traefik.http.routers.photowalk_frontend.tls.certresolver=myresolver"
     networks:
       - "web"
+
   photowalk_backend:
     build: ./Backend/
+    volumes:
+      - photowalk_uploads:app/app/uploads
     labels:
       - "traefik.enable=true"
 
@@ -35,7 +38,23 @@ services:
       - "traefik.http.routers.photowalk_backend.tls.certresolver=myresolver"
     networks:
       - "web"
+      - "photowalk"
+
+  photowalk_db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DB:
+    volumes:
+        - db-data:/var/lib/postgresql/data:rw
+    networks:
+        - "photowalk"
 
 networks:
   web:
     external: true
+  photowalk:

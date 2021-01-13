@@ -6,3 +6,4 @@ db.config.js
 node_modules
 profilePics
 uploads
+docker-compose.yml
