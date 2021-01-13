@@ -22,7 +22,10 @@ services:
   photowalk_backend:
     build: ./Backend/
     volumes:
-      - ./photowalk_uploads:app/app/uploads
+      - "./photowalk_uploads:/app/app/uploads"
+      - "./photowalk_profilePictures:/app/app/profilePictures"
+    ports:
+      - "8080"
     labels:
       - "traefik.enable=true"
 

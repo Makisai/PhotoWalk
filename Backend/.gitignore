@@ -1,5 +1,5 @@
 node_modules
 app/uploads/**
-.env
+app/uploads/.env
 app/profilePics/**
 
