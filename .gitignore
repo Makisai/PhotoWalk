@@ -1,6 +1,7 @@
 .idea
 .pdf
 
+deploy
 photowalk_uploads
 db-data
 docker-compose.yml
