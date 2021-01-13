@@ -1,10 +1,10 @@
 //DATEN HIER MÜSSEN DYNAMISCH ANGEPASST WERDEN
 //Datenbank Verbindungs Parameter
 module.exports = {
-    HOST: "localhost",
-    USER: "julia",
-    PASSWORD: "julia",
-    DB: "photowalk",
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USER,
+    PASSWORD: process.env.DB_PASSWORD,
+    DB: process.env.DB_NAME,
     dialect: "postgres",
     pool: {
         max: 10,

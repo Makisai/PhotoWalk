@@ -18,6 +18,23 @@ services:
       - "traefik.http.routers.photowalk_frontend.tls.certresolver=myresolver"
     networks:
       - "web"
+  photowalk_backend:
+    build: ./Backend/
+    labels:
+      - "traefik.enable=true"
+
+      # http
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.photowalk_backend-http.rule=Host(`stage-api.photowalk.online`)"
+      - "traefik.http.routers.photowalk_backend.entrypoints=web"
+      - "traefik.http.routers.photowalk_backend-http.middlewares=https_redirect"
+
+      # https
+      - "traefik.http.routers.photowalk_backend.rule=Host(`stage-api.photowalk.online`)"
+      - "traefik.http.routers.photowalk_backend.entrypoints=websecure"
+      - "traefik.http.routers.photowalk_backend.tls.certresolver=myresolver"
+    networks:
+      - "web"
 
 networks:
   web:
