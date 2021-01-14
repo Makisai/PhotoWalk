@@ -1,0 +1,63 @@
+version: "2.0"
+
+services:
+  photowalk_frontend:
+    build: ./Frontend/
+    labels:
+      - "traefik.enable=true"
+
+      # http
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.photowalk_frontend-http.rule=Host(`stage.photowalk.online`)"
+      - "traefik.http.routers.photowalk_frontend.entrypoints=web"
+      - "traefik.http.routers.photowalk_frontend-http.middlewares=https_redirect"
+
+      # https
+      - "traefik.http.routers.photowalk_frontend.rule=Host(`stage.photowalk.online`)"
+      - "traefik.http.routers.photowalk_frontend.entrypoints=websecure"
+      - "traefik.http.routers.photowalk_frontend.tls.certresolver=myresolver"
+    networks:
+      - "web"
+
+  photowalk_backend:
+    build: ./Backend/
+    volumes:
+      - "./photowalk_uploads:/app/app/uploads"
+      - "./photowalk_profilePictures:/app/app/profilePictures"
+    ports:
+      - "8080"
+    labels:
+      - "traefik.enable=true"
+
+      # http
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.photowalk_backend-http.rule=Host(`stage-api.photowalk.online`)"
+      - "traefik.http.routers.photowalk_backend.entrypoints=web"
+      - "traefik.http.routers.photowalk_backend-http.middlewares=https_redirect"
+
+      # https
+      - "traefik.http.routers.photowalk_backend.rule=Host(`stage-api.photowalk.online`)"
+      - "traefik.http.routers.photowalk_backend.entrypoints=websecure"
+      - "traefik.http.routers.photowalk_backend.tls.certresolver=myresolver"
+    networks:
+      - "web"
+      - "photowalk"
+
+  photowalk_db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER="
+      - "POSTGRES_PASSWORD="
+      - "POSTGRES_DB="
+    volumes:
+        - ./db-data:/var/lib/postgresql/data:rw
+    networks:
+        - "photowalk"
+
+networks:
+  web:
+    external: true
+  photowalk:

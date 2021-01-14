@@ -1,21 +1,23 @@
 <template>
-  <div class="container">
-    <l-map
-        :zoom="zoom"
-        :center="center"
-        :options="mapOptions"
-        @update:center="centerUpdate"
-        class="map"
-    >
-      <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-      />
-      <l-marker :lat-lng="currentCenter" ></l-marker>
-      <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
-    </l-map>
-    <v-btn v-if="walkcreation" @click="addPoint">add position</v-btn>
-  </div>
+  <v-card class="card">
+    <div class="container">
+      <l-map
+          :zoom="zoom"
+          :center="center"
+          :options="mapOptions"
+          @update:center="centerUpdate"
+          class="map"
+      >
+        <l-tile-layer
+          :url="url"
+          :attribution="attribution"
+        />
+        <l-marker :lat-lng="currentCenter" ></l-marker>
+        <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
+      </l-map>
+      <v-btn v-if="walkcreation" @click="addPoint">add position</v-btn>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -76,4 +78,10 @@ export default {
 .container {
   padding: 5px;
 }
+
+.card{
+  margin: 15px;
+  margin-top: 0;
+}
+
 </style>

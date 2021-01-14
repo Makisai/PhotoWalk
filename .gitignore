@@ -1,8 +1,24 @@
 .idea
 .pdf
-Backend/app/config/db.config.js
 
-db.config.js
-node_modules
-profilePics
-uploads
+deploy
+photowalk_uploads
+db-data
+docker-compose.yml
+
+# ____________________________________
+#/ Ich sehe du möchtest etwas in die   \
+#| Backend gitignore packen, hier ist |
+#\ leider die falsche Stelle dafür     /
+# ------------------------------------
+# \
+#  \
+#     __
+#    /  \
+#    |  |
+#    @  @
+#    |  |
+#    || |/
+#    || ||
+#    |\_/|
+#    \___/

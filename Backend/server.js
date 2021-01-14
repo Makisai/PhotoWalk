@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
@@ -9,7 +10,7 @@ require("./app/config/passport.config")(passport);
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: process.env.FRONTEND_URL
 };
 //setup
 app.use(cors(corsOptions));
