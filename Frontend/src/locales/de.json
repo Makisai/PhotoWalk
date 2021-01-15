@@ -8,5 +8,10 @@
     "settings":"Einstellungen",
     "overview": "Alle Photowalks",
     "details": "Photowalk"
+    
+  },
+  "messages":{
+    "welcome": "Willkommen User. Starte deinen ersten Photowalk.",
+    "welcomeback": "Wilkommen zurueck, User. Dies war dein letzter Photowalk"
   }
 }
