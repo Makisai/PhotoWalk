@@ -1,10 +1,22 @@
 const db = require("../models");
+const {QueryTypes} = require("sequelize");
 const Like = db.likes;
 const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für einen Like
-exports.create = (req, res) => {
-    if (!req.body.userId && !req.body.photoId) {
+exports.create = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
+    if (currentUserId && !req.body.photoId) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -12,7 +24,7 @@ exports.create = (req, res) => {
     }
 
     const like = {
-        userId: req.body.userId,
+        userId: currentUserId,
         photoId: req.body.photoId
     };
 
@@ -45,14 +57,25 @@ exports.findAllCountOnePhoto = (req,res) => {
 };
 
 //Like löschen (mit UserId und PhotoId)
-exports.delete = (req,res) => {
-    const userId = req.params.userId;
+exports.delete = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const photoId = req.params.photoId;
 
     Like.destroy({
-        where:  {[OP.and]: [
-            { userId: userId},
-            { photoId: photoId}
+        where: {
+            [OP.and]: [
+                {userId: currentUserId},
+                {photoId: photoId}
             ]
         }
     })

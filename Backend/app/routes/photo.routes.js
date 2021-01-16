@@ -34,7 +34,7 @@ module.exports = app => {
 
     router.post("/", passport.authenticate('bearer', { session: false }), upload.single('photo_link'),photo.create);
 
-    router.get("/user/:id", passport.authenticate('bearer', { session: false }), photo.findAllByUserId);
+    router.get("/user", passport.authenticate('bearer', { session: false }), photo.findAllByUserId);
 
     router.get("/photowalk/:id", passport.authenticate('bearer', { session: false }), photo.findAllByPhotowalkId);
 

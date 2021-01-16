@@ -38,13 +38,22 @@ exports.findByUsername = (req,res) => {
         });
 };
 
-exports.getUserInfo = (req,res) => {
-    const id = req.params.id;
+exports.getUserInfo = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const id = userId[0].id;
 
     User.findOne({
         attributes: ['username', 'email', 'profile_picture'],
         where: {
-            id
+           id
         }
     }).then(data => {
         res.send(data);
@@ -56,13 +65,22 @@ exports.getUserInfo = (req,res) => {
         });
 };
 
-exports.updateUsername = (req,res) => {
-    const id = req.body.id;
+exports.updateUsername = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
     const newUsername = req.body.newUsername;
 
     User.update(
         {username: newUsername},
-        {where: {id:id}}
+        {where: {id: currentUserId}}
     ).then(
         res.status(200).send({
             message: "Username sucessfully updated."
@@ -84,7 +102,16 @@ exports.update = async (req, res) => {
         return;
     }
 
-    const userId = req.body.userId;
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
     const newPhoto = req.file.path;
 
 
@@ -92,7 +119,7 @@ exports.update = async (req, res) => {
         profile_picture: newPhoto
     }, {
         where: {
-            id: userId
+            id: currentUserId
         }
     })
         .then(
@@ -107,7 +134,7 @@ exports.update = async (req, res) => {
     const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
                                                 FROM "users"
                                                 WHERE "id" = ?
-                                                       `, {replacements: [userId], type: QueryTypes.SELECT});
+                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT});
 
     //Löschen des alten Files
     //Link zum Default hardgecoded abgefragt
@@ -116,8 +143,17 @@ exports.update = async (req, res) => {
     }
 };
 
-exports.updatePassword = (req,res) => {
-    const id = req.body.id;
+exports.updatePassword = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const id = userId[0].id;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
 
@@ -126,31 +162,32 @@ exports.updatePassword = (req,res) => {
             id
         }
     }).then((user) => {
-        bcrypt.compare(oldPassword, user.password, (err,isMatch) => {
-        if(err) return err;
-        if(isMatch) {
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newPassword, salt, (err, hash) => {
-                    if (err) throw err;
-                    User.update(
-                        {password: hash},
-                        {where: {id:id}}
-                    ).then(
-                        res.status(200).send({
-                            message: "Password sucessfully updated."
-                        })
-                    ).catch(err => {
-                        res.status(500).send({
-                            message:
-                                err.message || "Some error occurred while updating."
+        bcrypt.compare(oldPassword, user.password, (err, isMatch) => {
+            if (err) return err;
+            if (isMatch) {
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newPassword, salt, (err, hash) => {
+                        if (err) throw err;
+                        User.update(
+                            {password: hash},
+                            {where: {id: id}}
+                        ).then(
+                            res.status(200).send({
+                                message: "Password sucessfully updated."
+                            })
+                        ).catch(err => {
+                            res.status(500).send({
+                                message:
+                                    err.message || "Some error occurred while updating."
+                            });
                         });
                     });
                 });
-            });
-        } else{
-            return res.json(401, {message: 'current password is incorrect'});
-        }
-    })});
+            } else {
+                return res.json(401, {message: 'current password is incorrect'});
+            }
+        })
+    });
 };
 
 //Login Prozess
@@ -272,11 +309,20 @@ exports.register = (req,res) => {
     }
 };
 
-exports.deleteUser= (req,res) => {
-    const id = req.params.id;
+exports.deleteUser= async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
 
     User.destroy({
-        where: {id:id}
+        where: {id: currentUserId}
     })
         .then(num => {
             if (num == 1) {

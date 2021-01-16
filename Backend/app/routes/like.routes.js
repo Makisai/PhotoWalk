@@ -8,7 +8,7 @@ module.exports = app => {
 
     router.get("/:photoId", passport.authenticate('bearer', { session: false }), likes.findAllCountOnePhoto);
 
-    router.delete("/:userId/:photoId", passport.authenticate('bearer', { session: false }), likes.delete)
+    router.delete("/:photoId", passport.authenticate('bearer', { session: false }), likes.delete)
 
     app.use('/api/likes', router);
 }

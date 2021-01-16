@@ -5,7 +5,7 @@ const Photo = db.photos;
 const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für ein Foto
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (req.file == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
@@ -13,11 +13,21 @@ exports.create = (req, res) => {
         return;
     }
 
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const photo = {
         photo_link: req.file.path,
         challengeId: req.body.challengeId,
-        //TODO User id hier löschen um angriffe zu vermeiden --> nicht vom frontend bekommen sondern vom backend(bearer token)
-        userId: req.body.userId
+        userId: currentUserId
     };
 
     Photo.create(photo)
@@ -33,34 +43,58 @@ exports.create = (req, res) => {
 };
 
 //Alle Foto Datensätze aus der Datenbank auslesen und als json senden
-exports.findAllByUserId = (req,res) => {
-    const id = req.params.id;
-    Photo.findAll({attributes: {include: [
-        [
-            db.sequelize.literal(`(
+exports.findAllByUserId = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
+    Photo.findAll({
+        attributes: {
+            include: [
+                [
+                    db.sequelize.literal(`(
                 SELECT COUNT(likes."photoId")
                 FROM likes 
                 WHERE likes."photoId" = id
                  
             )`,
-            ), 'likeCount'
-        ]
-            ]},where: {userId:id}})
-    .then(data => {
-        res.send(data);
+                    ), 'likeCount'
+                ]
+            ]
+        }, where: {userId: currentUserId}
     })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving photos."
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving photos."
+            });
         });
-    });
 };
 
 //Alle Photos eines Users zu einem Photowalk und die Photos der Freunde
 exports.findAllByPhotowalkId = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const photowalkId = req.params.id;
-    const currentUserId = req.body.userId;
 
     let challengeIds = await db.sequelize.query(`SELECT "id"
                                                 FROM "challenges"

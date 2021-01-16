@@ -36,7 +36,7 @@ module.exports = app => {
     router.get('/search/:username', passport.authenticate('bearer', { session: false }), user.findByUsername)
 
     //UserInfos ausgeben für Einstellungen Seite
-    router.get('/info/:id', passport.authenticate('bearer', { session: false }), user.getUserInfo)
+    router.get('/info', passport.authenticate('bearer', { session: false }), user.getUserInfo)
 
     //Einloggen
     router.post('/login', user.login);
@@ -54,7 +54,7 @@ module.exports = app => {
     router.put('/updatePassword', passport.authenticate('bearer', { session: false }), user.updatePassword);
 
     //User löschen
-    router.delete('/deleteUser/:id',  passport.authenticate('bearer', { session: false }), user.deleteUser)
+    router.delete('/deleteUser',  passport.authenticate('bearer', { session: false }), user.deleteUser)
 
     router.get('/is_logged_in', passport.authenticate('bearer', { session: false }),user.isloggedin);
 

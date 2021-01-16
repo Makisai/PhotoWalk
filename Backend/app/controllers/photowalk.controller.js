@@ -5,9 +5,21 @@ const OP = db.Sequelize.Op;
 
 //Alle Photowalk Datensätze aus der Datenbank auslesen und als json senden
 exports.findAll = async (req, res) => {
+
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const editedPhotowalks = await db.sequelize.query(`SELECT DISTINCT "photowalkId"
                                                        FROM "challenges" WHERE "id" IN (SELECT DISTINCT "challengeId"
-                                                                                      FROM "photos")`, {type: QueryTypes.SELECT});
+                                                                                      FROM "photos" WHERE "userId" = ?)`, {replacements: [currentUserId], type: QueryTypes.SELECT});
 
     Photowalk.findAll({attributes: ["id", "name", "length", "region", "route"]})
         .then(data => {
@@ -37,7 +49,17 @@ exports.findOne = (req,res) => {
 };
 
 exports.findLastPhotowalk = async (req, res) => {
-    const id = req.params.id;
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const editedPhotowalks = await db.sequelize.query(`SELECT "photowalkId"
                                                        FROM "challenges"
                                                        WHERE "id" = (SELECT "challengeId"
@@ -46,13 +68,19 @@ exports.findLastPhotowalk = async (req, res) => {
                                                                                     FROM "photos"
                                                                                 WHERE "userId" = ?
                                                                                 )
-                                                                    )`, {replacements: [id], type: QueryTypes.SELECT});
-    Photowalk.findOne({
-        where: {
-            id: editedPhotowalks[0].photowalkId
-        }
-    })
+                                                                    )`, {replacements: [currentUserId], type: QueryTypes.SELECT});
+
+    if (editedPhotowalks[0] !== undefined) {
+        Photowalk.findOne({
+            where: {
+                id: editedPhotowalks[0].photowalkId
+            }
+        })
         .then(data => {
             res.send(data);
         })
+    }
+    else {
+        res.send('No edited photowalks')
+    }
 };
