@@ -1,8 +1,8 @@
 const db = require("../models");
+const fs = require("fs");
 const {QueryTypes} = require("sequelize");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
-const User = db.users;
 
 //Erstellen eines Datensatzes für ein Foto
 exports.create = (req, res) => {
@@ -26,36 +26,8 @@ exports.create = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: 
+                message:
                     err.message || "Some error occurred while creating the Photo"
-            });
-        });
-};
-
-// Soll das Profilbild patchen
-exports.update = (req, res) => {
-    if (req.file == undefined) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
-    const currentUserId = req.params.id;
-    const photo = req.file.path;
-
-    User.update({
-        profile_picture: photo
-      }, {
-        where: {
-          id: currentUserId}
-      })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: 
-                    err.message || "Some error occurred while updating the ProfilePicture"
             });
         });
 };
@@ -108,7 +80,6 @@ exports.findAllByPhotowalkId = async (req, res) => {
 
     var userArray = userArray1.concat(userArray2);
 
-
     Photo.findAll({
         attributes: {
             include: [
@@ -155,11 +126,15 @@ exports.findOne = (req,res) => {
 };
 
 //Löscht einen Foto Datensatz anhand eines gesetzen Parameters(ID)
-exports.delete = (req,res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
+    const oldPicture = await db.sequelize.query(`SELECT "photo_link"
+                                                        FROM "photos"
+                                                        WHERE "id" = ?
+    `, {replacements: [id], type: QueryTypes.SELECT});
 
     Photo.destroy({
-        where: {id:id}
+        where: {id: id}
     })
         .then(num => {
             if (num == 1) {
@@ -177,4 +152,9 @@ exports.delete = (req,res) => {
                 message: "Could not delete Photo with id=" + id
             });
         });
+
+    //Löschen des alten Files
+    if (oldPicture[0] !== undefined) {
+        fs.unlinkSync(oldPicture[0].photo_link);
+    }
 };

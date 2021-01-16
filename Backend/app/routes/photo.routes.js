@@ -10,15 +10,6 @@ const storage = multer.diskStorage({
     }
 });
 
-const storageProfile = multer.diskStorage({
-    destination: function(req,file,cb){
-        cb(null,'./app/profilePics/');
-    },
-    filename: function(req,file,cb){
-        cb(null,Date.now()+file.originalname);
-    }
-});
-
 const fileFilter = (req,file,cb)=> {
     if(file.mimetype === 'image/jpeg'|| file.mimetype ==='image/png' || file.mimetype ==='image/jpg'){
         cb(null,true);
@@ -30,14 +21,6 @@ const fileFilter = (req,file,cb)=> {
 
 const upload = multer({
     storage: storage,
-    limits:{
-        fileSize: 1024*1024*15
-    },
-    fileFilter: fileFilter
-});
-
-const update = multer({
-    storage: storageProfile,
     limits:{
         fileSize: 1024*1024*15
     },
@@ -58,8 +41,6 @@ module.exports = app => {
     router.get("/:id", passport.authenticate('bearer', { session: false }), photo.findOne);
 
     router.delete("/:id", passport.authenticate('bearer', { session: false }), photo.delete);
-
-    router.patch("/user/:id/settings/",passport.authenticate('bearer', { session: false }), update.single('photo_link'),photo.update);
 
     app.use('/api/photos', router);
 }

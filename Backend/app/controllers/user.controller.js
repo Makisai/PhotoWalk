@@ -5,6 +5,8 @@ const OP = db.Sequelize.Op;
 
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const fs = require("fs");
+const {QueryTypes} = require("sequelize");
 
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
@@ -73,23 +75,45 @@ exports.updateUsername = (req,res) => {
     });
 };
 
-exports.updateProfilBild = (req,res) => {
-    const id = req.body.id;
-    const newProfilBild = req.body.newProfilBild;
-
-    User.update(
-        {profile_picture: newProfilBild},
-        {where: {id:id}}
-    ).then(
-        res.status(200).send({
-            message: "Profilbild sucessfully updated."
-        })
-    ).catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while updating."
+// Soll das Profilbild patchen
+exports.update = async (req, res) => {
+    if (req.file == undefined) {
+        res.status(400).send({
+            message: "Content can not be empty!"
         });
-    });
+        return;
+    }
+
+    const userId = req.body.userId;
+    const newPhoto = req.file.path;
+
+
+    User.update({
+        profile_picture: newPhoto
+    }, {
+        where: {
+            id: userId
+        }
+    })
+        .then(
+            res.status(200).send({message: "Profilbild erfolgreich geändert"})
+        )
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while updating the ProfilePicture"
+            });
+        });
+    const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
+                                                FROM "users"
+                                                WHERE "id" = ?
+                                                       `, {replacements: [userId], type: QueryTypes.SELECT});
+
+    //Löschen des alten Files
+    //Link zum Default hardgecoded abgefragt
+    if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== 'Link zum DefaultBild') {
+        fs.unlinkSync(oldProfilePicture[0].profile_picture);
+    }
 };
 
 exports.updatePassword = (req,res) => {
@@ -236,7 +260,7 @@ exports.register = (req,res) => {
                         newUser.password = hash;
                         //User speichern und statusmeldung zurückgeben, das es geklappt hat
                         newUser.save().then(user => {
-                            res.json(201, {});
+                            res.json(201, {message: "User erfolgreich registriert!"});
                         }).catch(err => console.log(err));
                     });
                 });
