@@ -6,7 +6,7 @@
              
         </v-col>
         <v-spacer></v-spacer>
-        <v-col cols="4">
+        <v-col cols="5">
             <v-file-input
             label="profile_picture"
             filled
@@ -15,8 +15,11 @@
             v-model="profile_picture"
         ></v-file-input>
     </v-col>
-        <v-col class="py-3" cols = "12">
+        <v-col class="py-3" cols = "4">
             <p >{{$t(changemail)}} </p>
+        </v-col>
+            
+        <v-col cols="6">
             <v-text-field
             filled
             label="Email"
@@ -25,8 +28,10 @@
             v-model="email"    
             ></v-text-field>
         </v-col>
-        <v-col  cols = "12">
+        <v-col  cols = "4">
             <p>{{$t(changeusername)}} </p>
+        </v-col>
+        <v-col cols="4">
             <v-text-field
                 filled
             label="Username"
