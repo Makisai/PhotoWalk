@@ -12,5 +12,13 @@
   "messages":{
     "welcome": "Welcome User. Let's Start your first Photowalk.",
     "welcomeback": "Welcome Back, User. This was your last Photowalk"
+  },
+  "settings": {
+    "changemail": "Change your E-mail here.",
+    "changeusername": "Change your username here",
+    "changepassword":"Change your password here",
+    "changeprofilepic": "change your profile pic here",
+    "validate": "submit",
+    "clear": "clear"
   }
 }

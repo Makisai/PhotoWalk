@@ -13,5 +13,13 @@
   "messages":{
     "welcome": "Willkommen User. Starte deinen ersten Photowalk.",
     "welcomeback": "Wilkommen zurueck, User. Dies war dein letzter Photowalk"
+  },
+  "settings": {
+    "changemail": "Hier kannst du deine E-Mail ändern.",
+    "changeusername": "Hier kannst du deinen Benutzernamen ändern",
+    "changepassword":"Hier kannst du dein Passwort ändern",
+    "changeprofilepic": "Hier kannst du dein Profilbild ändern",
+    "validate": "bestätigen",
+    "clear": "verwerfen"
   }
 }
