@@ -1,6 +1,7 @@
 {
   "error":{
-    "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt!"
+    "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt!",
+    "password": "Passwort konnte nicht geändert werden"
   },
   "pages":{
     "friends": "Freunde",
@@ -18,8 +19,11 @@
     "changemail": "Hier kannst du deine E-Mail ändern.",
     "changeusername": "Hier kannst du deinen Benutzernamen ändern",
     "changepassword":"Hier kannst du dein Passwort ändern",
+    "oldpassword": "altes Passwort",
+    "newpassword": "neues Passwort",
     "changeprofilepic": "Hier kannst du dein Profilbild ändern",
     "validate": "bestätigen",
-    "clear": "verwerfen"
+    "clear": "verwerfen",
+    "advice": "Beste Größe 500x500px"
   }
 }
