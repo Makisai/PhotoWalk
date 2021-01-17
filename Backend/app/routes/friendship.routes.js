@@ -10,7 +10,7 @@ module.exports = app => {
 
     router.put("/:id", passport.authenticate('bearer', { session: false }), friendship.acceptFriendship)
 
-    router.delete("/", passport.authenticate('bearer', { session: false }), friendship.deleteFriendship)
+    router.delete("/:id", passport.authenticate('bearer', { session: false }), friendship.deleteFriendship)
 
     app.use('/api/friendships', router);
 }

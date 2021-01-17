@@ -4,7 +4,7 @@ module.exports = app => {
     const likes = require("../controllers/like.controller");
     var router = require("express").Router();
 
-    router.post("/", passport.authenticate('bearer', { session: false }), likes.create);
+    router.post("/:photoId", passport.authenticate('bearer', { session: false }), likes.create);
 
     router.get("/:photoId", passport.authenticate('bearer', { session: false }), likes.findAllCountOnePhoto);
 

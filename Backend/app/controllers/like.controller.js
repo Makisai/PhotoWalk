@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
 
     const currentUserId = userId[0].id;
 
-    if (currentUserId && !req.body.photoId) {
+    if (!req.params.photoId) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -25,12 +25,14 @@ exports.create = async (req, res) => {
 
     const like = {
         userId: currentUserId,
-        photoId: req.body.photoId
+        photoId: req.params.photoId
     };
 
     Like.create(like)
         .then(data => {
-            res.send(data);
+            res.status(201).send({
+                message: "Photo erfolgreich geliked!"
+            });
         })
         .catch(err => {
             res.status(500).send({
@@ -82,11 +84,7 @@ exports.delete = async (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Like was deleted sucessfully!"
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete Like.`
+                    message: "Like erfolgreich gelöscht!"
                 });
             }
         })

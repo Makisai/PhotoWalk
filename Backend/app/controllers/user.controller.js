@@ -83,7 +83,7 @@ exports.updateUsername = async (req, res) => {
         {where: {id: currentUserId}}
     ).then(
         res.status(200).send({
-            message: "Username sucessfully updated."
+            message: "Username erfolgreich erneuert."
         })
     ).catch(err => {
         res.status(500).send({
@@ -157,6 +157,11 @@ exports.updatePassword = async (req, res) => {
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
 
+    //Passwordlänge überprüfen
+    if (newPassword.length < 8) {
+        res.status(400).send({message: "Password has to have at least 8 characters"})
+    }
+
     User.findOne({
         where: {
             id
@@ -173,7 +178,7 @@ exports.updatePassword = async (req, res) => {
                             {where: {id: id}}
                         ).then(
                             res.status(200).send({
-                                message: "Password sucessfully updated."
+                                message: "Password erfolgreich erneuert."
                             })
                         ).catch(err => {
                             res.status(500).send({
@@ -184,7 +189,7 @@ exports.updatePassword = async (req, res) => {
                     });
                 });
             } else {
-                return res.json(401, {message: 'current password is incorrect'});
+                return res.json(401, {message: 'Current password is incorrect'});
             }
         })
     });
@@ -327,11 +332,7 @@ exports.deleteUser= async (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "User was deleted sucessfully!"
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete User with id=${id}. Maybe User was not found!`
+                    message: "User erfolgreich gelöscht"
                 });
             }
         })

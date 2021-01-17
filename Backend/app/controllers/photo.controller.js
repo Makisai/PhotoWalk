@@ -32,7 +32,7 @@ exports.create = async (req, res) => {
 
     Photo.create(photo)
         .then(data => {
-            res.send(data);
+            res.json(201, {message: "Photo erfolgreich hochgeladen!"});
         })
         .catch(err => {
             res.status(500).send({
@@ -76,7 +76,7 @@ exports.findAllByUserId = async (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving photos."
+                    err.message || "Fehler beim Auslesen der Photos des Users"
             });
         });
 };
@@ -139,7 +139,7 @@ exports.findAllByPhotowalkId = async (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving photos."
+                    err.message || "Fehler beim Auslesen der Photos zum Photowalk mit id = 1"
             });
         });
 };
@@ -173,12 +173,10 @@ exports.delete = async (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Photo was deleted sucessfully!"
+                    message: "Photo erfolgreich gelöscht"
                 });
             } else {
-                res.send({
-                    message: `Photo mit id=${id} wurde nicht gefunden!`
-                });
+                res.json(404, {message: `Photo mit id=${id} wurde nicht gefunden!`});
             }
         })
         .catch(err => {
