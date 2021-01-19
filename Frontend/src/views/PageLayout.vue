@@ -18,7 +18,7 @@
           <LocaleChange/>
         </v-col>
         <v-col cols="6">
-          {{ new Date().getFullYear() }} — Photowalk
+          <Impressum/> — <DGSVO/> — Photowalk
         </v-col>
       </v-row>
     </v-footer>
@@ -28,9 +28,11 @@
 <script>
 import NavigationDrawer from "../components/NavigationDrawer";
 import LocaleChange from "../components/LocaleChange";
+import Impressum from "@/components/legal/Impressum";
+import DGSVO from "@/components/legal/DGSVO";
 export default {
   name: 'Layout',
-  components: {LocaleChange, NavigationDrawer},
+  components: {DGSVO, Impressum, LocaleChange, NavigationDrawer},
   data(){
     return {
       drawer:false,

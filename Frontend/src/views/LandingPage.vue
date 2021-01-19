@@ -28,7 +28,7 @@
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
         <v-col cols="12">
-          {{ new Date().getFullYear() }} — Photowalk
+          <Impressum/>  — <DGSVO/>— Photowalk
         </v-col>
       </v-row>
     </v-footer>
@@ -39,9 +39,16 @@
 import LoginDialog from "../components/usermanagement/LoginDialog";
 import PhotowalkMap from "@/components/PhotowalkMap";
 import ImageGrid from "@/components/ImageGrid";
+import Impressum from "@/components/legal/Impressum";
+import DGSVO from "@/components/legal/DGSVO";
 export default {
   name: 'LandingPage',
-  components: {ImageGrid, PhotowalkMap, LoginDialog},
+  components: {DGSVO, Impressum, ImageGrid, PhotowalkMap, LoginDialog},
+  data () {
+    return{
+      impressum : false,
+    };
+},
 }
 </script>
 
