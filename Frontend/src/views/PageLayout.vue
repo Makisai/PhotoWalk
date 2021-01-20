@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import NavigationDrawer from "../components/NavigationDrawer";
+import NavigationDrawer from "../components/navigation/NavigationDrawer";
 import LocaleChange from "../components/LocaleChange";
 import Impressum from "@/components/legal/Impressum";
 import DGSVO from "@/components/legal/DGSVO";
