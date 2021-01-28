@@ -5,6 +5,14 @@ module.exports = (sequelize, Sequelize) => {
         description: {
             type: Sequelize.STRING(4000),
             allowNull: false
+        },
+        lat: {
+            type: Sequelize.FLOAT,
+            allowNull: false
+        },
+        lng: {
+            type: Sequelize.FLOAT,
+            allowNull: false
         }
     }, {
         timestamps: false

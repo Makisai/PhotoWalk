@@ -7,6 +7,8 @@ const db = require("./app/models");
 const passport = require("passport");
 require("./app/config/passport.config")(passport);
 
+const seederRoute1 = require("./app/seeds/route1");
+
 const app = express();
 
 var corsOptions = {
@@ -19,8 +21,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
 //force:true dropt alle Tables und
-db.sequelize.sync({/*force:true*/}).then(() => {
+db.sequelize.sync({force:true}).then(() => {
     console.log("Drop and re-sync db.");
+    seederRoute1.route1();
 });
 
 //Session use

@@ -22,8 +22,7 @@ export default {
     submitUpload(){
       let formData = new FormData();
       formData.append('photo_link',this.upload);
-      formData.append('challengeId',1);
-      formData.append('userId',1);
+      formData.append('challengeId',this.$store.state.detail.selectedChallenge.id);
       this.axios.post('photos/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
