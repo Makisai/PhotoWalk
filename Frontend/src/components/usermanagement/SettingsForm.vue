@@ -1,23 +1,21 @@
 <template>
-
-    <v-row class="row1">
-        <v-col cols="4">
-            <p>{{$t(changeprofilepic)}} <br> {{$t(advice)}}</p>
-             
-        </v-col>
-        <v-spacer></v-spacer>
-        <v-col cols="5">
-            <v-file-input
-            label="profile_picture"
-            filled
-            name="profile_picture"
-            prepend-icon="mdi-camera"
-            v-model="profile_picture"
-        ></v-file-input>
+	<v-row class="row1">
+  	<v-col cols="4">
+      <p>{{$t(changeprofilepic)}} <br> {{$t(advice)}}</p>
     </v-col>
-        <v-col class="py-3" cols = "4">
-            <p >{{$t(changemail)}} </p>
-        </v-col>
+    <v-spacer></v-spacer>
+    <v-col cols="5">
+      <v-file-input
+        label="profile_picture"
+        filled
+        name="profile_picture"
+        prepend-icon="mdi-camera"
+        v-model="profile_picture"
+      ></v-file-input>
+    </v-col>
+    <v-col class="py-3" cols = "4">
+      <p >{{$t(changemail)}} </p>
+    </v-col>
             
         <v-col cols="6">
             <v-text-field
@@ -89,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-.row1 {
-    margin-bottom:2em;
-}
+	.row1 {
+   	 margin-bottom:2em;
+	}
 </style>
