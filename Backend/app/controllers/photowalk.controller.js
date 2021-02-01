@@ -37,7 +37,7 @@ exports.findAll = async (req, res) => {
 exports.findOne = (req,res) => {
     const id = req.params.id;
 
-    Photowalk.findByPk(id,  {include: ["challenges"] })
+    Photowalk.findByPk(id,  {include: ["challenges","waypoints"] })
     .then(data => {
         res.send(data);
     })

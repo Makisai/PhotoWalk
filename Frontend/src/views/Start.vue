@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NavigationButton from "../components/NavigationButton";
+import NavigationButton from "../components/navigation/NavigationButton";
 import PhotoUpload from "../components/PhotoUpload";
 export default {
   name: 'Start',

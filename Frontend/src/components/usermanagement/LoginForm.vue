@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import {SET_TOKEN} from "@/store/mutations";
+
 export default {
   name: "LoginForm",
   data () {
@@ -56,7 +58,7 @@ export default {
       this.axios.post('users/login', {email: this.email, password: this.password})
           .then((response) => {
             const token = response.data.token;
-            this.$store.commit('setToken', token);
+            this.$store.commit(SET_TOKEN, token);
             this.$router.push({name: 'Start'});
           })
           .catch((error) => {

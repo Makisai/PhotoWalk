@@ -1,20 +1,20 @@
 <template>
   <v-navigation-drawer v-model="drawer" fixed bottom temporary>
-    <v-list-item>
-      <v-list-item-avatar>
-        <v-img src="https://thispersondoesnotexist.com/image"></v-img>
-      </v-list-item-avatar>
-    </v-list-item>
-    <v-list-item>
-      <v-list-item-content align="left">
-        <v-list-item-title class="title">
-          USERNAME
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          emailadress
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+      <v-list-item>
+        <v-list-item-avatar>
+          <v-img src="https://thispersondoesnotexist.com/image"></v-img>
+        </v-list-item-avatar>
+      </v-list-item>
+      <v-list-item>
+        <v-list-item-content align="left">
+          <v-list-item-title class="title">
+            USERNAME
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            emailadress
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
     <v-divider></v-divider>
     <v-list nav>
       <v-list-item v-for="item in items" :key="item.title" @click="navigation(item.target)">
