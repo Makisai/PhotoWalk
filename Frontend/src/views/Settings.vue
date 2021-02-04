@@ -1,23 +1,25 @@
 <template>
   <!--vuetify div-->
   <v-container>
-     <div class="div1"> 
-    <h1> Profile </h1>
-    <SettingsForm/>  
-     </div>
-     <div class="div2">
+    <div class="div1"> 
+      <h1> Profile </h1>
+      <SettingsProfilePic/>  
+      <SettingsUsername/>
+    </div>
+    <div class="div2">
       <h1> Change Password </h1>
-  <SettingsForm2/>  
-     </div> 
+      <SettingsForm2/>  
+    </div> 
   </v-container> 
 </template>
 
 <script>
-import SettingsForm from "../components/usermanagement/SettingsForm";
+import SettingsProfilePic from "../components/usermanagement/SettingsProfilePic";
+import SettingsUsername from "../components/usermanagement/SettingsUsername";
 import SettingsForm2 from "../components/usermanagement/SettingsForm2";
 export default {
   name: 'Settings',
-  components: {SettingsForm, SettingsForm2},
+  components: {SettingsProfilePic, SettingsUsername, SettingsForm2},
 }
 </script>
 
