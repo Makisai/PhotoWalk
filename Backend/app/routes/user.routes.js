@@ -38,6 +38,9 @@ module.exports = app => {
     //UserInfos ausgeben für Einstellungen Seite
     router.get('/info', passport.authenticate('bearer', { session: false }), user.getUserInfo)
 
+    //Alle Freunde des Users ausgeben
+    router.get('/friends', passport.authenticate('bearer', { session: false }), user.getFriends)
+
     //Einloggen
     router.post('/login', user.login);
 

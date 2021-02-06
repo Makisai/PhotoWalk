@@ -4,9 +4,7 @@ module.exports = app => {
     const friendship = require("../controllers/friendship.controller");
     var router = require("express").Router();
 
-    router.post("/", passport.authenticate('bearer', { session: false }), friendship.create);
-
-    router.get("/", passport.authenticate('bearer', { session: false }), friendship.findAllOneUser);
+    router.post("/:id", passport.authenticate('bearer', { session: false }), friendship.create);
 
     router.put("/:id", passport.authenticate('bearer', { session: false }), friendship.acceptFriendship)
 
