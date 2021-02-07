@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
     const currentUserId = userId[0].id;
 
     const photo = {
-        photo_link: req.file.path,
+        photo_link: `/uploads/${req.file.filename}`,
         challengeId: req.body.challengeId,
         userId: currentUserId
     };

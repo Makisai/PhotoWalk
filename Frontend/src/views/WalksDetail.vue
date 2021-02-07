@@ -21,7 +21,7 @@
 <script>
 import PhotowalkMap_Walk1 from "@/components/PhotowalkMap_Walk1";
 import {SET_CURRENT_ID, SET_PHOTOWALK} from "@/store/mutations";
-import ChallengeDropdown from "@/components/usermanagement/ChallengeDropdown";
+import ChallengeDropdown from "@/components/ChallengeDropdown";
 import PhotoUpload from "@/components/PhotoUpload";
 export default {
   name: 'WalksDetail',
