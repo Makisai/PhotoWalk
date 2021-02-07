@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         profile_picture: {
             type: Sequelize.STRING,
-            defaultValue: 'Link zum DefaultBild'
+            defaultValue: '/profilePics/defaultProfile.png'
         },
         token: {
             type: Sequelize.STRING

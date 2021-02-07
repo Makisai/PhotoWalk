@@ -138,7 +138,7 @@ exports.update = async (req, res) => {
 
     //Löschen des alten Files
     //Link zum Default hardgecoded abgefragt
-    if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== 'Link zum DefaultBild') {
+    if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
         fs.unlinkSync(oldProfilePicture[0].profile_picture);
     }
 };
@@ -204,25 +204,20 @@ exports.login = (req,res) => {
         }
     }).then((user) => {
         if(user === null){
-            return res.json(401,{message: 'password is incorrect'})
+            return res.json(401,{message: 'password or email incorrect'});
         }
         //Checken ob Passwort zur eingegebenen E-Mail-Adresse existiert/richtig ist
         bcrypt.compare(password, user.password, (err,isMatch) => {
             if(err) return err;
             if(isMatch) {
-                if(user.token === ''){
-                    const token = uuid.v4()
-                    User.update({ token }, {where: {email}});
-                    return res.json(200, {username: user.username, token});
-                }else{
-                    return res.json(200, {username: user.username, token: user.token});
-                }
+                const token = uuid.v4();
+                User.update({ token }, {where: {email}});
+                return res.json(200, {username: user.username, email: user.email, profilePicture: user.profile_picture, token});
             } else{
-                return res.json(401, {message: 'password is incorrect'});
+                return res.json(401, {message: 'password or mail is incorrect'});
             }
         });
     })
-  //  return res.json(200, {})
 };
 
 exports.logout = (req,res) => {
@@ -257,7 +252,7 @@ exports.register = (req,res) => {
     if (password.length < 8) {
         errors.push({msg: 'Password has to have at least 8 characters'});
     }
-
+    //TODO überprüfen, ob Benutzername schon vergeben ist
     if(errors.length > 0) {
         res.json(400, {
             errors,

@@ -10,6 +10,8 @@ require("./app/config/passport.config")(passport);
 const seederRoute1 = require("./app/seeds/route1");
 
 const app = express();
+app.use(express.static('app/public'));
+
 
 var corsOptions = {
     origin: process.env.FRONTEND_URL
@@ -21,9 +23,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
 //force:true dropt alle Tables und
-db.sequelize.sync({force:true}).then(() => {
+db.sequelize.sync({/*force:true*/}).then(() => {
     console.log("Drop and re-sync db.");
-    seederRoute1.route1();
+    //seederRoute1.route1();
 });
 
 //Session use
