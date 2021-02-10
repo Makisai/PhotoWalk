@@ -46,12 +46,12 @@ exports.create = async (req, res) => {
         } else {
             Friendship.bulkCreate([{
                 accepted: req.body.accepted,
-                first_move: currentUserId,
+                first_move: true,
                 userId: currentUserId,
                 friendId: friendId
             },{
                 accepted: req.body.accepted,
-                first_move: currentUserId,
+                first_move: false,
                 userId: friendId,
                 friendId: currentUserId
             }])
