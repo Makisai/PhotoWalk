@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-import {SET_CURRENT_ID, SET_PHOTOWALK, SET_SELECTED_CHALLENGE, SET_TOKEN} from "@/store/mutations";
+import {SET_CURRENT_ID, SET_PHOTOWALK, SET_SELECTED_CHALLENGE, SET_TOKEN, SET_FRIENDS_LIST} from "@/store/mutations";
 
 Vue.use(Vuex)
 
@@ -13,6 +13,7 @@ export default new Vuex.Store({
   state: {
     user: {
       token: 'XXX',
+      friends: null
     },
     detail:{
       currentID: 0,
@@ -23,6 +24,9 @@ export default new Vuex.Store({
   mutations: {
     [SET_TOKEN](state,token){
       state.user.token = token;
+    },
+    [SET_FRIENDS_LIST](state, friends){
+      state.user.friends = friends;
     },
     [SET_CURRENT_ID](state,id){
       state.detail.currentID = id;
