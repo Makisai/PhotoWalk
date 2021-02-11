@@ -5,7 +5,15 @@ const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für eine Friendship
 exports.create = async (req, res) => {
-    const friendId = req.params.id;
+    const friend = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "username" = ?`, {
+        replacements: [req.params.username],
+        type: QueryTypes.SELECT
+    });
+
+    const friendId = friend[0].id;
+
     var tokenParts = req.headers.authorization.split(' ');
 
     const userId = await db.sequelize.query(`SELECT "id"
@@ -72,7 +80,15 @@ exports.create = async (req, res) => {
 
 //Updaten des Datensatzes -> Akzeptieren der Freundschaftsanfrage (accepted -> true)
 exports.acceptFriendship = async (req, res) => {
-    const friendId = req.params.id;
+    const friend = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "username" = ?`, {
+        replacements: [req.params.username],
+        type: QueryTypes.SELECT
+    });
+
+    const friendId = friend[0].id;
+
     var tokenParts = req.headers.authorization.split(' ');
 
     const userId = await db.sequelize.query(`SELECT "id"
@@ -106,7 +122,15 @@ exports.acceptFriendship = async (req, res) => {
 }
 
 exports.deleteFriendship = async (req, res) => {
-    const friendId = req.params.id;
+    const friend = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "username" = ?`, {
+        replacements: [req.params.username],
+        type: QueryTypes.SELECT
+    });
+
+    const friendId = friend[0].id;
+
     var tokenParts = req.headers.authorization.split(' ');
 
     const userId = await db.sequelize.query(`SELECT "id"

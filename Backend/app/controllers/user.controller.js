@@ -81,7 +81,7 @@ exports.getFriends = async (req, res) => {
         attributes: [],
         include: {
             model: db.users,
-            attributes: ['id','username','profile_picture'],
+            attributes: ['username','profile_picture'],
             as: "friends",
             through: {
                 attributes: ['accepted', 'first_move']
