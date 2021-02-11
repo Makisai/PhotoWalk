@@ -22,8 +22,7 @@ services:
   photowalk_backend:
     build: ./Backend/
     volumes:
-      - "./photowalk_uploads:/app/app/uploads"
-      - "./photowalk_profilePictures:/app/app/profilePictures"
+      - "./photowalk_uploads:/app/app/public"
     ports:
       - "8080"
     labels:

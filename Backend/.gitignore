@@ -1,4 +1,4 @@
 node_modules
-app/uploads/**
-app/profilePics/**
+app/public/uploads/**
+app/public/profilePics/**
 .env

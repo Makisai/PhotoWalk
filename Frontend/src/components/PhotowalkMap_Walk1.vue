@@ -71,7 +71,7 @@ export default {
         iconAnchor: [16, 37]
       }),
       iconChallenge: icon({
-        iconUrl: "/marker/challenge_icon.png",
+        iconUrl: "/marker/marker_icon.png",
         iconSize: [37, 37],
         iconAnchor: [37, 37]
       }),
