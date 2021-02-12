@@ -61,7 +61,7 @@ export default new Vuex.Store({
     },
     [SET_SELECTED_CHALLENGE](state,selectedChallenge){
       state.detail.selectedChallenge = selectedChallenge;
-    },
+    }
   },
   actions: {
     [CLEAR_USER_DATA]({commit}){
