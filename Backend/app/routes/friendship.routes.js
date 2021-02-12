@@ -6,7 +6,7 @@ module.exports = app => {
 
     router.post("/", passport.authenticate('bearer', { session: false }), friendship.create);
 
-    router.get("/:id", passport.authenticate('bearer', { session: false }), friendship.findAllOneUser);
+    router.get("/", passport.authenticate('bearer', { session: false }), friendship.findAllOneUser);
 
     router.put("/:id", passport.authenticate('bearer', { session: false }), friendship.acceptFriendship)
 

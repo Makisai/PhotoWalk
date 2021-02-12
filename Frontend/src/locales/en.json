@@ -23,6 +23,9 @@
     "newpassword": "new password",
     "validate": "submit",
     "clear": "clear",
-    "advice": "Best Size 500x500px"
+    "advice": "Best Size 500x500px" },
+    
+  "labels": {
+    "submit": "Submit"
   }
 }

@@ -10,13 +10,15 @@
 </template>
 
 <script>
+import {CLEAR_USER_DATA} from "@/store/actions";
+
 export default {
   name: "Logout",
   methods: {
     signout() {
       this.axios.post('users/logout',{},{headers: {'Authorization': `Bearer ${this.$store.state.user.token}`}})
           .then(()=>{
-            this.$store.commit('setToken','XXX');
+            this.$store.dispatch(CLEAR_USER_DATA);
             this.$router.push({name: 'LandingPage'})
           })
     }

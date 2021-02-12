@@ -5,6 +5,8 @@ const OP = db.Sequelize.Op;
 
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const fs = require("fs");
+const {QueryTypes} = require("sequelize");
 
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
@@ -36,13 +38,22 @@ exports.findByUsername = (req,res) => {
         });
 };
 
-exports.getUserInfo = (req,res) => {
-    const id = req.params.id;
+exports.getUserInfo = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const id = userId[0].id;
 
     User.findOne({
         attributes: ['username', 'email', 'profile_picture'],
         where: {
-            id
+           id
         }
     }).then(data => {
         res.send(data);
@@ -54,16 +65,25 @@ exports.getUserInfo = (req,res) => {
         });
 };
 
-exports.updateUsername = (req,res) => {
-    const id = req.body.id;
+exports.updateUsername = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
     const newUsername = req.body.newUsername;
 
     User.update(
         {username: newUsername},
-        {where: {id:id}}
+        {where: {id: currentUserId}}
     ).then(
         res.status(200).send({
-            message: "Username sucessfully updated."
+            message: "Username erfolgreich erneuert."
         })
     ).catch(err => {
         res.status(500).send({
@@ -73,60 +93,106 @@ exports.updateUsername = (req,res) => {
     });
 };
 
-exports.updateProfilBild = (req,res) => {
-    const id = req.body.id;
-    const newProfilBild = req.body.newProfilBild;
-
-    User.update(
-        {profile_picture: newProfilBild},
-        {where: {id:id}}
-    ).then(
-        res.status(200).send({
-            message: "Profilbild sucessfully updated."
-        })
-    ).catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while updating."
+// Soll das Profilbild patchen
+exports.update = async (req, res) => {
+    if (req.file == undefined) {
+        res.status(400).send({
+            message: "Content can not be empty!"
         });
+        return;
+    }
+
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
     });
+
+    const currentUserId = userId[0].id;
+    const newPhoto = req.file.path;
+
+
+    User.update({
+        profile_picture: newPhoto
+    }, {
+        where: {
+            id: currentUserId
+        }
+    })
+        .then(
+            res.status(200).send({message: "Profilbild erfolgreich geändert"})
+        )
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while updating the ProfilePicture"
+            });
+        });
+    const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
+                                                FROM "users"
+                                                WHERE "id" = ?
+                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT});
+
+    //Löschen des alten Files
+    //Link zum Default hardgecoded abgefragt
+    if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
+        fs.unlinkSync(oldProfilePicture[0].profile_picture);
+    }
 };
 
-exports.updatePassword = (req,res) => {
-    const id = req.body.id;
+exports.updatePassword = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const id = userId[0].id;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
+
+    //Passwordlänge überprüfen
+    if (newPassword.length < 8) {
+        res.status(400).send({message: "Password has to have at least 8 characters"})
+    }
 
     User.findOne({
         where: {
             id
         }
     }).then((user) => {
-        bcrypt.compare(oldPassword, user.password, (err,isMatch) => {
-        if(err) return err;
-        if(isMatch) {
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newPassword, salt, (err, hash) => {
-                    if (err) throw err;
-                    User.update(
-                        {password: hash},
-                        {where: {id:id}}
-                    ).then(
-                        res.status(200).send({
-                            message: "Password sucessfully updated."
-                        })
-                    ).catch(err => {
-                        res.status(500).send({
-                            message:
-                                err.message || "Some error occurred while updating."
+        bcrypt.compare(oldPassword, user.password, (err, isMatch) => {
+            if (err) return err;
+            if (isMatch) {
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newPassword, salt, (err, hash) => {
+                        if (err) throw err;
+                        User.update(
+                            {password: hash},
+                            {where: {id: id}}
+                        ).then(
+                            res.status(200).send({
+                                message: "Password erfolgreich erneuert."
+                            })
+                        ).catch(err => {
+                            res.status(500).send({
+                                message:
+                                    err.message || "Some error occurred while updating."
+                            });
                         });
                     });
                 });
-            });
-        } else{
-            return res.json(401, {message: 'current password is incorrect'});
-        }
-    })});
+            } else {
+                return res.json(401, {message: 'Current password is incorrect'});
+            }
+        })
+    });
 };
 
 //Login Prozess
@@ -138,25 +204,20 @@ exports.login = (req,res) => {
         }
     }).then((user) => {
         if(user === null){
-            return res.json(401,{message: 'password is incorrect'})
+            return res.json(401,{message: 'password or email incorrect'});
         }
         //Checken ob Passwort zur eingegebenen E-Mail-Adresse existiert/richtig ist
         bcrypt.compare(password, user.password, (err,isMatch) => {
             if(err) return err;
             if(isMatch) {
-                if(user.token === ''){
-                    const token = uuid.v4()
-                    User.update({ token }, {where: {email}});
-                    return res.json(200, {username: user.username, token});
-                }else{
-                    return res.json(200, {username: user.username, token: user.token});
-                }
+                const token = uuid.v4();
+                User.update({ token }, {where: {email}});
+                return res.json(200, {username: user.username, email: user.email, profilePicture: user.profile_picture, token});
             } else{
-                return res.json(401, {message: 'password is incorrect'});
+                return res.json(401, {message: 'password or mail is incorrect'});
             }
         });
     })
-  //  return res.json(200, {})
 };
 
 exports.logout = (req,res) => {
@@ -191,7 +252,7 @@ exports.register = (req,res) => {
     if (password.length < 8) {
         errors.push({msg: 'Password has to have at least 8 characters'});
     }
-
+    //TODO überprüfen, ob Benutzername schon vergeben ist
     if(errors.length > 0) {
         res.json(400, {
             errors,
@@ -236,7 +297,7 @@ exports.register = (req,res) => {
                         newUser.password = hash;
                         //User speichern und statusmeldung zurückgeben, das es geklappt hat
                         newUser.save().then(user => {
-                            res.json(201, {});
+                            res.json(201, {message: "User erfolgreich registriert!"});
                         }).catch(err => console.log(err));
                     });
                 });
@@ -248,20 +309,25 @@ exports.register = (req,res) => {
     }
 };
 
-exports.deleteUser= (req,res) => {
-    const id = req.params.id;
+exports.deleteUser= async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
 
     User.destroy({
-        where: {id:id}
+        where: {id: currentUserId}
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "User was deleted sucessfully!"
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete User with id=${id}. Maybe User was not found!`
+                    message: "User erfolgreich gelöscht"
                 });
             }
         })

@@ -27,6 +27,7 @@ db.photos = require("./photo.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.friendships = require("./friendship.model.js")(sequelize, Sequelize);
 db.likes = require("./like.model.js")(sequelize, Sequelize);
+db.waypoints = require("./waypoints.model")(sequelize,Sequelize);
 
 //Hinzufügen von foreign Keys zu Modellen
 
@@ -65,5 +66,8 @@ db.friendships.belongsTo(db.users, {
     as: "user2"
 });
 
+//Ein Photowalk hat mehrer Waypoints / Ein Waypoint gehört zu einem Photowalk (One-To-Many)
+db.photowalks.hasMany(db.waypoints);
+db.waypoints.belongsTo(db.photowalks);
 
 module.exports = db;

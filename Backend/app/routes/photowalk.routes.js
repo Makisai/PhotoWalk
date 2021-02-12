@@ -6,7 +6,7 @@ module.exports = app => {
 
     router.get("/", passport.authenticate('bearer', { session: false }), photowalk.findAll);
 
-    router.get("/last/:id", passport.authenticate('bearer', { session: false }), photowalk.findLastPhotowalk);
+    router.get("/last", passport.authenticate('bearer', { session: false }), photowalk.findLastPhotowalk);
 
     router.get("/:id", passport.authenticate('bearer', { session: false }), photowalk.findOne);
 

@@ -25,5 +25,8 @@
     "validate": "bestätigen",
     "clear": "verwerfen",
     "advice": "Beste Größe 500x500px"
+  },
+  "labels": {
+    "submit": "Senden"
   }
 }

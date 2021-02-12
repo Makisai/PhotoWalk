@@ -12,7 +12,7 @@
           :url="url"
           :attribution="attribution"
         />
-        <l-marker :lat-lng="currentCenter" ></l-marker>
+        <l-marker :lat-lng="currentCenter" :icon="icon"></l-marker>
         <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
       </l-map>
       <v-btn v-if="walkcreation" @click="addPoint">add position</v-btn>
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import { latLng } from "leaflet";
+import { latLng , icon } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPolyline } from 'vue2-leaflet';
 
 export default {
-  name: 'PhotowalkMap',
+  name: 'PhotowalkMap_debug',
   components: {
     LMap,
     LTileLayer,
@@ -46,7 +46,12 @@ export default {
       polyline: {
         latlngs: [],
         color: 'green'
-      }
+      },
+      icon: icon({
+        iconUrl: "/marker/ort.png",
+        iconSize: [32, 37],
+        iconAnchor: [16, 37]
+      }),
     };
   },
   methods: {
@@ -62,7 +67,7 @@ export default {
   props: {
     walkcreation :{
       type: Boolean,
-      default: false,
+      default: true,
     } ,
   },
 };

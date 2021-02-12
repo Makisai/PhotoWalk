@@ -1,11 +1,11 @@
 const db = require("../models");
+const fs = require("fs");
 const {QueryTypes} = require("sequelize");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
-const User = db.users;
 
 //Erstellen eines Datensatzes für ein Foto
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (req.file == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
@@ -13,81 +13,88 @@ exports.create = (req, res) => {
         return;
     }
 
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const photo = {
-        photo_link: req.file.path,
+        photo_link: `/uploads/${req.file.filename}`,
         challengeId: req.body.challengeId,
-        userId: req.body.userId
+        userId: currentUserId
     };
 
     Photo.create(photo)
         .then(data => {
-            res.send(data);
+            res.json(201, {message: "Photo erfolgreich hochgeladen!"});
         })
         .catch(err => {
             res.status(500).send({
-                message: 
+                message:
                     err.message || "Some error occurred while creating the Photo"
             });
         });
 };
 
-// Soll das Profilbild patchen
-exports.update = (req, res) => {
-    if (req.file == undefined) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
-    const currentUserId = req.params.id;
-    const photo = req.file.path;
-
-    User.update({
-        profile_picture: photo
-      }, {
-        where: {
-          id: currentUserId}
-      })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: 
-                    err.message || "Some error occurred while updating the ProfilePicture"
-            });
-        });
-};
-
 //Alle Foto Datensätze aus der Datenbank auslesen und als json senden
-exports.findAllByUserId = (req,res) => {
-    const id = req.params.id;
-    Photo.findAll({attributes: {include: [
-        [
-            db.sequelize.literal(`(
+exports.findAllByUserId = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
+    Photo.findAll({
+        attributes: {
+            include: [
+                [
+                    db.sequelize.literal(`(
                 SELECT COUNT(likes."photoId")
                 FROM likes 
                 WHERE likes."photoId" = id
                  
             )`,
-            ), 'likeCount'
-        ]
-            ]},where: {userId:id}})
-    .then(data => {
-        res.send(data);
+                    ), 'likeCount'
+                ]
+            ]
+        }, where: {userId: currentUserId}
     })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving photos."
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Fehler beim Auslesen der Photos des Users"
+            });
         });
-    });
 };
 
 //Alle Photos eines Users zu einem Photowalk und die Photos der Freunde
 exports.findAllByPhotowalkId = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
     const photowalkId = req.params.id;
-    const currentUserId = req.body.userId;
 
     let challengeIds = await db.sequelize.query(`SELECT "id"
                                                 FROM "challenges"
@@ -106,7 +113,6 @@ exports.findAllByPhotowalkId = async (req, res) => {
     const userArray2 = userIds.map((user) => user.user2_id);
 
     var userArray = userArray1.concat(userArray2);
-
 
     Photo.findAll({
         attributes: {
@@ -133,7 +139,7 @@ exports.findAllByPhotowalkId = async (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving photos."
+                    err.message || "Fehler beim Auslesen der Photos zum Photowalk mit id = 1"
             });
         });
 };
@@ -154,21 +160,23 @@ exports.findOne = (req,res) => {
 };
 
 //Löscht einen Foto Datensatz anhand eines gesetzen Parameters(ID)
-exports.delete = (req,res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
+    const oldPicture = await db.sequelize.query(`SELECT "photo_link"
+                                                        FROM "photos"
+                                                        WHERE "id" = ?
+    `, {replacements: [id], type: QueryTypes.SELECT});
 
     Photo.destroy({
-        where: {id:id}
+        where: {id: id}
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Photo was deleted sucessfully!"
+                    message: "Photo erfolgreich gelöscht"
                 });
             } else {
-                res.send({
-                    message: `Photo mit id=${id} wurde nicht gefunden!`
-                });
+                res.json(404, {message: `Photo mit id=${id} wurde nicht gefunden!`});
             }
         })
         .catch(err => {
@@ -176,4 +184,9 @@ exports.delete = (req,res) => {
                 message: "Could not delete Photo with id=" + id
             });
         });
+
+    //Löschen des alten Files
+    if (oldPicture[0] !== undefined) {
+        fs.unlinkSync(oldPicture[0].photo_link);
+    }
 };
