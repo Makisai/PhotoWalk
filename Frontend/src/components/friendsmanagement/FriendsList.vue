@@ -3,18 +3,18 @@
     <h2>Accepted Friendships</h2>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
-        <v-list-item :key="index" v-if="friend.friendship.accepted === false">
-          <v-card class="mx-auto">
+        <v-list-item :key="index" v-if="friend.friendship.accepted === true" class="ma-3">
+          <v-card class="mx-auto card">
             <v-list one-line>
               <v-list-item>
                 <v-list-item-avatar>
-                  <v-img src="https://thispersondoesnotexist.com/image"></v-img>
+                  <v-img :src="profilePicture(friend.profile_picture)"></v-img>
                 </v-list-item-avatar>
-                <v-list-item-content>
+                <v-list-item-content style="width: 250px">
                   <v-list-item-title v-text="friend.username"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn icon>
+                  <v-btn icon @click="deleteFriendship(friend.username)">
                     <v-icon color="grey lighten-1">mdi-minus-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
@@ -28,24 +28,24 @@
     <h2>Pending Friendships</h2>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
-        <v-list-item :key="index" v-if="friend.friendship.accepted === true">
-          <v-card class="mx-auto">
+        <v-list-item :key="index" v-if="friend.friendship.accepted === false" class="ma-3" >
+          <v-card class="mx-auto card">
             <v-list one-line>
               <v-list-item>
                 <v-list-item-avatar>
-                  <v-img src="https://thispersondoesnotexist.com/image"></v-img>
+                  <v-img :src="profilePicture(friend.profile_picture)"></v-img>
                 </v-list-item-avatar>
-                <v-list-item-content>
+                <v-list-item-content style="width: 250px">
                   <v-list-item-title v-text="friend.username"></v-list-item-title>
                 </v-list-item-content>
-                <v-list-item-action v-if="friend.friendship.first_move === false">
-                  <v-btn icon>
+                <v-list-item-action style="width: 30px">
+                  <v-btn v-if="friend.friendship.first_move === false" icon @click="acceptRequest(friend.username)">
                     <v-icon color="grey lighten-1">mdi-checkbox-marked-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
                 <v-list-item-action>
-                  <v-btn icon>
-                    <v-icon color="grey lighten-1">mdi-minus-circle</v-icon>
+                  <v-btn icon @click="deleteFriendship(friend.username)">
+                    <v-icon color="grey lighten-1" >mdi-minus-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
               </v-list-item>
@@ -70,6 +70,41 @@
       }).then(response => {
         this.$store.commit(SET_FRIENDS_LIST,response.data);
       })
+    },
+    methods: {
+      acceptRequest(username){
+        this.axios.put(`friendships/${username}`,{},{
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.user.token}`
+          }
+        }).then(() => {
+          this.axios.get(`users/friends`,{
+            headers: {
+              'Authorization': `Bearer ${this.$store.state.user.token}`
+            }
+          }).then(response => {
+            this.$store.commit(SET_FRIENDS_LIST,response.data);
+          })
+        })
+      },
+      deleteFriendship(username){
+        this.axios.delete(`friendships/${username}`,{
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.user.token}`
+          }
+        }).then(() => {
+          this.axios.get(`users/friends`,{
+            headers: {
+              'Authorization': `Bearer ${this.$store.state.user.token}`
+            }
+          }).then(response => {
+            this.$store.commit(SET_FRIENDS_LIST,response.data);
+          })
+        })
+      },
+      profilePicture(picture){
+        return process.env.VUE_APP_PUBLIC_URL + picture;
+      }
     }
   }
 </script>

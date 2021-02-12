@@ -146,7 +146,7 @@ exports.update = async (req, res) => {
     });
 
     const currentUserId = userId[0].id;
-    const newPhoto = req.file.path;
+    const newPhoto = `/profilePics/${req.file.filename}`;
 
 
     User.update({
