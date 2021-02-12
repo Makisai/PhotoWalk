@@ -3,7 +3,7 @@
     <h2>Accepted Friendships</h2>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
-        <v-list-item :key="index" v-if="friend.friendship.accepted === true" class="ma-3">
+        <v-list-item :key="index" v-if="friend.friendship.accepted" class="ma-3">
           <v-card class="mx-auto card">
             <v-list one-line>
               <v-list-item>
@@ -14,7 +14,7 @@
                   <v-list-item-title v-text="friend.username"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn icon @click="deleteFriendship(friend.username)">
+                  <v-btn icon @click="deleteFriendship(friend.id)">
                     <v-icon color="grey lighten-1">mdi-minus-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
@@ -28,7 +28,7 @@
     <h2>Pending Friendships</h2>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
-        <v-list-item :key="index" v-if="friend.friendship.accepted === false" class="ma-3" >
+        <v-list-item :key="index" v-if="!friend.friendship.accepted" class="ma-3" >
           <v-card class="mx-auto card">
             <v-list one-line>
               <v-list-item>
@@ -39,12 +39,12 @@
                   <v-list-item-title v-text="friend.username"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action style="width: 30px">
-                  <v-btn v-if="friend.friendship.first_move === false" icon @click="acceptRequest(friend.username)">
+                  <v-btn v-if="!friend.friendship.first_move" icon @click="acceptRequest(friend.id)">
                     <v-icon color="grey lighten-1">mdi-checkbox-marked-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
                 <v-list-item-action>
-                  <v-btn icon @click="deleteFriendship(friend.username)">
+                  <v-btn icon @click="deleteFriendship(friend.id)">
                     <v-icon color="grey lighten-1" >mdi-minus-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
@@ -72,8 +72,8 @@
       })
     },
     methods: {
-      acceptRequest(username){
-        this.axios.put(`friendships/${username}`,{},{
+      acceptRequest(id){
+        this.axios.put(`friendships/${id}`,{},{
           headers: {
             'Authorization': `Bearer ${this.$store.state.user.token}`
           }
@@ -87,8 +87,8 @@
           })
         })
       },
-      deleteFriendship(username){
-        this.axios.delete(`friendships/${username}`,{
+      deleteFriendship(id){
+        this.axios.delete(`friendships/${id}`,{
           headers: {
             'Authorization': `Bearer ${this.$store.state.user.token}`
           }

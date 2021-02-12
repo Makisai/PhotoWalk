@@ -26,7 +26,7 @@ exports.findOneUser = (req,res) => {
 exports.findByUsername = (req,res) => {
     const username = req.params.username;
 
-    User.findAll({attributes: ['username', 'profile_picture'],where: {username}})
+    User.findAll({attributes: ['id','username', 'profile_picture'], where: {username}})
         .then(data => {
             res.json(200, data);
         })
@@ -81,7 +81,7 @@ exports.getFriends = async (req, res) => {
         attributes: [],
         include: {
             model: db.users,
-            attributes: ['username','profile_picture'],
+            attributes: ['id','username','profile_picture'],
             as: "friends",
             through: {
                 attributes: ['accepted', 'first_move']
