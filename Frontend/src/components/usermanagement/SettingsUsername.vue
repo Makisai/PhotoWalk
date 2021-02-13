@@ -14,27 +14,30 @@
   </v-col> 
   <v-col>
     <v-btn
-            @click="validate"
-            >{{$t(validate)}}
+            @click="changeUsername"
+            >{{$t(submit)}}
             </v-btn>
   </v-col>
   </div>
 </template>
 
 <script>
+import {SET_USERNAME} from "@/store/mutations";
 export default {
     name:"SettingsUsername",
     data(){ 
         return{
+            username: '',
             changeusername: 'settings.changeusername',
-             validate: 'settings.validate'
+             submit: 'labels.submit'
         }
     },
     methods: {
     changeUsername(){
-      this.axios.patch('users/settings', {username: this.username})
-          .then(() => {
-            
+      this.axios.put('users/updateUsername', {username: this.username})
+          .then((response) => {
+            const username = response.data.username;
+            this.$store.commit(SET_USERNAME, username);
           })
           .catch((error) => {
             this.error = 'error.username';

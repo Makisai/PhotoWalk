@@ -11,16 +11,11 @@
         filled
         name="profile_picture"
         prepend-icon="mdi-camera"
-        v-model="profile_picture"
+        v-model="updateProfilbild"
       ></v-file-input>
+       <v-btn @click="updatePhoto">{{ $t('labels.submit') }}</v-btn>
     </v-col>  
-    <v-col>
-       
-      <v-btn
-      @click="validate"
-      >{{$t(validate)}}
-      </v-btn>
-    </v-col>   
+ 
   </v-row>
   </div>
 </template>
@@ -30,12 +25,27 @@ export default {
     name: "SettingsProfilePic",
     data () {
         return{
-           
-         changeprofilepic: 'settings.changeprofilepic',
+          updateProfilbild: null,
+          changeprofilepic: 'settings.changeprofilepic',
           clear: 'settings.clear',
           advice: 'settings.advice',
         }
+    },
+    methods: {
+      updatePhoto(){
+        let formData = new FormData();
+        formData.append('profile_picture',this.updateProfilbild);
+        this.axios.patch('users/updateProfilbild', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${this.$store.state.user.token}`
+        }
+        })
+      }
+      
+
     }
+    
 }
 </script>
 <style scoped>

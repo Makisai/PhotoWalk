@@ -21,11 +21,10 @@
     "changeprofilepic": "change your profile pic here",
     "oldpassword": "old password",
     "newpassword": "new password",
-    "validate": "submit",
-    "clear": "clear",
     "advice": "Best Size 500x500px" },
     
   "labels": {
+    "clear": "clear",
     "submit": "Submit"
   }
 }

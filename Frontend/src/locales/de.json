@@ -22,11 +22,10 @@
     "oldpassword": "altes Passwort",
     "newpassword": "neues Passwort",
     "changeprofilepic": "Hier kannst du dein Profilbild ändern",
-    "validate": "bestätigen",
-    "clear": "verwerfen",
     "advice": "Beste Größe 500x500px"
   },
   "labels": {
+    "clear": "verwerfen",
     "submit": "Senden"
   }
 }
