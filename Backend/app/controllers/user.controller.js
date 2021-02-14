@@ -231,7 +231,7 @@ exports.logout = (req,res) => {
 }
 
 exports.isloggedin = (req,res) =>{
-    res.json(200,{})
+    res.status(200).json({})
 }
 
 exports.register = (req,res) => {

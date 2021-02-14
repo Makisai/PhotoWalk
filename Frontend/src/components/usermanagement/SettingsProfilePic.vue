@@ -4,7 +4,14 @@
     <v-col cols="4">
       <p>{{$t(changeprofilepic)}} <br> {{$t(advice)}}</p>
     </v-col>
-    <v-spacer></v-spacer>
+    
+    <v-col col="4" class="test">
+       <v-list-item v-model="profilePic">
+        <v-list-item-avatar>
+          <v-img :src="profilePicture"></v-img>
+        </v-list-item-avatar>
+      </v-list-item>
+    </v-col>
     <v-col cols="5">
       <v-file-input
         label="profile_picture"
@@ -21,8 +28,14 @@
 </template>
 
 <script>
+
 export default {
     name: "SettingsProfilePic",
+    computed:{
+      profilePicture(){
+        return process.env.VUE_APP_PUBLIC_URL + this.$store.state.user.profilePicture;
+      }
+    },
     data () {
         return{
           updateProfilbild: null,
@@ -52,4 +65,5 @@ export default {
   .row1 {
     margin-bottom:2em;
 	}
+
 </style>

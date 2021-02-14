@@ -48,10 +48,10 @@ module.exports = app => {
     router.post('/register', user.register);
 
     //Username updaten
-    router.put('/updateUsername', passport.authenticate('bearer', { session: false }), user.updateUsername);
+    router.patch('/updateUsername', passport.authenticate('bearer', { session: false }), user.updateUsername);
 
     //Passwort ändern
-    router.put('/updatePassword', passport.authenticate('bearer', { session: false }), user.updatePassword);
+    router.patch('/updatePassword', passport.authenticate('bearer', { session: false }), user.updatePassword);
 
     //User löschen
     router.delete('/deleteUser',  passport.authenticate('bearer', { session: false }), user.deleteUser)

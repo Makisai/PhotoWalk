@@ -8,7 +8,7 @@
     </div>
     <div class="div2">
       <h1> Change Password </h1>
-      <SettingsForm2/>  
+      <SettingsPassword/>  
     </div> 
   </v-container> 
 </template>
@@ -16,10 +16,10 @@
 <script>
 import SettingsProfilePic from "../components/usermanagement/SettingsProfilePic";
 import SettingsUsername from "../components/usermanagement/SettingsUsername";
-import SettingsForm2 from "../components/usermanagement/SettingsForm2";
+import SettingsPassword from "../components/usermanagement/SettingsPassword";
 export default {
   name: 'Settings',
-  components: {SettingsProfilePic, SettingsUsername, SettingsForm2},
+  components: {SettingsProfilePic, SettingsUsername, SettingsPassword},
 }
 </script>
 
