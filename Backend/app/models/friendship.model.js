@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: false
         },
         first_move: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.BOOLEAN,
             allowNull: false
         }
     }, {

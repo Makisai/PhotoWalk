@@ -26,7 +26,7 @@ exports.findOneUser = (req,res) => {
 exports.findByUsername = (req,res) => {
     const username = req.params.username;
 
-    User.findAll({attributes: ['username', 'profile_picture'],where: {username}})
+    User.findAll({attributes: ['id','username', 'profile_picture'], where: {username}})
         .then(data => {
             res.json(200, data);
         })
@@ -60,7 +60,41 @@ exports.getUserInfo = async (req, res) => {
     })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving UserInfo with id=" + id
+                message: err + "Error retrieving UserInfo with id=" + id
+            });
+        });
+};
+
+exports.getFriends = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const id = userId[0].id;
+
+    User.findOne({
+        attributes: [],
+        include: {
+            model: db.users,
+            attributes: ['id','username','profile_picture'],
+            as: "friends",
+            through: {
+                attributes: ['accepted', 'first_move']
+            }},
+        where: {
+            id
+        }
+    }).then(data => {
+        res.send(data);
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Error retrieving Friends of user with id=" + id
             });
         });
 };
@@ -112,7 +146,7 @@ exports.update = async (req, res) => {
     });
 
     const currentUserId = userId[0].id;
-    const newPhoto = req.file.path;
+    const newPhoto = `/profilePics/${req.file.filename}`;
 
 
     User.update({

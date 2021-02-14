@@ -5,6 +5,7 @@ const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für eine Friendship
 exports.create = async (req, res) => {
+    const friendId = req.params.id;
     var tokenParts = req.headers.authorization.split(' ');
 
     const userId = await db.sequelize.query(`SELECT "id"
@@ -16,22 +17,14 @@ exports.create = async (req, res) => {
 
     const currentUserId = userId[0].id;
 
-    if (!req.body.userId) {
+    if (!friendId) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
 
-    if (currentUserId > req.body.userId) {
-        var user1 = req.body.userId;
-        var user2 = currentUserId;
-    } else {
-        var user1 = currentUserId;
-        var user2 = req.body.userId
-    }
-
-    if (currentUserId == req.body.userId) {
+    if (currentUserId == friendId) {
         res.status(400).send({
             message: "Ids müssen unterschiedlich sein!"
         });
@@ -41,8 +34,8 @@ exports.create = async (req, res) => {
     Friendship.findAll({
         where: {
             [OP.and]: [
-                {user1_id: user1},
-                {user2_id: user2}
+                {userId: currentUserId},
+                {friendId: friendId}
             ]
         }
     }).then(friendship => {
@@ -51,14 +44,17 @@ exports.create = async (req, res) => {
                 message: "Freundschaft existiert bereits!"
             });
         } else {
-            const friendship = {
+            Friendship.bulkCreate([{
                 accepted: req.body.accepted,
-                first_move: currentUserId,
-                user1_id: user1,
-                user2_id: user2
-            };
-
-            Friendship.create(friendship)
+                first_move: true,
+                userId: currentUserId,
+                friendId: friendId
+            },{
+                accepted: req.body.accepted,
+                first_move: false,
+                userId: friendId,
+                friendId: currentUserId
+            }])
                 .then(data => {
                     res.status(201).send({
                         message: "Freundschaft erfolgreich erstellt"
@@ -72,12 +68,11 @@ exports.create = async (req, res) => {
                 });
         }
     });
-
-
 };
 
-//Alle Friendship Datensätze eines Users aus der Datenbank auslesen und als json senden
-exports.findAllOneUser = async (req, res) => {
+//Updaten des Datensatzes -> Akzeptieren der Freundschaftsanfrage (accepted -> true)
+exports.acceptFriendship = async (req, res) => {
+    const friendId = req.params.id;
     var tokenParts = req.headers.authorization.split(' ');
 
     const userId = await db.sequelize.query(`SELECT "id"
@@ -89,27 +84,17 @@ exports.findAllOneUser = async (req, res) => {
 
     const currentUserId = userId[0].id;
 
-    Friendship.findAll({where: OP.or[{user1_id: currentUserId}, {user2_id: currentUserId}]})
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving friendships."
-            });
-        });
-};
-
-//Updaten des Datensatzes -> Akzeptieren der Freundschaftsanfrage (accepted -> true)
-exports.acceptFriendship = (req,res) => {
-    const friendshipId = req.params.id;
-
     Friendship.update(
-        {accepted: "TRUE"},
-        {returning: true, where: {id:friendshipId}}
+        {accepted: true},
+        {where: {
+                [OP.or]: [
+                    {[OP.and]: [{userId: currentUserId}, {friendId: friendId}]},
+                    {[OP.and]: [{userId: friendId}, {friendId: currentUserId}]}
+                ]
+            }
+        }
     ).then(
-        res.status(200).send({
+        res.send({
             message: "Freundschaft erfolgreich akzeptiert."
         })
     ).catch(err => {
@@ -121,25 +106,34 @@ exports.acceptFriendship = (req,res) => {
 }
 
 exports.deleteFriendship = async (req, res) => {
-    const id = req.params.id;
+    const friendId = req.params.id;
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
 
     Friendship.destroy({
-        where: {id: id}
-    })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "Freundschaft wurde erfolgreich gelöscht"
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete Friendship with id=${id}. Maybe Tutorial was not found!`
-                });
+        where: {
+                [OP.or]: [
+                    {[OP.and]: [{userId: currentUserId}, {friendId: friendId}]},
+                    {[OP.and]: [{userId: friendId}, {friendId: currentUserId}]}
+                ]
             }
-        })
+    })
+        .then(
+            res.send({
+                message: "Freundschaft wurde erfolgreich gelöscht"
+            })
+        )
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Friendship with id=" + id
+                message: err.message || "Could not delete Friendship with id=" + friendId
             });
         });
 }

@@ -7,7 +7,8 @@ import {
   SET_PHOTOWALK, SET_PROFILEPICTURE,
   SET_SELECTED_CHALLENGE,
   SET_TOKEN,
-  SET_USERNAME
+  SET_USERNAME,
+  SET_FRIENDS_LIST
 } from "@/store/mutations";
 import {CLEAR_USER_DATA} from "@/store/actions";
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
       username: '',
       email: '',
       profilePicture:'',
+      friends: null
     },
     detail:{
       currentID: 0,
@@ -47,6 +49,9 @@ export default new Vuex.Store({
     },
     [SET_PROFILEPICTURE](state,profilePicture){
       state.user.profilePicture = profilePicture;
+    },
+    [SET_FRIENDS_LIST](state, friends){
+      state.user.friends = friends;
     },
     [SET_CURRENT_ID](state,id){
       state.detail.currentID = id;
