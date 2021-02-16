@@ -26,7 +26,7 @@ exports.findOneUser = (req,res) => {
 exports.findByUsername = (req,res) => {
     const username = req.params.username;
 
-    User.findAll({attributes: ['id','username', 'profile_picture'], where: {username}})
+    User.findOne({attributes: ['id','username', 'profile_picture'],where: {username}})
         .then(data => {
             res.json(200, data);
         })

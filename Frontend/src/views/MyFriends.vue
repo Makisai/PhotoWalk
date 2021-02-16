@@ -2,18 +2,18 @@
   <!--vuetify div-->
   <v-container>
     <div>
-      <h2>My Friends</h2>
-      <NewFriendButton/>
+      <h1>My Friends</h1>
+      <SearchNewFriend/>
       <FriendsList/>
     </div>
   </v-container>
 </template>
 
 <script>
-import NewFriendButton from "../components/friendsmanagement/NewFriendButton";
 import FriendsList from "../components/friendsmanagement/FriendsList";
+import SearchNewFriend from "../components/friendsmanagement/SearchNewFriend";
 export default {
   name: 'MyFriends',
-  components: {NewFriendButton, FriendsList}
+  components: {FriendsList, SearchNewFriend}
 }
 </script>
