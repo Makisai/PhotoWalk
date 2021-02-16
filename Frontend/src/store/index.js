@@ -8,7 +8,9 @@ import {
   SET_SELECTED_CHALLENGE,
   SET_TOKEN,
   SET_USERNAME,
-  SET_FRIENDS_LIST
+  SET_FRIENDS_LIST,
+  SET_SEARCH_USERNAME,
+    SET_FOUND_USER
 } from "@/store/mutations";
 import {CLEAR_USER_DATA} from "@/store/actions";
 
@@ -32,6 +34,10 @@ export default new Vuex.Store({
       currentID: 0,
       photowalk: null,
       selectedChallenge: null,
+    },
+    search:{
+      inputUsername: '',
+      foundUser: null,
     },
   },
   mutations: {
@@ -62,6 +68,12 @@ export default new Vuex.Store({
     [SET_SELECTED_CHALLENGE](state,selectedChallenge){
       state.detail.selectedChallenge = selectedChallenge;
     },
+    [SET_SEARCH_USERNAME](state,inputUsername){
+      state.search.inputUsername = inputUsername;
+    },
+    [SET_FOUND_USER](state, foundUser){
+      state.search.foundUser = foundUser;
+    }
   },
   actions: {
     [CLEAR_USER_DATA]({commit}){
