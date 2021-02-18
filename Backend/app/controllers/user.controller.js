@@ -123,7 +123,7 @@ exports.update = async (req, res) => {
         }
     })
         .then(
-            res.status(200).send({message: "Profilbild erfolgreich geändert"})
+            res.status(200).send({message: "Profilbild erfolgreich geändert", path: newPhoto})
         )
         .catch(err => {
             res.status(500).send({
@@ -138,9 +138,9 @@ exports.update = async (req, res) => {
 
     //Löschen des alten Files
     //Link zum Default hardgecoded abgefragt
-    if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
-        fs.unlinkSync(oldProfilePicture[0].profile_picture);
-    }
+    //if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
+    //    fs.unlinkSync("/app/public" + oldProfilePicture[0].profile_picture);
+    //}
 };
 
 exports.updatePassword = async (req, res) => {
