@@ -4,11 +4,10 @@
     <v-col cols="4">
       <p>{{$t(changeprofilepic)}} <br> {{$t(advice)}}</p>
     </v-col>
-    
     <v-col col="4" class="test">
        <v-list-item v-model="profilePic">
         <v-list-item-avatar>
-          <v-img :src="profilePicture"></v-img>
+          <v-img :src="profilePicture()"></v-img>
         </v-list-item-avatar>
       </v-list-item>
     </v-col>
@@ -31,11 +30,7 @@
 
 export default {
     name: "SettingsProfilePic",
-    computed:{
-      profilePicture(){
-        return process.env.VUE_APP_PUBLIC_URL + this.$store.state.user.profilePicture;
-      }
-    },
+   
     data () {
         return{
           updateProfilbild: null,
@@ -54,8 +49,10 @@ export default {
           'Authorization': `Bearer ${this.$store.state.user.token}`
         }
         })
+      },
+        profilePicture(){
+        return process.env.VUE_APP_PUBLIC_URL + this.$store.state.user.profile_picture;
       }
-      
 
     }
     
