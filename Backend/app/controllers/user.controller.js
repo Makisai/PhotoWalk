@@ -142,6 +142,13 @@ exports.update = async (req, res) => {
     const currentUserId = userId[0].id;
     const newPhoto = `/profilePics/${req.file.filename}`;
 
+    const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
+                                                FROM "users"
+                                                WHERE "id" = ?
+                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT});
+
+    const oldProfilePicturePath = "./app/public" + oldProfilePicture[0].profile_picture;
+
 
     User.update({
         profile_picture: newPhoto
@@ -159,16 +166,12 @@ exports.update = async (req, res) => {
                     err.message || "Some error occurred while updating the ProfilePicture"
             });
         });
-    const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
-                                                FROM "users"
-                                                WHERE "id" = ?
-                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT});
 
     //Löschen des alten Files
     //Link zum Default hardgecoded abgefragt
-    //if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
-    //    fs.unlinkSync("/app/public" + oldProfilePicture[0].profile_picture);
-    //}
+    if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
+        fs.unlinkSync(oldProfilePicturePath);
+    }
 };
 
 exports.updatePassword = async (req, res) => {
