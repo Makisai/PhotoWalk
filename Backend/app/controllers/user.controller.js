@@ -78,19 +78,47 @@ exports.updateUsername = async (req, res) => {
     const currentUserId = userId[0].id;
     const newUsername = req.body.newUsername;
 
-    User.update(
-        {username: newUsername},
-        {where: {id: currentUserId}}
-    ).then(
-        res.status(200).send({
-            message: "Username erfolgreich erneuert."
-        })
-    ).catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while updating."
-        });
+    const oldUsername = await db.sequelize.query(`SELECT "username" 
+                                                  FROM "users" 
+                                                  WHERE "id" = ?`, {
+        replacements: [currentUserId],
+        type: QueryTypes.SELECT
     });
+
+    if (oldUsername[0].username == newUsername) {
+        res.status(400).send({
+            message: "Username hat sich nicht geändert!"
+        })
+        return;
+    }
+
+    User.findOne({
+        where: {
+            username: {
+                [OP.like]: newUsername
+            }
+        }
+    }).then(user => {
+        if (!user) {
+            User.update(
+                {username: newUsername},
+                {where: {id: currentUserId}}
+            ).then(
+                res.status(200).send({
+                    message: "Username erfolgreich erneuert."
+                })
+            ).catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while updating."
+                });
+            });
+        } else {
+            res.status(400).send({
+                message: "Username bereits vergeben."
+            })
+        }
+    })
 };
 
 // Soll das Profilbild patchen

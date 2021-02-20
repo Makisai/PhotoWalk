@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import {SET_USERNAME} from "@/store/mutations";
+import {SET_USERNAME} from "../../store/mutations";
+
 export default {
     name:"SettingsUsername",
     data(){ 
@@ -44,20 +45,17 @@ export default {
     },
     methods: {
     changeUsername(){
-      
-      this.axios.patch('users/updateUsername',{newUsername: this.newUsername, headers: {
-        'Authorization': `Bearer ${this.$store.state.user.token}`
-        }})
-        
-        .then(() => {
-          //const username =response.data.username;
-          this.$store.commit(SET_USERNAME, this.newUsername);
-          this.updatedUsername = true;
-        })
-        .catch((error) => {
-          this.error = 'error.username';
-          console.log("FEHLER", error);
-        })
+      this.axios.patch(`users/updateUsername`,{newUsername: this.newUsername}, {
+        headers: {
+          'Authorization': `Bearer ${this.$store.state.user.token}`
+        }
+      }).then(() => {
+        this.$store.commit(SET_USERNAME, this.newUsername);
+        this.updatedUsername = true;
+      }).catch((error) => {
+        this.error = 'error.username';
+        console.log("FEHLER", error);
+      })
     }
   }
 }
