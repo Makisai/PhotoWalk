@@ -2,7 +2,7 @@
   <!--vuetify div-->
   <v-container>
     <div>
-      <h1>My Friends</h1>
+      <h1>{{ $t(myFriends) }}</h1>
       <SearchNewFriend/>
       <FriendsList/>
     </div>
@@ -14,6 +14,11 @@ import FriendsList from "../components/friendsmanagement/FriendsList";
 import SearchNewFriend from "../components/friendsmanagement/SearchNewFriend";
 export default {
   name: 'MyFriends',
-  components: {FriendsList, SearchNewFriend}
+  components: {FriendsList, SearchNewFriend},
+  data() {
+    return {
+      myFriends: 'friends.myFriends',
+    }
+  }
 }
 </script>

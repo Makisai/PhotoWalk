@@ -1,6 +1,9 @@
 {
   "error":{
-    "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt!"
+    "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt!",
+    "friendYourself": "Du kannst nicht mit dir selbst befreundet sein!",
+    "friendAlready": "Du bist bereits mit diesem User befreundet!",
+    "friendNotFound": "Es wurde niemand gefunden..."
   },
   "pages":{
     "friends": "Freunde",
@@ -11,5 +14,11 @@
   },
   "labels": {
     "submit": "Senden"
+  },
+  "friends": {
+    "myFriends": "Meine Freunde",
+    "acceptedFriends":"Akzeptierte Freundschaften",
+    "pendingFriends": "Ausstehende Freundschaften",
+    "searchHint": "Suche nach neuen Freunden!"
   }
 }
