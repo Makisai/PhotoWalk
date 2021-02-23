@@ -317,27 +317,50 @@ exports.register = (req,res) => {
                     password,
                     password2
                 })
-                //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
             } else {
-                const newUser = new User({
-                    username, email, password,token:uuid.v4()
-                });
+                User.findAll({
+                    where: {
+                        username: {
+                            [OP.like]: username
+                        }
+                    }
+                }).then(user => {
+                    //Überprüfung, ob der Username bereits existiert und Rückgabe einer Liste mit allen gefundenen usern
+                    if (user[0] && user[0].username) {
+                        errors.push({msg: 'Username is already used'})
+                    }
+                    if (errors.length > 0) {
+                        res.json(400, {
+                            errors,
+                            username,
+                            email,
+                            password,
+                            password2
+                        })
+                        //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
+                    } else {
+                        const newUser = new User({
+                            username, email, password, token: uuid.v4()
+                        });
 
-                //Password wird gehasht
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        //Hash als Passwort setzten
-                        newUser.password = hash;
-                        //User speichern und statusmeldung zurückgeben, das es geklappt hat
-                        newUser.save().then(user => {
-                            res.json(201, {message: "User erfolgreich registriert!"});
-                        }).catch(err => console.log(err));
-                    });
-                });
+                        //Password wird gehasht
+                        bcrypt.genSalt(10, (err, salt) => {
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                if (err) throw err;
+                                //Hash als Passwort setzten
+                                newUser.password = hash;
+                                //User speichern und statusmeldung zurückgeben, das es geklappt hat
+                                newUser.save().then(user => {
+                                    res.json(201, {message: "User erfolgreich registriert!"});
+                                }).catch(err => console.log(err));
+                            });
+                        });
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             }
-        })
-        .catch(err => {
+        }).catch(err => {
             console.log(err)
         })
     }
