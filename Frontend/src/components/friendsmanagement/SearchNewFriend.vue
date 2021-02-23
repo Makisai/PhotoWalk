@@ -1,16 +1,15 @@
 <template>
   <v-container>
+    <h4>{{ $t(searchHint) }}</h4>
     <v-text-field
         style="width: 40%"
         class="mx-auto card ma-2"
-        hint="Search for new friends!"
-        persistent-hint
         clearable
         v-model="input"
         append-icon="mdi-magnify"
         @click:append="search"
     ></v-text-field>
-    <p v-text="feedback"/>
+    <p>{{ $t(feedback) }}</p>
     <v-card style="width: 400px"
             class="mx-auto card" v-if="$store.state.search.foundUser !== null">
       <v-list one-line>
@@ -40,6 +39,10 @@ export default {
   data() {
     return {
       feedback: '',
+      searchHint: 'friends.searchHint',
+      friendYourself: 'error.friendYourself',
+      friendAlready: 'error.friendAlready',
+      friendNotFound: 'error.friendNotFound',
     }
   },
   beforeDestroy() {
@@ -70,7 +73,7 @@ export default {
             }
           }).then(response => {
             if (!response.data) {
-              this.feedback = 'Nobody found...';
+              this.feedback = this.friendNotFound;
             } else {
               this.feedback = '';
             }
@@ -78,11 +81,11 @@ export default {
           })
         } else {
           this.$store.commit(SET_FOUND_USER, null);
-          this.feedback = 'You\'re already friends with this user!';
+          this.feedback = this.friendAlready;
         }
       } else {
         this.$store.commit(SET_FOUND_USER, null);
-        this.feedback = 'You can\'t be friends with yourself!';
+        this.feedback = this.friendYourself;
 
       }
     },

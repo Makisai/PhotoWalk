@@ -1,6 +1,9 @@
 {
   "error":{
-    "login":"Your EMAIL or PASSWORD is not correct!"
+    "login":"Your EMAIL or PASSWORD is not correct!",
+    "friendYourself": "You can't be friends with yourself!",
+    "friendAlready": "You're already friends with this user!",
+    "friendNotFound": "Nobody was found..."
   },
   "pages":{
     "friends": "Friends",
@@ -11,5 +14,11 @@
   },
   "labels": {
     "submit": "Submit"
+  },
+  "friends": {
+    "myFriends": "My Friends",
+    "acceptedFriends":"Accepted Friendships",
+    "pendingFriends": "Pending Friendships",
+    "searchHint": "Search for new friends!"
   }
 }
