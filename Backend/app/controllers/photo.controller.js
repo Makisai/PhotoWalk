@@ -103,16 +103,12 @@ exports.findAllByPhotowalkId = async (req, res) => {
 
     const challArray = challengeIds.map((challenge) => challenge.id);
 
-    let userIds = await db.sequelize.query(`SELECT "user1_id", "user2_id"
+    let userIds = await db.sequelize.query(`SELECT "friendId"
                                                 FROM "friendships"
-                                                WHERE "user1_id" = ? OR "user2_id" = ?
-                                                       `, {replacements: [currentUserId, currentUserId], type: QueryTypes.SELECT})
+                                                WHERE "userId" = ?
+                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT})
 
-    const userArray1 = userIds.map((user) => user.user1_id);
-
-    const userArray2 = userIds.map((user) => user.user2_id);
-
-    var userArray = userArray1.concat(userArray2);
+    const friendArray = userIds.map((user) => user.friendId);
 
     Photo.findAll({
         attributes: {
@@ -129,8 +125,8 @@ exports.findAllByPhotowalkId = async (req, res) => {
             ]
         },
         where: { [OP.and]: [
-                {[OP.or]: [{userId: {[OP.in]: userArray }},{userId: currentUserId}]},
-                { challengeId:  {[OP.in]:challArray }}
+                {[OP.or]: [{userId: {[OP.in]: friendArray }},{userId: currentUserId}]},
+                { challengeId:  {[OP.in]: challArray }}
             ]}
         })
         .then(data => {
