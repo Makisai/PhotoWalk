@@ -57,13 +57,9 @@ db.users.belongsToMany(db.photos, {through: db.likes});
 db.photos.belongsToMany(db.users, {through: db.likes});
 
 //Ein User hat viele Freunde/Ein User ist mit vielen Usern befreundet (Many-To-Many)
-db.friendships.belongsTo(db.users, {
-    foreignKey: "user1_id",
-    as: "user1"
-});
-db.friendships.belongsTo(db.users, {
-    foreignKey: "user2_id",
-    as: "user2"
+db.users.belongsToMany(db.users, {
+    through: db.friendships,
+    as: "friends"
 });
 
 //Ein Photowalk hat mehrer Waypoints / Ein Waypoint gehört zu einem Photowalk (One-To-Many)
