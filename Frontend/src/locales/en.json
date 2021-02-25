@@ -3,7 +3,9 @@
     "login":"Your EMAIL or PASSWORD is not correct!",
     "friendYourself": "You can't be friends with yourself!",
     "friendAlready": "You're already friends with this user!",
-    "friendNotFound": "Nobody was found..."
+    "friendNotFound": "Nobody was found...",
+    "profilePicture": "Couldn't update profile picture",
+    "changeUsername": "Couln't update your username"
   },
   "pages":{
     "friends": "Friends",
@@ -13,8 +15,20 @@
     "details": "Photowalk"
   },
   "labels": {
-    "submit": "Submit"
+    "submit": "submit",
+    "username": "username"
   },
+  "settings": {
+    "changeMail": "Change your E-mail here.",
+    "changeUsername": "Change your username here",
+    "changePassword":"Change your password here",
+    "changeProfilePicture": "change your profile pic here",
+    "oldPassword": "old password",
+    "newPassword": "new password",
+    "usernameSuccess": "Username was successfully changed.",
+    "profile": "Profile",
+    "advice": "Best Size 500x500px" },
+
   "friends": {
     "myFriends": "My Friends",
     "acceptedFriends":"Accepted Friendships",
