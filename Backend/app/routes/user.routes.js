@@ -51,7 +51,7 @@ module.exports = app => {
     router.post('/register', user.register);
 
     //Username updaten
-    router.put('/updateUsername', passport.authenticate('bearer', { session: false }), user.updateUsername);
+    router.patch('/updateUsername', passport.authenticate('bearer', { session: false }), user.updateUsername);
 
     //Passwort ändern
     router.put('/updatePassword', passport.authenticate('bearer', { session: false }), user.updatePassword);
@@ -62,7 +62,7 @@ module.exports = app => {
     router.get('/is_logged_in', passport.authenticate('bearer', { session: false }),user.isloggedin);
 
     //Profilbild ändern
-    router.patch("/updateProfilBild",passport.authenticate('bearer', { session: false }), update.single('profile_picture'),user.update);
+    router.patch("/updateProfilePicture",passport.authenticate('bearer', { session: false }), update.single('profile_picture'),user.update);
 
     app.use('/api/users', router);
 }
