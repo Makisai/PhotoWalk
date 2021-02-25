@@ -52,7 +52,6 @@ export default {
       username:'',
       email: '',
       password: '',
-      password2:'',
       registered: false,
       error: '',
       registerForm: false,
@@ -64,7 +63,7 @@ export default {
   },
   methods: {
     signup(){
-      this.axios.post('users/register', {email: this.email,username: this.username, password: this.password, password2:this.password})
+      this.axios.post('users/register', {email: this.email,username: this.username, password: this.password})
           .then(() => {
             this.registered = true;
           })

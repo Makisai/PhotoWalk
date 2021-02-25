@@ -269,19 +269,16 @@ exports.isloggedin = (req,res) =>{
 }
 
 exports.register = (req,res) => {
-    const {username,email,password,password2} = req.body;
+    const {username,email,password} = req.body;
     let errors= [];
 
     //Überprüfen, ob alle notwendigen Felder ausgefüllt sind
-    if(!username || !email || !password || !password2) {
+    if(!username || !email || !password) {
         errors.push({msg: 'Please fill out all fields'});
     }
 
     //TODO Überprüfen, ob die E-Mail eine E-Mail ist
-    //Überprüfen, ob password und password2 übereinstimmen
-    if(password !== password2) {
-        errors.push({msg: 'Passwords don\'t match'});
-    }
+
     //Passwordlänge überprüfen
     if (password.length < 8) {
         errors.push({msg: 'Password has to have at least 8 characters'});
@@ -290,10 +287,6 @@ exports.register = (req,res) => {
     if(errors.length > 0) {
         res.json(400, {
             errors,
-            username,
-            email,
-            password,
-            password2
         })
     } else {
         //User datensatz finden anhand der email
@@ -312,10 +305,6 @@ exports.register = (req,res) => {
             if (errors.length > 0) {
                 res.json(400, {
                     errors,
-                    username,
-                    email,
-                    password,
-                    password2
                 })
             } else {
                 User.findAll({
@@ -332,10 +321,6 @@ exports.register = (req,res) => {
                     if (errors.length > 0) {
                         res.json(400, {
                             errors,
-                            username,
-                            email,
-                            password,
-                            password2
                         })
                         //objekt mit daten, die in DB geschrieben werden sollen wird gebaut
                     } else {
