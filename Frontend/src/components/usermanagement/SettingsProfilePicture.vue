@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {SET_PROFILEPICTURE} from "@/store/mutations";
+import {SET_PROFILEPICTURE} from "../../store/mutations";
 export default {
   name: "SettingsProfilePicture",
   computed: {
