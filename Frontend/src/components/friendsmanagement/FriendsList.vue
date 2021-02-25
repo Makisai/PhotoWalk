@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h2>{{ $t(acceptedFriends) }}</h2>
+    <h2>{{ $t('friends.acceptedFriends') }}</h2>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
         <v-list-item :key="index" v-if="friend.friendship.accepted" class="ma-3">
@@ -25,7 +25,7 @@
       </template>
     </v-list>
 
-    <h2>{{ $t(pendingFriends) }}</h2>
+    <h2>{{ $t('friends.pendingFriends') }}</h2>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
         <v-list-item :key="index" v-if="!friend.friendship.accepted" class="ma-3" >
@@ -70,12 +70,6 @@
       }).then(response => {
         this.$store.commit(SET_FRIENDS_LIST,response.data);
       })
-    },
-    data() {
-      return {
-        acceptedFriends: 'friends.acceptedFriends',
-        pendingFriends: 'friends.pendingFriends',
-      }
     },
     methods: {
       acceptRequest(id){

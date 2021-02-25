@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h4>{{ $t(searchHint) }}</h4>
+    <h4>{{ $t('friends.searchHint') }}</h4>
     <v-text-field
         style="width: 40%"
         class="mx-auto card ma-2"
@@ -39,10 +39,6 @@ export default {
   data() {
     return {
       feedback: '',
-      searchHint: 'friends.searchHint',
-      friendYourself: 'error.friendYourself',
-      friendAlready: 'error.friendAlready',
-      friendNotFound: 'error.friendNotFound',
     }
   },
   beforeDestroy() {
@@ -73,7 +69,7 @@ export default {
             }
           }).then(response => {
             if (!response.data) {
-              this.feedback = this.friendNotFound;
+              this.feedback = 'error.friendNotFound';
             } else {
               this.feedback = '';
             }
@@ -81,11 +77,11 @@ export default {
           })
         } else {
           this.$store.commit(SET_FOUND_USER, null);
-          this.feedback = this.friendAlready;
+          this.feedback = 'error.friendAlready';
         }
       } else {
         this.$store.commit(SET_FOUND_USER, null);
-        this.feedback = this.friendYourself;
+        this.feedback = 'error.friendYourself';
 
       }
     },
