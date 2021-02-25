@@ -17,7 +17,7 @@
             filled
             name="profile_picture"
             prepend-icon="mdi-camera"
-            v-model="updateProfilbild"
+            v-model="updateProfilePicture"
         ></v-file-input>
         <v-btn @click="updatePhoto">{{ $t('labels.submit') }}</v-btn>
       </v-col>
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      updateProfilbild: null,
+      updateProfilePicture: null,
       changeprofilepic: 'settings.changeprofilepic',
       clear: 'settings.clear',
       advice: 'settings.advice',
@@ -48,7 +48,7 @@ export default {
   methods: {
     updatePhoto() {
       let formData = new FormData();
-      formData.append('profile_picture', this.updateProfilbild);
+      formData.append('profile_picture', this.updateProfilePicture);
       this.axios.patch('users/updateProfilbild', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -57,6 +57,7 @@ export default {
       }).then((response) => {
         this.$store.commit(SET_PROFILEPICTURE, response.data.path);
       }).catch((error) => {
+        this.error = 'error.profilePicture'
         console.log("FEHLER", error);
       })
     },

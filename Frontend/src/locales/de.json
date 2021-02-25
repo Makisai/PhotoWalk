@@ -1,7 +1,9 @@
 {
   "error":{
     "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt!",
-    "password": "Passwort konnte nicht geändert werden"
+    "password": "Passwort konnte nicht geändert werden",
+    "profilePicture": "Profilbild konnte nicht geändert werden",
+    "changeUsername": "Username konnte nicht geändert werden"
   },
   "pages":{
     "friends": "Freunde",

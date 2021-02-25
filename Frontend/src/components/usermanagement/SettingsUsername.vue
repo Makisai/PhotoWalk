@@ -53,7 +53,7 @@ export default {
         this.$store.commit(SET_USERNAME, this.newUsername);
         this.updatedUsername = true;
       }).catch((error) => {
-        this.error = 'error.username';
+        this.error = 'error.changeUsername';
         console.log("FEHLER", error);
       })
     }

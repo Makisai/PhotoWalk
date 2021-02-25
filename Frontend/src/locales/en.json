@@ -1,7 +1,9 @@
 {
   "error":{
     "login":"Your EMAIL or PASSWORD is not correct!",
-    "password": "Your password hasn't been changed"
+    "password": "Your password hasn't been changed",
+    "profilePicture": "Couldn't update profile picture",
+    "changeUsername": "Couln't update your username"
   },
   "pages":{
     "friends": "Friends",
