@@ -5,14 +5,15 @@
           :zoom="zoom"
           :center="center"
           :options="mapOptions"
-          @update:center="centerUpdate"
+          @ready="onReady"
+          @locationfound="onLocationFound"
           class="map"
       >
         <l-tile-layer
             :url="url"
             :attribution="attribution"
         />
-        <l-marker :lat-lng="currentCenter" :icon="iconCenter"></l-marker>
+        <l-marker :lat-lng="center" :icon="iconCenter"></l-marker>
         <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
         <l-marker :lat-lng="markerLatLng1" :icon="iconChallenge" >
           <l-tooltip>Challenge 1</l-tooltip>
@@ -36,7 +37,7 @@ import { latLng , icon } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPolyline, LTooltip } from 'vue2-leaflet';
 
 export default {
-  name: "PhotowalkMap_Walk1",
+  name: "PhotowalkMap",
   components: {
     LMap,
     LTileLayer,
@@ -56,9 +57,10 @@ export default {
   },
   data() {
     return {
+      mapObject: null,
+      timeOut: null,
       zoom: 17,
       center: latLng(53.5916187,10.0318289),
-      currentCenter: latLng(53.5916187,10.0318289),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -89,9 +91,20 @@ export default {
     };
   },
 
+  beforeDestroy() {
+    clearTimeout(this.timeOut);
+  },
   methods: {
-    centerUpdate(center) {
-      this.currentCenter = center;
+    timeoutFunction(){
+      this.mapObject.locate();
+      this.timeOut = setTimeout(this.timeoutFunction, 3000);
+    },
+    onReady(mapObject) {
+      this.mapObject = mapObject;
+      this.timeoutFunction();
+    },
+    onLocationFound(location){
+      this.center = location.latlng;
     },
   },
 };

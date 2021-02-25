@@ -2,7 +2,7 @@
   <v-main>
     <v-row>
       <v-col cols="12" md="6">
-        <PhotowalkMap_Walk1/>
+        <PhotowalkMap/>
       </v-col>
       <v-col cols="12" md="6">
         <v-row>
@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import PhotowalkMap_Walk1 from "@/components/PhotowalkMap_Walk1";
+import PhotowalkMap from "@/components/PhotowalkMap";
 import {SET_CURRENT_ID, SET_PHOTOWALK} from "@/store/mutations";
 import ChallengeDropdown from "@/components/ChallengeDropdown";
 import PhotoUpload from "@/components/PhotoUpload";
 export default {
   name: 'WalksDetail',
-  components: {PhotoUpload, ChallengeDropdown, PhotowalkMap_Walk1},
+  components: {PhotoUpload, ChallengeDropdown, PhotowalkMap},
   beforeMount() {
     this.$store.commit(SET_CURRENT_ID,1)
     this.axios.get(`photowalks/${this.$store.state.detail.currentID}`,{
