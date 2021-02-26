@@ -1,5 +1,4 @@
 <template>
- 
   <div> 
     <h1>{{($t('settings.profile'))}} </h1>
     <v-row class="row1">
@@ -15,7 +14,6 @@
       </v-col>
       <v-col cols="5">
         <v-file-input
-            label="new_profile_picture"
             filled
             name="profile-picture"
             prepend-icon="mdi-camera"
@@ -23,7 +21,6 @@
         ></v-file-input>
         <v-btn @click="updatePhoto">{{ $t('labels.submit') }}</v-btn>
       </v-col>
-
     </v-row>
   </div>
 </template>
