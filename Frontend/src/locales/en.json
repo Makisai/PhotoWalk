@@ -5,7 +5,7 @@
     "friendAlready": "You're already friends with this user!",
     "friendNotFound": "Nobody was found...",
     "profilePicture": "Couldn't update profile picture",
-    "changeUsername": "Couln't update your username"
+    "changeUsername": "Couldn't update your username"
   },
   "pages":{
     "friends": "Friends",
