@@ -7,15 +7,21 @@
       <div v-masonry transition-duration="0.0s" item-selector=".item" class="masonry-container">
         <div v-masonry-tile class="item pa-2" :key="index" v-for="(item, index) in walk1Photos">
           <v-card max-width="400px">
-            <v-img max-height="500px" class="align-end" :src="profilePicture(item.photo_link)">
-              <v-card-actions style="background-color: #FFFFFF99; max-height: 45px">
-                <v-card-title>{{item.challenge.description}}</v-card-title>
-                <v-spacer></v-spacer>
-                <v-btn color=" #E91E63" icon>
-                  <v-icon :color="item.liked ? 'red' : 'grey'" @click=like(index)>mdi-heart</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-img>
+            <v-dialog
+              v-model="dialog" width="800px">
+                <template v-slot:activator="{ on, attr }">
+                  <v-img max-height="500px" class="align-end" :src="profilePicture(item.photo_link)" v-bind="attr" v-on="on">
+                    <v-card-actions style="background-color: #FFFFFF99; max-height: 45px">
+                      <v-card-title>{{item.challenge.description}}</v-card-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color=" #E91E63" icon>
+                        <v-icon :color="item.liked ? 'red' : 'grey'" @click=like(index)>mdi-heart</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-img>
+                </template>
+                <PhotosCarousel :photos="walk1Photos" :current-index="index"></PhotosCarousel>
+            </v-dialog>
           </v-card>
         </div>
       </div>
@@ -42,9 +48,11 @@
 
 <script>
 import {SET_PHOTOS_USER} from "../../store/mutations";
+import PhotosCarousel from "./PhotosCarousel";
 
 export default {
   name: 'PhotosUserGrid',
+  components: {PhotosCarousel},
   beforeMount() {
     this.axios.get(`photos/user`,{
       headers: {
