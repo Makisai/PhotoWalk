@@ -5,7 +5,8 @@
     "friendAlready": "Du bist bereits mit diesem User befreundet!",
     "friendNotFound": "Es wurde niemand gefunden...",
     "profilePicture": "Profilbild konnte nicht geändert werden",
-    "changeUsername": "Username konnte nicht geändert werden"
+    "changeUsername": "Username konnte nicht geändert werden",
+    "deleteUser": "User konnte nicht gelöscht werden"
   },
   "pages":{
     "friends": "Freunde",
@@ -25,8 +26,15 @@
     "oldPassword": "altes Passwort",
     "newPassword": "neues Passwort",
     "changeProfilePicture": "Hier kannst du dein Profilbild ändern",
+    "deleteQuestion": "Deinen Account löschen?",
+    "deleteAccount": "löschen",
     "usernameSuccess": "Username erfolgreich geändert.",
     "passwordSuccess": "Passwort erfolgreich geändert.",
+    "deleteSure": "Bist du dir sicher?",
+    "deleteHint" : "Das löschen deines Accounts kann nicht rückgängig gemacht werden.",
+    "delete": "ja",
+    "dontDelete": "nein",
+    "deletedUser": "Dein Profil wurde erfolgreich gelöscht",
     "profile": "Profil",
     "advice": "Beste Größe 500x500px"
   },
