@@ -62,13 +62,94 @@ exports.findAllByUserId = async (req, res) => {
                     db.sequelize.literal(`(
                 SELECT COUNT(likes."photoId")
                 FROM likes 
-                WHERE likes."photoId" = id
+                WHERE likes."photoId" = photo.id
                  
             )`,
                     ), 'likeCount'
-                ]
+                ],
+                [
+                    db.sequelize.literal(`(
+                SELECT DISTINCT (1)
+                FROM likes
+                WHERE likes."photoId" = photo.id AND likes."userId" = ${currentUserId}
+                 
+            )`,
+                    ), 'liked'
+                ],
             ]
-        }, where: {userId: currentUserId}
+        },
+        include: [{
+            model: db.challenges,
+            as: 'challenge',
+            attributes: ['description','photowalkId']
+        }],
+        where:
+            {userId: currentUserId}
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Fehler beim Auslesen der Photos des Users"
+            });
+        });
+};
+
+//Alle Foto Datensätze aus der Datenbank auslesen und als json senden
+exports.findAllByUserIdFriends = async (req, res) => {
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+
+    let userIds = await db.sequelize.query(`SELECT "friendId"
+                                            FROM "friendships"
+                                            WHERE "userId" = ? AND "accepted" = true
+    `, {replacements: [currentUserId], type: QueryTypes.SELECT})
+
+    const friendArray = userIds.map((user) => user.friendId);
+
+    Photo.findAll({
+        attributes: {
+            include: [
+                [
+                    db.sequelize.literal(`(
+                SELECT COUNT(likes."photoId")
+                FROM likes 
+                WHERE likes."photoId" = photo.id
+                 
+            )`,
+                    ), 'likeCount'
+                ],
+                [
+                    db.sequelize.literal(`(
+                SELECT DISTINCT (1)
+                FROM likes
+                WHERE likes."photoId" = photo.id AND likes."userId" = ${currentUserId}
+                 
+            )`,
+                    ), 'liked'
+                ],
+            ]
+        },
+        include: [{
+            model: db.challenges,
+            as: 'challenge',
+            attributes: ['description','photowalkId']
+        }],
+        where:
+            {[OP.or]: [
+                    {userId: {[OP.in]: friendArray }}
+                ]
+            }
     })
         .then(data => {
             res.send(data);

@@ -36,9 +36,11 @@ module.exports = app => {
 
     router.get("/user", passport.authenticate('bearer', { session: false }), photo.findAllByUserId);
 
+    router.get("/friends", passport.authenticate('bearer', { session: false }), photo.findAllByUserIdFriends);
+
     router.get("/photowalk/:id", passport.authenticate('bearer', { session: false }), photo.findAllByPhotowalkId);
 
-    router.get("/:id", passport.authenticate('bearer', { session: false }), photo.findOne);
+    //router.get("/:id", passport.authenticate('bearer', { session: false }), photo.findOne);
 
     router.delete("/:id", passport.authenticate('bearer', { session: false }), photo.delete);
 
