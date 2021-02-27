@@ -26,6 +26,7 @@
     "newPassword": "neues Passwort",
     "changeProfilePicture": "Hier kannst du dein Profilbild ändern",
     "usernameSuccess": "Username erfolgreich geändert.",
+    "passwordSuccess": "Passwort erfolgreich geändert.",
     "profile": "Profil",
     "advice": "Beste Größe 500x500px"
   },

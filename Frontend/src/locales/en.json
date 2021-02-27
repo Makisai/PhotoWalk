@@ -26,6 +26,7 @@
     "oldPassword": "old password",
     "newPassword": "new password",
     "usernameSuccess": "Username was successfully changed.",
+    "passwordSuccess": "Password was successsfully changed.",
     "profile": "Profile",
     "advice": "Best Size 500x500px" },
 
