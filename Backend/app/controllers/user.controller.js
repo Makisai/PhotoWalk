@@ -391,6 +391,13 @@ exports.deleteUser= async (req, res) => {
 
     const currentUserId = userId[0].id;
 
+    const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
+                                                FROM "users"
+                                                WHERE "id" = ?
+                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT});
+
+    const oldProfilePicturePath = "./app/public" + oldProfilePicture[0].profile_picture;
+
     User.destroy({
         where: {id: currentUserId}
     })
@@ -406,4 +413,7 @@ exports.deleteUser= async (req, res) => {
                 message: "Could not delete User with id=" + id
             });
         });
+     if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
+        fs.unlinkSync(oldProfilePicturePath);
+    }    
 }

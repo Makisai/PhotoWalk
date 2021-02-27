@@ -1,6 +1,8 @@
 const db = require("../models");
 const fs = require("fs");
 const {QueryTypes} = require("sequelize");
+const { findAll } = require("./photowalk.controller");
+const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
 
@@ -186,3 +188,39 @@ exports.delete = async (req, res) => {
         fs.unlinkSync(oldPicture[0].photo_link);
     }
 };
+
+//Alle Fotos eines Users löschen
+exports.deleteAllUserId = async (req,res) =>{
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+    let oldPicturePath;
+    Photo.findAll({
+        attributes: {photo_link},
+        where:
+            {userId: currentUserId}
+    })
+        .then(data => {
+            data.array.forEach(photo_link => {
+            oldPicturePath += "./app/public" + photo_link;
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Fehler beim Auslesen der Photos des Users"
+        });
+    });
+    for (i=0; i++; i = oldPicturePath.length){
+        if (oldPicturePath[i] !== undefined ) {
+        fs.unlinkSync(oldPicturePath);
+    }
+    };
+}
