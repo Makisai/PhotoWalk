@@ -20,5 +20,9 @@
     "acceptedFriends":"Accepted Friendships",
     "pendingFriends": "Pending Friendships",
     "searchHint": "Search for new friends!"
+  },
+  "photos":  {
+    "myPhotos": "My Photos",
+    "friendsPhotos": "Photos your friends took"
   }
 }

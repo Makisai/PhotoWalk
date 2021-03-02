@@ -1,11 +1,11 @@
 <template>
   <!--vuetify div-->
   <v-container>
-    <h2>MY PHOTOS</h2>
+    <h2>{{ $t('photos.myPhotos') }}</h2>
     <PhotosUserGrid walk="1"></PhotosUserGrid>
     <PhotosUserGrid walk="2"></PhotosUserGrid>
     <PhotosUserGrid walk="3"></PhotosUserGrid>
-    <h2>MY FRIENDS PHOTOS</h2>
+    <h2>{{ $t('photos.friendsPhotos') }}</h2>
     <PhotosFriendsGrid walk="1"></PhotosFriendsGrid>
     <PhotosFriendsGrid walk="2"></PhotosFriendsGrid>
     <PhotosFriendsGrid walk="3"></PhotosFriendsGrid>
