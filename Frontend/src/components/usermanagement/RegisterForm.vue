@@ -2,35 +2,35 @@
   <v-row>
     <v-col class="py-2" cols = "12">
       <v-text-field
-          filled
-          label="Email"
-          prepend-inner-icon="mdi-email"
-          color="primary"
-          v-model="email"
+        filled
+        label="Email"
+        prepend-inner-icon="mdi-email"
+        color="primary"
+        v-model="email"
       ></v-text-field>
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
-          filled
-          label="Username"
-          prepend-inner-icon="mdi-account"
-          color="primary"
-          v-model="username"
+        filled
+        label="Username"
+        prepend-inner-icon="mdi-account"
+        color="primary"
+        v-model="username"
       ></v-text-field>
     </v-col>
     <v-col class="py-2" cols="12">
       <v-text-field
-          :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
-          :type="showeye ? 'text' : 'password'"
-          name="input-pw"
-          filled
-          label="Password"
-          hint="At least 8 characters"
-          prepend-inner-icon="mdi-lock"
-          class="input-group--focused"
-          @click:append="showeye = !showeye"
-          v-model="password"
+        :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
+        :rules="[rules.required, rules.min]"
+        :type="showeye ? 'text' : 'password'"
+        name="input-pw"
+        filled
+        :label="$t('Password')"
+        hint="At least 8 characters"
+        prepend-inner-icon="mdi-lock"
+        class="input-group--focused"
+        @click:append="showeye = !showeye"
+        v-model="password"
       ></v-text-field>
     </v-col>
     <v-col cols="12">
