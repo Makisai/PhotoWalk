@@ -28,13 +28,7 @@ import {SET_PHOTOS_FRIENDS} from "../../store/mutations";
 export default {
   name: 'PhotosUserGrid',
   beforeMount() {
-    this.axios.get(`photos/friends`,{
-      headers: {
-        'Authorization': `Bearer ${this.$store.state.user.token}`
-      }
-    }).then(response => {
-      this.$store.commit(SET_PHOTOS_FRIENDS,response.data);
-    })
+
   },
   methods: {
     profilePicture(picture){
