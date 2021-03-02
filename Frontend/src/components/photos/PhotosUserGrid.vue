@@ -1,6 +1,6 @@
 <template>
   <!--vuetify div-->
-  <v-container>
+  <v-container v-if="walkPhotos.length > 0">
     <v-row align="center" class="ma-5">
       <v-divider></v-divider><h3 class="font-weight-regular">WALK {{walk}}</h3><v-divider></v-divider>
     </v-row>
@@ -10,11 +10,11 @@
             <v-dialog @click:outside="onDialogClose">
                 <template v-slot:activator="{ on, attrs }" >
                   <v-img max-height="500px" class="align-end flex-md-wrap"
-                         :src="profilePicture(photo.photo_link)" @click="dialog = true" v-bind="attrs" v-on="on">
+                         :src="picture(photo.photo_link)" @click="dialog = true" v-bind="attrs" v-on="on">
                   </v-img>
                 </template>
                 <v-card>
-                  <PhotosCarousel v-if="dialog" :start-index="index" :walk="walk"></PhotosCarousel>
+                  <PhotosUserCarousel v-if="dialog" :start-index="index" :walk="walk"></PhotosUserCarousel>
                 </v-card>
             </v-dialog>
             <v-card-actions style="max-height: 45px">
@@ -34,14 +34,21 @@
 
 <script>
 import {SET_PHOTOS_USER} from "../../store/mutations";
-import PhotosCarousel from "./PhotosCarousel";
+import PhotosUserCarousel from "./PhotosUserCarousel";
 
 export default {
   name: 'PhotosUserGrid',
-  components: {PhotosCarousel},
+  components: {PhotosUserCarousel},
   props: ['walk'],
   beforeMount() {
+    this.axios.get(`photos/user`,{
+      headers: {
+        'Authorization': `Bearer ${this.$store.state.user.token}`
+      }
+    }).then(response => {
+      this.$store.commit(SET_PHOTOS_USER,response.data);
       this.walkPhotos = this.getWalk();
+    })
   },
   data () {
     return {
@@ -50,7 +57,7 @@ export default {
     }
   },
   methods: {
-    profilePicture(picture){
+    picture(picture){
       return process.env.VUE_APP_PUBLIC_URL + picture;
     },
     onDialogClose(){

@@ -1,10 +1,10 @@
 <template>
   <v-container fluid >
-    <v-carousel hide-delimiter height="90%" v-model="currentIndex">
+    <v-carousel hide-delimiters height="90%" v-model="currentIndex">
       <v-carousel-item
           v-for="(photo) in photosRearranged"
           :key="(photo.id)">
-        <v-img :src="profilePicture(photo.photo_link)"></v-img>
+        <v-img :src="picture(photo.photo_link)"></v-img>
         </v-carousel-item>
     </v-carousel>
     <v-card-actions style="max-height: 50px">
@@ -24,7 +24,7 @@
 import {SET_PHOTOS_USER} from "../../store/mutations";
 
 export default {
-  name: 'PhotosCarousel',
+  name: 'PhotosUserCarousel',
   props: ['startIndex','walk'],
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
     this.photosRearranged = this.getWalkAndRearrange();
   },
   methods: {
-    profilePicture(picture){
+    picture(picture){
       return process.env.VUE_APP_PUBLIC_URL + picture;
     },
     getWalkAndRearrange(){
