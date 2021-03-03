@@ -42,5 +42,7 @@ module.exports = app => {
 
     router.delete("/:id", passport.authenticate('bearer', { session: false }), photo.delete);
 
+    router.delete("/deleteUser/:id", passport.authenticate('bearer',{ session: false}), photo.deleteAllUserId);
+
     app.use('/api/photos', router);
 }
