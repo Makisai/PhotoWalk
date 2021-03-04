@@ -201,26 +201,31 @@ exports.deleteAllUserId = async (req,res) =>{
     });
 
     const currentUserId = userId[0].id;
-    let oldPicturePath;
+    let oldPicturePaths= [];
     Photo.findAll({
-        attributes: {photo_link},
+        attributes: ["photo_link"],
         where:
             {userId: currentUserId}
     })
         .then(data => {
-            data.array.forEach(photo_link => {
-            oldPicturePath += "./app/public" + photo_link;
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
+            for (i=0; i <data.length; i++){
+                oldPicturePaths.push("./app/public" + data[i].photo_link);
+            }
+            for (i=0; i < oldPicturePaths.length; i++){
+                if (oldPicturePaths[i] !== undefined ) {
+                fs.unlinkSync(oldPicturePaths[i]);
+                }
+            };
+            res.status(200).send({
+                message: "Photos erfolgreich gelöscht"
+
+            });
+            
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
                 err.message || "Fehler beim Auslesen der Photos des Users"
+            });
         });
-    });
-    for (i=0; i++; i = oldPicturePath.length){
-        if (oldPicturePath[i] !== undefined ) {
-        fs.unlinkSync(oldPicturePath);
-    }
-    };
 }
