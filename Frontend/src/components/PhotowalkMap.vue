@@ -29,6 +29,9 @@
         <l-marker :lat-lng="markerLatLng10" :icon="iconChallenge" ></l-marker>
       </l-map>
     </div>
+    <v-btn v-if="!isTracking" @click="startTracking">
+      Start Walk
+    </v-btn>
   </v-card>
 </template>
 
@@ -58,9 +61,10 @@ export default {
   data() {
     return {
       mapObject: null,
+      isTracking: false,
       timeOut: null,
+      center: latLng(this.$store.state.detail.photowalk.waypoints[0].lat, this.$store.state.detail.photowalk.waypoints[0].lng),
       zoom: 17,
-      center: latLng(53.5916187,10.0318289),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -92,16 +96,22 @@ export default {
   },
 
   beforeDestroy() {
+    this.isTracking = false;
     clearTimeout(this.timeOut);
   },
   methods: {
+    startTracking(){
+      if(this.mapObject && !this.isTracking) {
+        this.isTracking = true;
+        this.timeoutFunction();
+      }
+    },
     timeoutFunction(){
       this.mapObject.locate();
       this.timeOut = setTimeout(this.timeoutFunction, 3000);
     },
     onReady(mapObject) {
       this.mapObject = mapObject;
-      this.timeoutFunction();
     },
     onLocationFound(location){
       this.center = location.latlng;
