@@ -10,7 +10,9 @@ import {
   SET_USERNAME,
   SET_FRIENDS_LIST,
   SET_SEARCH_USERNAME,
-    SET_FOUND_USER
+  SET_FOUND_USER,
+  SET_PHOTOS_USER,
+  SET_PHOTOS_FRIENDS,
 } from "@/store/mutations";
 import {CLEAR_USER_DATA} from "@/store/actions";
 
@@ -28,7 +30,9 @@ export default new Vuex.Store({
       username: '',
       email: '',
       profilePicture:'',
-      friends: null
+      friends: null,
+      photosUser: null,
+      photosFriends: null,
     },
     detail:{
       currentID: 0,
@@ -73,7 +77,13 @@ export default new Vuex.Store({
     },
     [SET_FOUND_USER](state, foundUser){
       state.search.foundUser = foundUser;
-    }
+    },
+    [SET_PHOTOS_USER](state, photosUser) {
+      state.user.photosUser = photosUser;
+    },
+    [SET_PHOTOS_FRIENDS](state, photoFriends) {
+      state.user.photosFriends = photoFriends;
+    },
   },
   actions: {
     [CLEAR_USER_DATA]({commit}){
