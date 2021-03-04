@@ -10,6 +10,8 @@
     <v-card-actions style="max-height: 50px">
       <v-card-text>{{photosRearranged[this.currentIndex].challenge.description}}</v-card-text>
       <v-spacer></v-spacer>
+      <v-card-text>User: {{photosRearranged[this.currentIndex].user.username}}</v-card-text>
+      <v-spacer></v-spacer>
       <v-card-text>{{photosRearranged[this.currentIndex].likeCount}}
         <v-btn icon>
           <v-icon :color="this.photosRearranged[this.currentIndex].liked ? 'red' : 'grey'" @click="like">mdi-heart</v-icon>

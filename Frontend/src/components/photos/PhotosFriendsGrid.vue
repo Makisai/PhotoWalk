@@ -20,6 +20,8 @@
           <v-card-actions style="max-height: 45px">
             <v-card-text>{{photo.challenge.description}}</v-card-text>
             <v-spacer></v-spacer>
+            <v-card-text> User: {{photo.user.username}}</v-card-text>
+            <v-spacer></v-spacer>
             <v-card-text>{{photo.likeCount}}
               <v-btn icon>
                 <v-icon :color="photo.liked ? 'red' : 'grey'" @click=like(index,1)>mdi-heart</v-icon>

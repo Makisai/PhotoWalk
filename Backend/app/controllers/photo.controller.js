@@ -144,6 +144,10 @@ exports.findAllByUserIdFriends = async (req, res) => {
             model: db.challenges,
             as: 'challenge',
             attributes: ['description','photowalkId']
+        }, {
+            model: db.users,
+            as: 'user',
+            attributes: ['username']
         }],
         where:
             {[OP.or]: [
