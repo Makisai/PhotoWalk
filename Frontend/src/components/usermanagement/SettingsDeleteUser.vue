@@ -32,7 +32,7 @@
           <v-btn
             color="primary"
             text
-            @click="deleteUser"
+            @click="deleteUserComplete"
           >
             {{$t('settings.delete')}}
           </v-btn>
@@ -61,13 +61,25 @@ export default {
       }
     },
     methods: {
-      deleteUser(){
+      deleteUserComplete(){
+        this.axios.delete(`photos/deleteUserAllPhotos/`,{
+          headers: {
+            'Authorization': `Bearer ${this.$store.state.user.token}`
+          }
+        }).then(()=> {
+          console.log("Alle Photos erfolgreich geloescht")
+        })
+          .catch((error) => { 
+          this.dialog = false,
+          this.error = 'error.deleteUserAllPhotos';
+          console.log("FEHLER", error);
+
+        }),
         this.axios.delete(`users/deleteUser`, {
           headers: {
             'Authorization': `Bearer ${this.$store.state.user.token}`
           }
         }).then(() => {
-          this.dialog = false,
           this.deletedUser = true;
           this.$store.dispatch(CLEAR_USER_DATA);
           this.$router.push({name: 'LandingPage'})
