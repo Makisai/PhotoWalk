@@ -43,5 +43,9 @@
     "acceptedFriends":"Akzeptierte Freundschaften",
     "pendingFriends": "Ausstehende Freundschaften",
     "searchHint": "Suche nach neuen Freunden!"
+  },
+  "photos":  {
+    "myPhotos": "Meine Photos",
+    "friendsPhotos": "Photos deiner Freunde"
   }
 }

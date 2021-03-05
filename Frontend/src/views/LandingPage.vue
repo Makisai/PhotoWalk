@@ -42,7 +42,7 @@
 
 <script>
 import LoginDialog from "../components/usermanagement/LoginDialog";
-import ImageGrid from "@/components/ImageGrid";
+import ImageGrid from "@/components/photos/ImageGrid";
 import Impressum from "@/components/legal/Impressum";
 import DGSVO from "@/components/legal/DGSVO";
 export default {
