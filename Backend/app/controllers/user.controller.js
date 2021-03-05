@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const fs = require("fs");
 const {QueryTypes} = require("sequelize");
-
+const Photo = db.photos;
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
     const id = req.params.id;
@@ -379,6 +379,7 @@ exports.register = (req,res) => {
     }
 };
 
+// Deletes all Photo relations of a user, before destroying the user itself
 exports.deleteUser= async (req, res) => {
     var tokenParts = req.headers.authorization.split(' ');
 
@@ -397,7 +398,10 @@ exports.deleteUser= async (req, res) => {
                                                        `, {replacements: [currentUserId], type: QueryTypes.SELECT});
 
     const oldProfilePicturePath = "./app/public" + oldProfilePicture[0].profile_picture;
-
+ 
+    Photo.destroy({
+        where: {userId: currentUserId}
+    })
     User.destroy({
         where: {id: currentUserId}
     })

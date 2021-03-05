@@ -39,16 +39,16 @@ db.challenges.belongsTo(db.photowalks, {
 });
 
 //Zu Challenges gehören viele Photos (One-To-Many)
-db.challenges.hasMany(db.photos, {as: "photos"});
+db.challenges.hasMany(db.photos, {as: "photos"},{onDelete: "CASCADE"});
 db.photos.belongsTo(db.challenges, {
     foreignKey: "challengeId",
     as: "challenge"
 });
 
 //Ein User hat viele Photos (One-To-Many)
-db.users.hasMany(db.photos, {as: "user_photos"},{onDelete: "CASCADE", hooks:true });
+db.users.hasMany(db.photos, {as: "user_photos"});
 db.photos.belongsTo(db.users, {
-    foreignKey: "userId",
+    foreignKey: {name:"userId", allowNull: false},
     as: "user"
 });
 
