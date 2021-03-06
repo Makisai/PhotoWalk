@@ -25,7 +25,7 @@
         :type="showeye ? 'text' : 'password'"
         name="input-pw"
         filled
-        :label="$t('Password')"
+        :label="$t('labels.password')"
         hint="At least 8 characters"
         prepend-inner-icon="mdi-lock"
         class="input-group--focused"

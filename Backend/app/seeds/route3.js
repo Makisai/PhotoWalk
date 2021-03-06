@@ -42,6 +42,36 @@ const seeder = {
                 lng: 9.98855943697767,
                 photowalkId: photowalk3.id
             },
+            {
+                description: 'Lieb und Teuer',
+                lat: 53.55567000961159,
+                lng: 9.990536541839258,
+                photowalkId: photowalk3.id
+            },
+            {
+                description: 'Etwas das mit "fa" beginnt',
+                lat: 53.55275090389172,
+                lng: 9.993540644645693,
+                photowalkId: photowalk3.id
+            },
+            {
+                description: 'Traditionell',
+                lat: 53.553643228321086,
+                lng: 9.997403025627136,
+                photowalkId: photowalk3.id
+            },
+            {
+                description: 'Hamburger Linie',
+                lat: 53.556893679613424,
+                lng: 9.997317214625353,
+                photowalkId: photowalk3.id
+            },
+            {
+                description: 'Die grüne Stadt',
+                lat: 53.55729154808957,
+                lng: 9.993315239976322,
+                photowalkId: photowalk3.id
+            }
         ])
     }
 }

@@ -15,18 +15,13 @@
         />
         <l-marker :lat-lng="center" :icon="iconCenter"></l-marker>
         <l-polyline :lat-lngs="polyline.latlngs" :color="polyline.color"></l-polyline>
-        <l-marker :lat-lng="markerLatLng1" :icon="iconChallenge" >
-          <l-tooltip>Challenge 1</l-tooltip>
+        <l-marker
+            v-for="challengeMarker in $store.state.detail.photowalk.challenges"
+            :key="challengeMarker.id"
+            :lat-lng="[challengeMarker.lat, challengeMarker.lng]"
+            :icon="iconChallenge" >
+          <l-tooltip>{{ challengeMarker.description }}</l-tooltip>
         </l-marker>
-        <l-marker :lat-lng="markerLatLng2" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng3" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng4" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng5" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng6" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng7" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng8" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng9" :icon="iconChallenge" ></l-marker>
-        <l-marker :lat-lng="markerLatLng10" :icon="iconChallenge" ></l-marker>
       </l-map>
     </div>
     <v-btn v-if="!isTracking" @click="startTracking">
@@ -56,7 +51,7 @@ export default {
           color: 'cyan'
         }
       },
-    }
+    },
   },
   data() {
     return {
@@ -81,17 +76,6 @@ export default {
         iconSize: [37, 37],
         iconAnchor: [37, 37]
       }),
-      challenges:[],
-      markerLatLng1: [53.59245625343382,10.029813216646298],
-      markerLatLng2: [53.594068202315825,10.029813216646298],
-      markerLatLng3: [53.5951262917524,10.028332736998664],
-      markerLatLng4: [53.59474303973836,10.02496686695786],
-      markerLatLng5: [53.59540843681146,10.0215525019421],
-      markerLatLng6: [53.59579366190611,10.015180094278954],
-      markerLatLng7: [53.596971601147516,10.009892123303255],
-      markerLatLng8: [53.59424478100158,10.006305966336992],
-      markerLatLng9: [53.59422090263981,10.011433705868695],
-      markerLatLng10: [53.59265126872751,10.014252167556252],
     };
   },
 

@@ -17,7 +17,8 @@
   },
   "labels": {
     "submit": "senden",
-    "username": "name"
+    "username": "name",
+    "password": "Passwort"
   },
   "settings": {
     "changeMail": "Hier kannst du deine E-Mail ändern.",
