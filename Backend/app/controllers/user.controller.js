@@ -6,6 +6,7 @@ const OP = db.Sequelize.Op;
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const fs = require("fs");
+const sharp = require("sharp");
 const {QueryTypes} = require("sequelize");
 
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
@@ -172,7 +173,20 @@ exports.update = async (req, res) => {
     });
 
     const currentUserId = userId[0].id;
-    const newPhoto = `/profilePics/${req.file.filename}`;
+
+    await sharp(req.file.path, { failOnError: false })
+        .resize(1920,null, {withoutEnlargement: true})
+        .withMetadata()
+        .jpeg({
+            quality: 90
+        })
+        .toFile(
+            req.file.destination + 'smol' +  req.file.filename
+        )
+
+    fs.unlinkSync(req.file.destination + req.file.filename);
+
+    const newPhoto = `/profilePics/smol${req.file.filename}`;
 
     const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
                                                 FROM "users"
