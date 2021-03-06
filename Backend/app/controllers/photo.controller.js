@@ -32,13 +32,13 @@ exports.create = async (req, res) => {
             quality: 90
         })
         .toFile(
-            req.file.destination + 'smol' +  req.file.filename
+            req.file.destination + 'small' +  req.file.filename
         )
 
     fs.unlinkSync(req.file.destination + req.file.filename);
 
     const photo = {
-        photo_link: `/uploads/smol${req.file.filename}`,
+        photo_link: `/uploads/small${req.file.filename}`,
         challengeId: req.body.challengeId,
         userId: currentUserId
     };
