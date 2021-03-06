@@ -1,8 +1,6 @@
 const db = require("../models");
 const fs = require("fs");
 const {QueryTypes} = require("sequelize");
-const { findAll } = require("./photowalk.controller");
-const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
 

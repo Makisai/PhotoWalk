@@ -32,9 +32,9 @@
     "passwordSuccess": "Password was successsfully changed.",
     "deleteSure": "Are you sure?",
     "deleteHint" : "Deleting your account is permanent and irreversible",
-    "delete": "yes",
-    "dontDelete": "no",
-    "deletedUser": "Profile deleted succesfully",
+    "deleteYes": "yes",
+    "deleteNo": "no",
+    "deleteUserSuccess": "Profile deleted succesfully",
     "profile": "Profile",
     "advice": "Best Size 500x500px" },
 

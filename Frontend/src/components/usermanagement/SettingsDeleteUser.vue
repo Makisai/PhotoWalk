@@ -34,19 +34,20 @@
             text
             @click="deleteUserComplete"
           >
-            {{$t('settings.delete')}}
+            {{$t('settings.deleteYes')}}
           </v-btn>
           <v-btn
             color="primary"
             text
             @click="dialog = false"
           >
-            {{$t('settings.dontDelete')}}
+            {{$t('settings.deleteNo')}}
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <p v-if="deletedUser">{{$t('settings.deletedUser')}}</p>
+    <!---TODO hier stattdessen ein Toast einpflegen -->
+    <p v-if="deletedUser">{{$t('settings.deleteUserSuccess')}}</p>
   </div> 
 </template>
 
