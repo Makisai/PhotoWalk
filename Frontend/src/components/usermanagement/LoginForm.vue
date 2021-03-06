@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols = "12" v-if="error">
-      <p class="error">{{$t(error)}}</p>
+      <p class="error">{{$t('errors.login')}}</p>
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
@@ -29,7 +29,7 @@
       ></v-text-field>
     </v-col>
     <v-col cols="12">
-      <v-btn v-if="!isLoading" block class="mainGradient" @click="signin">LOGIN</v-btn>
+      <v-btn v-if="!isLoading" block class="mainGradient" @click="signin">{{$t('labels.login')}}</v-btn>
       <v-progress-circular indeterminate v-else></v-progress-circular>
     </v-col>
   </v-row>

@@ -313,7 +313,7 @@ exports.register = (req,res) => {
     }
     //TODO überprüfen, ob Benutzername schon vergeben ist
     if(errors.length > 0) {
-        res.json(400, {
+        res.json(500, {
             errors,
         })
     } else {
@@ -331,7 +331,7 @@ exports.register = (req,res) => {
                 errors.push({msg: 'Email is already used'})
             }
             if (errors.length > 0) {
-                res.json(400, {
+                res.json(409, {
                     errors,
                 })
             } else {

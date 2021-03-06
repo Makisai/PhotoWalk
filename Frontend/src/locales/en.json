@@ -5,7 +5,14 @@
     "friendAlready": "You're already friends with this user!",
     "friendNotFound": "Nobody was found...",
     "profilePicture": "Couldn't update profile picture",
-    "changeUsername": "Couldn't update your username"
+    "changeUsername": "Couldn't update your username",
+    "usernameAssigned": "This name is already assigned :/.",
+    "emailAssigned": "This email is already used. Please pick another one.",
+    "incompleteError": "Please check if your input is complete.",
+    "internalError": "An error occured. Please reload this site." 
+  },
+  "success":{
+    "register": "You've registered successfully!"
   },
   "pages":{
     "friends": "Friends",
@@ -16,7 +23,17 @@
   },
   "labels": {
     "submit": "submit",
-    "username": "username"
+    "username": "username",
+    "register": "register",
+    "login": "login",
+    "logout": "logout",
+    "exploring": "start exploring",
+    "close": "close"
+  },
+  "loginDialog":{
+    "forgotPassword": "Forgot your password?",
+    "alreadyRegistered": "Already got an account?",
+    "notRegistered": "No account yet?"
   },
   "settings": {
     "changeMail": "Change your E-mail here.",

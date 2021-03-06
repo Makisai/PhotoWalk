@@ -7,13 +7,13 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on" class="mainGradient ma-8">
-          START EXPLORING
+          {{$t('labels.exploring')}}
         </v-btn>
       </template>
       <v-card>
         <v-card-title class="mainGradient">
-          <span class="centerspan" v-if="registerForm">REGISTER</span>
-          <span class="centerspan" v-else>LOGIN</span>
+          <span class="centerspan" v-if="registerForm">{{$t('labels.register')}}</span>
+          <span class="centerspan" v-else>{{$t('labels.login')}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -38,11 +38,11 @@
                 <RegisterForm/>
               </v-col>
               <v-col class="py-1" cols="12">
-                <p class="ma-0" v-if="!registerForm">Forgot password?</p>
+                <p class="ma-0" v-if="!registerForm">{{$t('loginDialog.forgotPassword')}}</p>
               </v-col>
               <v-col class="py-1" cols="12">
-                <p class="ma-0" v-if="registerForm">Already got an account? <a @click="showLoginForm">Login</a> </p>
-                <p class="ma-0" v-else>No account yet? <a @click="showRegisterForm">Register</a></p>
+                <p class="ma-0" v-if="registerForm">{{$t('loginDialog.alreadyRegistered')}} <a @click="showLoginForm">{{$t('labels.login')}}</a> </p>
+                <p class="ma-0" v-else>{{$t('loginDialog.notRegistered')}} <a @click="showRegisterForm">{{$t('labels.register')}}</a></p>
               </v-col>
             </v-row>
           </v-container>
@@ -50,7 +50,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" text @click="dialog = false">
-            Close
+            {{$t('labels.close')}}
           </v-btn>
         </v-card-actions>
       </v-card>
