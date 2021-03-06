@@ -181,12 +181,12 @@ exports.update = async (req, res) => {
             quality: 90
         })
         .toFile(
-            req.file.destination + 'smol' +  req.file.filename
+            req.file.destination + 'small' +  req.file.filename
         )
 
     fs.unlinkSync(req.file.destination + req.file.filename);
 
-    const newPhoto = `/profilePics/smol${req.file.filename}`;
+    const newPhoto = `/profilePics/small${req.file.filename}`;
 
     const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
                                                 FROM "users"
