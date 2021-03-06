@@ -1,5 +1,6 @@
 const db = require("../models");
 const fs = require("fs");
+const sharp = require("sharp");
 const {QueryTypes} = require("sequelize");
 const Photo = db.photos;
 const OP = db.Sequelize.Op;
@@ -24,8 +25,20 @@ exports.create = async (req, res) => {
 
     const currentUserId = userId[0].id;
 
+    await sharp(req.file.path, { failOnError: false })
+        .resize(1920,null, {withoutEnlargement: true})
+        .withMetadata()
+        .jpeg({
+            quality: 90
+        })
+        .toFile(
+            req.file.destination + 'smol' +  req.file.filename
+        )
+
+    fs.unlinkSync(req.file.destination + req.file.filename);
+
     const photo = {
-        photo_link: `/uploads/${req.file.filename}`,
+        photo_link: `/uploads/smol${req.file.filename}`,
         challengeId: req.body.challengeId,
         userId: currentUserId
     };
