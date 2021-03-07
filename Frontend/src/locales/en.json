@@ -5,7 +5,8 @@
     "friendAlready": "You're already friends with this user!",
     "friendNotFound": "Nobody was found...",
     "profilePicture": "Couldn't update profile picture",
-    "changeUsername": "Couldn't update your username"
+    "changeUsername": "Couldn't update your username",
+    "deleteUser": "User konnte nicht gelöscht werden"
   },
   "pages":{
     "friends": "Friends",
@@ -23,9 +24,17 @@
     "changeUsername": "Change your username here",
     "changePassword":"Change your password here",
     "changeProfilePicture": "change your profile pic here",
+    "deleteQuestion": "Delete your Account?",
+    "deleteAccount": "delete",
     "oldPassword": "old password",
     "newPassword": "new password",
     "usernameSuccess": "Username was successfully changed.",
+    "passwordSuccess": "Password was successsfully changed.",
+    "deleteSure": "Are you sure?",
+    "deleteHint" : "Deleting your account is permanent and irreversible",
+    "deleteYes": "yes",
+    "deleteNo": "no",
+    "deleteUserSuccess": "Profile deleted succesfully",
     "profile": "Profile",
     "advice": "Best Size 500x500px" },
 

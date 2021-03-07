@@ -57,7 +57,7 @@ module.exports = app => {
     router.put('/updatePassword', passport.authenticate('bearer', { session: false }), user.updatePassword);
 
     //User löschen
-    router.delete('/deleteUser',  passport.authenticate('bearer', { session: false }), user.deleteUser)
+    router.delete('/deleteUser',  passport.authenticate('bearer', { session: false }), user.deleteUser);
 
     router.get('/is_logged_in', passport.authenticate('bearer', { session: false }),user.isloggedin);
 

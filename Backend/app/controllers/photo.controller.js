@@ -284,3 +284,44 @@ exports.delete = async (req, res) => {
         fs.unlinkSync(oldPicture[0].photo_link);
     }
 };
+
+//Alle Fotos eines Users löschen
+exports.deleteAllUserId = async (req,res) =>{
+    var tokenParts = req.headers.authorization.split(' ');
+
+    const userId = await db.sequelize.query(`SELECT "id"
+                                             FROM "users"
+                                             WHERE "token" = ?`, {
+        replacements: [tokenParts[1]],
+        type: QueryTypes.SELECT
+    });
+
+    const currentUserId = userId[0].id;
+    let oldPicturePaths= [];
+    Photo.findAll({
+        attributes: ["photo_link"],
+        where:
+            {userId: currentUserId}
+    })
+        .then(data => {
+            for (i=0; i <data.length; i++){
+                oldPicturePaths.push("./app/public" + data[i].photo_link);
+            }
+            for (i=0; i < oldPicturePaths.length; i++){
+                if (oldPicturePaths[i] !== undefined ) {
+                fs.unlinkSync(oldPicturePaths[i]);
+                }
+            };
+            res.status(200).send({
+                message: "Photos erfolgreich gelöscht"
+
+            });
+            
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                err.message || "Fehler beim Auslesen der Photos des Users"
+            });
+        });
+}
