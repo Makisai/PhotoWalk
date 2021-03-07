@@ -78,7 +78,6 @@ export default {
       }),
     };
   },
-
   beforeDestroy() {
     this.isTracking = false;
     clearTimeout(this.timeOut);
