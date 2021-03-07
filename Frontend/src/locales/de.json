@@ -10,10 +10,12 @@
     "emailAssigned": "Diese Email ist bereits vergeben.",
     "incompleteError": "Bitte überprüfe deine Angaben auf Vollständigkeit!",
     "internalError": "Ein Fehler ist aufgetreten. Lade die Seite erneut." ,
-    "deleteUser": "User konnte nicht gelöscht werden"
+    "deleteUser": "User konnte nicht gelöscht werden",
+    "invalidMimetype": "Dieser Dateityp ist nicht erlaubt."
   },
   "success":{
-    "register": "Deine Registrierung war erfolgreich!"
+    "register": "Deine Registrierung war erfolgreich!",
+    "photoUpload": "Dein Photoupload war erfolgreich!"
   },
   "pages":{
     "friends": "Freunde",
@@ -36,6 +38,9 @@
     "forgotPassword": "Passwort vergessen?",
     "alreadyRegistered": "Du hast schon einen Account?",
     "notRegistered": "Du hast noch keinen Account?"
+  },
+  "photoUpload": {
+    "selectChallengeId": "Bitte wähle eine Challenge aus."
   },
   "settings": {
     "changeMail": "Hier kannst du deine E-Mail ändern.",
