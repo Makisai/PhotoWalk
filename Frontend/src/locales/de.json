@@ -9,7 +9,8 @@
     "usernameAssigned": "Dieser Username ist bereits vergeben.",
     "emailAssigned": "Diese Email ist bereits vergeben.",
     "incompleteError": "Bitte überprüfe deine Angaben auf Vollständigkeit!",
-    "internalError": "Ein Fehler ist aufgetreten. Lade die Seite erneut." 
+    "internalError": "Ein Fehler ist aufgetreten. Lade die Seite erneut." ,
+    "deleteUser": "User konnte nicht gelöscht werden"
   },
   "success":{
     "register": "Deine Registrierung war erfolgreich!"
@@ -43,7 +44,15 @@
     "oldPassword": "altes Passwort",
     "newPassword": "neues Passwort",
     "changeProfilePicture": "Hier kannst du dein Profilbild ändern",
+    "deleteQuestion": "Deinen Account löschen?",
+    "deleteAccount": "löschen",
     "usernameSuccess": "Username erfolgreich geändert.",
+    "passwordSuccess": "Passwort erfolgreich geändert.",
+    "deleteSure": "Bist du dir sicher?",
+    "deleteHint" : "Das Löschen deines Accounts kann nicht rückgängig gemacht werden.",
+    "deleteYes": "ja",
+    "deleteNo": "nein",
+    "deleteUserSuccess": "Dein Profil wurde erfolgreich gelöscht",
     "profile": "Profil",
     "advice": "Beste Größe 500x500px"
   },

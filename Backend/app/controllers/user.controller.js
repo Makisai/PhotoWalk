@@ -6,8 +6,9 @@ const OP = db.Sequelize.Op;
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const fs = require("fs");
+const sharp = require("sharp");
 const {QueryTypes} = require("sequelize");
-
+const Photo = db.photos;
 //Einen User Datensatz mit gesetztem Parameter(ID) finden und als json senden
 exports.findOneUser = (req,res) => {
     const id = req.params.id;
@@ -172,7 +173,20 @@ exports.update = async (req, res) => {
     });
 
     const currentUserId = userId[0].id;
-    const newPhoto = `/profilePics/${req.file.filename}`;
+
+    await sharp(req.file.path, { failOnError: false })
+        .resize(1920,null, {withoutEnlargement: true})
+        .withMetadata()
+        .jpeg({
+            quality: 90
+        })
+        .toFile(
+            req.file.destination + 'small' +  req.file.filename
+        )
+
+    fs.unlinkSync(req.file.destination + req.file.filename);
+
+    const newPhoto = `/profilePics/small${req.file.filename}`;
 
     const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
                                                 FROM "users"
@@ -379,6 +393,7 @@ exports.register = (req,res) => {
     }
 };
 
+// Deletes all Photo relations of a user, before destroying the user itself
 exports.deleteUser= async (req, res) => {
     var tokenParts = req.headers.authorization.split(' ');
 
@@ -391,6 +406,16 @@ exports.deleteUser= async (req, res) => {
 
     const currentUserId = userId[0].id;
 
+    const oldProfilePicture = await db.sequelize.query(`SELECT "profile_picture"
+                                                FROM "users"
+                                                WHERE "id" = ?
+                                                       `, {replacements: [currentUserId], type: QueryTypes.SELECT});
+
+    const oldProfilePicturePath = "./app/public" + oldProfilePicture[0].profile_picture;
+ 
+    Photo.destroy({
+        where: {userId: currentUserId}
+    })
     User.destroy({
         where: {id: currentUserId}
     })
@@ -403,7 +428,10 @@ exports.deleteUser= async (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete User with id=" + id
+                message: "Could not delete User"
             });
         });
+     if (oldProfilePicture[0] !== undefined && oldProfilePicture[0].profile_picture !== '/profilePics/defaultProfile.png') {
+        fs.unlinkSync(oldProfilePicturePath);
+    }    
 }

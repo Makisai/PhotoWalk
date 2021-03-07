@@ -22,7 +22,7 @@ const fileFilter = (req,file,cb)=> {
 const upload = multer({
     storage: storage,
     limits:{
-        fileSize: 1024*1024*15
+        fileSize: 1024*1024*50
     },
     fileFilter: fileFilter
 });
@@ -42,7 +42,9 @@ module.exports = app => {
 
     //router.get("/:id", passport.authenticate('bearer', { session: false }), photo.findOne);
 
-    router.delete("/:id", passport.authenticate('bearer', { session: false }), photo.delete);
+    //router.delete("/:id", passport.authenticate('bearer', { session: false }), photo.delete);
+
+    router.delete("/deleteUserAllPhotos/", passport.authenticate('bearer',{ session: false}), photo.deleteAllUserId);
 
     app.use('/api/photos', router);
 }

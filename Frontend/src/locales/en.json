@@ -9,7 +9,8 @@
     "usernameAssigned": "This name is already assigned :/.",
     "emailAssigned": "This email is already used. Please pick another one.",
     "incompleteError": "Please check if your input is complete.",
-    "internalError": "An error occured. Please reload this site." 
+    "internalError": "An error occured. Please reload this site." ,
+    "deleteUser": "User konnte nicht gelöscht werden"
   },
   "success":{
     "register": "You've registered successfully!"
@@ -40,9 +41,17 @@
     "changeUsername": "Change your username here",
     "changePassword":"Change your password here",
     "changeProfilePicture": "change your profile pic here",
+    "deleteQuestion": "Delete your Account?",
+    "deleteAccount": "delete",
     "oldPassword": "old password",
     "newPassword": "new password",
     "usernameSuccess": "Username was successfully changed.",
+    "passwordSuccess": "Password was successsfully changed.",
+    "deleteSure": "Are you sure?",
+    "deleteHint" : "Deleting your account is permanent and irreversible",
+    "deleteYes": "yes",
+    "deleteNo": "no",
+    "deleteUserSuccess": "Profile deleted succesfully",
     "profile": "Profile",
     "advice": "Best Size 500x500px" },
 

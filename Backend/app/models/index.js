@@ -53,14 +53,14 @@ db.photos.belongsTo(db.users, {
 });
 
 //Ein Photo wird von vielen Usern geliked/Ein User vergibt viele Likes an Photos (Many-To-Many)
-db.users.belongsToMany(db.photos, {through: db.likes});
-db.photos.belongsToMany(db.users, {through: db.likes});
+db.users.belongsToMany(db.photos, {through: db.likes}, {onDelete: "CASCADE"});
+db.photos.belongsToMany(db.users, {through: db.likes}, {onDelete: "CASCADE"});
 
 //Ein User hat viele Freunde/Ein User ist mit vielen Usern befreundet (Many-To-Many)
 db.users.belongsToMany(db.users, {
     through: db.friendships,
     as: "friends"
-});
+}, { onDelete: "CASCADE"});
 
 //Ein Photowalk hat mehrer Waypoints / Ein Waypoint gehört zu einem Photowalk (One-To-Many)
 db.photowalks.hasMany(db.waypoints);
