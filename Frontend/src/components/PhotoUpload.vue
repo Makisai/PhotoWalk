@@ -8,7 +8,7 @@
       </v-col>
       <v-col class="py-2" cols="12">
       <v-file-input
-        :rules="[rules.notEmpty,rules.mimetype]"
+        :rules="[rules.notEmpty,rules.size,rules.mimetype]"
         label="File input"
         filled
         prepend-icon="mdi-camera"
@@ -47,6 +47,7 @@
         incompleteError: false,
         rules: {
           notEmpty: v => !!v ||'file is required',
+          size: v => v.size <= 1024*1024* 35 || 'filesize too big',
           mimetype: v => {
             const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
             return pattern.test(v.name)  || 'Invalid mimetype'

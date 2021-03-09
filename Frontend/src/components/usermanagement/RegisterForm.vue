@@ -11,7 +11,7 @@
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
-          :rules="[rules3.email]"
+          :rules="[rules3.email,rules3.required]"
           filled
           label="Email"
           prepend-inner-icon="mdi-email"
@@ -21,7 +21,7 @@
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
-          :rules="[rules2.max]"
+          :rules="[rules2.max,rules3.required]"
           filled
           label="Username"
           prepend-inner-icon="mdi-account"
@@ -74,13 +74,15 @@ export default {
         min: v => v.length >= 8 || 'Min 8 characters',
       },
       rules2: {
+        required: value => !!value || 'Required.',
         max: v => v.length <=18 || 'Max 18 characters'
       },
       rules3:{
-         email: value => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Invalid e-mail.'
-          },
+        required: value => !!value || 'Required.',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
       },
     };
   },
