@@ -19,12 +19,12 @@
       <v-col cols="4">
         <v-card @click="goToDetail(2)">
           <v-img v-if="hasDonePhotowalk(2)"
-                 :src="`/images/map_stadtpark_Done_small.png`"
+                 :src="`/images/hafencity_map_Done.png`"
                  :lazy-src="`images/gradient.png`"
                  class = "rounded-lg">
           </v-img>
           <v-img v-else
-                 :src="`/images/map_stadtpark_notDone_small.png`"
+                 :src="`/images/hafencity_map_notDone.png`"
                  :lazy-src="`images/gradient.png`"
                  class = "rounded-lg">
           </v-img>
@@ -33,12 +33,12 @@
       <v-col cols="4">
         <v-card @click="goToDetail(3)">
           <v-img v-if="hasDonePhotowalk(3)"
-                 :src="`/images/map_stadtpark_Done_small.png`"
+                 :src="`/images/map_alster_Done.png`"
                  :lazy-src="`images/gradient.png`"
                  class = "rounded-lg">
           </v-img>
           <v-img v-else
-                 :src="`/images/map_stadtpark_notDone_small.png`"
+                 :src="`/images/map_alster_notDone.png`"
                  :lazy-src="`images/gradient.png`"
                  class = "rounded-lg">
           </v-img>

@@ -53,7 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 .gradient{
-  background: linear-gradient(90deg, #00BCD4 0%, #E91E63 100%);
+  background: linear-gradient(90deg, #00bcd4 0%, #E91E63 100%);
   color: white;
 }
 .headline{

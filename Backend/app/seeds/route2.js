@@ -74,11 +74,41 @@ const seeder = {
         ]);
         Challenge.bulkCreate([
             {
+                description: 'Klarer Durchblick',
+                lat: 53.53521336640151,
+                lng: 10.024162351676146,
+                photowalkId: photowalk2.id
+            },
+            {
+                description: 'Herausragend',
+                lat: 53.53684950227621,
+                lng: 10.017179843560202,
+                photowalkId: photowalk2.id
+            },
+            {
+                description: 'Spiegel',
+                lat: 53.53998435531413,
+                lng: 10.00746664928127,
+                photowalkId: photowalk2.id
+            },
+            {
+                description: 'Alt trifft Neu',
+                lat: 53.543981753413576,
+                lng: 9.997810612198512,
+                photowalkId: photowalk2.id
+            },
+            {
+                description: 'Mini',
+                lat: 53.54401575320629,
+                lng: 9.98984262049691,
+                photowalkId: photowalk2.id
+            },
+            {
                 description: 'Ohrenschmaus',
                 lat: 53.54126555712643,
                 lng: 9.985268716352996,
                 photowalkId: photowalk2.id
-            },
+            }
         ])
     }
 }

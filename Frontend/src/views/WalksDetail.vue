@@ -6,11 +6,6 @@
       </v-col>
       <v-col cols="12" md="6">
         <v-row>
-          <v-col>
-            <v-btn>
-              Start Walk now
-            </v-btn>
-          </v-col>
           <v-col cols="12">
             <ChallengeDropdown/>
           </v-col>
