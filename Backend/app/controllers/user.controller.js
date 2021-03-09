@@ -235,7 +235,7 @@ exports.updatePassword = async (req, res) => {
 
     //Passwordlänge überprüfen
     if (newPassword.length < 8) {
-        res.status(400).send({message: "Password has to have at least 8 characters"})
+        return res.status(400).send({message: "Password has to have at least 8 characters"})
     }
 
     User.findOne({

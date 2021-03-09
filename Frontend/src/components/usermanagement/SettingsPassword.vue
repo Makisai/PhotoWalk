@@ -1,6 +1,15 @@
 <template>
   <div>
     <p>{{$t('settings.changePassword')}} </p>
+    <v-col v-if="wrongPasswordError" cols="12">
+      <p class ="error">{{$t('error.passwordIncorrect')}}</p>
+    </v-col>
+    <v-col v-if="incompleteError">
+      <p>{{$t('error.incompleteError')}} </p>
+    </v-col>
+    <v-col v-if="internalError">
+      <p>{{$t('error.internalError')}} </p>
+    </v-col>
     <v-col class="py-2" cols="8">
       <v-text-field
           :append-icon="showeye0 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -32,7 +41,9 @@
     <v-col cols="8">
      <v-btn @click="updatePassword">{{$t('labels.submit')}}</v-btn>
     </v-col>
-    <p v-if="updatedPassword">{{$t('settings.passwordSuccess')}} </p>
+    <v-col v-if="updatedPassword">
+      <p >{{$t('success.passwordUpdated')}} </p>
+    </v-col>
   </div>
 </template>
 
@@ -47,7 +58,9 @@ export default {
       oldPassword: '',
       newPassword: '',
       updatedPassword: false,
-      error: '',
+      wrongPasswordError: false,
+      incompleteError: false,
+      internalError: false,
       rules: {
         required: value => !!value || 'Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
@@ -60,11 +73,32 @@ export default {
         headers: {
           'Authorization': `Bearer ${this.$store.state.user.token}`
         }
-      }).then(() => {
-        this.updatedPassword = true;
+      }).then((response) => {
+          if(response.status == 200){
+            this.updatedPassword = true;
+            this.wrongPasswordError =false;
+            this.incompleteError =false;
+            this.internalError = false;
+          }
       }).catch((error) => {
-        this.error = 'error.password';
-        console.log("FEHLER", error);
+          if(error.response && error.response.status == 401){
+            this.wrongPasswordError =true;
+            this.incompleteError =false;
+            this.internalError = false;
+            this.updatedPassword = false;
+            }
+          if(error.response && error.response.status == 400){
+            this.incompleteError = true;
+            this.wrongPasswordError = false;
+            this.internalError = false;
+            this.updatedPassword = false;
+          }
+          if(error.response && error.response.status ==500){
+            this.internalError = true;
+            this.incompleteError = false;
+            this.wrongPasswordError = false;
+            this.updatedPassword = false;
+          }
       })
     }
   }

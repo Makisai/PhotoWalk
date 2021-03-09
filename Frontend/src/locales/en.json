@@ -12,13 +12,16 @@
     "internalError": "An error occured. Please reload this site." ,
     "deleteUser": "User konnte nicht gelöscht werden",
     "invalidMimetype": "This is an invalid Mimetype.",
-    "sameUsername": "This is already your username!"
+    "sameUsername": "This is already your username!",
+    "passwordIncorrect": "Your old password is not correct!"
   },
   "success":{
     "register": "You've registered successfully!",
     "photoUpload": "Your photo upload was successful!",
     "profilePictureUpdated": "Your profile picture was successfully updated!",
-    "usernameUpdated": "Your username was successfully updated!"
+    "usernameUpdated": "Your username was successfully updated!",
+    "passwordUpdated": "Your password was successfully updated!",
+    "deleteUserSuccess": "Profile deleted succesfully!"
   },
   "pages":{
     "friends": "Friends",
@@ -53,13 +56,11 @@
     "deleteAccount": "delete",
     "oldPassword": "old password",
     "newPassword": "new password",
-    "usernameSuccess": "Username was successfully changed.",
-    "passwordSuccess": "Password was successsfully changed.",
     "deleteSure": "Are you sure?",
     "deleteHint" : "Deleting your account is permanent and irreversible",
     "deleteYes": "yes",
     "deleteNo": "no",
-    "deleteUserSuccess": "Profile deleted succesfully",
+    
     "profile": "Profile",
     "advice": "Best Size 500x500px" },
 
