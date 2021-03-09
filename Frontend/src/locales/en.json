@@ -13,7 +13,8 @@
     "deleteUser": "User konnte nicht gelöscht werden",
     "invalidMimetype": "This is an invalid Mimetype.",
     "sameUsername": "This is already your username!",
-    "passwordIncorrect": "Your old password is not correct!"
+    "passwordIncorrect": "Your old password is not correct!",
+    "deleteAllPictures": "Your pictures couldn't be deleted."
   },
   "success":{
     "register": "You've registered successfully!",
@@ -21,6 +22,7 @@
     "profilePictureUpdated": "Your profile picture was successfully updated!",
     "usernameUpdated": "Your username was successfully updated!",
     "passwordUpdated": "Your password was successfully updated!",
+    "deleteAllPictures": "Your pictures were successfully deleted!",
     "deleteUserSuccess": "Profile deleted succesfully!"
   },
   "pages":{

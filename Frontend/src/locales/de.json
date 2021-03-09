@@ -13,7 +13,8 @@
     "deleteUser": "User konnte nicht gelöscht werden",
     "invalidMimetype": "Dieser Dateityp ist nicht erlaubt.",
     "sameUsername": "Diesen Benutzernamen hast du schon!",
-    "passwordIncorrect": "Dein altes Passwort ist nicht korrekt!"
+    "passwordIncorrect": "Dein altes Passwort ist nicht korrekt!",
+    "deleteAllPictures": "Deine Bilder konnten nicht gelöscht werden."
   },
   "success":{
     "register": "Deine Registrierung war erfolgreich!",
@@ -21,7 +22,8 @@
     "profilePictureUpdated": "Dein Profilbild wurde erfolgreich erneuert!",
     "usernameUpdated": "dein Benutzername wurde erfolgreich geändert!",
     "passwordUpdated": "dein Passwort wurde erfolgreich geändert!",
-    "deleteUserSuccess": "Dein Profil wurde erfolgreich gelöscht"
+    "deleteAllPictures": "alle deine Photos wurden erfolgreich gelöscht!",
+    "deleteUserSuccess": "Dein Profil wurde erfolgreich gelöscht!"
   },
   "pages":{
     "friends": "Freunde",
