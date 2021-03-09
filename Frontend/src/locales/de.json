@@ -15,7 +15,8 @@
   },
   "success":{
     "register": "Deine Registrierung war erfolgreich!",
-    "photoUpload": "Dein Photoupload war erfolgreich!"
+    "photoUpload": "Dein Photoupload war erfolgreich!",
+    "profilePictureUpdated": "Dein Profilbild wurde erfolgreich erneuert!"
   },
   "pages":{
     "friends": "Freunde",
