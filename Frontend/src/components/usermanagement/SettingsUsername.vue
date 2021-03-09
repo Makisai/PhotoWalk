@@ -4,9 +4,18 @@
     <p>{{$t('settings.changeUsername')}} </p>
     <p>{{$store.state.user.username}} </p>
   </v-col>
+  <v-col v-if="usernameAssignedError" cols="12">
+    <p class ="error">{{$t('error.usernameAssigned')}}</p>
+  </v-col>
+  <v-col v-if="internalError" cols="12">
+    <p class ="error">{{$t('error.internaleError')}}</p>
+  </v-col>
+  <v-col v-if="sameUsernameError" cols="12">
+    <p class ="error">{{$t('error.sameUsername')}}</p>
+  </v-col>
   <v-col cols="4">
     <v-text-field
-    :rules="[rules.required]"
+    :rules="[rules.required,rules.max]"
     filled
     label="[labels.username]"
     prepend-inner-icon="mdi-account"
@@ -14,15 +23,15 @@
     v-model="newUsername"
     ></v-text-field>
   </v-col> 
-  <v-col cols=4>
-  <p class="ma-0" v-if="updatedUsername">{{$t('settings.usernameSuccess')}}</p>
-  </v-col>
   <v-col>
     <v-btn
             @click="changeUsername"
             >{{$t('labels.submit')}}
             </v-btn>
   </v-col>
+      <v-col v-if="updated">
+      <p>{{$t('success.usernameUpdated')}} </p>
+    </v-col>
   </div>
 </template>
 
@@ -34,8 +43,12 @@ export default {
         return{
             updatedUsername: false,
             newUsername: '',
+            usernameAssignedError: false,
+            updated: false,
+            sameUsernameError: false,
             rules: {
             required: value => !!value || 'Required.',
+            max: v => v.length <=18 || 'Max 18 characters'
           },
         }
     },
@@ -45,12 +58,44 @@ export default {
         headers: {
           'Authorization': `Bearer ${this.$store.state.user.token}`
         }
-      }).then(() => {
-        this.$store.commit(SET_USERNAME, this.newUsername);
-        this.updatedUsername = true;
+      }).then((response) => {
+          if(response.status == 200){
+            this.updated = true;
+            this.internalError = false;
+            this.incompleteError = false;
+            this.usernameAssignedError = false;
+            this.sameUsernameError = false;
+            this.$store.commit(SET_USERNAME, this.newUsername);
+            }  
       }).catch((error) => {
-        this.error = 'error.username';
-        console.log("FEHLER", error);
+          if(error.response && error.response.status == 400){
+            this.incompleteError = true;
+            this.usernameAssignedError = false;
+            this.internalError = false;
+            this.updated = false;
+            this.sameUsernameError = false;
+            }
+          if(error.response && error.response.status == 500){
+            this.internalError = true;
+            this.usernameAssignedError = false;
+            this.incompleteError = false;
+            this.updated = false;
+            this.sameUsernameError = false;
+            }
+          if(error.response && error.response.status == 409){
+            this.usernameAssignedError = true;
+            this.internalError = false;
+            this.incompleteError = false;
+            this.updated = false;
+            this.sameUsernameError = false;
+            }
+           if(error.response && error.response.status == 430){
+            this.sameUsernameError = true;
+            this.usernameAssignedError = false;
+            this.internalError = false;
+            this.incompleteError = false;
+            this.updated = false;
+            }
       })
     }
   }

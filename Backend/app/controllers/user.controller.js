@@ -119,7 +119,7 @@ exports.updateUsername = async (req, res) => {
     });
 
     if (oldUsername[0].username == newUsername) {
-        res.status(400).send({
+        res.status(430).send({
             message: "Username hat sich nicht geändert!"
         })
         return;
@@ -147,7 +147,7 @@ exports.updateUsername = async (req, res) => {
                 });
             });
         } else {
-            res.status(400).send({
+            res.status(409).send({
                 message: "Username bereits vergeben."
             })
         }

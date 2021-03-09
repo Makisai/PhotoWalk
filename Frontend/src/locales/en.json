@@ -11,12 +11,14 @@
     "incompleteError": "Please check if your input is complete.",
     "internalError": "An error occured. Please reload this site." ,
     "deleteUser": "User konnte nicht gelöscht werden",
-    "invalidMimetype": "This is an invalid Mimetype."
+    "invalidMimetype": "This is an invalid Mimetype.",
+    "sameUsername": "This is already your username!"
   },
   "success":{
     "register": "You've registered successfully!",
     "photoUpload": "Your photo upload was successful!",
-    "profilePictureUpdated": "Your profile picture was successfully updated!"
+    "profilePictureUpdated": "Your profile picture was successfully updated!",
+    "usernameUpdated": "Your username was successfully updated!"
   },
   "pages":{
     "friends": "Friends",

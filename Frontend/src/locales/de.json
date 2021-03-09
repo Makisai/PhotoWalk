@@ -11,12 +11,14 @@
     "incompleteError": "Bitte überprüfe deine Angaben auf Vollständigkeit!",
     "internalError": "Ein Fehler ist aufgetreten. Lade die Seite erneut." ,
     "deleteUser": "User konnte nicht gelöscht werden",
-    "invalidMimetype": "Dieser Dateityp ist nicht erlaubt."
+    "invalidMimetype": "Dieser Dateityp ist nicht erlaubt.",
+    "sameUsername": "Diesen Benutzernamen hast du schon!"
   },
   "success":{
     "register": "Deine Registrierung war erfolgreich!",
     "photoUpload": "Dein Photoupload war erfolgreich!",
-    "profilePictureUpdated": "Dein Profilbild wurde erfolgreich erneuert!"
+    "profilePictureUpdated": "Dein Profilbild wurde erfolgreich erneuert!",
+    "usernameUpdated": "dein Benutzername wurde erfolgreich geändert!"
   },
   "pages":{
     "friends": "Freunde",
