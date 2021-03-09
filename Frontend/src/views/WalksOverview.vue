@@ -5,7 +5,7 @@
       <v-col cols="4">
         <v-card @click="goToDetail(1)">
           <v-img v-if="hasDonePhotowalk(1)"
-            :src="`/images/map_stadtpark_Done_small.png`"
+            :src="`/images/map_stadtpark_Done.png`"
             :lazy-src="`images/gradient.png`"
             class = "rounded-lg">
           </v-img>
