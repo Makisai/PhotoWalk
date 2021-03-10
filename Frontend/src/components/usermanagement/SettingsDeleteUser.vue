@@ -74,10 +74,11 @@ export default {
           }
         }).then((response)=> {
           if(response && response.status == 200){
-            const answer = 'success.deleteAllPictures';
+            const answer = 'All you pictures deleted successfully!';
             this.$toast.success(answer,{
               duration: 4000,
               position: 'top',
+              color: 'green'
             });
             this.dialog= false;
             this.deletedPhotos = true;
@@ -100,6 +101,7 @@ export default {
               this.$toast.success('User was deleted successfully',{
                 duration: 4000,
                 position: 'top',
+                color: 'green',
               });
               this.$store.dispatch(CLEAR_USER_DATA);
               this.$router.push({name: 'LandingPage'});
@@ -114,3 +116,5 @@ export default {
     }
 }
 </script>
+
+<style src="cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css"></style>
