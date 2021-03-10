@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <p>Chose a walk</p>
+    <h1>{{ $t('photowalks.chooseWalk') }}</h1>
     <v-row>
       <v-col cols="4">
         <v-card @click="goToDetail(1)">

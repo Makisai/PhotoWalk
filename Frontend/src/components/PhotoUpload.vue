@@ -23,8 +23,6 @@ export default {
       let formData = new FormData();
       formData.append('photo_link',this.upload);
       formData.append('challengeId',this.$store.state.detail.selectedChallenge.id);
-      // eslint-disable-next-line no-debugger
-      debugger
       this.axios.post('photos/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

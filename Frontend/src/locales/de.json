@@ -17,7 +17,7 @@
   },
   "labels": {
     "submit": "senden",
-    "username": "name",
+    "username": "Benutzername",
     "password": "Passwort"
   },
   "settings": {
@@ -48,5 +48,8 @@
   "photos":  {
     "myPhotos": "Meine Photos",
     "friendsPhotos": "Photos deiner Freunde"
+  },
+  "photowalks": {
+    "chooseWalk" : "Wähle einen Photowalk aus"
   }
 }
