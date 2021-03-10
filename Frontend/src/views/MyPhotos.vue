@@ -1,7 +1,7 @@
 <template>
   <!--vuetify div-->
   <v-container>
-    <h2>{{ $t('photos.myPhotos') }}</h2>
+    <h2 class="text-h2">{{ $t('photos.myPhotos') }}</h2>
     <PhotosUserGrid walk="1"></PhotosUserGrid>
     <PhotosUserGrid walk="2"></PhotosUserGrid>
     <PhotosUserGrid walk="3"></PhotosUserGrid>
