@@ -23,7 +23,10 @@ exports.findAll = async (req, res) => {
 
     Photowalk.findAll({attributes: ["id", "name", "length", "region", "route"]})
         .then(data => {
-            res.send([data, editedPhotowalks]);
+            res.send({
+                photowalks: data,
+                editedPhotowalks: editedPhotowalks.map(photowalk => photowalk.photowalkId)
+            });
         })
         .catch(err => {
             res.status(500).send({

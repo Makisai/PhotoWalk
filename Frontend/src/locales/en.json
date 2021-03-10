@@ -17,7 +17,8 @@
   },
   "labels": {
     "submit": "submit",
-    "username": "username"
+    "username": "username",
+    "password": "password"
   },
   "settings": {
     "changeMail": "Change your E-mail here.",
@@ -47,5 +48,8 @@
   "photos":  {
     "myPhotos": "My Photos",
     "friendsPhotos": "Photos your friends took"
+  },
+  "photowalks": {
+    "chooseWalk": "Choose a Photowalk"
   }
 }
