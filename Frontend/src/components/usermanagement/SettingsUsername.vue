@@ -25,9 +25,9 @@
   </v-col> 
   <v-col>
     <v-btn
-            @click="changeUsername"
-            >{{$t('labels.submit')}}
-            </v-btn>
+        @click="changeUsername"
+        >{{$t('labels.submit')}}
+        </v-btn>
   </v-col>
       <v-col v-if="updated">
       <p>{{$t('success.usernameUpdated')}} </p>

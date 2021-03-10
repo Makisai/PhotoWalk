@@ -77,5 +77,8 @@
   "photos":  {
     "myPhotos": "My Photos",
     "friendsPhotos": "Photos your friends took"
+  },
+  "photowalks": {
+    "chooseWalk": "Choose a Photowalk"
   }
 }

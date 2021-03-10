@@ -5,6 +5,15 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title>Photowalk</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-img
+          max-height="50px"
+          max-width="50px"
+         :src="'/photowalk_logo_white.png'"
+          @click="navigateToStart"
+      ></v-img>
+
+      <v-spacer></v-spacer>
+
     </v-app-bar>
     <Navigation-drawer/>
     <v-main>
@@ -42,6 +51,11 @@ export default {
       }
     }
   },
+  methods:{
+    navigateToStart(){
+      this.$router.push({name:'Start'})
+    }
+  }
 }
 </script>
 
