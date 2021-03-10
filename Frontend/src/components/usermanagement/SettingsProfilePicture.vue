@@ -22,6 +22,7 @@
         <v-file-input
             :rules="[rules.required,rules.mimetype,rules.size]"
             filled
+            :label="$t('settings.profilePicture')"
             name="profile-picture"
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
@@ -52,7 +53,7 @@ export default {
       updated: false,
       rules: {
           notEmpty: v => !!v ||'file is required',
-          size: v => v.size <= 1024*1024* 35 || 'filesize too big',
+          size: v => v.size <= 1024*1024* 50 || 'filesize too big',
           mimetype: v => {
             const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
             return pattern.test(v.name)  || 'Invalid mimetype'

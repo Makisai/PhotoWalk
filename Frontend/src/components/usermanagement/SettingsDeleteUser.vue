@@ -64,6 +64,7 @@ export default {
          dialog: false,
          deleteUserError: false,
          deltedPicturesError: false,
+         feedbackdeletedAllPictures: 'success.deleteAllPictures',
       }
     },
     methods: {
@@ -74,8 +75,8 @@ export default {
           }
         }).then((response)=> {
           if(response && response.status == 200){
-            const answer = 'All you pictures deleted successfully!';
-            this.$toast.success(answer,{
+            this.feedback = 'success.deleteAllPictures';
+            this.$toast.success(this.feedback,{
               duration: 4000,
               position: 'top',
               color: 'green'
@@ -98,7 +99,8 @@ export default {
           }
         }).then((response) => {
             if(response){
-              this.$toast.success('User was deleted successfully',{
+              this.feedback = 'success.deleteUsers';
+              this.$toast.success(this.feedback,{
                 duration: 4000,
                 position: 'top',
                 color: 'green',

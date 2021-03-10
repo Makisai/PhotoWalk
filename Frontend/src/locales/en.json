@@ -23,7 +23,7 @@
     "usernameUpdated": "Your username was successfully updated!",
     "passwordUpdated": "Your password was successfully updated!",
     "deleteAllPictures": "Your pictures were successfully deleted!",
-    "deleteUserSuccess": "Profile deleted succesfully!"
+    "deleteUser": "Profile deleted succesfully!"
   },
   "pages":{
     "friends": "Friends",
@@ -39,7 +39,8 @@
     "login": "login",
     "logout": "logout",
     "exploring": "start exploring",
-    "close": "close"
+    "close": "close",
+    "password": "password"
   },
   "loginDialog":{
     "forgotPassword": "Forgot your password?",
@@ -62,9 +63,10 @@
     "deleteHint" : "Deleting your account is permanent and irreversible",
     "deleteYes": "yes",
     "deleteNo": "no",
-    
     "profile": "Profile",
-    "advice": "Best Size 500x500px" },
+    "advice": "Best Size 500x500px",
+    "profilePicture": "profile picture"
+  },
 
   "friends": {
     "myFriends": "My Friends",

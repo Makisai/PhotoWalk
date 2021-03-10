@@ -15,6 +15,7 @@
           :append-icon="showeye0 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
           :type="showeye0 ? 'text' : 'password'"
+          :label="$t('settings.oldPassword')"
           name="input-old-pw"
           filled
           prepend-inner-icon="mdi-lock"
@@ -31,6 +32,7 @@
           :type="showeye1 ? 'text' : 'password'"
           name="input-new-pw"
           filled
+          :label="$t('settings.newPassword')"
           prepend-inner-icon="mdi-lock"
           value=""
           class="input-group--focused"

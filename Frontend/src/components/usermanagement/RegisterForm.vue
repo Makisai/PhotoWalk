@@ -11,7 +11,7 @@
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
-          :rules="[rules3.email,rules3.required]"
+          :rules="[rulesEmail.email,rulesEmail.required]"
           filled
           label="Email"
           prepend-inner-icon="mdi-email"
@@ -21,9 +21,9 @@
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
-          :rules="[rules2.max,rules3.required]"
+          :rules="[rulesUsername.max,rulesUsername.required]"
           filled
-          label="Username"
+          :label="$t('labels.username')"
           prepend-inner-icon="mdi-account"
           color="primary"
           v-model="username"
@@ -32,11 +32,11 @@
     <v-col class="py-2" cols="12">
       <v-text-field
           :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
+          :rules="[rulesPassword.required, rulesPassword.min]"
           :type="showeye ? 'text' : 'password'"
           name="input-pw"
           filled
-          label="Password"
+          :label="$t('labels.password')"
           hint="At least 8 characters"
           prepend-inner-icon="mdi-lock"
           class="input-group--focused"
@@ -69,15 +69,15 @@ export default {
       usernameError: false,
       emailError: false,
       incompleteError: false,
-      rules: {
+      rulesPassword: {
         required: value => !!value || 'Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
       },
-      rules2: {
+      rulesUsername: {
         required: value => !!value || 'Required.',
         max: v => v.length <=18 || 'Max 18 characters'
       },
-      rules3:{
+      rulesEmail:{
         required: value => !!value || 'Required.',
         email: value => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -102,16 +102,19 @@ export default {
               this.incompleteError = true;
               this.usernameError = false;
               this.emailError = false;
+              this.registered = false;
             }
             if(error.response && error.response.status == 409){
               this.emailError = true;
               this.usernameError = false;
               this.incompleteError = false;
+              this.registered = false;
             }
             if(error.response && error.response.status == 400){
                 this.usernameError = true;
                 this.emailError = false;
                 this.incompleteError =false;
+                this.registered = false;
             }
           })
     }

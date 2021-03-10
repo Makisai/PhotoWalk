@@ -23,7 +23,7 @@
     "usernameUpdated": "dein Benutzername wurde erfolgreich geändert!",
     "passwordUpdated": "dein Passwort wurde erfolgreich geändert!",
     "deleteAllPictures": "alle deine Photos wurden erfolgreich gelöscht!",
-    "deleteUserSuccess": "Dein Profil wurde erfolgreich gelöscht!"
+    "deleteUsers": "Dein Profil wurde erfolgreich gelöscht!"
   },
   "pages":{
     "friends": "Freunde",
@@ -34,13 +34,13 @@
   },
   "labels": {
     "submit": "senden",
-    "username": "name",
+    "username": "Benutzername",
     "register": "registrieren",
     "login": "einloggen",
     "logout": "ausloggen",
     "exploring": "starte Erkundung",
-    "close": "schliessen"
-    
+    "close": "schliessen",
+    "password": "Passwort"
   },
   "loginDialog":{
     "forgotPassword": "Passwort vergessen?",
@@ -63,9 +63,9 @@
     "deleteHint" : "Das Löschen deines Accounts kann nicht rückgängig gemacht werden.",
     "deleteYes": "ja",
     "deleteNo": "nein",
-   
     "profile": "Profil",
-    "advice": "Beste Größe 500x500px"
+    "advice": "Beste Größe 500x500px",
+    "profilePicture": "Profilbild"
   },
   "friends": {
     "myFriends": "Meine Freunde",

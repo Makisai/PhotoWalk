@@ -17,7 +17,7 @@
     <v-text-field
     :rules="[rules.required,rules.max]"
     filled
-    label="[labels.username]"
+    :label="$t('labels.username')"
     prepend-inner-icon="mdi-account"
     color="primary"
     v-model="newUsername"
