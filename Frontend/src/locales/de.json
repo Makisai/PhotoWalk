@@ -6,7 +6,24 @@
     "friendNotFound": "Es wurde niemand gefunden...",
     "profilePicture": "Profilbild konnte nicht geändert werden",
     "changeUsername": "Username konnte nicht geändert werden",
-    "deleteUser": "User konnte nicht gelöscht werden"
+    "usernameAssigned": "Dieser Username ist bereits vergeben.",
+    "emailAssigned": "Diese Email ist bereits vergeben.",
+    "incompleteError": "Bitte überprüfe deine Angaben auf Vollständigkeit!",
+    "internalError": "Ein Fehler ist aufgetreten. Lade die Seite erneut." ,
+    "deleteUser": "User konnte nicht gelöscht werden",
+    "invalidMimetype": "Dieser Dateityp ist nicht erlaubt.",
+    "sameUsername": "Diesen Benutzernamen hast du schon!",
+    "passwordIncorrect": "Dein altes Passwort ist nicht korrekt!",
+    "deleteAllPictures": "Deine Bilder konnten nicht gelöscht werden."
+  },
+  "success":{
+    "register": "Deine Registrierung war erfolgreich!",
+    "photoUpload": "Dein Photoupload war erfolgreich!",
+    "profilePictureUpdated": "Dein Profilbild wurde erfolgreich erneuert!",
+    "usernameUpdated": "dein Benutzername wurde erfolgreich geändert!",
+    "passwordUpdated": "dein Passwort wurde erfolgreich geändert!",
+    "deleteAllPictures": "alle deine Photos wurden erfolgreich gelöscht!",
+    "deleteUsers": "Dein Profil wurde erfolgreich gelöscht!"
   },
   "pages":{
     "friends": "Freunde",
@@ -18,7 +35,20 @@
   "labels": {
     "submit": "senden",
     "username": "Benutzername",
+    "register": "registrieren",
+    "login": "einloggen",
+    "logout": "ausloggen",
+    "exploring": "starte Erkundung",
+    "close": "schliessen",
     "password": "Passwort"
+  },
+  "loginDialog":{
+    "forgotPassword": "Passwort vergessen?",
+    "alreadyRegistered": "Du hast schon einen Account?",
+    "notRegistered": "Du hast noch keinen Account?"
+  },
+  "photoUpload": {
+    "selectChallengeId": "Bitte wähle eine Challenge aus."
   },
   "settings": {
     "changeMail": "Hier kannst du deine E-Mail ändern.",
@@ -29,15 +59,13 @@
     "changeProfilePicture": "Hier kannst du dein Profilbild ändern",
     "deleteQuestion": "Deinen Account löschen?",
     "deleteAccount": "löschen",
-    "usernameSuccess": "Username erfolgreich geändert.",
-    "passwordSuccess": "Passwort erfolgreich geändert.",
     "deleteSure": "Bist du dir sicher?",
     "deleteHint" : "Das Löschen deines Accounts kann nicht rückgängig gemacht werden.",
     "deleteYes": "ja",
     "deleteNo": "nein",
-    "deleteUserSuccess": "Dein Profil wurde erfolgreich gelöscht",
     "profile": "Profil",
-    "advice": "Beste Größe 500x500px"
+    "advice": "Beste Größe 500x500px",
+    "profilePicture": "Profilbild"
   },
   "friends": {
     "myFriends": "Meine Freunde",

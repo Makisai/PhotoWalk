@@ -7,7 +7,7 @@ const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für ein Foto
 exports.create = async (req, res) => {
-    if (req.file == undefined) {
+    if (req.file == undefined || req.body.challengeId == '') {
         res.status(400).send({
             message: "Content can not be empty!"
         });

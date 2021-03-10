@@ -6,7 +6,24 @@
     "friendNotFound": "Nobody was found...",
     "profilePicture": "Couldn't update profile picture",
     "changeUsername": "Couldn't update your username",
-    "deleteUser": "User konnte nicht gelöscht werden"
+    "usernameAssigned": "This name is already assigned :/.",
+    "emailAssigned": "This email is already used. Please pick another one.",
+    "incompleteError": "Please check if your input is complete.",
+    "internalError": "An error occured. Please reload this site." ,
+    "deleteUser": "User konnte nicht gelöscht werden",
+    "invalidMimetype": "This is an invalid Mimetype.",
+    "sameUsername": "This is already your username!",
+    "passwordIncorrect": "Your old password is not correct!",
+    "deleteAllPictures": "Your pictures couldn't be deleted."
+  },
+  "success":{
+    "register": "You've registered successfully!",
+    "photoUpload": "Your photo upload was successful!",
+    "profilePictureUpdated": "Your profile picture was successfully updated!",
+    "usernameUpdated": "Your username was successfully updated!",
+    "passwordUpdated": "Your password was successfully updated!",
+    "deleteAllPictures": "Your pictures were successfully deleted!",
+    "deleteUser": "Profile deleted succesfully!"
   },
   "pages":{
     "friends": "Friends",
@@ -18,7 +35,20 @@
   "labels": {
     "submit": "submit",
     "username": "username",
+    "register": "register",
+    "login": "login",
+    "logout": "logout",
+    "exploring": "start exploring",
+    "close": "close",
     "password": "password"
+  },
+  "loginDialog":{
+    "forgotPassword": "Forgot your password?",
+    "alreadyRegistered": "Already got an account?",
+    "notRegistered": "No account yet?"
+  },
+  "photoUpload": {
+    "selectChallengeId": "Please select a challenge."
   },
   "settings": {
     "changeMail": "Change your E-mail here.",
@@ -29,15 +59,14 @@
     "deleteAccount": "delete",
     "oldPassword": "old password",
     "newPassword": "new password",
-    "usernameSuccess": "Username was successfully changed.",
-    "passwordSuccess": "Password was successsfully changed.",
     "deleteSure": "Are you sure?",
     "deleteHint" : "Deleting your account is permanent and irreversible",
     "deleteYes": "yes",
     "deleteNo": "no",
-    "deleteUserSuccess": "Profile deleted succesfully",
     "profile": "Profile",
-    "advice": "Best Size 500x500px" },
+    "advice": "Best Size 500x500px",
+    "profilePicture": "profile picture"
+  },
 
   "friends": {
     "myFriends": "My Friends",

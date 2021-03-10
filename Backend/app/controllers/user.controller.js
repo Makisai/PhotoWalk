@@ -119,7 +119,7 @@ exports.updateUsername = async (req, res) => {
     });
 
     if (oldUsername[0].username == newUsername) {
-        res.status(400).send({
+        res.status(430).send({
             message: "Username hat sich nicht geändert!"
         })
         return;
@@ -147,7 +147,7 @@ exports.updateUsername = async (req, res) => {
                 });
             });
         } else {
-            res.status(400).send({
+            res.status(409).send({
                 message: "Username bereits vergeben."
             })
         }
@@ -235,7 +235,7 @@ exports.updatePassword = async (req, res) => {
 
     //Passwordlänge überprüfen
     if (newPassword.length < 8) {
-        res.status(400).send({message: "Password has to have at least 8 characters"})
+        return res.status(400).send({message: "Password has to have at least 8 characters"})
     }
 
     User.findOne({
@@ -327,7 +327,7 @@ exports.register = (req,res) => {
     }
     //TODO überprüfen, ob Benutzername schon vergeben ist
     if(errors.length > 0) {
-        res.json(400, {
+        res.json(500, {
             errors,
         })
     } else {
@@ -345,7 +345,7 @@ exports.register = (req,res) => {
                 errors.push({msg: 'Email is already used'})
             }
             if (errors.length > 0) {
-                res.json(400, {
+                res.json(409, {
                     errors,
                 })
             } else {

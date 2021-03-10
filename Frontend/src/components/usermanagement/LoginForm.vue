@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols = "12" v-if="error">
-      <p class="error">{{$t(error)}}</p>
+      <p class="error">{{$t('error.login')}}</p>
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
@@ -29,7 +29,7 @@
       ></v-text-field>
     </v-col>
     <v-col cols="12">
-      <v-btn v-if="!isLoading" block class="mainGradient" @click="signin">LOGIN</v-btn>
+      <v-btn v-if="!isLoading" block class="mainGradient" @click="signin">{{$t('labels.login')}}</v-btn>
       <v-progress-circular indeterminate v-else></v-progress-circular>
     </v-col>
   </v-row>
@@ -46,7 +46,7 @@ export default {
       showeye: false,
       email: '',
       password: '',
-      error: '',
+      error: false,
       registerForm: false,
       rules: {
         required: value => !!value || 'Required.',
@@ -60,21 +60,24 @@ export default {
       this.isLoading = true;
       this.axios.post('users/login', {email: this.email, password: this.password})
         .then((response) => {
-          const token = response.data.token;
-          const username = response.data.username;
-          const email = response.data.email;
-          const profilePicture = response.data.profilePicture;
-          this.$store.commit(SET_TOKEN, token);
-          this.$store.commit(SET_USERNAME, username);
-          this.$store.commit(SET_EMAIL, email);
-          this.$store.commit(SET_PROFILEPICTURE, profilePicture);
-          this.isLoading = false;
-          this.$router.push({name: 'Start'});
+          if(response && response.status == 200){
+            const token = response.data.token;
+            const username = response.data.username;
+            const email = response.data.email;
+            const profilePicture = response.data.profilePicture;
+            this.$store.commit(SET_TOKEN, token);
+            this.$store.commit(SET_USERNAME, username);
+            this.$store.commit(SET_EMAIL, email);
+            this.$store.commit(SET_PROFILEPICTURE, profilePicture);
+            this.isLoading = false;
+            this.$router.push({name: 'Start'});
+          }
         })
         .catch((error) => {
-          this.error = 'error.login';
-          this.isLoading = false;
-          console.log("FEHLER", error);
+          if(error.response && error.response.status == 401){
+            this.error = true;
+            this.isLoading = false;
+          }
         })
     },
   }
