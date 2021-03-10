@@ -6,7 +6,7 @@
         <p class ="error">{{$t('error.incompleteError')}}</p>
       </v-col>
       <v-col v-if="internalError" cols="12">
-        <p class ="error">{{$t('error.internaleError')}}</p>
+        <p class ="error">{{$t('error.internalError')}}</p>
       </v-col>
       <v-col cols="4">
         <p>{{ $t('settings.changeProfilePicture') }} <br> {{ $t('settings.advice') }}</p>
@@ -21,8 +21,8 @@
       <v-col cols="5">
         <v-file-input
             :rules="[rules.required,rules.mimetype,rules.size]"
-            filled
             :label="$t('settings.profilePicture')"
+            filled
             name="profile-picture"
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
