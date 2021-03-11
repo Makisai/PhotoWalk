@@ -28,7 +28,6 @@
     data() {
       return {
         upload: null,
-        challengeId: '',
         uploaded: false,
         internalError: false,
         incompleteError: false,
