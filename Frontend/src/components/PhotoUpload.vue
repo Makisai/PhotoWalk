@@ -15,20 +15,7 @@
         v-model="upload"
       ></v-file-input>
       </v-col>
-      <v-col> 
-        <select v-model="challengeId">
-          <option disabled value="">{{$t('photoUpload.selectChallengeId')}}</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-        </select>
-      </v-col>
-     <v-btn @click="submitUpload">{{ $t('labels.submit') }}</v-btn>
+     <v-btn @click="submitUpload" :disabled="!challengeIsSelected()">{{ $t('labels.submit') }}</v-btn>
     <v-col v-if="uploaded">
       <p>{{$t('success.photoUpload')}} </p>
     </v-col>
@@ -41,7 +28,6 @@
     data() {
       return {
         upload: null,
-        challengeId: '',
         uploaded: false,
         internalError: false,
         incompleteError: false,
@@ -56,10 +42,14 @@
       }
     },
     methods: {
+      challengeIsSelected() {
+        const challengeIds = this.$store.state.detail.photowalk.challenges.map(challenge => challenge.id);
+        return challengeIds.includes(this.$store.state.detail.selectedChallenge.id);
+      },
       submitUpload(){ 
         let formData = new FormData();
         formData.append('photo_link',this.upload);
-        formData.append('challengeId',this.challengeId);
+        formData.append('challengeId',this.$store.state.detail.selectedChallenge.id);
         this.axios.post('photos/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
