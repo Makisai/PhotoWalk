@@ -1,12 +1,14 @@
 <template>
 <!--vuetify div-->
   <v-container>
-    <p>WILLKOMMEN NACH LOGIN/REGISTRIERUNG</p>
+    <WelcomeToPhotowalk/>
   </v-container>
 </template>
 
 <script>
+import WelcomeToPhotowalk from "../components/WelcomeToPhotowalk"
 export default {
   name: 'Start',
+  components: {WelcomeToPhotowalk},
 }
 </script>

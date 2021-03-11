@@ -80,5 +80,8 @@
   },
   "photowalks": {
     "chooseWalk": "Choose a Photowalk"
+  },
+  "welcome": {
+    "welcomePhrase": "Welcome to Photowalk."
   }
 }

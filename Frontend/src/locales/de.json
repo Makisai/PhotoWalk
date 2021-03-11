@@ -79,5 +79,8 @@
   },
   "photowalks": {
     "chooseWalk" : "Wähle einen Photowalk aus"
+  },
+  "welcome": {
+    "welcomePhrase": "Willkommen bei Photowalk."
   }
 }
