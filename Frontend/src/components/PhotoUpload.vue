@@ -49,7 +49,7 @@
           notEmpty: v => !!v ||'file is required',
           size: v => v.size <= 1024*1024* 50 || 'filesize too big',
           mimetype: v => {
-            const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
+            const pattern = /.*(\.png|\.jpg|\.jpeg|\.JPG|\.JPEG|\.PNG){1}$/mg
             return pattern.test(v.name)  || 'Invalid mimetype'
           },
         },
