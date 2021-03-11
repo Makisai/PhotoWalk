@@ -47,15 +47,24 @@ export default {
       }
     }).then(response => {
       this.$store.commit(SET_PHOTOS_USER,response.data);
-      this.walkPhotos = this.getWalk();
     })
   },
   data () {
     return {
-      walkPhotos: [],
       dialog: false,
       imagesloaded: 0,
     }
+  },
+  computed: {
+    walkPhotos(){
+      let walkPhotos = [];
+      for (let i = 0; i< this.$store.state.user.photosUser.length; i++) {
+        if (this.$store.state.user.photosUser[i].challenge.photowalkId == this.walk) {
+          walkPhotos.push(this.$store.state.user.photosUser[i]);
+        }
+      }
+      return walkPhotos;
+    },
   },
   methods: {
     imageLoaded() {
@@ -84,7 +93,6 @@ export default {
             }
           }).then(response => {
             this.$store.commit(SET_PHOTOS_USER,response.data);
-            this.walkPhotos = this.getWalk();
           })
         })
       } else {
@@ -99,19 +107,9 @@ export default {
             }
           }).then(response => {
             this.$store.commit(SET_PHOTOS_USER,response.data);
-            this.walkPhotos = this.getWalk();
           })
         })
       }
-    },
-    getWalk(){
-      this.walkPhotos = [];
-      for (let i = 0; i< this.$store.state.user.photosUser.length; i++) {
-        if (this.$store.state.user.photosUser[i].challenge.photowalkId == this.walk) {
-          this.walkPhotos.push(this.$store.state.user.photosUser[i]);
-        }
-      }
-      return this.walkPhotos;
     },
   },
 }
