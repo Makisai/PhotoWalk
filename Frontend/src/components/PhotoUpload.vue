@@ -15,7 +15,7 @@
         v-model="upload"
       ></v-file-input>
       </v-col>
-     <v-btn @click="submitUpload">{{ $t('labels.submit') }}</v-btn>
+     <v-btn @click="submitUpload" :disabled="!challengeIsSelected()">{{ $t('labels.submit') }}</v-btn>
     <v-col v-if="uploaded">
       <p>{{$t('success.photoUpload')}} </p>
     </v-col>
@@ -42,6 +42,10 @@
       }
     },
     methods: {
+      challengeIsSelected() {
+        const challengeIds = this.$store.state.detail.photowalk.challenges.map(challenge => challenge.id);
+        return challengeIds.includes(this.$store.state.detail.selectedChallenge.id);
+      },
       submitUpload(){ 
         let formData = new FormData();
         formData.append('photo_link',this.upload);
