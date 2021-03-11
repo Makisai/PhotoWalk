@@ -60,7 +60,6 @@
               this.uploaded = true;
               this.incompleteError = false;
               this.internalError = false;
-              this.upload = "";
             } 
           })
           .catch((error) => {  
