@@ -1,12 +1,16 @@
 <template>
   <v-card @click="goToDetail(walkNumber)">
     <v-img v-if="hasDonePhotowalk(walkNumber)"
-           :src="imageDone"
+           :src="doneSrc"
+           @mouseenter="doneSrc = imageDoneHover"
+           @mouseleave="doneSrc = imageDone"
            :lazy-src="`images/gradient.png`"
            class = "rounded-lg">
     </v-img>
     <v-img v-else
-           :src="imageNotDone"
+           :src="notDoneSrc"
+           @mouseenter="notDoneSrc = imageNotDoneHover"
+           @mouseleave="notDoneSrc = imageNotDone"
            :lazy-src="`images/gradient.png`"
            class = "rounded-lg">
     </v-img>
@@ -31,11 +35,24 @@ export default {
       type: String,
       required: true,
     },
+    imageDoneHover:{
+      type: String,
+      required: true,
+    },
     imageNotDone:{
       type: String,
       required: true,
     },
-
+    imageNotDoneHover:{
+      type: String,
+      required:true,
+    },
+  },
+  data(){
+    return{
+      doneSrc: this.imageDone,
+      notDoneSrc: this.imageNotDone,
+    }
   },
   methods:{
     goToDetail(walkNumber){
