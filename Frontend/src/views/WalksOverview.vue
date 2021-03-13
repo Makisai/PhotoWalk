@@ -3,60 +3,40 @@
     <h1>{{ $t('photowalks.chooseWalk') }}</h1>
     <v-row>
       <v-col cols="4">
-        <v-card @click="goToDetail(1)">
-          <v-img v-if="hasDonePhotowalk(1)"
-            :src="`/images/map_stadtpark_Done.png`"
-            :lazy-src="`images/gradient.png`"
-            class = "rounded-lg">
-          </v-img>
-          <v-img v-else
-             :src="`/images/map_stadtpark_notDone_small.png`"
-             :lazy-src="`images/gradient.png`"
-             class = "rounded-lg">
-          </v-img>
-        </v-card>
+       <ImageHover
+           :walk-number="1"
+           :edited-photowalks="editedPhotowalks"
+           :image-done="`/images/map_stadtpark_Done.png`"
+           :image-not-done="`/images/map_stadtpark_notDone_small.png`"/>
       </v-col>
       <v-col cols="4">
-        <v-card @click="goToDetail(2)">
-          <v-img v-if="hasDonePhotowalk(2)"
-                 :src="`/images/hafencity_map_Done.png`"
-                 :lazy-src="`images/gradient.png`"
-                 class = "rounded-lg">
-          </v-img>
-          <v-img v-else
-                 :src="`/images/hafencity_map_notDone.png`"
-                 :lazy-src="`images/gradient.png`"
-                 class = "rounded-lg">
-          </v-img>
-        </v-card>
+        <ImageHover
+            :walk-number="2"
+            :edited-photowalks="editedPhotowalks"
+            :image-done="`/images/hafencity_map_Done.png`"
+            :image-not-done="`/images/hafencity_map_notDone.png`"/>
       </v-col>
       <v-col cols="4">
-        <v-card @click="goToDetail(3)">
-          <v-img v-if="hasDonePhotowalk(3)"
-                 :src="`/images/map_alster_Done.png`"
-                 :lazy-src="`images/gradient.png`"
-                 class = "rounded-lg">
-          </v-img>
-          <v-img v-else
-                 :src="`/images/map_alster_notDone.png`"
-                 :lazy-src="`images/gradient.png`"
-                 class = "rounded-lg">
-          </v-img>
-        </v-card>
+        <ImageHover
+            :walk-number="3"
+            :edited-photowalks="editedPhotowalks"
+            :image-done="`/images/map_alster_Done.png`"
+            :image-not-done="`/images/map_alster_notDone.png`"/>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import {SET_CURRENT_ID} from "@/store/mutations";
+import ImageHover from "@/components/ImageHover";
 
 export default {
   name: 'WalksOverview',
+  components: {ImageHover},
   data(){
     return{
       editedPhotowalks: [],
-    }
+    };
   },
   beforeMount() {
     this.axios.get(`photowalks/`,{
@@ -68,14 +48,5 @@ export default {
       console.log(response.data)
     })
   },
-  methods:{
-    goToDetail(walkNumber){
-      this.$store.commit(SET_CURRENT_ID,walkNumber);
-      this.$router.push( {name: 'WalksDetail'});
-    },
-    hasDonePhotowalk(photowalkId){
-      return this.editedPhotowalks !== undefined && this.editedPhotowalks.includes(photowalkId);
-    }
-  }
 }
 </script>
