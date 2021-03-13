@@ -23,6 +23,8 @@
  </template>
 
 <script>
+  import {SET_PHOTOS_USER} from "@/store/mutations";
+
   export default {
     name: 'PhotoUpload',
     data() {
@@ -57,9 +59,16 @@
           }
         }).then((response) => {
             if(response.status == 201){
-              this.uploaded = true;
-              this.incompleteError = false;
-              this.internalError = false;
+              this.axios.get(`photos/user`,{
+                headers: {
+                  'Authorization': `Bearer ${this.$store.state.user.token}`
+                }
+              }).then(response => {
+                this.$store.commit(SET_PHOTOS_USER,response.data);
+                this.uploaded = true;
+                this.incompleteError = false;
+                this.internalError = false;
+              })
             } 
           })
           .catch((error) => {  
