@@ -11,7 +11,6 @@
     </v-app-bar>
 
     <v-main>
-<!--      <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>-->
       <v-spacer></v-spacer>
       <v-row>
         <v-col cols="12" md="6">
