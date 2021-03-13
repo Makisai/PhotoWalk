@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {SET_PHOTOS_USER} from "../store/mutations";
+import {SET_CURRENT_ID} from "../store/mutations";
 export default {
   name: 'WelcomeToPhotowalk',
   beforeMount(){
@@ -24,7 +24,7 @@ export default {
             }
             if(response.status == 200){
               this.lastPhotowalk = true;
-              this.$store.commit(SET_PHOTOS_USER,response.data);
+              this.$store.commit(SET_CURRENT_ID,response.data);
             }
           })
   },

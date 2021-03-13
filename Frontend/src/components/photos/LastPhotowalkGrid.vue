@@ -30,11 +30,21 @@
 </template>
 
 <script>
-//import {SET_PHOTOS_USER} from "../../store/mutations";
+import {SET_PHOTOS_USER} from "../../store/mutations";
 
 export default {
   name: 'LastPhotowalkGrid',
   props: ['walk'],
+   beforeMount() {
+    this.axios.get(`photos/lastPhotowalk`,{id: $store.state.detail.id},{
+      headers: {
+        'Authorization': `Bearer ${this.$store.state.user.token}`
+      }
+    }).then(response => {
+      this.$store.commit(SET_PHOTOS_USER,response.data);
+      this.walkPhotos = this.getWalk();
+    })
+  },
   data () {
     return {
       walkPhotos: [],
