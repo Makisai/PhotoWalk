@@ -7,10 +7,10 @@
     <div v-masonry item-selector=".item" class="masonry-container">
       <div v-masonry-tile class="item pa-2" :key="index" v-for="(photo, index) in walkPhotos">
         <v-card max-width="400px">
-          <v-dialog @click:outside="onDialogClose">
+          <v-dialog >
             <template v-slot:activator="{ on, attrs }" >
               <v-img max-height="500px" class="align-end flex-md-wrap" @load="imageLoaded"
-                     :src="picture(photo.photo_link)" @click="dialog = true" v-bind="attrs" v-on="on">
+                     :src="picture(photo.photo_link)" v-bind="attrs" v-on="on">
               </v-img>
             </template>
           </v-dialog>
@@ -36,7 +36,7 @@ export default {
   name: 'LastPhotowalkGrid',
   props: ['walk'],
    beforeMount() {
-    this.axios.get(`photos/lastPhotowalk`,{id: $store.state.detail.id},{
+    this.axios.get(`photos/lastPhotowalk`,{id: this.$store.state.detail.currentID},{
       headers: {
         'Authorization': `Bearer ${this.$store.state.user.token}`
       }
@@ -47,13 +47,33 @@ export default {
   },
   data () {
     return {
-      walkPhotos: [],
       dialog: false,
       imagesloaded: 0,
     }
   },
+   computed: {
+    walkPhotos(){
+      let walkPhotos = [];
+      for (let i = 0; i< this.$store.state.user.photosUser.length; i++) {
+        if (this.$store.state.user.photosUser[i].challenge.photowalkId == this.walk) {
+          walkPhotos.push(this.$store.state.user.photosUser[i]);
+        }
+      }
+      return walkPhotos;
+    },
+  },
   methods: {
-    
+    imageLoaded() {
+      this.imagesloaded += 1
+      if (this.imagesloaded === this.walkPhotos.length) {
+        this.$redrawVueMasonry();
+        }
+    },
+    picture(picture){
+      return process.env.VUE_APP_PUBLIC_URL + picture;
+    },
+
+
     },
   
 }
