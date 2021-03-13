@@ -4,12 +4,13 @@
     <p> {{$t('welcome.welcomePhrase')}} </p>
     </div>
     <div v-if="lastPhotowalk">
-      <p>Hallooooo </p>
+      <p>{{$t('welcome.lastPhotowalk')}} </p>
     </div>
   </v-container>
 </template>
 
 <script>
+import {SET_PHOTOS_USER} from "../store/mutations";
 export default {
   name: 'WelcomeToPhotowalk',
   beforeMount(){
@@ -21,8 +22,9 @@ export default {
             if(response.status == 204){
               this.lastPhotowalk = false;
             }
-            if(response.data){
+            if(response.status == 200){
               this.lastPhotowalk = true;
+              this.$store.commit(SET_PHOTOS_USER,response.data);
             }
           })
   },

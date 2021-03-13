@@ -82,6 +82,7 @@
     "chooseWalk": "Choose a Photowalk"
   },
   "welcome": {
-    "welcomePhrase": "Welcome to Photowalk."
+    "welcomePhrase": "Welcome to Photowalk.",
+    "lastPhotowalk": "This was your last Photowalk"
   }
 }

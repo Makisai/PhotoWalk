@@ -80,7 +80,7 @@ exports.findLastPhotowalk = async (req, res) => {
             }
         })
         .then(data => {
-            res.send(data);
+            res.status(200).send(data);
         })
     }
     else {
