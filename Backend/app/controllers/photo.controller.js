@@ -7,7 +7,7 @@ const OP = db.Sequelize.Op;
 
 //Erstellen eines Datensatzes für ein Foto
 exports.create = async (req, res) => {
-    if (req.file == undefined) {
+    if (req.file == undefined || req.body.challengeId == '') {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -33,12 +33,22 @@ exports.create = async (req, res) => {
         })
         .toFile(
             req.file.destination + 'small' +  req.file.filename
-        )
+        );
+
+    await sharp(req.file.path, { failOnError: false })
+        .resize(1280,null, {withoutEnlargement: true})
+        .withMetadata()
+        .jpeg({
+            quality: 90
+        })
+        .toFile(
+            req.file.destination + 'thumbnail' +  req.file.filename
+        );
 
     fs.unlinkSync(req.file.destination + req.file.filename);
 
     const photo = {
-        photo_link: `/uploads/small${req.file.filename}`,
+        photo_link: `/uploads/thumbnail${req.file.filename}`,
         challengeId: req.body.challengeId,
         userId: currentUserId
     };

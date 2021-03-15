@@ -39,7 +39,8 @@ export default {
   },
   methods: {
     picture(picture){
-      return process.env.VUE_APP_PUBLIC_URL + picture;
+      const smallPicture = picture.slice(0,9) + 'small' + picture.slice(18);
+      return process.env.VUE_APP_PUBLIC_URL + smallPicture;
     },
     getWalkAndRearrange(){
       let walkPhotos = [],part1 = [], part2 = [];

@@ -1,20 +1,26 @@
 <template>
   <div>
-      <p>{{$t('settings.deleteQuestion')}} </p>
-     <v-dialog
+    <p>{{$t('settings.deleteQuestion')}} </p>
+    <v-col v-if="deleteUserError" cols="12">
+      <p class ="error">{{$t('error.deleteUser')}}</p>
+    </v-col>
+    <v-col v-if="deletePicturesError" cols="12">
+      <p class ="error">{{$t('error.deleteAllPictures')}}</p>
+    </v-col>
+    <v-dialog
       v-model="dialog"
       width="500"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-         {{$t('settings.deleteAccount')}}
-        </v-btn>
-      </template>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        color="red lighten-2"
+        dark
+        v-bind="attrs"
+        v-on="on"
+      >
+        {{$t('settings.deleteAccount')}}
+      </v-btn>
+    </template>
 
       <v-card>
         <v-card-title class="headline grey lighten-2">
@@ -46,8 +52,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!---TODO hier stattdessen ein Toast einpflegen -->
-    <p v-if="deletedUser">{{$t('settings.deleteUserSuccess')}}</p>
   </div> 
 </template>
 
@@ -58,7 +62,9 @@ export default {
     data(){
       return{
          dialog: false,
-         deletedUser: false
+         deleteUserError: false,
+         deltedPicturesError: false,
+         feedbackdeletedAllPictures: 'success.deleteAllPictures',
       }
     },
     methods: {
@@ -67,28 +73,50 @@ export default {
           headers: {
             'Authorization': `Bearer ${this.$store.state.user.token}`
           }
-        }).then(()=> {
-          console.log("Alle Photos erfolgreich geloescht")
+        }).then((response)=> {
+          if(response && response.status == 200){
+            this.feedback = 'success.deleteAllPictures';
+            this.$toast.success(this.feedback,{
+              duration: 4000,
+              position: 'top',
+              color: 'green'
+            });
+            this.dialog= false;
+            this.deletedPhotos = true;
+
+          }
         })
           .catch((error) => { 
-          this.dialog = false,
-          this.error = 'error.deleteUserAllPhotos';
-          console.log("FEHLER", error);
-
+            if(error.response && error.response.status == 500){
+              this.dialog = false;
+              this.deletedPhotosError = true;
+              this.deletedPhotos = false;
+            } 
         }),
         this.axios.delete(`users/deleteUser`, {
           headers: {
             'Authorization': `Bearer ${this.$store.state.user.token}`
           }
-        }).then(() => {
-          this.deletedUser = true;
-          this.$store.dispatch(CLEAR_USER_DATA);
-          this.$router.push({name: 'LandingPage'})
+        }).then((response) => {
+            if(response){
+              this.feedback = 'success.deleteUsers';
+              this.$toast.success(this.feedback,{
+                duration: 4000,
+                position: 'top',
+                color: 'green',
+              });
+              this.$store.dispatch(CLEAR_USER_DATA);
+              this.$router.push({name: 'LandingPage'});
+            }
+            
         }).catch((error) => {
-          this.error = 'error.deleteUser';
-          console.log("FEHLER", error);
+            if(error.response && error.response.status ==500){
+              this.deleteUserError = true;
+            }
         })
       }
     }
 }
 </script>
+
+<style src="cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css"></style>

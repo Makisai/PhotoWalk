@@ -1,7 +1,17 @@
 <template>
   <v-row>
+     <v-col v-if="usernameError" cols="12">
+      <p class="error">{{$t('error.usernameAssigned')}}</p>
+    </v-col>
+     <v-col v-if="emailError" cols="12">
+      <p class ="error">{{$t('error.emailAssigned')}}</p>
+    </v-col>
+    <v-col v-if="incompleteError" cols="12">
+      <p class ="error">{{$t('error.incompleteError')}}</p>
+    </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
+          :rules="[rulesEmail.email,rulesEmail.required]"
           filled
           label="Email"
           prepend-inner-icon="mdi-email"
@@ -11,8 +21,9 @@
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
+          :rules="[rulesUsername.max,rulesUsername.required]"
           filled
-          label="Username"
+          :label="$t('labels.username')"
           prepend-inner-icon="mdi-account"
           color="primary"
           v-model="username"
@@ -21,11 +32,11 @@
     <v-col class="py-2" cols="12">
       <v-text-field
           :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
+          :rules="[rulesPassword.required, rulesPassword.min]"
           :type="showeye ? 'text' : 'password'"
           name="input-pw"
           filled
-          label="Password"
+          :label="$t('labels.password')"
           hint="At least 8 characters"
           prepend-inner-icon="mdi-lock"
           class="input-group--focused"
@@ -34,10 +45,10 @@
       ></v-text-field>
     </v-col>
     <v-col cols="12">
-      <v-btn block class="mainGradient" @click="signup">REGISTER</v-btn>
+      <v-btn block class="mainGradient" @click="signup">{{$t('labels.register')}}</v-btn>
     </v-col>
     <v-col v-if="registered" cols="12">
-      <p>You've sucessfully registerd. Check your E-mail for details!</p>
+      <p>{{$t('success.register')}}</p>
     </v-col>
   </v-row>
 </template>
@@ -55,21 +66,56 @@ export default {
       registered: false,
       error: '',
       registerForm: false,
-      rules: {
+      usernameError: false,
+      emailError: false,
+      incompleteError: false,
+      rulesPassword: {
         required: value => !!value || 'Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
+      },
+      rulesUsername: {
+        required: value => !!value || 'Required.',
+        max: v => v.length <=18 || 'Max 18 characters'
+      },
+      rulesEmail:{
+        required: value => !!value || 'Required.',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
       },
     };
   },
   methods: {
     signup(){
       this.axios.post('users/register', {email: this.email,username: this.username, password: this.password})
-          .then(() => {
-            this.registered = true;
+          .then((response) => {
+            if(response.status == 201){
+              this.registered = true;
+              this.usernameError = false;
+              this.emailError = false;
+              this.incompleteError = false;
+            } 
           })
-          .catch((error) => {
-            this.error = 'error.login';
-            console.log("FEHLER", error);
+          .catch((error) => {  
+            if(error.response && error.response.status == 500){
+              this.incompleteError = true;
+              this.usernameError = false;
+              this.emailError = false;
+              this.registered = false;
+            }
+            if(error.response && error.response.status == 409){
+              this.emailError = true;
+              this.usernameError = false;
+              this.incompleteError = false;
+              this.registered = false;
+            }
+            if(error.response && error.response.status == 400){
+                this.usernameError = true;
+                this.emailError = false;
+                this.incompleteError =false;
+                this.registered = false;
+            }
           })
     }
   }

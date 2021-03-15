@@ -11,7 +11,6 @@
     </v-app-bar>
 
     <v-main>
-<!--      <NavigationButton v-bind:title="'Start'" v-bind:target="'Start'"/>-->
       <v-spacer></v-spacer>
       <v-row>
         <v-col cols="12" md="6">
@@ -53,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 .gradient{
-  background: linear-gradient(90deg, #00BCD4 0%, #E91E63 100%);
+  background: linear-gradient(90deg, #00bcd4 0%, #E91E63 100%);
   color: white;
 }
 .headline{

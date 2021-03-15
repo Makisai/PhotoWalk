@@ -4,7 +4,7 @@
       <v-icon color="primary">mdi-logout</v-icon>
     </v-list-item-icon>
     <v-list-item-content>
-      <v-list-item-title align="left">Logout</v-list-item-title>
+      <v-list-item-title align="left">{{$t('labels.logout')}}</v-list-item-title>
     </v-list-item-content>
   </v-list-item>
 </template>

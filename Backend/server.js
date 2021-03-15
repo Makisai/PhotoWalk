@@ -8,6 +8,9 @@ const passport = require("passport");
 require("./app/config/passport.config")(passport);
 
 const seederRoute1 = require("./app/seeds/route1");
+const seederRoute2 = require("./app/seeds/route2");
+const seederRoute3 = require("./app/seeds/route3");
+
 
 const app = express();
 app.use(express.static('app/public'));
@@ -26,6 +29,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 db.sequelize.sync({force:true}).then(() => {
     console.log("Drop and re-sync db.");
     seederRoute1.route1();
+    seederRoute2.route2();
+    seederRoute3.route3();
 });
 
 //Session use
