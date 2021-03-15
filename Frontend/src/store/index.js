@@ -86,8 +86,8 @@ export default new Vuex.Store({
     [SET_PHOTOS_FRIENDS](state, photoFriends) {
       state.user.photosFriends = photoFriends;
     },
-    [SET_PHOTOS_LAST](state, photosLast) {
-      state.user.photosLast = photosLast;
+    [SET_PHOTOS_LAST](state, photoLast) {
+      state.user.photosLast = photoLast;
     },
   },
   actions: {
@@ -97,6 +97,7 @@ export default new Vuex.Store({
       commit(SET_PROFILEPICTURE,'');
       commit(SET_TOKEN,'XXX');
       commit(SET_DRAWER,false);
+      commit(SET_SELECTED_CHALLENGE,null);
     }
   },
   modules: {
