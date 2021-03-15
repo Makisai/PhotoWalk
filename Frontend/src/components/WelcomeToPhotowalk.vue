@@ -12,7 +12,7 @@
 
 <script>
 import {SET_CURRENT_ID} from "../store/mutations";
-import {LastPhotowalkGrid} from "../components/photos/LastPhotowalkGrid"
+import LastPhotowalkGrid from "../components/photos/LastPhotowalkGrid"
 export default {
   name: 'WelcomeToPhotowalk',
   components: {LastPhotowalkGrid},

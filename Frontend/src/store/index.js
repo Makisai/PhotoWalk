@@ -13,6 +13,7 @@ import {
   SET_FOUND_USER,
   SET_PHOTOS_USER,
   SET_PHOTOS_FRIENDS,
+  SET_PHOTOS_LAST
 } from "@/store/mutations";
 import {CLEAR_USER_DATA} from "@/store/actions";
 
@@ -33,6 +34,7 @@ export default new Vuex.Store({
       friends: null,
       photosUser: null,
       photosFriends: null,
+      photosLast: null,
     },
     detail:{
       currentID: 0,
@@ -83,6 +85,9 @@ export default new Vuex.Store({
     },
     [SET_PHOTOS_FRIENDS](state, photoFriends) {
       state.user.photosFriends = photoFriends;
+    },
+    [SET_PHOTOS_LAST](state, photosLast) {
+      state.user.photosLast = photosLast;
     },
   },
   actions: {

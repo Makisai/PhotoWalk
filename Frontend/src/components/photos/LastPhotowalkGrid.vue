@@ -1,27 +1,12 @@
 <template>
   <!--vuetify div-->
-  <v-container v-if="walkPhotos.length > 0">
-    <v-row align="center" class="ma-5">
-      <v-divider></v-divider><h3 class="font-weight-regular">WALK {{walk}}</h3><v-divider></v-divider>
-    </v-row>
+  <v-container v-if="this.$store.state.user.photosLast">
     <div v-masonry item-selector=".item" class="masonry-container">
-      <div v-masonry-tile class="item pa-2" :key="index" v-for="(photo, index) in walkPhotos">
+      <div v-masonry-tile class="item pa-2" :key="index" v-for="(photo, index) in this.$store.state.user.photosLast">
         <v-card max-width="400px">
-          <v-dialog >
-            <template v-slot:activator="{ on, attrs }" >
-              <v-img max-height="500px" class="align-end flex-md-wrap" @load="imageLoaded"
-                     :src="picture(photo.photo_link)" v-bind="attrs" v-on="on">
-              </v-img>
-            </template>
-          </v-dialog>
           <v-card-actions style="max-height: 45px">
             <v-card-text>{{photo.challenge.description}}</v-card-text>
             <v-spacer></v-spacer>
-            <v-card-text>{{photo.likeCount}}
-              <v-btn icon>
-                <v-icon :color="photo.liked ? 'red' : 'grey'" @click=like(index,1)>mdi-heart</v-icon>
-              </v-btn>
-            </v-card-text>
           </v-card-actions>
         </v-card>
       </div>
@@ -30,50 +15,30 @@
 </template>
 
 <script>
-import {SET_PHOTOS_USER} from "../../store/mutations";
-
+import {SET_PHOTOS_LAST} from "../../store/mutations"
 export default {
   name: 'LastPhotowalkGrid',
   props: ['walk'],
    beforeMount() {
-    this.axios.get(`photos/lastPhotowalk`,{id: this.$store.state.detail.currentID},{
+    this.axios.get(`photos/lastPhotowalk`,{
       headers: {
         'Authorization': `Bearer ${this.$store.state.user.token}`
-      }
-    }).then(response => {
-      this.$store.commit(SET_PHOTOS_USER,response.data);
-      this.walkPhotos = this.getWalk();
+      },
+     
+    }, {id: this.$store.state.detail.currentID}
+    ).then(response => {
+      this.$store.commit(SET_PHOTOS_LAST,response.data);
     })
   },
   data () {
     return {
-      dialog: false,
-      imagesloaded: 0,
+     
     }
   },
-   computed: {
-    walkPhotos(){
-      let walkPhotos = [];
-      for (let i = 0; i< this.$store.state.user.photosUser.length; i++) {
-        if (this.$store.state.user.photosUser[i].challenge.photowalkId == this.walk) {
-          walkPhotos.push(this.$store.state.user.photosUser[i]);
-        }
-      }
-      return walkPhotos;
-    },
-  },
   methods: {
-    imageLoaded() {
-      this.imagesloaded += 1
-      if (this.imagesloaded === this.walkPhotos.length) {
-        this.$redrawVueMasonry();
-        }
-    },
-    picture(picture){
-      return process.env.VUE_APP_PUBLIC_URL + picture;
-    },
-
-
+      picture(picture){
+        return process.env.VUE_APP_PUBLIC_URL + picture;
+      },
     },
   
 }
