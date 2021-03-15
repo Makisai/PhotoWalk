@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {SET_PHOTOWALK, SET_PHOTOS_LAST} from "../store/mutations";
+import {SET_PHOTOWALK} from "../store/mutations";
 import LastPhotowalkGrid from "../components/photos/LastPhotowalkGrid"
 export default {
   name: 'WelcomeToPhotowalk',
@@ -29,14 +29,6 @@ export default {
             if(response.status == 200){
               this.lastPhotowalk = true;
               this.$store.commit(SET_PHOTOWALK,response.data);
-                this.axios.get(`photos/lastPhotowalk`,{
-                  headers: {
-                    'Authorization': `Bearer ${this.$store.state.user.token}`
-                  },
-                },{id: this.$store.state.detail.photowalk.currentID}
-               ).then(response => {
-                 this.$store.commit(SET_PHOTOS_LAST,response.data);
-               })
               }
            })
   },
