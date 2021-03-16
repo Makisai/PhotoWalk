@@ -75,7 +75,10 @@
   },
   "photos":  {
     "myPhotos": "Meine Photos",
-    "friendsPhotos": "Photos meiner Freunde"
+    "descriptionMyPhotos": "Hier kannst Du Dir alle Photos ansehen, die Du zu den Challenges der Photowalks hochgeladen hast. Bilder, die Deinen Freunden besonders gut gefallen haben viele Herzmarker.",
+    "friendsPhotos": "Photos meiner Freunde",
+    "descriptionFriendsPhotos":
+      "Hier kannst Du Dir alle Fotos ansehen, die Deine Freunde zu den Challenges der Photowalks hochgeladen haben. Erkennst Du einige der Motive wieder? Gefällt Dir ein Bild besonders gut, dann zeige es Deinen Freunden indem du auf das Herz klickst."
   },
   "photowalks": {
     "chooseWalk" : "Wähle einen Photowalk aus"

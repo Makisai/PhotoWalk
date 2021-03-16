@@ -1,35 +1,37 @@
 <template>
   <v-main>
-    <v-container v-if="!isLoading">
-      <v-row>
-        <v-col cols="12" md="6">
-          <PhotowalkMap/>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-row>
-            <v-col cols="12">
-              <ChallengeDropdown/>
-            </v-col>
-            <v-col cols="12">
-              <PhotoUpload/>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row justify="center" class="ma-2">
-        <v-container v-if="!isLoadingMyPhotos">
-        <h3 class="text-h3">{{ $t('photos.myPhotos') }}</h3>
-        <PhotosUserGrid :walk="this.$store.state.detail.currentID"></PhotosUserGrid>
-        </v-container>
-      </v-row>
-      <v-row justify="center" class="ma-2">
-        <v-container v-if="!isLoadingFriendsPhotos">
-        <h3 class="text-h3">{{ $t('photos.friendsPhotos') }}</h3>
-        <PhotosFriendsGrid :walk="this.$store.state.detail.currentID"></PhotosFriendsGrid>
-        </v-container>
-      </v-row>
-    </v-container>
-    <v-progress-circular indeterminate v-else></v-progress-circular>
+      <v-container v-if="!isLoading">
+        <v-row>
+          <v-col cols="12" md="6">
+            <PhotowalkMap/>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-row>
+              <v-col cols="12">
+                <ChallengeDropdown/>
+              </v-col>
+              <v-col cols="12">
+                <PhotoUpload/>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row justify="center" class="ma-2">
+          <v-container v-if="!isLoadingMyPhotos">
+          <h3 class="text-h3">{{ $t('photos.myPhotos') }}</h3>
+          <PhotosUserGrid :walk="this.$store.state.detail.currentID"></PhotosUserGrid>
+          </v-container>
+          <v-progress-circular indeterminate v-else/>
+        </v-row>
+        <v-row justify="center" class="ma-2">
+          <v-container v-if="!isLoadingFriendsPhotos">
+          <h3 class="text-h3">{{ $t('photos.friendsPhotos') }}</h3>
+          <PhotosFriendsGrid :walk="this.$store.state.detail.currentID"></PhotosFriendsGrid>
+          </v-container>
+          <v-progress-circular indeterminate v-else/>
+        </v-row>
+      </v-container>
+      <v-progress-circular indeterminate v-else></v-progress-circular>
   </v-main>
 </template>
 

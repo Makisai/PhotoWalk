@@ -3,19 +3,23 @@
     <h4 class="text-h4">{{ $t('friends.acceptedFriends') }}</h4>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
-        <v-list-item :key="index" v-if="friend.friendship.accepted" class="ma-3">
-          <v-card class="mx-auto card">
-            <v-list one-line>
+        <v-list-item
+            :key="index"
+            v-if="friend.friendship.accepted"
+            class="ma-3">
+          <v-card class="mx-auto" width="80%">
+            <v-list one-line class="friendCard">
               <v-list-item>
-                <v-list-item-avatar>
-                  <v-img :src="profilePicture(friend.profile_picture)"></v-img>
+                <v-list-item-avatar
+                  size="70">
+                  <v-img :src="profilePicture(friend.profile_picture)"/>
                 </v-list-item-avatar>
-                <v-list-item-content style="width: 250px">
-                  <v-list-item-title v-text="friend.username"></v-list-item-title>
+                <v-list-item-content>
+                  <v-list-item-title class="username" v-text="friend.username"/>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-btn icon @click="deleteFriendship(friend.id)">
-                    <v-icon color="grey lighten-1">mdi-minus-circle</v-icon>
+                    <v-icon color="secondary" large >mdi-minus-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
               </v-list-item>
@@ -28,24 +32,28 @@
     <h4 class="text-h4">{{ $t('friends.pendingFriends') }}</h4>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
-        <v-list-item :key="index" v-if="!friend.friendship.accepted" class="ma-3" >
-          <v-card class="mx-auto card">
-            <v-list one-line>
+        <v-list-item
+            :key="index"
+            v-if="!friend.friendship.accepted"
+            class="ma-3" >
+          <v-card class="mx-auto" width="80%">
+            <v-list one-line class="friendCard">
               <v-list-item>
-                <v-list-item-avatar>
+                <v-list-item-avatar
+                  size="70">
                   <v-img :src="profilePicture(friend.profile_picture)"></v-img>
                 </v-list-item-avatar>
-                <v-list-item-content style="width: 250px">
-                  <v-list-item-title v-text="friend.username"></v-list-item-title>
+                <v-list-item-content>
+                  <v-list-item-title class="username" v-text="friend.username"/>
                 </v-list-item-content>
                 <v-list-item-action style="width: 30px">
                   <v-btn v-if="!friend.friendship.first_move" icon @click="acceptRequest(friend.id)">
-                    <v-icon color="grey lighten-1">mdi-checkbox-marked-circle</v-icon>
+                    <v-icon color="primary" large>mdi-checkbox-marked-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
                 <v-list-item-action>
                   <v-btn icon @click="deleteFriendship(friend.id)">
-                    <v-icon color="grey lighten-1" >mdi-minus-circle</v-icon>
+                    <v-icon color="secondary" large>mdi-minus-circle</v-icon>
                   </v-btn>
                 </v-list-item-action>
               </v-list-item>
@@ -110,5 +118,13 @@
 </script>
 
 <style lang="scss" scoped>
+.friendCard{
+  width: 100%;
+  height: 100px
+}
+
+.username{
+  font-size: 18pt;
+}
 
 </style>
