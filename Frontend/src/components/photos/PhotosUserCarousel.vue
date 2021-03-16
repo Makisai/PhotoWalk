@@ -1,10 +1,13 @@
 <template>
   <v-container fluid >
-    <v-carousel hide-delimiters height="80%" v-model="currentIndex">
+    <v-carousel hide-delimiters height="850" :v-model="currentIndex">
       <v-carousel-item
           v-for="(photo) in photosRearranged"
           :key="(photo.id)">
-        <v-img :src="picture(photo.photo_link)"></v-img>
+        <v-img
+            height="850"
+            contain
+            :src="picture(photo.photo_link)"/>
         </v-carousel-item>
     </v-carousel>
     <v-card-actions style="max-height: 50px">
