@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h2>{{ $t('friends.acceptedFriends') }}</h2>
+    <h4 class="text-h4">{{ $t('friends.acceptedFriends') }}</h4>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
         <v-list-item :key="index" v-if="friend.friendship.accepted" class="ma-3">
@@ -25,7 +25,7 @@
       </template>
     </v-list>
 
-    <h2>{{ $t('friends.pendingFriends') }}</h2>
+    <h4 class="text-h4">{{ $t('friends.pendingFriends') }}</h4>
     <v-list>
       <template v-for="(friend, index) in $store.state.user.friends.friends">
         <v-list-item :key="index" v-if="!friend.friendship.accepted" class="ma-3" >

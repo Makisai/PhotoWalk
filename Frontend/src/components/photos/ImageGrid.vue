@@ -9,7 +9,7 @@
           @mouseover="mouseOver = true"
           @mouseout="mouseOver = false"
       >
-        <div v-if="mouseOver" justify-content="center">Test</div>
+        <div v-if="mouseOver" justify-content="center">test</div>
       </v-img>
     </v-col>
     <v-col class="d-flex child-flex" cols="4">
