@@ -1,5 +1,7 @@
 <template>
   <v-main>
+<!--    View on Desktop-->
+    <v-container class="d-none d-sm-flex">
       <v-container v-if="!isLoading">
         <v-row>
           <v-col cols="12" md="6">
@@ -32,6 +34,48 @@
         </v-row>
       </v-container>
       <v-progress-circular indeterminate v-else></v-progress-circular>
+    </v-container>
+<!--    View on Smartphone-->
+    <v-container class="d-flex d-sm-none">
+      <v-tabs
+          color="primary"
+          show-arrows>
+        <v-tab>{{$t('mobileView.mapTab')}}</v-tab>
+        <v-tab>{{$t('mobileView.challengesTab')}}</v-tab>
+        <v-tab>{{$t('mobileView.photosTab')}}</v-tab>
+        <v-tab-item>
+          <v-col cols="12">
+          <PhotowalkMap/>
+          </v-col>
+        </v-tab-item>
+        <v-tab-item>
+          <v-row>
+            <v-col cols="12">
+              <ChallengeDropdown/>
+            </v-col>
+            <v-col cols="12">
+              <PhotoUpload/>
+            </v-col>
+          </v-row>
+        </v-tab-item>
+        <v-tab-item>
+          <v-row justify="center" class="ma-2">
+            <v-container v-if="!isLoadingMyPhotos">
+              <h6 class="text-h6">{{ $t('photos.myPhotos') }}</h6>
+              <PhotosUserGrid :walk="this.$store.state.detail.currentID"></PhotosUserGrid>
+            </v-container>
+            <v-progress-circular indeterminate v-else/>
+          </v-row>
+          <v-row justify="center" class="ma-2">
+            <v-container v-if="!isLoadingFriendsPhotos">
+              <h6 class="text-h6">{{ $t('photos.friendsPhotos') }}</h6>
+              <PhotosFriendsGrid :walk="this.$store.state.detail.currentID"></PhotosFriendsGrid>
+            </v-container>
+            <v-progress-circular indeterminate v-else/>
+          </v-row>
+        </v-tab-item>
+      </v-tabs>
+    </v-container>
   </v-main>
 </template>
 

@@ -81,6 +81,12 @@
     "descriptionFriendsPhotos": "Here you can view all Photos your Friends took on their Photowalks. Do you recognize any of the motifs? Show your friends you like a Photo they took by klicking on the heart icon!"
   },
   "photowalks": {
-    "chooseWalk": "Choose a Photowalk"
+    "chooseWalk": "Choose a Photowalk",
+    "startWalk": "start Walk"
+  },
+  "mobileView": {
+    "mapTab": "Map",
+    "challengesTab": "Challenges & Info",
+    "photosTab": "Photos"
   }
 }

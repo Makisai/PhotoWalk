@@ -24,8 +24,11 @@
         </l-marker>
       </l-map>
     </div>
-    <v-btn v-if="!isTracking" @click="startTracking">
-      Start Walk
+    <v-btn
+        v-if="!isTracking"
+        @click="startTracking"
+        class="gradient button">
+      {{$t('photowalks.startWalk')}}
     </v-btn>
   </v-card>
 </template>
@@ -105,7 +108,7 @@ export default {
 
 <style scoped>
 .map {
-  height: 700px;
+  height: 500px;
   width: 95%;
   z-index: 0;
   margin: 15px;
@@ -113,10 +116,15 @@ export default {
 .container {
   padding: 5px;
 }
-
 .card{
   margin: 15px;
   margin-top: 0;
 }
-
+.gradient{
+  background: linear-gradient(90deg, #00bcd4 0%, #E91E63 100%);
+  color: white;
+}
+.button{
+  margin-bottom: 20px;
+}
 </style>
