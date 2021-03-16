@@ -4,17 +4,17 @@
       <v-carousel-item
           v-for="(photo) in photosRearranged"
           :key="(photo.id)">
-        <v-img :src="picture(photo.photo_link)"></v-img>
+        <v-img class="huhu" :src="picture(photo.photo_link)"></v-img>
         </v-carousel-item>
     </v-carousel>
     <v-card-actions style="max-height: 50px">
       <v-card-text>{{photosRearranged[this.currentIndex].challenge.description}}</v-card-text>
       <v-spacer></v-spacer>
-      <v-card-text>User: {{photosRearranged[this.currentIndex].user.username}}</v-card-text>
+      <v-card-text>{{photosRearranged[this.currentIndex].user.username}}</v-card-text>
       <v-spacer></v-spacer>
       <v-card-text>{{photosRearranged[this.currentIndex].likeCount}}
         <v-btn icon>
-          <v-icon :color="this.photosRearranged[this.currentIndex].liked ? 'red' : 'grey'" @click="like">mdi-heart</v-icon>
+          <v-icon :color="this.photosRearranged[this.currentIndex].liked ? 'secondary' : 'grey'" @click="like">mdi-heart</v-icon>
         </v-btn>
       </v-card-text>
     </v-card-actions>
@@ -90,3 +90,11 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+.huhu {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>{{ $t('photowalks.chooseWalk') }}</h1>
+    <h3 class="text-h3">{{ $t('photowalks.chooseWalk') }}</h3>
     <v-row>
       <v-col cols="4">
        <ImageHover

@@ -1,29 +1,29 @@
 {
   "error":{
-    "login":"Your EMAIL or PASSWORD is not correct!",
-    "friendYourself": "You can't be friends with yourself!",
-    "friendAlready": "You're already friends with this user!",
+    "login":"Your EMAIL or PASSWORD is not correct.",
+    "friendYourself": "You can't be friends with yourself.",
+    "friendAlready": "You're already friends with this user.",
     "friendNotFound": "Nobody was found...",
-    "profilePicture": "Couldn't update profile picture",
-    "changeUsername": "Couldn't update your username",
-    "usernameAssigned": "This name is already assigned :/.",
-    "emailAssigned": "This email is already used. Please pick another one.",
-    "incompleteError": "Please check if your input is complete.",
-    "internalError": "An error occured. Please reload this site." ,
-    "deleteUser": "User konnte nicht gelöscht werden",
+    "profilePicture": "Couldn't update your profile picture.",
+    "changeUsername": "Couldn't update your username.",
+    "usernameAssigned": "This username is already assigned.",
+    "emailAssigned": "This email is already in use. Please pick another one.",
+    "incompleteError": "Please make sure your input is complete.",
+    "internalError": "An error has occured. Please reload this site." ,
+    "deleteUser": "Account could not be deleted.",
     "invalidMimetype": "This is an invalid Mimetype.",
-    "sameUsername": "This is already your username!",
-    "passwordIncorrect": "Your old password is not correct!",
-    "deleteAllPictures": "Your pictures couldn't be deleted."
+    "sameUsername": "You've already got this username.",
+    "passwordIncorrect": "Your old password is not correct.",
+    "deleteAllPictures": "Your pictures could not be deleted."
   },
   "success":{
-    "register": "You've registered successfully!",
-    "photoUpload": "Your photo upload was successful!",
-    "profilePictureUpdated": "Your profile picture was successfully updated!",
-    "usernameUpdated": "Your username was successfully updated!",
-    "passwordUpdated": "Your password was successfully updated!",
-    "deleteAllPictures": "Your pictures were successfully deleted!",
-    "deleteUser": "Profile deleted succesfully!"
+    "register": "You've registered successfully.",
+    "photoUpload": "Your photo was uploaded successfully.",
+    "profilePictureUpdated": "Your profile picture was updated successfully.",
+    "usernameUpdated": "Your username was changed successfully.",
+    "passwordUpdated": "Your password was changed successfully.",
+    "deleteAllPictures": "Your pictures were deleted successfully.",
+    "deleteUser": "The Account was deleted succesfully!"
   },
   "pages":{
     "friends": "Friends",
@@ -34,13 +34,13 @@
   },
   "labels": {
     "submit": "submit",
-    "username": "username",
-    "register": "register",
-    "login": "login",
-    "logout": "logout",
+    "username": "Username",
+    "register": "REGISTER",
+    "login": "LOGIN",
+    "logout": "LOGOUT",
     "exploring": "start exploring",
     "close": "close",
-    "password": "password"
+    "password": "Password"
   },
   "loginDialog":{
     "forgotPassword": "Forgot your password?",
@@ -52,17 +52,17 @@
   },
   "settings": {
     "changeMail": "Change your E-mail here.",
-    "changeUsername": "Change your username here",
-    "changePassword":"Change your password here",
-    "changeProfilePicture": "change your profile pic here",
+    "changeUsername": "Change your username here.",
+    "changePassword":"Change your password here.",
+    "changeProfilePicture": "Change your profile picture here",
     "deleteQuestion": "Delete your Account?",
-    "deleteAccount": "delete",
+    "deleteAccount": "DELETE",
     "oldPassword": "old password",
     "newPassword": "new password",
-    "deleteSure": "Are you sure?",
+    "deleteSure": "Are you sure you want to delete your account?",
     "deleteHint" : "Deleting your account is permanent and irreversible",
-    "deleteYes": "yes",
-    "deleteNo": "no",
+    "deleteYes": "DELETE",
+    "deleteNo": "BACK",
     "profile": "Profile",
     "advice": "Best Size 500x500px",
     "profilePicture": "profile picture"
@@ -76,7 +76,7 @@
   },
   "photos":  {
     "myPhotos": "My Photos",
-    "friendsPhotos": "Photos your friends took"
+    "friendsPhotos": "Photos my friends took"
   },
   "photowalks": {
     "chooseWalk": "Choose a Photowalk"
