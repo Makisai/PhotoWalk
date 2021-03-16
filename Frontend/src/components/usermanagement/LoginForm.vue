@@ -17,10 +17,10 @@
           :append-icon="showeye ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
           :type="showeye ? 'text' : 'password'"
+          :label="$t('labels.password')"
+          hint="At least 8 characters"
           name="input-pw"
           filled
-          label="Password"
-          hint="At least 8 characters"
           prepend-inner-icon="mdi-lock"
           value=""
           class="input-group--focused"
@@ -30,7 +30,7 @@
     </v-col>
     <v-col cols="12">
       <v-btn v-if="!isLoading" block class="mainGradient" @click="signin">{{$t('labels.login')}}</v-btn>
-      <v-progress-circular indeterminate v-else></v-progress-circular>
+      <v-progress-circular indeterminate v-else/>
     </v-col>
   </v-row>
 </template>

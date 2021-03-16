@@ -1,74 +1,60 @@
 <template>
   <v-row>
-    <v-col class="d-flex child-flex" cols="4">
-      <v-img
-          :src="`/images/hamburg1.jpg`"
-          :lazy-src="`images/gradient.png`"
-          aspect-ratio="1"
-          class="rounded-lg elevation-1 grid-image"
-          @mouseover="mouseOver = true"
-          @mouseout="mouseOver = false"
-      >
-        <div v-if="mouseOver" justify-content="center">test</div>
-      </v-img>
+    <v-col class="d-flex child-flex" cols="2">
+      <grid-hover
+          :image="`/images/hamburg1.jpg`"
+          :image-hover="`images/gradient.png`"
+          :image-normal="`/images/hamburg1.jpg`"
+      ></grid-hover>
     </v-col>
-    <v-col class="d-flex child-flex" cols="4">
-      <v-img
-          :src="`/images/hamburg2.jpg`"
-          :lazy-src="`images/gradient.png`"
-          aspect-ratio="1"
-          class="rounded-lg elevation-1"
-      >
-      </v-img>
-    </v-col><v-col class="d-flex child-flex" cols="4">
-    <v-img
-        :src="`/images/hamburg3.jpg`"
-        :lazy-src="`images/gradient.png`"
-        aspect-ratio="1"
-        class="rounded-lg elevation-1"
-    >
-    </v-img>
-  </v-col><v-col class="d-flex child-flex" cols="4">
-    <v-img
-        :src="`/images/hamburg4.jpg`"
-        :lazy-src="`images/gradient.png`"
-        aspect-ratio="1"
-        class="rounded-lg elevation-1"
-    >
-    </v-img>
-  </v-col><v-col class="d-flex child-flex" cols="4">
-    <v-img
-        :src="`/images/hamburg5.jpg`"
-        :lazy-src="`images/gradient.png`"
-        aspect-ratio="1"
-        class="rounded-lg elevation-1"
-    >
-    </v-img>
-  </v-col><v-col class="d-flex child-flex" cols="4">
-    <v-img
-        :src="`/images/hamburg6.jpg`"
-        :lazy-src="`images/gradient.png`"
-        aspect-ratio="1"
-        class="rounded-lg elevation-1"
-    >
-    </v-img>
-  </v-col>
+    <v-col class="d-flex child-flex" cols="2">
+      <grid-hover
+          :image="`/images/hamburg2.jpg`"
+          :image-hover="`images/gradient.png`"
+          :image-normal="`/images/hamburg2.jpg`"
+      ></grid-hover>
+    </v-col>
+    <v-col class="d-flex child-flex" cols="2">
+      <grid-hover
+          :image="`/images/hamburg3.jpg`"
+          :image-hover="`images/gradient.png`"
+          :image-normal="`/images/hamburg3.jpg`"
+      ></grid-hover>
+    </v-col>
+    <v-col class="d-flex child-flex" cols="2">
+      <grid-hover
+          :image="`/images/hamburg4.jpg`"
+          :image-hover="`images/gradient.png`"
+          :image-normal="`/images/hamburg4.jpg`"
+      ></grid-hover>
+    </v-col>
+    <v-col class="d-flex child-flex" cols="2">
+      <grid-hover
+          :image="`/images/hamburg5.jpg`"
+          :image-hover="`images/gradient.png`"
+          :image-normal="`/images/hamburg5.jpg`"
+      ></grid-hover>
+    </v-col>
+    <v-col class="d-flex child-flex" cols="2">
+      <grid-hover
+          :image="`/images/hamburg6.jpg`"
+          :image-hover="`images/gradient.png`"
+          :image-normal="`/images/hamburg6.jpg`"
+      ></grid-hover>
+    </v-col>
   </v-row>
 </template>
 
 <script>
+import GridHover from "@/components/photos/GridHover";
 export default {
   name: "ImageGrid",
+  components: {GridHover},
   data() {
-    return {
-      mouseOver: false,
-    }
   }
 }
 </script>
 
 <style scoped>
-.grid-image:hover {
-  filter: grayscale(100%);
-}
+
 </style>

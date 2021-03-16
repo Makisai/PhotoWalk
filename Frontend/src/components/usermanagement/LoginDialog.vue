@@ -18,7 +18,7 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols = "12" sm = "6">
+<!--              <v-col cols = "12" sm = "6">
                 <v-btn block color="blue">
                   <v-icon color="white">mdi-facebook</v-icon>
                 </v-btn>
@@ -30,7 +30,7 @@
               </v-col>
               <v-col cols = "12">
                 <v-divider></v-divider>
-              </v-col>
+              </v-col>-->
               <v-col v-if="!registerForm" cols="12">
                 <LoginForm/>
               </v-col>
