@@ -202,7 +202,7 @@ exports.findAllByPhotowalkId = async (req, res) => {
 
     const currentUserId = userId[0].id;
 
-    const photowalkId = req.body.id;
+    const photowalkId = req.params.photowalkId;
 
     let challengeIds = await db.sequelize.query(`SELECT "id"
                                                 FROM "challenges"

@@ -37,7 +37,7 @@ export default {
         this.lastPhotowalk = true;
       }
       if(this.lastPhotowalk === true) {
-        this.axios.get(`photos/lastPhotowalk`,{
+        this.axios.get(`photos/photowalk/${response.data.id}`,{
               headers: {
                 'Authorization': `Bearer ${this.$store.state.user.token}`
               },

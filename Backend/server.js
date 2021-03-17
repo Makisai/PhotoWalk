@@ -26,12 +26,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Synchronisieren mit der Datenbank - check ob Tabellen existieren - Erstellt die Tabellen
 //force:true dropt alle Tables und
-db.sequelize.sync({force:true}).then(() => {
+/**db.sequelize.sync({force:true}).then(() => {
     console.log("Drop and re-sync db.");
     seederRoute1.route1();
     seederRoute2.route2();
     seederRoute3.route3();
-});
+});**/
 
 //Session use
 app.use(cookieParser());
