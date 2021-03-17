@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-expansion-panels popout>
+    <v-expansion-panels v-model="panel" popout>
       <v-expansion-panel
         v-for="(item,i) in 8"
         :key="i"
@@ -11,13 +11,14 @@
           <v-dialog @click:outside="onDialogClose">
             <template v-slot:activator="{ on, attrs }" >
               <v-img
+                  max-height="500px" class="align-end flex-md-wrap"
                 :src="'/images/Tutorial'+(i+1)+'.png'"
                 @click="dialog = true" v-bind="attrs" v-on="on"
                 >
               </v-img>
                </template>
             <v-card>
-              <TutorialCarousel v-if="dialog" :start-index="index" ></TutorialCarousel>
+              <TutorialCarousel v-if="dialog" :start-index="i" ></TutorialCarousel>
             </v-card>
           </v-dialog>
         </v-expansion-panel-content>
@@ -32,10 +33,19 @@ import TutorialCarousel from "../components/photos/TutorialCarousel"
 export default {
   name: 'WelcomeToPhotowalk',
   components:{TutorialCarousel},
+  props: ['extended'],
   data(){
     return{
       dialog: false,
+      panel: [],
     }
+  },
+  beforeMount(){
+      if(this.extended){
+        this.panel = [...Array(this.items).keys()].map((k, i) => i);
+      }
+    
+   
   },
   computed:{
     descriptionArray(){

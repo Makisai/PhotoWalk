@@ -3,7 +3,7 @@
   <v-container>
     <div v-if="!lastPhotowalk">
       <p> {{$t('welcome.welcomePhrase')}} </p>
-      <WelcomeToPhotowalk/>
+      <WelcomeToPhotowalk :extended="true"></WelcomeToPhotowalk>
     </div>
     <div v-if="lastPhotowalk">
       <p>{{$t('welcome.lastPhotowalk')}} </p>

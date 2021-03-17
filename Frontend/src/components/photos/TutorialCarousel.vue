@@ -1,15 +1,14 @@
 <template>
   <v-container fluid >
-    <v-carousel hide-delimiters height="90%" v-model="currentIndex">
+    <v-carousel height="90%" v-model="currentIndex">
       <v-carousel-item
-          v-for="(item,i) in 8"
+          v-for="(index,i) in 8"
           :key="i">
-					<v-card-text>{{descriptionArray[i]}}<!---Description Text here---></v-card-text>
+				<v-card-text>{{descriptionArray[i]}}<!---Description Text here---></v-card-text>
         <v-img :src="'/images/Tutorial'+(i+1)+'.png'"></v-img>
       </v-carousel-item>
     </v-carousel>
-    <v-card-actions style="max-height: 50px">
-      
+    <v-card-actions style="max-height: 50px">   
     </v-card-actions>
   </v-container>
 </template>
@@ -22,8 +21,7 @@ export default {
   props: ['startIndex'],
   data() {
     return {
-      photosRearranged: [],
-      currentIndex: 0,
+      currentIndex: this.startIndex,
     }
   },
   computed:{
@@ -42,7 +40,9 @@ export default {
   },
 
   methods: {
-   
+		getStartIndex(){
+			return this.startIndex;
+		}
   },
 }
 </script>
