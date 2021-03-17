@@ -82,8 +82,7 @@ exports.findLastPhotowalk = async (req, res) => {
         .then(data => {
             res.status(200).send(data);
         })
-    }
-    else {
-        res.status(204).send("No edited photowalks")
+    } else {
+        res.status(404).send("No edited photowalks")
     }
 };
