@@ -1,8 +1,7 @@
-
 <template>
   <v-container>
     <v-col
-      v-for="(photo, index) in this.$store.user.photosLast"
+      v-for="(photo, index) in $store.state.user.photosLast"
       :key="index"
       class="d-flex child-flex"
       cols="4"
