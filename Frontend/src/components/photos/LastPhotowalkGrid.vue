@@ -5,7 +5,7 @@
         v-for="(photo, index) in lastPhotos"
         :key="index"
         class="d-flex child-flex"
-        cols="4"
+        cols="2"
       >
         <v-img
           :src="picture(photo.photo_link)"

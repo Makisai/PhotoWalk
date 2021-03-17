@@ -82,6 +82,7 @@
   },
   "welcome": {
     "welcomePhrase": "Willkommen bei Photowalk.",
-    "lastPhotowalk": "Das war dein letzter Photowalk"
+    "lastPhotowalk": "Das war dein letzter Photowalk",
+    "step": "Schritt"
   }
 }

@@ -8,6 +8,8 @@
     <div v-if="lastPhotowalk">
       <p>{{$t('welcome.lastPhotowalk')}} </p>
         <div v-if="imagesLoaded">
+          <p v-text="photowalkTitle"></p>
+          <p v-text="photowalkRegion"></p>
           <LastPhotowalkGrid/>
         </div>
     </div>
@@ -34,6 +36,8 @@ export default {
       }
       if(response.status === 200){
         this.$store.commit(SET_PHOTOWALK,response.data);
+        this.photowalkTitle = response.data.name;
+        this.photowalkRegion = response.data.region;
         this.lastPhotowalk = true;
       }
       if(this.lastPhotowalk === true) {
@@ -58,6 +62,8 @@ export default {
     return{
       imagesLoaded: false,
       lastPhotowalk: false,
+      photowalkTitle: "",
+      photowalkRegion: ""
     }
   },
 }
