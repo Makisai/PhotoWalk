@@ -2,7 +2,7 @@
 <template>
   <v-container>
     <v-col
-      v-for="(photo, index) in this.$store.user.photosLast"
+      v-for="(photo, index) in  lastPhotos"
       :key="index"
       class="d-flex child-flex"
       cols="4"
@@ -36,6 +36,15 @@ export default {
     return {
       
     }
+  },
+  computed: {
+     lastPhotos(){
+      let lastPhotos = [];
+      for (let i = 0; i< 5; i++) {
+          lastPhotos.push(this.$store.state.user.photosLast[i]);  
+      }
+      return lastPhotos;
+    },
   },
   methods: {
       picture(picture){
