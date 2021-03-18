@@ -77,7 +77,6 @@ export default {
       this.imagesloaded += 1
       if (this.imagesloaded === this.walkPhotos.length) {
         this.$redrawVueMasonry();
-        console.log('hbvtcdxdr  hbhbuu')
       }
     },
     picture(picture){

@@ -1,20 +1,17 @@
 <template>
   <v-app id="photowalkapp">
     <v-app-bar
-        app class="gradient"
-    >
-      <v-spacer></v-spacer>
+        app class="gradient">
+      <v-spacer/>
       <v-img
           max-height="50px"
           max-width="50px"
-          :src="'/photowalk_logo_white.png'"
-      />
-      <v-toolbar-title class="title">PhotoWalk</v-toolbar-title>
+          :src="'/photowalk_logo_white.png'"/>
+      <v-toolbar-title class="title mx-1">PhotoWalk</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
-
     <v-main>
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <v-row>
         <v-col cols="12" md="5">
             <v-card class="container card ma-4">

@@ -2,7 +2,7 @@
   <v-img
       :src="imageSrc"
       @mouseenter="imageSrc = imageHover"
-      @mouseleave="imageSrc = imageNormal"
+      @mouseleave="imageSrc = image"
       :lazy-src="`images/gradient.png`"
       class="rounded-lg elevation-1 grid-image"
       aspect-ratio="1">
@@ -20,15 +20,11 @@ export default {
     imageHover:{
       type: String,
       required: true,
-    },
-    imageNormal:{
-      type: String,
-      required: true,
     }
   },
   data(){
     return{
-      imageSrc: this.imageNormal
+      imageSrc: this.image
     }
 }
 }
