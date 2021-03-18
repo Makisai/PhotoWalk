@@ -118,7 +118,7 @@ exports.updateUsername = async (req, res) => {
         type: QueryTypes.SELECT
     });
 
-    if (!newUsername) {
+    if (!newUsername || newUsername.length > 18) {
         res.status(404).send({
             message: "Kein Username gegeben!"
         })

@@ -53,7 +53,7 @@ export default {
         sameUsernameError: false,
         rules: {
           required: value => !!value || 'Required.',
-          max: v => v.length <=18 || 'Max 18 characters'
+          max: value => value.length <=18 || 'Max 18 characters'
         },
       }
     },
