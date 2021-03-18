@@ -58,7 +58,7 @@ export default {
   methods: {
     signin() {
       this.isLoading = true;
-      this.axios.post('users/login', {email: this.email, password: this.password})
+      this.axios.post('users/login', {email: this.email.toLowerCase(), password: this.password})
         .then((response) => {
           if(response && response.status == 200){
             const token = response.data.token;
