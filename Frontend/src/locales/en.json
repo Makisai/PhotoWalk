@@ -10,8 +10,8 @@
     "emailAssigned": "This email is already in use. Please pick another one.",
     "incompleteError": "Please make sure your input is complete.",
     "internalError": "An error has occured. Please reload this site." ,
-    "deleteUser": "Account could not be deleted.",
-    "invalidMimetype": "This is an invalid Mimetype.",
+    "deleteUser": "Your account could not be deleted.",
+    "invalidMimetype": "This is an invalid mimetype.",
     "sameUsername": "You've already got this username.",
     "passwordIncorrect": "Your old password is not correct.",
     "deleteAllPictures": "Your pictures could not be deleted."
@@ -23,7 +23,7 @@
     "usernameUpdated": "Your username was changed successfully.",
     "passwordUpdated": "Your password was changed successfully.",
     "deleteAllPictures": "Your pictures were deleted successfully.",
-    "deleteUser": "The Account was deleted succesfully!"
+    "deleteUser": "The account was deleted succesfully!"
   },
   "pages":{
     "friends": "Friends",
@@ -60,11 +60,11 @@
     "oldPassword": "old password",
     "newPassword": "new password",
     "deleteSure": "Are you sure you want to delete your account?",
-    "deleteHint" : "Deleting your account is permanent and irreversible",
+    "deleteHint" : "Deleting your account is permanent and irreversible! All your data and pictures will be deleted permanently.",
     "deleteYes": "DELETE",
     "deleteNo": "BACK",
     "profile": "Profile",
-    "advice": "Best Size 500x500px",
+    "advice": "Maximum filesize: 50MB. We recommend a square picture format.",
     "profilePicture": "profile picture"
   },
 
@@ -78,7 +78,7 @@
     "myPhotos": "My Photos",
     "descriptionMyPhotos": "Here you can view all the photos you've uploaded for the Photowalk challenges. Photos your Friends like the best have the most heart icons.",
     "friendsPhotos": "Photos my friends took",
-    "descriptionFriendsPhotos": "Here you can view all Photos your Friends took on their Photowalks. Do you recognize any of the motifs? Show your friends you like a Photo they took by klicking on the heart icon!"
+    "descriptionFriendsPhotos": "Here you can view all photos your friends took on their Photowalks. Do you recognize any of the motifs? Show your friends that you like a photo they took by clicking on the heart icon!"
   },
   "photowalks": {
     "chooseWalk": "Choose a Photowalk",
@@ -91,6 +91,6 @@
   },
   "landing": {
     "headline":"Want to take a walk?",
-    "pitch": "Are you in the mood for some fresh air, but think going on a walk on you own is boring? Do you miss doing photo rallies with your friends and comparing your cool photos? PhotoWalk allows you to do just that, regardless of social distancing! Go on one of three curated walks in the most beautiful city in the north. Take your camera, take pictures of some great motives, and compete with your friends in photo challenges. How do you and your friends interpret our challenges? What new things can you discover on your walk? Sign up and find out."
+    "pitch": "Are you in the mood for some fresh air, but think going on a walk on your own is boring? Do you miss doing photo rallies with your friends and comparing your cool photos? PhotoWalk allows you to do just that, regardless of social distancing! Go on one of three curated walks in the most beautiful city in the north. Take your camera, take pictures of some great motifs, and compete with your friends in photo challenges. How do you and your friends interpret our challenges? What new things can you discover on your walk? Sign up and find out."
   }
 }
