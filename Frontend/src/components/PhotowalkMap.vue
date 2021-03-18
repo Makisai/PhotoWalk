@@ -19,7 +19,8 @@
             v-for="challengeMarker in $store.state.detail.photowalk.challenges"
             :key="challengeMarker.id"
             :lat-lng="[challengeMarker.lat, challengeMarker.lng]"
-            :icon="iconChallenge" >
+            :icon="iconChallenge"
+            @click="setChallenge(challengeMarker.id)">
           <l-tooltip>{{ challengeMarker.description }}</l-tooltip>
         </l-marker>
       </l-map>
@@ -36,6 +37,7 @@
 <script>
 import { latLng , icon } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPolyline, LTooltip } from 'vue2-leaflet';
+import {SET_SELECTED_CHALLENGE} from "@/store/mutations";
 
 export default {
   name: "PhotowalkMap",
@@ -102,6 +104,9 @@ export default {
     onLocationFound(location){
       this.center = location.latlng;
     },
+    setChallenge(value){
+      this.$store.commit(SET_SELECTED_CHALLENGE,value);
+    }
   },
 };
 </script>

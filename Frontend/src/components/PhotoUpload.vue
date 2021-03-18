@@ -13,6 +13,7 @@
         filled
         prepend-icon="mdi-camera"
         v-model="upload"
+        ref="fileInput"
       ></v-file-input>
       </v-col>
      <v-btn @click="submitUpload" :disabled="!challengeIsSelected()">{{ $t('labels.submit') }}</v-btn>
@@ -29,16 +30,16 @@
     name: 'PhotoUpload',
     data() {
       return {
-        upload: null,
+        upload: undefined,
         uploaded: false,
         internalError: false,
         incompleteError: false,
         rules: {
-          notEmpty: v => !!v ||'file is required',
-          size: v => v.size <= 1024*1024* 50 || 'filesize too big',
-          mimetype: v => {
+          notEmpty: value => !!value || 'file is required',
+          size: value => !value || value.size <= 1024*1024* 50 || 'filesize too big',
+          mimetype: value => {
             const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
-            return pattern.test(v.name)  || 'Invalid mimetype'
+            return !value || pattern.test(value.name.toLowerCase())  || 'Invalid mimetype'
           },
         },
       }
@@ -64,6 +65,7 @@
                   'Authorization': `Bearer ${this.$store.state.user.token}`
                 }
               }).then(response => {
+                this.$refs.fileInput.reset();
                 this.$store.commit(SET_PHOTOS_USER,response.data);
                 this.uploaded = true;
                 this.incompleteError = false;
