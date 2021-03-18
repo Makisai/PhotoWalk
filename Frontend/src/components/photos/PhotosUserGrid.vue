@@ -68,6 +68,7 @@ export default {
           walkPhotos.push(this.$store.state.user.photosUser[i]);
         }
       }
+      this.$redrawVueMasonry();
       return walkPhotos;
     },
   },
@@ -76,6 +77,7 @@ export default {
       this.imagesloaded += 1
       if (this.imagesloaded === this.walkPhotos.length) {
         this.$redrawVueMasonry();
+        console.log('hbvtcdxdr  hbhbuu')
       }
     },
     picture(picture){
