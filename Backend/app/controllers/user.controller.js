@@ -118,6 +118,13 @@ exports.updateUsername = async (req, res) => {
         type: QueryTypes.SELECT
     });
 
+    if (!newUsername) {
+        res.status(404).send({
+            message: "Kein Username gegeben!"
+        })
+        return;
+    }
+
     if (oldUsername[0].username == newUsername) {
         res.status(430).send({
             message: "Username hat sich nicht geändert!"
