@@ -79,11 +79,19 @@
     "friendsPhotos": "Photos your friends took"
   },
   "photowalks": {
-    "chooseWalk": "Choose a Photowalk"
+    "chooseWalk": "Choose a Photowalk."
   },
   "welcome": {
     "welcomePhrase": "Welcome to Photowalk.",
-    "lastPhotowalk": "This was your last Photowalk",
-    "step": "Step"
+    "lastPhotowalk": "This was your last Photowalk.",
+    "Tutorial": "Tutorial",
+    "step1":"This is step one.",
+    "step2":"This is step two.",
+    "step3":"This is step three.",
+    "step4":"This is step four.",
+    "step5":"This is step five.",
+    "step6":"This is step six.",
+    "step7":"This is step seven.",
+    "step8":"This is step eight."
   }
 }

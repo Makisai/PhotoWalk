@@ -1,26 +1,14 @@
 <template>
   <v-row justify="center">
-    <v-expansion-panels v-model="panel" popout>
+    <v-expansion-panels v-model="panel" focusable>
       <v-expansion-panel
-        v-for="(item,i) in 8"
-        :key="i"
       >
-        <v-expansion-panel-header v-text="$t('welcome.step')+' '+(i+1)"> </v-expansion-panel-header>
+        <v-expansion-panel-header v-text="$t('welcome.tutorial')"> </v-expansion-panel-header>
         <v-expansion-panel-content> 
-          <v-card-text>{{descriptionArray[i]}}</v-card-text>
-          <v-dialog @click:outside="onDialogClose">
-            <template v-slot:activator="{ on, attrs }" >
-              <v-img
-                  max-height="500px" class="align-end flex-md-wrap"
-                :src="'/images/Tutorial'+(i+1)+'.png'"
-                @click="dialog = true" v-bind="attrs" v-on="on"
-                >
-              </v-img>
-               </template>
             <v-card>
-              <TutorialCarousel v-if="dialog" :start-index="i" ></TutorialCarousel>
+              <TutorialCarousel></TutorialCarousel>
+               <v-card-text ><!---Description Text here---></v-card-text>
             </v-card>
-          </v-dialog>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -36,7 +24,6 @@ export default {
   props: ['extended'],
   data(){
     return{
-      dialog: false,
       panel: [],
     }
   },

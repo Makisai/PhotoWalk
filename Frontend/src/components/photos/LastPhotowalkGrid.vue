@@ -44,8 +44,7 @@ export default {
       for (let i = 0; i< 6; i++) {
           if(i < this.$store.state.user.photosLast.length){
              lastPhotos.push(this.$store.state.user.photosLast[i]);  
-          }
-         
+          }   
       }
       return lastPhotos;
     },

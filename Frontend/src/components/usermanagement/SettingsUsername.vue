@@ -8,7 +8,7 @@
     <p class ="error">{{$t('error.usernameAssigned')}}</p>
   </v-col>
   <v-col v-if="internalError" cols="12">
-    <p class ="error">{{$t('error.internaleError')}}</p>
+    <p class ="error">{{$t('error.internalError')}}</p>
   </v-col>
   <v-col v-if="sameUsernameError" cols="12">
     <p class ="error">{{$t('error.sameUsername')}}</p>
