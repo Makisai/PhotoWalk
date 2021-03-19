@@ -132,13 +132,6 @@ exports.updateUsername = async (req, res) => {
         return;
     }
 
-    if(newUsername == ""){
-        res.status(500).send({
-            message: "Username darf nicht leer sein!"
-        })
-        return;
-    }
-
     User.findOne({
         where: {
             username: {

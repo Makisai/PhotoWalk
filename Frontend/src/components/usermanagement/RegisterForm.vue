@@ -98,7 +98,7 @@ export default {
             } 
           })
           .catch((error) => {  
-            if(error.response && error.response.status == 500){
+            if(error.response && error.response.status == 404){
               this.incompleteError = true;
               this.usernameError = false;
               this.emailError = false;
