@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     signup(){
-      this.axios.post('users/register', {email: this.email,username: this.username, password: this.password})
+      this.axios.post('users/register', {email: this.email.toLowerCase(),username: this.username, password: this.password})
           .then((response) => {
             if(response.status == 201){
               this.registered = true;

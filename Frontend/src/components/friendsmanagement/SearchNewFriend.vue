@@ -2,27 +2,29 @@
   <v-container>
     <h4>{{ $t('friends.searchHint') }}</h4>
     <v-text-field
-        style="width: 40%"
+        style="width: 50%"
         class="mx-auto card ma-2"
         clearable
         v-model="input"
         append-icon="mdi-magnify"
         @click:append="search"
     ></v-text-field>
-    <p>{{ $t(feedback) }}</p>
-    <v-card style="width: 400px"
-            class="mx-auto card" v-if="$store.state.search.foundUser !== null">
-      <v-list one-line>
+    <p class="feedback">{{ $t(feedback) }}</p>
+    <v-card
+        width="80%"
+        class="mx-auto card"
+        v-if="$store.state.search.foundUser !== null">
+      <v-list one-line class="friendCard">
         <v-list-item>
-          <v-list-item-avatar>
+          <v-list-item-avatar size="70">
             <v-img :src="profilePicture($store.state.search.foundUser.profile_picture)"></v-img>
           </v-list-item-avatar>
-          <v-list-item-content style="width: 250px">
-            <v-list-item-title v-text="$store.state.search.foundUser.username"></v-list-item-title>
+          <v-list-item-content>
+            <v-list-item-title class="username" v-text="$store.state.search.foundUser.username"></v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action style="width: 30px">
+          <v-list-item-action>
             <v-btn icon @click="sendRequest($store.state.search.foundUser.id)">
-              <v-icon color="grey lighten-1">mdi-plus</v-icon>
+              <v-icon color="grey lighten-1" large>mdi-plus</v-icon>
             </v-btn>
           </v-list-item-action>
         </v-list-item>
@@ -109,5 +111,17 @@ export default {
 </script>
 
 <style scoped>
+.friendCard{
+  width: 100%;
+  height: 100px
+}
+
+.username{
+  font-size: 18pt;
+}
+
+.feedback{
+  font-size: 16pt;
+}
 
 </style>

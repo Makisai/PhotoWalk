@@ -1,19 +1,19 @@
 <template>
   <v-app id="photowalkapp">
     <v-app-bar
-        app class="gradient"
-        shrink-on-scroll
-        prominent
-    >
-      <v-spacer></v-spacer>
-      <v-toolbar-title>PhotoWalk</v-toolbar-title>
+        app class="gradient">
+      <v-spacer/>
+      <v-img
+          max-height="50px"
+          max-width="50px"
+          :src="'/photowalk_logo_white.png'"/>
+      <v-toolbar-title class="title mx-1">PhotoWalk</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
-
     <v-main>
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="5">
             <v-card class="container card ma-4">
               <v-img
                   :src="`/images/map_landingpage_placeholder.JPG`"
@@ -25,7 +25,10 @@
           <div class="mx-2 card">
           <ImageGrid/>
           </div>
-          <LoginDialog/>
+          <h3 class="text-h3 my-10">{{$t('landing.headline')}}</h3>
+          <p class="ma-10 decriptionText">{{$t('landing.pitch')}}</p>
+          <LoginDialog class="my-10"/>
+          <ImageGrid/>
         </v-col>
       </v-row>
     </v-main>
@@ -63,5 +66,8 @@ export default {
 }
 .card{
   margin-top: 15px;
+}
+.decriptionText{
+  font-size: 18px;
 }
 </style>

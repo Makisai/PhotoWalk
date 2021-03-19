@@ -19,13 +19,17 @@
             v-for="challengeMarker in $store.state.detail.photowalk.challenges"
             :key="challengeMarker.id"
             :lat-lng="[challengeMarker.lat, challengeMarker.lng]"
-            :icon="iconChallenge" >
+            :icon="iconChallenge"
+            @click="setChallenge(challengeMarker.id)">
           <l-tooltip>{{ challengeMarker.description }}</l-tooltip>
         </l-marker>
       </l-map>
     </div>
-    <v-btn v-if="!isTracking" @click="startTracking">
-      Start Walk
+    <v-btn
+        v-if="!isTracking"
+        @click="startTracking"
+        class="gradient button">
+      {{$t('photowalks.startWalk')}}
     </v-btn>
   </v-card>
 </template>
@@ -33,6 +37,7 @@
 <script>
 import { latLng , icon } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPolyline, LTooltip } from 'vue2-leaflet';
+import {SET_SELECTED_CHALLENGE} from "@/store/mutations";
 
 export default {
   name: "PhotowalkMap",
@@ -99,13 +104,16 @@ export default {
     onLocationFound(location){
       this.center = location.latlng;
     },
+    setChallenge(value){
+      this.$store.commit(SET_SELECTED_CHALLENGE,value);
+    }
   },
 };
 </script>
 
 <style scoped>
 .map {
-  height: 700px;
+  height: 500px;
   width: 95%;
   z-index: 0;
   margin: 15px;
@@ -113,10 +121,15 @@ export default {
 .container {
   padding: 5px;
 }
-
 .card{
   margin: 15px;
   margin-top: 0;
 }
-
+.gradient{
+  background: linear-gradient(90deg, #00bcd4 0%, #E91E63 100%);
+  color: white;
+}
+.button{
+  margin-bottom: 20px;
+}
 </style>

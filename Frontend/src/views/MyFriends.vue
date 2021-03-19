@@ -1,8 +1,7 @@
 <template>
-  <!--vuetify div-->
   <v-container>
     <div>
-      <h1>{{ $t('friends.myFriends') }}</h1>
+      <h3 class="text-h3">{{ $t('friends.myFriends') }}</h3>
       <SearchNewFriend/>
       <FriendsList/>
     </div>

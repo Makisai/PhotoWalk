@@ -1,29 +1,29 @@
 {
   "error":{
-    "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt!",
-    "friendYourself": "Du kannst nicht mit dir selbst befreundet sein!",
-    "friendAlready": "Du bist bereits mit diesem User befreundet!",
+    "login":"Deine E-MAIL oder PASSWORT ist nicht korrekt.",
+    "friendYourself": "Du kannst nicht mit Dir selbst befreundet sein.",
+    "friendAlready": "Du bist bereits mit dieser Person befreundet",
     "friendNotFound": "Es wurde niemand gefunden...",
-    "profilePicture": "Profilbild konnte nicht geändert werden",
-    "changeUsername": "Username konnte nicht geändert werden",
-    "usernameAssigned": "Dieser Username ist bereits vergeben.",
-    "emailAssigned": "Diese Email ist bereits vergeben.",
-    "incompleteError": "Bitte überprüfe deine Angaben auf Vollständigkeit!",
-    "internalError": "Ein Fehler ist aufgetreten. Lade die Seite erneut." ,
-    "deleteUser": "User konnte nicht gelöscht werden",
+    "profilePicture": "Das Profilbild konnte nicht geändert werden.",
+    "changeUsername": "Der Benutzername konnte nicht geändert werden.",
+    "usernameAssigned": "Dieser Benutzername ist bereits vergeben.",
+    "emailAssigned": "Diese E-Mail ist bereits vergeben.",
+    "incompleteError": "Bitte überprüfe Deine Angaben auf Vollständigkeit.",
+    "internalError": "Ein Fehler ist aufgetreten. Bitte lade die Seite erneut." ,
+    "deleteUser": "Dein Account konnte nicht gelöscht werden.",
     "invalidMimetype": "Dieser Dateityp ist nicht erlaubt.",
-    "sameUsername": "Diesen Benutzernamen hast du schon!",
-    "passwordIncorrect": "Dein altes Passwort ist nicht korrekt!",
+    "sameUsername": "Diesen Benutzernamen hast du schon.",
+    "passwordIncorrect": "Dein altes Passwort ist nicht korrekt.",
     "deleteAllPictures": "Deine Bilder konnten nicht gelöscht werden."
   },
   "success":{
-    "register": "Deine Registrierung war erfolgreich!",
-    "photoUpload": "Dein Photoupload war erfolgreich!",
-    "profilePictureUpdated": "Dein Profilbild wurde erfolgreich erneuert!",
-    "usernameUpdated": "dein Benutzername wurde erfolgreich geändert!",
-    "passwordUpdated": "dein Passwort wurde erfolgreich geändert!",
-    "deleteAllPictures": "alle deine Photos wurden erfolgreich gelöscht!",
-    "deleteUsers": "Dein Profil wurde erfolgreich gelöscht!"
+    "register": "Deine Registrierung war erfolgreich.",
+    "photoUpload": "Dein Bild wurde erfolgreich hochgeladen.",
+    "profilePictureUpdated": "Dein Profilbild wurde erfolgreich geändert.",
+    "usernameUpdated": "Dein Benutzername wurde erfolgreich geändert.",
+    "passwordUpdated": "Dein Passwort wurde erfolgreich geändert.",
+    "deleteAllPictures": "Alle Deine Photos wurden erfolgreich gelöscht.",
+    "deleteUsers": "Dein Account wurde erfolgreich gelöscht."
   },
   "pages":{
     "friends": "Freunde",
@@ -33,13 +33,13 @@
     "details": "Photowalk"
   },
   "labels": {
-    "submit": "senden",
+    "submit": "Senden",
     "username": "Benutzername",
-    "register": "registrieren",
-    "login": "einloggen",
-    "logout": "ausloggen",
+    "register": "REGISTRIEREN",
+    "login": "EINLOGGEN",
+    "logout": "AUSLOGGEN",
     "exploring": "starte Erkundung",
-    "close": "schliessen",
+    "close": "Schließen",
     "password": "Passwort"
   },
   "loginDialog":{
@@ -51,20 +51,20 @@
     "selectChallengeId": "Bitte wähle eine Challenge aus."
   },
   "settings": {
-    "changeMail": "Hier kannst du deine E-Mail ändern.",
-    "changeUsername": "Hier kannst du deinen Benutzernamen ändern.",
-    "changePassword":"Hier kannst du dein Passwort ändern.",
+    "changeMail": "Hier kannst Du Deine E-Mail ändern.",
+    "changeUsername": "Hier kannst Du Deinen Benutzernamen ändern.",
+    "changePassword":"Hier kannst Du Dein Passwort ändern.",
     "oldPassword": "altes Passwort",
     "newPassword": "neues Passwort",
-    "changeProfilePicture": "Hier kannst du dein Profilbild ändern",
+    "changeProfilePicture": "Hier kannst Du Dein Profilbild ändern",
     "deleteQuestion": "Deinen Account löschen?",
-    "deleteAccount": "löschen",
-    "deleteSure": "Bist du dir sicher?",
-    "deleteHint" : "Das Löschen deines Accounts kann nicht rückgängig gemacht werden.",
-    "deleteYes": "ja",
-    "deleteNo": "nein",
+    "deleteAccount": "Löschen",
+    "deleteSure": "Bist Du Dir sicher, dass Du Deinen Account endgültig löschen möchtest?",
+    "deleteHint" : "Das Löschen Deines Accounts kann nicht rückgängig gemacht werden! Alle Daten und Bilder werden endgültig gelöscht.",
+    "deleteYes": "Löschen",
+    "deleteNo": "Abbrechen",
     "profile": "Profil",
-    "advice": "Beste Größe 500x500px",
+    "advice": "Maximale Bildgröße: 50MB. Wir empfehlen ein quadratisches Bildformat.",
     "profilePicture": "Profilbild"
   },
   "friends": {
@@ -75,10 +75,17 @@
   },
   "photos":  {
     "myPhotos": "Meine Photos",
-    "friendsPhotos": "Photos deiner Freunde"
+    "descriptionMyPhotos": "Hier kannst Du Dir alle Photos ansehen, die Du zu den Challenges der Photowalks hochgeladen hast. Bilder, die Deinen Freunden besonders gut gefallen, haben viele Herzen.",
+    "friendsPhotos": "Photos meiner Freunde",
+    "descriptionFriendsPhotos":
+      "Hier kannst Du Dir alle Fotos ansehen, die Deine Freunde zu den Challenges der Photowalks hochgeladen haben. Erkennst Du einige der Motive wieder? Gefällt Dir ein Bild besonders gut, dann zeige es Deinen Freunden, indem du auf das Herz klickst.",
+    "walk1": "Kreise ziehen im Park",
+    "walk2": "Bei Wind und Wellen",
+    "walk3": "Alster Rundfahrt"
   },
   "photowalks": {
-    "chooseWalk" : "Wähle einen Photowalk aus"
+    "chooseWalk" : "Wähle einen Photowalk aus",
+    "startWalk": "Walk starten"
   },
   "welcome": {
     "welcomePhrase": "Willkommen bei Photowalk.",
@@ -93,5 +100,14 @@
     "step6":"Hallooooo. Hier ist Schritt 6.",
     "step7":"Dies ist Schritt sieben.",
     "step8":"Dies ist Schritt Acht."
+  },
+  "mobileView": {
+    "mapTab": "Karte",
+    "challengesTab": "Challenges & Info",
+    "photosTab": "Photos"
+  },
+  "landing": {
+    "headline":"Lust auf einen Spaziergang?",
+    "pitch": "Hättest Du Lust mal wieder an die frische Luft zu gehen, findest alleine spazieren gehen aber langweilig? Würdest Du gerne mal wieder mit Deinem Freundeskreis zusammen eine Fotorally starten und schauen, wer die ausgefallensten Fotos macht? Mit PhotoWalk ist das selbst in schwierigen Zeiten mit Social Distancing kein Problem! Gehe auf einen von 3 kuratierten Spaziergängen in der schönsten Stadt des Nordens. Nimm Deine Kamera mit, lichte ein paar tolle Motive ab und messe Dich in Photochallenges mit deinem Freundeskreis. Wie interpretiert Dein Freundeskreis die von uns gestellten Challenges? Was kannst Du Neues auf Deinem Spaziergang entdecken? Jetzt registrieren und herausfinden."
   }
 }
