@@ -8,11 +8,14 @@
     <p class ="error">{{$t('error.usernameAssigned')}}</p>
   </v-col>
   <v-col v-if="internalError" cols="12">
-    <p class ="error">{{$t('error.internaleError')}}</p>
+    <p class ="error">{{$t('error.internalError')}}</p>
   </v-col>
   <v-col v-if="sameUsernameError" cols="12">
     <p class ="error">{{$t('error.sameUsername')}}</p>
   </v-col>
+    <v-col v-if="incompleteError" cols="12">
+      <p class ="error">{{$t('error.incompleteError')}}</p>
+    </v-col>
   <v-col cols="4">
     <v-text-field
     :rules="[rules.required,rules.max]"
@@ -40,17 +43,19 @@ import {SET_USERNAME} from "../../store/mutations";
 export default {
     name:"SettingsUsername",
     data(){ 
-        return{
-            updatedUsername: false,
-            newUsername: '',
-            usernameAssignedError: false,
-            updated: false,
-            sameUsernameError: false,
-            rules: {
-            required: value => !!value || 'Required.',
-            max: v => v.length <=18 || 'Max 18 characters'
-          },
-        }
+      return{
+        updatedUsername: false,
+        newUsername: '',
+        usernameAssignedError: false,
+        incompleteError: false,
+        internalError: false,
+        updated: false,
+        sameUsernameError: false,
+        rules: {
+          required: value => !!value || 'Required.',
+          max: value => value.length <=18 || 'Max 18 characters'
+        },
+      }
     },
     methods: {
     changeUsername(){
@@ -68,7 +73,7 @@ export default {
             this.$store.commit(SET_USERNAME, this.newUsername);
             }  
       }).catch((error) => {
-          if(error.response && error.response.status == 400){
+          if(error.response && error.response.status == 404){
             this.incompleteError = true;
             this.usernameAssignedError = false;
             this.internalError = false;
