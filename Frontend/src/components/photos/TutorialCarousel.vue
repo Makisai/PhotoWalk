@@ -1,7 +1,7 @@
 <template>
   <v-container fluid >
     <v-carousel height="90%" v-model="currentIndex">
-      <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
+      <v-carousel-item v-for="item in items" :key="item.src" :src="item.src"/>
     </v-carousel>
 	<v-card-text>{{$t('welcome.step'+(currentIndex+1))}}</v-card-text>
   </v-container>
@@ -12,7 +12,7 @@ export default {
   name: 'TutorialCarousel',
   data() {
     return {
-			currentIndex: this.i,
+			currentIndex: 0,
 			items: [ {
 				src:"/images/Tutorial1.png"
 			},

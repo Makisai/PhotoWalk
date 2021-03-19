@@ -58,7 +58,7 @@ export default {
             console.log("Error something went wrong")
             return response.status;
           }
-        })
+        }).catch(() => { this.lastPhotowalk = false; });
       }
     });
   } ,

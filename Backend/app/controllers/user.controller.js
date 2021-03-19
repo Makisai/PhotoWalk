@@ -310,7 +310,7 @@ exports.logout = (req,res) => {
             token
         }
     });
-    res.json(200, {message: 'your logged out'});
+    res.json(200, {message: 'you\'re logged out'});
 }
 
 exports.isloggedin = (req,res) =>{

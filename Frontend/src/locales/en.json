@@ -90,8 +90,8 @@
   "welcome": {
     "welcomePhrase": "Welcome to Photowalk.",
     "lastPhotowalk": "This was your last Photowalk.",
-    "tutorial": "Tutorial",
-    "navigate":"Go on a Photowalk.",
+    "tutorial": "How does Photowalk work?",
+    "navigate":"Take a Photowalk.",
     "step1":"This is step one.",
     "step2":"This is step two.",
     "step3":"This is step three.",
