@@ -6,7 +6,7 @@
           :key="i"
 					:src="item.src"></v-carousel-item>
     </v-carousel>
-		<v-card-text>{{this.descriptions[currentIndex]}}</v-card-text>
+	<v-card-text>{{$t('welcome.step'+(currentIndex+1))}}</v-card-text>
   </v-container>
 </template>
 
@@ -41,33 +41,6 @@ export default {
 				src:"/images/Tutorial8.png"
 			},
 			],
-		descriptions: [
-			{
-				description:"$t('welcome.step1')"
-			},
-			{
-				description: "$t('welcome.step2')"
-			},
-				{
-				description: "$t('welcome.step3')"
-			},
-					{
-				description: "$t('welcome.step3')"
-			},
-					{
-				description: "$t('welcome.step3')"
-			},
-					{
-				description: "$t('welcome.step3')"
-			},
-					{
-				description: "$t('welcome.step3')"
-			},
-					{
-				description: "$t('welcome.step3')"
-			}
-    ],
-
     }
   },
   methods: {

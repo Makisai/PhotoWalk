@@ -84,7 +84,7 @@
   "welcome": {
     "welcomePhrase": "Welcome to Photowalk.",
     "lastPhotowalk": "This was your last Photowalk.",
-    "Tutorial": "Tutorial",
+    "tutorial": "Tutorial",
     "step1":"This is step one.",
     "step2":"This is step two.",
     "step3":"This is step three.",
