@@ -322,7 +322,7 @@ exports.register = (req,res) => {
     let errors= [];
 
     //Überprüfen, ob alle notwendigen Felder ausgefüllt sind
-    if(!username || !email || !password) {
+    if(!username || !email || !password || username.length > 18) {
         errors.push({msg: 'Please fill out all fields'});
     }
 
