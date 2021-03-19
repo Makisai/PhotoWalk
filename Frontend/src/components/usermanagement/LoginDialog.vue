@@ -6,7 +6,7 @@
         max-width="400px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on" class="mainGradient ma-8">
+        <v-btn v-bind="attrs" v-on="on" class="mainGradient buttonsize ma-9">
           {{$t('labels.exploring')}}
         </v-btn>
       </template>
@@ -76,5 +76,11 @@ export default {
 }
 .centerspan{
   width: 100%;
+}
+.buttonsize{
+  min-width: 400px;
+  min-height: 50px;
+  font-size: 20pt;
+
 }
 </style>

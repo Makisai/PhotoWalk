@@ -1,17 +1,16 @@
 <template>
   <v-app>
     <v-app-bar class="gradient" app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white">
-      </v-app-bar-nav-icon>
-      <v-toolbar-title class="title">Photowalk</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon class="mr-0" @click.stop="drawer = !drawer" color="white"/>
+      <v-toolbar-title class="title mr-auto">Photowalk</v-toolbar-title>
       <v-img
+          class="huhu"
           max-height="50px"
           max-width="50px"
-         :src="'/photowalk_logo_white.png'"
+          :src="'/photowalk_logo_white.png'"
           @click="navigateToStart"
-      ></v-img>
-      <v-spacer></v-spacer>
+      />
+      <LocaleChange class="mr-0"/>
     </v-app-bar>
     <Navigation-drawer/>
     <v-main>
@@ -19,9 +18,6 @@
     </v-main>
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
-        <v-col cols="6">
-          <LocaleChange/>
-        </v-col>
         <v-col cols="6">
           <Impressum/> — <DGSVO/> — Photowalk
         </v-col>
@@ -58,8 +54,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .gradient{
   background: linear-gradient(90deg, #00BCD4 0%, #E91E63 100%);
   color: white;
+}
+.huhu{
+  display: block;
 }
 </style>

@@ -108,6 +108,8 @@
   },
   "landing": {
     "headline":"Lust auf einen Spaziergang?",
-    "pitch": "Hättest Du Lust mal wieder an die frische Luft zu gehen, findest alleine spazieren gehen aber langweilig? Würdest Du gerne mal wieder mit Deinem Freundeskreis zusammen eine Fotorally starten und schauen, wer die ausgefallensten Fotos macht? Mit PhotoWalk ist das selbst in schwierigen Zeiten mit Social Distancing kein Problem! Gehe auf einen von 3 kuratierten Spaziergängen in der schönsten Stadt des Nordens. Nimm Deine Kamera mit, lichte ein paar tolle Motive ab und messe Dich in Photochallenges mit deinem Freundeskreis. Wie interpretiert Dein Freundeskreis die von uns gestellten Challenges? Was kannst Du Neues auf Deinem Spaziergang entdecken? Jetzt registrieren und herausfinden."
+    "pitchText": "Mit PhotoWalk ist das selbst in schwierigen Zeiten mit Social Distancing kein Problem! Gehe auf einen von 3 kuratierten Spaziergängen in der schönsten Stadt des Nordens. Nimm Deine Kamera mit, lichte ein paar tolle Motive ab und messe Dich in Photochallenges mit deinem Freundeskreis. Wie interpretiert Dein Freundeskreis die von uns gestellten Challenges? Was kannst Du Neues auf Deinem Spaziergang entdecken?",
+    "pitchQuestions": "Hättest Du Lust mal wieder an die frische Luft zu gehen, findest alleine spazieren gehen aber langweilig? Würdest Du gerne mal wieder mit Deinem Freundeskreis zusammen eine Fotorally starten und schauen, wer die ausgefallensten Fotos macht?",
+    "pitchCommand": "Jetzt registrieren und herausfinden."
   }
 }
