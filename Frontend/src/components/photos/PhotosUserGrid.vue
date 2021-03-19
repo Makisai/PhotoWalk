@@ -1,7 +1,7 @@
 <template>
   <v-container v-if="walkPhotos.length > 0">
     <v-row align="center" class="ma-5">
-      <v-divider/><h4 class="font-weight-regular text-h4 mx-3" >WALK {{walk}}</h4><v-divider/>
+      <v-divider/><h4 class="font-weight-regular text-h4 mx-3" >{{ $t('photos.walk' + walk) }}</h4><v-divider/>
     </v-row>
     <div v-masonry item-selector=".item" class="masonry-container">
       <div v-masonry-tile
