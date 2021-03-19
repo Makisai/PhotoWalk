@@ -4,6 +4,7 @@
     <div v-if="!lastPhotowalk">
       <p> {{$t('welcome.welcomePhrase')}} </p>
       <StartExpansionPanel :extended="true"></StartExpansionPanel>
+      <ToWalksOverviewButton/>
     </div>
     <div v-if="lastPhotowalk">
       <p>{{$t('welcome.lastPhotowalk')}} </p>
@@ -11,7 +12,8 @@
           <p v-text="photowalkTitle"></p>
           <p v-text="photowalkRegion"></p>
           <LastPhotowalkGrid/>
-           <StartExpansionPanel :extended="false"></StartExpansionPanel>
+          <StartExpansionPanel :extended="false"></StartExpansionPanel>
+           <ToWalksOverviewButton/>
         </div>   
     </div>
   </v-container>
@@ -21,10 +23,11 @@
 import {SET_PHOTOS_LAST,SET_PHOTOWALK} from "@/store/mutations"
 import StartExpansionPanel from "../components/StartExpansionPanel"
 import LastPhotowalkGrid from "../components/photos/LastPhotowalkGrid"
+import ToWalksOverviewButton from "../components/navigation/ToWalksOverviewButton"
 
 export default {
   name: 'Start',
-  components: {StartExpansionPanel,LastPhotowalkGrid},
+  components: {StartExpansionPanel,LastPhotowalkGrid,ToWalksOverviewButton},
    beforeMount(){
     this.axios.get(`photowalks/last`,{
       headers: {

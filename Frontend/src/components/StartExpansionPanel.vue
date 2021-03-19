@@ -1,12 +1,10 @@
 <template>
   <v-row justify="center">
-    <v-expansion-panels v-model="panel" focusable>
+    <v-expansion-panels v-model="panel" multiple focusable>
       <v-expansion-panel>
-        <v-expansion-panel-header v-text="$t('welcome.tutorial')" append-icon="mdi-chevron-down">  </v-expansion-panel-header>
+        <v-expansion-panel-header>{{$t('welcome.tutorial')}}</v-expansion-panel-header>
         <v-expansion-panel-content> 
-            <v-card>
-              <TutorialCarousel></TutorialCarousel>
-            </v-card>
+          <TutorialCarousel/>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -26,9 +24,9 @@ export default {
     }
   },
   beforeMount(){
-      if(this.extended == true){
-        this.panel = [...Array(this.items).keys()].map((k, i) => i);
-      }
+    if(this.extended){
+      this.panel = [0];
+    }
   },
 }
 </script>
