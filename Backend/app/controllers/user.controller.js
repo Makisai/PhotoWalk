@@ -322,17 +322,13 @@ exports.register = (req,res) => {
     let errors= [];
 
     //Überprüfen, ob alle notwendigen Felder ausgefüllt sind
-    if(!username || !email || !password || username.length > 18) {
+    //Username- und Passwordlänge überprüfen
+    if(!username || !email || !password || username.length > 18 || password.length < 8) {
         errors.push({msg: 'Please fill out all fields'});
     }
 
     //TODO Überprüfen, ob die E-Mail eine E-Mail ist
 
-    //Passwordlänge überprüfen
-    if (password.length < 8) {
-        errors.push({msg: 'Password has to have at least 8 characters'});
-    }
-    //TODO überprüfen, ob Benutzername schon vergeben ist
     if(errors.length > 0) {
         res.json(500, {
             errors,
