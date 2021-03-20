@@ -13,6 +13,7 @@ import {
   SET_FOUND_USER,
   SET_PHOTOS_USER,
   SET_PHOTOS_FRIENDS,
+  SET_PHOTOS_LAST
 } from "@/store/mutations";
 import {CLEAR_USER_DATA} from "@/store/actions";
 
@@ -33,6 +34,7 @@ export default new Vuex.Store({
       friends: null,
       photosUser: null,
       photosFriends: null,
+      photosLast: null,
     },
     detail:{
       currentID: 0,
@@ -84,6 +86,9 @@ export default new Vuex.Store({
     [SET_PHOTOS_FRIENDS](state, photoFriends) {
       state.user.photosFriends = photoFriends;
     },
+    [SET_PHOTOS_LAST](state, photoLast) {
+      state.user.photosLast = photoLast;
+    },
   },
   actions: {
     [CLEAR_USER_DATA]({commit}){
@@ -92,6 +97,7 @@ export default new Vuex.Store({
       commit(SET_PROFILEPICTURE,'');
       commit(SET_TOKEN,'XXX');
       commit(SET_DRAWER,false);
+      commit(SET_SELECTED_CHALLENGE,null);
     }
   },
   modules: {

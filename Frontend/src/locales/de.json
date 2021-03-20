@@ -87,6 +87,20 @@
     "chooseWalk" : "Wähle einen Photowalk aus",
     "startWalk": "Walk starten"
   },
+  "welcome": {
+    "welcomePhrase": "Willkommen bei Photowalk.",
+    "lastPhotowalk": "Das war Dein letzter Photowalk.",
+    "tutorial": "Wie funktioniert das mit dem Photowalk?",
+    "navigate":"Gehe auf einen Photowalk.",
+    "step1":"Dies ist Schritt 1 blabla.",
+    "step2":"Dies ist Schritt zwei. ",
+    "step3":"Dies ist Schritt drei.",
+    "step4":"Hier ist der vierte Schritt.",
+    "step5":"Hier ist der fuenfte Schritt.",
+    "step6":"Hallooooo. Hier ist Schritt 6.",
+    "step7":"Dies ist Schritt sieben.",
+    "step8":"Dies ist Schritt Acht."
+  },
   "mobileView": {
     "mapTab": "Karte",
     "challengesTab": "Challenges & Info",

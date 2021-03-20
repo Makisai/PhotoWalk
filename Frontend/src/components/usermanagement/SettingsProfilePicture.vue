@@ -55,7 +55,7 @@ export default {
           notEmpty: v => !!v ||'file is required',
           size: v => v.size <= 1024*1024* 50 || 'filesize too big',
           mimetype: v => {
-            const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
+            const pattern = /.*(\.png|\.jpg|\.jpeg|\.JPG|\.JPEG|\.PNG){1}$/mg
             return pattern.test(v.name)  || 'Invalid mimetype'
           },
       },
@@ -76,6 +76,7 @@ export default {
             this.internalError = false;
             this.incompleteError = false;
             this.$store.commit(SET_PROFILEPICTURE, response.data.path);
+            this.updateProfilePicture = "";
           }  
       }).catch((error) => {
           if(error.response && error.response.status == 400){
