@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <h3 class="text-h3">{{ $t('photowalks.chooseWalk') }}</h3>
-    <v-row>
-      <v-col cols="4">
+    <h3 class="text-h3 headline">{{ $t('photowalks.chooseWalk') }}</h3>
+    <v-row justify="center">
+      <v-col cols="9" md="3">
        <ImageHover
          :walk-number="1"
          :edited-photowalks="editedPhotowalks"
@@ -11,7 +11,7 @@
          :image-not-done="`/images/map_stadtpark_notDone_small.png`"
          :image-not-done-hover="`/images/map_stadtpark_notDone_hover.png`"/>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="9" md="3">
         <ImageHover
           :walk-number="2"
           :edited-photowalks="editedPhotowalks"
@@ -20,7 +20,7 @@
           :image-not-done="`/images/hafencity_map_notDone.png`"
           :image-not-done-hover="`/images/hafencity_map_notDone_hover.png`"/>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="9" md="3">
         <ImageHover
           :walk-number="3"
           :edited-photowalks="editedPhotowalks"
@@ -56,3 +56,10 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+.headline{
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+</style>

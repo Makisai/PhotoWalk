@@ -1,18 +1,18 @@
 <template>
-  <v-card @click="goToDetail(walkNumber)">
+  <v-card @click="goToDetail(walkNumber)" class="mapCard" elevation="4">
     <v-img v-if="hasDonePhotowalk(walkNumber)"
            :src="doneSrc"
            @mouseenter="doneSrc = imageDoneHover"
            @mouseleave="doneSrc = imageDone"
            :lazy-src="`images/gradient.png`"
-           class = "rounded-lg">
+           class = "rounded-lg" contain>
     </v-img>
     <v-img v-else
            :src="notDoneSrc"
            @mouseenter="notDoneSrc = imageNotDoneHover"
            @mouseleave="notDoneSrc = imageNotDone"
            :lazy-src="`images/gradient.png`"
-           class = "rounded-lg">
+           class = "rounded-lg" contain>
     </v-img>
   </v-card>
 </template>
@@ -67,5 +67,7 @@ export default {
 </script>
 
 <style scoped>
-
+.mapCard{
+  max-width: 380px;
+}
 </style>
