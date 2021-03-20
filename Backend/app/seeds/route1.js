@@ -9,7 +9,6 @@ const seeder = {
             name: 'Stadtpark',
             length: 2,
             region:'jhoto',
-            route:'',
             description:'This is our first walk, uuuuuuhiiiiiii',
         });
         //warten bis photowalk erstellt ist und speichert ihn dann

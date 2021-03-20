@@ -9,7 +9,6 @@ const seeder = {
             name: 'Hafencity',
             length: 1,
             region:'Hafencity',
-            route:'',
             description:'This is our second walk',
         });
 //warten bis photowalk erstellt ist und speichert ihn dann

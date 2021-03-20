@@ -9,7 +9,6 @@ const seeder = {
             name: 'Alsterlauf',
             length: .5,
             region:'Innenstadt',
-            route:'',
             description:'Alles dreht sich um die Alster',
         });
 //warten bis photowalk erstellt ist und speichert ihn dann
