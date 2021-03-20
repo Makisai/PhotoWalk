@@ -25,9 +25,6 @@
                 <RegisterForm/>
               </v-col>
               <v-col class="py-1" cols="12">
-                <p class="ma-0" v-if="!registerForm">{{$t('loginDialog.forgotPassword')}}</p>
-              </v-col>
-              <v-col class="py-1" cols="12">
                 <p class="ma-0" v-if="registerForm">{{$t('loginDialog.alreadyRegistered')}} <a @click="showLoginForm">{{$t('labels.login')}}</a> </p>
                 <p class="ma-0" v-else>{{$t('loginDialog.notRegistered')}} <a @click="showRegisterForm">{{$t('labels.register')}}</a></p>
               </v-col>
@@ -35,7 +32,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer/>
           <v-btn color="primary" text @click="dialog = false">
             {{$t('labels.close')}}
           </v-btn>

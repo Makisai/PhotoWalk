@@ -10,6 +10,7 @@
           prepend-inner-icon="mdi-email"
           color="primary"
           v-model="email"
+          class="mt-10"
       ></v-text-field>
     </v-col>
     <v-col class="py-2" cols="12">
