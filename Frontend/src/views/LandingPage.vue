@@ -28,7 +28,7 @@
           <ImageGridTop/>
           </div>
           <h3 class="text-h3 my-10">{{$t('landing.headline')}}</h3>
-          <p class="descriptionText ma-10">{{$t('landing.pitchQuestions')}}</p>
+          <p class="questionsText ma-10">{{$t('landing.pitchQuestions')}}</p>
           <p class="descriptionText ma-10">{{$t('landing.pitchText')}}</p>
           <p class="registerText">{{$t('landing.pitchCommand')}}</p>
           <LoginDialog/>
@@ -75,6 +75,12 @@ export default {
 .descriptionText{
   font-size: 18px;
   text-align: justify;
+}
+.questionsText{
+  font-size: 20px;
+  text-align: justify;
+  font-style: italic;
+  color: #555555;
 }
 .registerText{
   font-size: 20px;
