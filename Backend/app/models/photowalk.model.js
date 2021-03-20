@@ -14,10 +14,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        route: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
         description: {
             type: Sequelize.STRING(4000),
             allowNull: false

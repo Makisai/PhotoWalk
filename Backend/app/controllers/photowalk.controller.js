@@ -21,7 +21,7 @@ exports.findAll = async (req, res) => {
                                                        FROM "challenges" WHERE "id" IN (SELECT DISTINCT "challengeId"
                                                                                       FROM "photos" WHERE "userId" = ?)`, {replacements: [currentUserId], type: QueryTypes.SELECT});
 
-    Photowalk.findAll({attributes: ["id", "name", "length", "region", "route"]})
+    Photowalk.findAll({attributes: ["id", "name", "length", "region"]})
         .then(data => {
             res.send({
                 photowalks: data,
