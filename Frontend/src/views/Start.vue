@@ -36,7 +36,6 @@ export default {
     }).then(response => {
       if(response.status === 204){
         this.lastPhotowalk = false;
-        console.log("error");
       }
       if(response.status === 200){
         this.$store.commit(SET_PHOTOWALK,response.data);
@@ -55,7 +54,6 @@ export default {
           this.imagesLoaded = true;
         }).catch((error) => {
           if(error.status === 500) {
-            console.log("Error something went wrong")
             return response.status;
           }
         }).catch(() => { this.lastPhotowalk = false; });

@@ -226,7 +226,7 @@ exports.findAllByPhotowalkId = async (req, res) => {
             ]
         },
         where: { [OP.and]: [
-                {[OP.or]: [{userId: currentUserId}]}, 
+            { userId: currentUserId },
                 { challengeId:  {[OP.in]: challArray }}
             ]}
         })
