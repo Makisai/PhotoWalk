@@ -25,7 +25,7 @@
         </v-col>
         <v-col cols="12" md="6">
           <div class="mx-2 card">
-          <ImageGridTop/>
+            <ImageGridTop/>
           </div>
           <h3 class="text-h3 my-10">{{$t('landing.headline')}}</h3>
           <p class="questionsText ma-10">{{$t('landing.pitchQuestions')}}</p>

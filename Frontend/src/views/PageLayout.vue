@@ -4,7 +4,6 @@
       <v-app-bar-nav-icon class="mr-0" @click.stop="drawer = !drawer" color="white"/>
       <v-toolbar-title class="title mr-auto">Photowalk</v-toolbar-title>
       <v-img
-          class="huhu"
           max-height="50px"
           max-width="50px"
           :src="'/photowalk_logo_white.png'"
@@ -58,8 +57,5 @@ export default {
 .gradient{
   background: linear-gradient(90deg, #00BCD4 0%, #E91E63 100%);
   color: white;
-}
-.huhu{
-  display: block;
 }
 </style>
