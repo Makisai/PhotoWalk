@@ -3,3 +3,18 @@
 $heading-font-family:'Righteous';
 
 @import '~vuetify/src/styles/styles.sass';
+
+.errorMessage {
+  background-color: white;
+  color: #E91E63
+}
+
+.submitButton{
+  background-color: #00BCD4;
+  color: white;
+}
+
+.successMessage{
+  color: #009688;
+
+}

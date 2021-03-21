@@ -9,7 +9,7 @@
         append-icon="mdi-magnify"
         @click:append="search"
     ></v-text-field>
-    <p class="feedback">{{ $t(feedback) }}</p>
+    <p class="feedback errorMessage">{{ $t(feedback) }}</p>
     <v-card
         width="80%"
         class="mx-auto card"
@@ -121,7 +121,7 @@ export default {
 }
 
 .feedback{
-  font-size: 16pt;
+  font-size: 14pt;
 }
 
 </style>

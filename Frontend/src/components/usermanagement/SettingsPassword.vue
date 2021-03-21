@@ -2,13 +2,13 @@
   <div>
     <p>{{$t('settings.changePassword')}} </p>
     <v-col v-if="wrongPasswordError" cols="12">
-      <p class ="error">{{$t('error.passwordIncorrect')}}</p>
+      <p class ="errorMessage"> {{$t('error.passwordIncorrect')}}</p>
     </v-col>
     <v-col v-if="incompleteError">
-      <p>{{$t('error.incompleteError')}} </p>
+      <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
     </v-col>
     <v-col v-if="internalError">
-      <p>{{$t('error.internalError')}} </p>
+      <p class="errorMessage"> {{$t('error.internalError')}} </p>
     </v-col>
     <v-col class="py-2" cols="8">
       <v-text-field
@@ -41,7 +41,12 @@
       ></v-text-field>
     </v-col>
     <v-col cols="8">
-     <v-btn @click="updatePassword">{{$t('labels.submit')}}</v-btn>
+     <v-btn
+         @click="updatePassword"
+         class="submitButton"
+         color="primary">
+       {{$t('labels.submit')}}
+     </v-btn>
     </v-col>
     <v-col v-if="updatedPassword">
       <p >{{$t('success.passwordUpdated')}} </p>

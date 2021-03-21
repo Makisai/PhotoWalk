@@ -1,13 +1,13 @@
 <template>
   <v-row>
      <v-col v-if="usernameError" cols="12">
-      <p class="error">{{$t('error.usernameAssigned')}}</p>
+      <p class="errorMessage">{{$t('error.usernameAssigned')}}</p>
     </v-col>
      <v-col v-if="emailError" cols="12">
-      <p class ="error">{{$t('error.emailAssigned')}}</p>
+      <p class ="errorMessage">{{$t('error.emailAssigned')}}</p>
     </v-col>
     <v-col v-if="incompleteError" cols="12">
-      <p class ="error">{{$t('error.incompleteError')}}</p>
+      <p class ="errorMessage">{{$t('error.incompleteError')}}</p>
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field

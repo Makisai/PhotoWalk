@@ -20,7 +20,7 @@
             :key="challengeMarker.id"
             :lat-lng="[challengeMarker.lat, challengeMarker.lng]"
             :icon="iconChallenge"
-            @click="setChallenge(challengeMarker.id)">
+            @click="setChallenge(challengeMarker)">
           <l-tooltip>{{ challengeMarker.description }}</l-tooltip>
         </l-marker>
       </l-map>
@@ -124,9 +124,10 @@ export default {
 .card{
   margin: 15px;
   margin-top: 0;
+  background-color: #00BCD4;
 }
 .gradient{
-  background: linear-gradient(90deg, #00bcd4 0%, #E91E63 100%);
+  background: linear-gradient(90deg, #00bcd4 0%, #e91e63 100%);
   color: white;
 }
 .button{

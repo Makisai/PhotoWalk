@@ -1,19 +1,19 @@
 <template>
   <div> 
-    <h1>{{($t('settings.profile'))}} </h1>
-    <v-row class="row1">
+    <h3 class="text-h3">{{($t('settings.profile'))}} </h3>
+    <v-row>
       <v-col v-if="incompleteError" cols="12">
-        <p class ="error">{{$t('error.incompleteError')}}</p>
+        <p class ="errorMessage">{{$t('error.incompleteError')}}</p>
       </v-col>
       <v-col v-if="internalError" cols="12">
-        <p class ="error">{{$t('error.internalError')}}</p>
+        <p class ="errorMessage">{{$t('error.internalError')}}</p>
       </v-col>
       <v-col cols="4">
         <p>{{ $t('settings.changeProfilePicture') }} <br> {{ $t('settings.advice') }}</p>
       </v-col>
       <v-col col="4" >
         <v-list-item>
-          <v-list-item-avatar>
+          <v-list-item-avatar size="120">
             <v-img :src="profilePicture"></v-img>
           </v-list-item-avatar>
         </v-list-item>
@@ -27,10 +27,15 @@
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
         ></v-file-input>
-        <v-btn @click="updatePhoto">{{ $t('labels.submit') }}</v-btn>
+        <v-btn
+            @click="updatePhoto"
+            class="submitButton"
+            color="primary">
+          {{$t('labels.submit')}}
+        </v-btn>
       </v-col>
       <v-col v-if="updated">
-      <p>{{$t('success.profilePictureUpdated')}} </p>
+      <p class="successMessage"> {{$t('success.profilePictureUpdated')}} </p>
     </v-col>
     </v-row>
   </div>
@@ -96,7 +101,5 @@ export default {
 </script>
 
 <style scoped>
-.row1 {
-  margin-bottom: 2em;
-}
+
 </style>

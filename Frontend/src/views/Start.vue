@@ -27,6 +27,14 @@ import ToWalksOverviewButton from "../components/navigation/ToWalksOverviewButto
 
 export default {
   name: 'Start',
+  data(){
+    return{
+      imagesLoaded: false,
+      lastPhotowalk: false,
+      photowalkTitle: "",
+      photowalkRegion: "",
+    }
+  },
   components: {StartExpansionPanel,LastPhotowalkGrid,ToWalksOverviewButton},
    beforeMount(){
     this.axios.get(`photowalks/last`,{
@@ -60,13 +68,5 @@ export default {
       }
     });
   } ,
-    data(){
-    return{
-      imagesLoaded: false,
-      lastPhotowalk: false,
-      photowalkTitle: "",
-      photowalkRegion: ""
-    }
-  },
 }
 </script>

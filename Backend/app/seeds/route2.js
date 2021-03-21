@@ -6,10 +6,18 @@ const Challenge = db.challenges;
 const seeder = {
     route2: async ()=>{
         const photowalk2 = Photowalk.build({
-            name: 'Hafencity',
-            length: 1,
+            name: 'Bei Wind und Wellen',
+            length: 90,
             region:'Hafencity',
-            description:'This is our second walk',
+            description:'Die Hafencity ist Hamburgs neuester Stadtteil, trägt aber auch sehr viel ' +
+                'Tradition und Geschichte mit sich. Auf diesem Walk kannst Du viele der Facetten erleben,' +
+                ' die Hamburg unserer Meinung nach zu der schönsten Stadt im Norden machen: Die Nähe zum Wasser,' +
+                ' der frische Wind, der einem auch bei Hamburger Schietwetter erfrischend um die Nase weht,' +
+                ' das UNESCO-Welterbe die Speicherstadt und innovative, moderne Architektur mit viel Glas.' +
+                'Lass Dich von diesem PhotoWalk von den Elbbrücken zur Elbphilharmonie führen. ' +
+                'Versuche doch mal einmal im Monat auf diesen Walk zu gehen und lasse Dich von der Entwicklung' +
+                ' und Veränderung dieses Stadtteils überraschen. Vielleicht kannst Du ja mit Deinen ' +
+                'Fotos die Entwicklung einer neuen Konstruktion festhalten. ',
         });
 //warten bis photowalk erstellt ist und speichert ihn dann
         await photowalk2.save();

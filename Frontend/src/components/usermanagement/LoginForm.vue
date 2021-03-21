@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols = "12" v-if="error">
-      <p class="error">{{$t('error.login')}}</p>
+      <p class="errorMessage">{{$t('error.login')}}</p>
     </v-col>
     <v-col class="py-2" cols = "12">
       <v-text-field
@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .mainGradient{
-  background: linear-gradient(90.29deg, #F06292 0.19%, #00BCD4 99.75%);
+  background: linear-gradient(90.29deg, #f06292 0.19%, #00BCD4 99.75%);
   border-radius: 4px;
   color: white;
 }

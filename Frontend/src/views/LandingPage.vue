@@ -19,7 +19,7 @@
                 <v-img
                     :src="`/images/map_landingpage_placeholder.JPG`"
                     :lazy-src="`images/gradient.png`"
-                    class="rounded-lg elevation-1 grid-image"/>
+                    class="rounded-lg elevation-2 grid-image"/>
               </v-card-text>
             </v-card>
         </v-col>

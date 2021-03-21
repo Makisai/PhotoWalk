@@ -1,20 +1,20 @@
 <template>
   <div>
-  <v-col  cols = "4">
-    <p>{{$t('settings.changeUsername')}} </p>
-    <p>{{$store.state.user.username}} </p>
+  <v-col cols = "4">
+    <p> {{$t('settings.changeUsername')}} </p>
+    <p> {{$store.state.user.username}} </p>
   </v-col>
   <v-col v-if="usernameAssignedError" cols="12">
-    <p class ="error">{{$t('error.usernameAssigned')}}</p>
+    <p class ="errorMessage">{{$t('error.usernameAssigned')}}</p>
   </v-col>
   <v-col v-if="internalError" cols="12">
-    <p class ="error">{{$t('error.internalError')}}</p>
+    <p class ="errorMessage">{{$t('error.internalError')}}</p>
   </v-col>
   <v-col v-if="sameUsernameError" cols="12">
-    <p class ="error">{{$t('error.sameUsername')}}</p>
+    <p class ="errorMessage">{{$t('error.sameUsername')}}</p>
   </v-col>
     <v-col v-if="incompleteError" cols="12">
-      <p class ="error">{{$t('error.incompleteError')}}</p>
+      <p class ="errorMessage">{{$t('error.incompleteError')}}</p>
     </v-col>
   <v-col cols="4">
     <v-text-field
@@ -29,6 +29,8 @@
   <v-col>
     <v-btn
         @click="changeUsername"
+        class="submitButton"
+        color="primary"
         >{{$t('labels.submit')}}
         </v-btn>
   </v-col>

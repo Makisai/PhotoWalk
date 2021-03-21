@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="pa-0">
 <!--    View on Desktop-->
     <v-container class="d-none d-sm-flex">
       <v-container v-if="!isLoading">
@@ -8,6 +8,14 @@
             <PhotowalkMap/>
           </v-col>
           <v-col cols="12" md="6">
+              <h3 class="text-h3" v-text="photowalkTitle"/>
+              <h4 class="text-h4" v-text="photowalkRegion"/>
+              <span v-text="photowalkLength"/>
+            <v-row>
+              <p v-if="this.$store.state.detail.currentID === 1">{{$t('photos.description1')}}</p>
+              <p v-if="this.$store.state.detail.currentID === 2">{{$t('photos.description2')}}</p>
+              <p v-if="this.$store.state.detail.currentID === 3">{{$t('photos.description3')}}</p>
+            </v-row>
             <v-row>
               <v-col cols="12">
                 <ChallengeDropdown/>
@@ -49,6 +57,14 @@
           </v-col>
         </v-tab-item>
         <v-tab-item>
+          <h3 class="text-h3" v-text="photowalkTitle"/>
+          <h4 class="text-h4" v-text="photowalkRegion"/>
+          <span v-text="photowalkLength"/>
+          <v-row>
+            <p v-if="this.$store.state.detail.currentID === 1">{{$t('photos.description1')}}</p>
+            <p v-if="this.$store.state.detail.currentID === 2">{{$t('photos.description2')}}</p>
+            <p v-if="this.$store.state.detail.currentID === 3">{{$t('photos.description3')}}</p>
+          </v-row>
           <v-row>
             <v-col cols="12">
               <ChallengeDropdown/>
@@ -92,7 +108,10 @@ export default {
     return{
       isLoading: true,
       isLoadingMyPhotos: true,
-      isLoadingFriendsPhotos: true
+      isLoadingFriendsPhotos: true,
+      photowalkTitle:'',
+      photowalkRegion:'',
+      photowalkLength:0,
     }
   },
   components: {PhotoUpload, ChallengeDropdown, PhotowalkMap, PhotosUserGrid, PhotosFriendsGrid},
@@ -105,6 +124,9 @@ export default {
     }).then(response => {
       this.$store.commit(SET_PHOTOWALK,response.data);
       this.isLoading = false;
+      this.photowalkTitle = response.data.name;
+      this.photowalkRegion = response.data.region;
+      this.photowalkLength = response.data.length;
     })
     this.isLoadingMyPhotos = true;
     this.axios.get(`photos/user`,{
@@ -127,3 +149,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.commitButton{
+background-color: #00BCD4;
+color: white;
+}
+</style>
