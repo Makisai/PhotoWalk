@@ -15,6 +15,12 @@
               <p class="descriptionText">{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
             </v-row>
             <v-row>
+              <h5 class="text-h5 ma-4">Challenges: </h5>
+            </v-row>
+            <v-row>
+              <ChallengesList/>
+            </v-row>
+            <v-row>
               <v-col cols="12">
                 <ChallengeDropdown/>
               </v-col>
@@ -63,6 +69,12 @@
             <p class="descriptionText mx-10">{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
           </v-row>
           <v-row>
+            <h5 class="text-h5 ma-4">Challenges: </h5>
+          </v-row>
+          <v-row>
+            <ChallengesList/>
+          </v-row>
+          <v-row>
             <v-col cols="12">
               <ChallengeDropdown/>
             </v-col>
@@ -99,6 +111,7 @@ import ChallengeDropdown from "@/components/ChallengeDropdown";
 import PhotoUpload from "@/components/PhotoUpload";
 import PhotosUserGrid from "@/components/photos/PhotosUserGrid";
 import PhotosFriendsGrid from "@/components/photos/PhotosFriendsGrid";
+import ChallengesList from "@/components/ChallengesList";
 export default {
   name: 'WalksDetail',
   data(){
@@ -108,7 +121,7 @@ export default {
       isLoadingFriendsPhotos: true,
     }
   },
-  components: {PhotoUpload, ChallengeDropdown, PhotowalkMap, PhotosUserGrid, PhotosFriendsGrid},
+  components: {ChallengesList, PhotoUpload, ChallengeDropdown, PhotowalkMap, PhotosUserGrid, PhotosFriendsGrid},
   beforeMount() {
     this.isLoading = true;
     this.axios.get(`photowalks/${this.$store.state.detail.currentID}`,{
