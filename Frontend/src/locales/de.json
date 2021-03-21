@@ -52,6 +52,7 @@
   },
   "settings": {
     "changeMail": "Hier kannst Du Deine E-Mail ändern:",
+    "currentUsername": "Dein Benutzername: ",
     "changeUsername": "Hier kannst Du Deinen Benutzernamen ändern:",
     "changePassword":"Hier kannst Du Dein Passwort ändern:",
     "oldPassword": "altes Passwort",

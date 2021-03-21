@@ -9,8 +9,13 @@
       <v-col v-if="internalError" cols="12">
         <p class ="errorMessage">{{$t('error.internalError')}}</p>
       </v-col>
+      <v-col v-if="updated" cols="12">
+        <p class="successMessage">{{$t('success.profilePictureUpdated')}}</p>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="12" md="5">
-        <h5 class="text-h6">{{ $t('settings.changeProfilePicture') }}</h5>
+        <h6 class="text-h6">{{ $t('settings.changeProfilePicture') }}</h6>
         <p class="adviceText" v-html="$t('settings.advice')"/>
       </v-col>
       <v-col col="12" md="3" >
@@ -23,7 +28,6 @@
             :rules="[rules.required,rules.mimetype,rules.size]"
             :label="$t('settings.profilePicture')"
             filled
-            show-size
             name="profile-picture"
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
@@ -35,9 +39,6 @@
           {{$t('labels.submit')}}
         </v-btn>
       </v-col>
-      <v-col v-if="updated">
-      <p class="successMessage"> {{$t('success.profilePictureUpdated')}} </p>
-    </v-col>
     </v-row>
   </div>
 </template>

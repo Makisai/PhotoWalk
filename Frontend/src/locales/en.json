@@ -52,6 +52,7 @@
   },
   "settings": {
     "changeMail": "Change your E-mail here:",
+    "currentUsername": "Current username: ",
     "changeUsername": "Change your username here:",
     "changePassword":"Change your password here:",
     "changeProfilePicture": "Change your profile picture here:",
