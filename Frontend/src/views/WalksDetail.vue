@@ -8,13 +8,11 @@
             <PhotowalkMap/>
           </v-col>
           <v-col cols="12" md="6">
-              <h3 class="text-h3" v-text="photowalkTitle"/>
-              <h4 class="text-h4" v-text="photowalkRegion"/>
-              <span v-text="photowalkLength"/>
+            <h3 class="text-h3" >{{this.$store.state.detail.photowalk.name}}</h3>
+            <h4 class="text-h4" >{{this.$store.state.detail.photowalk.region}}</h4>
+            <span>{{this.$store.state.detail.photowalk.length}}</span>
             <v-row>
-              <p v-if="this.$store.state.detail.currentID === 1">{{$t('photos.description1')}}</p>
-              <p v-if="this.$store.state.detail.currentID === 2">{{$t('photos.description2')}}</p>
-              <p v-if="this.$store.state.detail.currentID === 3">{{$t('photos.description3')}}</p>
+              <p>{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
             </v-row>
             <v-row>
               <v-col cols="12">
@@ -57,13 +55,11 @@
           </v-col>
         </v-tab-item>
         <v-tab-item>
-          <h3 class="text-h3" v-text="photowalkTitle"/>
-          <h4 class="text-h4" v-text="photowalkRegion"/>
-          <span v-text="photowalkLength"/>
+          <h3 class="text-h3" >{{this.$store.state.detail.photowalk.name}}</h3>
+          <h4 class="text-h4" >{{this.$store.state.detail.photowalk.region}}</h4>
+          <span>{{this.$store.state.detail.photowalk.length}}</span>
           <v-row>
-            <p v-if="this.$store.state.detail.currentID === 1">{{$t('photos.description1')}}</p>
-            <p v-if="this.$store.state.detail.currentID === 2">{{$t('photos.description2')}}</p>
-            <p v-if="this.$store.state.detail.currentID === 3">{{$t('photos.description3')}}</p>
+            <p>{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
           </v-row>
           <v-row>
             <v-col cols="12">
@@ -109,9 +105,6 @@ export default {
       isLoading: true,
       isLoadingMyPhotos: true,
       isLoadingFriendsPhotos: true,
-      photowalkTitle:'',
-      photowalkRegion:'',
-      photowalkLength:0,
     }
   },
   components: {PhotoUpload, ChallengeDropdown, PhotowalkMap, PhotosUserGrid, PhotosFriendsGrid},
@@ -124,9 +117,6 @@ export default {
     }).then(response => {
       this.$store.commit(SET_PHOTOWALK,response.data);
       this.isLoading = false;
-      this.photowalkTitle = response.data.name;
-      this.photowalkRegion = response.data.region;
-      this.photowalkLength = response.data.length;
     })
     this.isLoadingMyPhotos = true;
     this.axios.get(`photos/user`,{
