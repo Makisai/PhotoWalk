@@ -1,11 +1,11 @@
 <template>
   <v-container fluid >
-    <v-carousel hide-delimiters height="850" v-model="currentIndex">
+    <v-carousel hide-delimiters height="600" v-model="currentIndex">
       <v-carousel-item
           v-for="(photo) in photosRearranged"
           :key="(photo.id)">
         <v-img
-            height="850"
+            height="600"
             contain
             :src="picture(photo.photo_link)"/>
         </v-carousel-item>

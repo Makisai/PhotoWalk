@@ -68,6 +68,6 @@ export default {
 
 <style scoped>
 .mapCard{
-  max-width: 380px;
+  max-width: 250px;
 }
 </style>
