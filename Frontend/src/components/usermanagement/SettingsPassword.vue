@@ -1,16 +1,22 @@
 <template>
   <div>
-    <p>{{$t('settings.changePassword')}} </p>
+    <v-divider class="my-10"/>
     <v-col v-if="wrongPasswordError" cols="12">
       <p class ="errorMessage"> {{$t('error.passwordIncorrect')}}</p>
     </v-col>
-    <v-col v-if="incompleteError">
+    <v-col v-if="incompleteError" cols="12">
       <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
     </v-col>
-    <v-col v-if="internalError">
+    <v-col v-if="internalError" cols="12">
       <p class="errorMessage"> {{$t('error.internalError')}} </p>
     </v-col>
-    <v-col class="py-2" cols="8">
+    <v-col v-if="updatedPassword" cols="12">
+      <p class="successMessage">{{$t('success.passwordUpdated')}}</p>
+    </v-col>
+    <v-col cols="12" md="6">
+      <h6 class="text-h6">{{$t('settings.changePassword')}}</h6>
+    </v-col>
+    <v-col class="py-2" cols="12" md="6">
       <v-text-field
           :append-icon="showeye0 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
@@ -23,9 +29,10 @@
           class="input-group--focused"
           @click:append="showeye0 = !showeye0"
           v-model="oldPassword"
+          ref="oldPassword"
       ></v-text-field>
     </v-col>
-    <v-col class="py-2" cols="8">
+    <v-col class="py-2" cols="12" md="6">
       <v-text-field
           :append-icon="showeye1 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
@@ -38,6 +45,7 @@
           class="input-group--focused"
           @click:append="showeye1 = !showeye1"
           v-model="newPassword"
+          ref="newPassword"
       ></v-text-field>
     </v-col>
     <v-col cols="8">
@@ -47,9 +55,6 @@
          color="primary">
        {{$t('labels.submit')}}
      </v-btn>
-    </v-col>
-    <v-col v-if="updatedPassword">
-      <p >{{$t('success.passwordUpdated')}} </p>
     </v-col>
   </div>
 </template>
@@ -70,7 +75,7 @@ export default {
       internalError: false,
       rules: {
         required: value => !!value || 'Required.',
-        min: v => v.length >= 8 || 'Min 8 characters',
+        min: value => !value || value.length >= 8 || 'Min 8 characters',
       },
     }
   },
@@ -86,6 +91,8 @@ export default {
             this.wrongPasswordError =false;
             this.incompleteError =false;
             this.internalError = false;
+            this.$refs.oldPassword.reset();
+            this.$refs.newPassword.reset();
           }
       }).catch((error) => {
           if(error.response && error.response.status == 401){

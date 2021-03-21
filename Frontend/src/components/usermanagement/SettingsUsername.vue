@@ -20,7 +20,7 @@
       <h6 class="text-h6"> {{$t('settings.changeUsername')}} </h6>
       <p class="currentUsername"> {{$t('settings.currentUsername') + $store.state.user.username}} </p>
     </v-col>
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="6" class="py-0">
         <v-text-field
           :rules="[rules.required,rules.max]"
           filled
@@ -28,6 +28,7 @@
           prepend-inner-icon="mdi-account"
           color="primary"
           v-model="newUsername"
+          ref="username"
         />
       </v-col>
       <v-col cols="12" md="3">
@@ -56,7 +57,7 @@ export default {
         sameUsernameError: false,
         rules: {
           required: value => !!value || 'Required.',
-          max: value => value.length <=18 || 'Max 18 characters'
+          max: value => !value || value.length <=18 || 'Max 18 characters'
         },
       }
     },
@@ -74,6 +75,7 @@ export default {
             this.usernameAssignedError = false;
             this.sameUsernameError = false;
             this.$store.commit(SET_USERNAME, this.newUsername);
+            this.$refs.username.reset();
             }  
       }).catch((error) => {
           if(error.response && error.response.status == 404){

@@ -3,9 +3,9 @@
     <v-card class="div1" elevation="2">
       <SettingsProfilePicture/>  
       <SettingsUsername/>
+      <SettingsPassword/>
     </v-card>
     <v-card class="div2" elevation="2">
-      <SettingsPassword/>
       <SettingsDeleteUser/>
     </v-card>
   </v-container>

@@ -31,6 +31,7 @@
             name="profile-picture"
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
+            ref="profilePicture"
         ></v-file-input>
         <v-btn
             @click="updatePhoto"
@@ -59,11 +60,11 @@ export default {
       internalError: false,
       updated: false,
       rules: {
-          notEmpty: v => !!v ||'file is required',
-          size: v => v.size <= 1024*1024* 50 || 'filesize too big',
-          mimetype: v => {
-            const pattern = /.*(\.png|\.jpg|\.jpeg|\.JPG|\.JPEG|\.PNG){1}$/mg
-            return pattern.test(v.name)  || 'Invalid mimetype'
+          notEmpty: value => !!value ||'file is required',
+          size: value => !value || value.size <= 1024*1024* 50 || 'filesize too big',
+          mimetype: value => {
+            const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
+            return !value || pattern.test(value.name.toLowerCase())  || 'Invalid mimetype'
           },
       },
     }
@@ -84,6 +85,7 @@ export default {
             this.incompleteError = false;
             this.$store.commit(SET_PROFILEPICTURE, response.data.path);
             this.updateProfilePicture = "";
+            this.$refs.profilePicture.reset();
           }  
       }).catch((error) => {
           if(error.response && error.response.status == 400){
