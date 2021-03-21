@@ -5,11 +5,11 @@
     </v-row>
     <div v-masonry item-selector=".item" class="masonry-container">
       <div v-masonry-tile class="item pa-2" :key="index" v-for="(photo, index) in walkPhotos">
-        <v-card max-width="400px">
+        <v-card max-width="300px">
           <v-dialog @click:outside="onDialogClose">
             <template v-slot:activator="{ on, attrs }" >
               <v-img
-                  max-height="500px"
+                  max-height="400px"
                   class="align-end flex-md-wrap"
                   @load="imageLoaded"
                   :src="picture(photo.photo_link)"

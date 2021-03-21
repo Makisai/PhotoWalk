@@ -75,10 +75,10 @@
   },
   "photos":  {
     "myPhotos": "Meine Photos",
-    "descriptionMyPhotos": "Hier kannst Du Dir alle Photos ansehen, die Du zu den Challenges der Photowalks hochgeladen hast. Bilder, die Deinen Freunden besonders gut gefallen, haben viele Herzen.",
+    "descriptionMyPhotos": "Hier kannst Du Dir alle Photos ansehen, die Du zu den Challenges der Photowalks hochgeladen hast.<br> Bilder, die Deinen Freunden besonders gut gefallen, haben viele Herzen.",
     "friendsPhotos": "Photos meiner Freunde",
     "descriptionFriendsPhotos":
-      "Hier kannst Du Dir alle Fotos ansehen, die Deine Freunde zu den Challenges der Photowalks hochgeladen haben. Erkennst Du einige der Motive wieder? Gefällt Dir ein Bild besonders gut, dann zeige es Deinen Freunden, indem du auf das Herz klickst.",
+      "Hier kannst Du Dir alle Fotos ansehen, die Deine Freunde zu den Challenges der Photowalks hochgeladen haben.<br> Erkennst Du einige der Motive wieder? Gefällt Dir ein Bild besonders gut, dann zeige es Deinen Freunden, indem du auf das Herz klickst.",
     "walk1": "Kreise ziehen im Park",
     "walk2": "Bei Wind und Wellen",
     "walk3": "Alster Rundfahrt",
