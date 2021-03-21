@@ -32,7 +32,7 @@
           <p class="descriptionText ma-10">{{$t('landing.pitchText')}}</p>
           <p class="registerText">{{$t('landing.pitchCommand')}}</p>
           <LoginDialog/>
-          <div class="mx-2 card">
+          <div class="mx-2 card mb-4">
             <ImageGridBottom/>
           </div>
         </v-col>
