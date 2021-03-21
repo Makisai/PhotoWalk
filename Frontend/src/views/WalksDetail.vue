@@ -9,10 +9,10 @@
           </v-col>
           <v-col cols="12" md="6">
             <h3 class="text-h3" >{{this.$store.state.detail.photowalk.name}}</h3>
-            <h4 class="text-h4" >{{this.$store.state.detail.photowalk.region}}</h4>
-            <span>{{this.$store.state.detail.photowalk.length}}</span>
+            <h4 class="text-h5" > - {{this.$store.state.detail.photowalk.region}} - </h4>
+            <span>{{$t('photos.length') + this.$store.state.detail.photowalk.length + $t('photos.minutes')}}</span>
             <v-row>
-              <p>{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
+              <p class="descriptionText">{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
             </v-row>
             <v-row>
               <v-col cols="12">
@@ -24,6 +24,7 @@
             </v-row>
           </v-col>
         </v-row>
+        <v-divider/>
         <v-row justify="center" class="ma-2">
           <v-container v-if="!isLoadingMyPhotos">
           <h3 class="text-h3">{{ $t('photos.myPhotos') }}</h3>
@@ -56,10 +57,10 @@
         </v-tab-item>
         <v-tab-item>
           <h3 class="text-h3" >{{this.$store.state.detail.photowalk.name}}</h3>
-          <h4 class="text-h4" >{{this.$store.state.detail.photowalk.region}}</h4>
-          <span>{{this.$store.state.detail.photowalk.length}}</span>
+          <h5 class="text-h5" > - {{this.$store.state.detail.photowalk.region}} - </h5>
+          <span>{{$t('photos.length') + this.$store.state.detail.photowalk.length + $t('photos.minutes')}}</span>
           <v-row>
-            <p>{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
+            <p class="descriptionText mx-10">{{$t('photos.description'+ this.$store.state.detail.currentID)}}</p>
           </v-row>
           <v-row>
             <v-col cols="12">
@@ -141,8 +142,11 @@ export default {
 </script>
 
 <style scoped>
-.commitButton{
-background-color: #00BCD4;
-color: white;
+
+.descriptionText{
+  font-size: 18px;
+  text-align: justify;
+  margin-top: 7%;
+  margin-left: 5%;
 }
 </style>
