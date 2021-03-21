@@ -5,7 +5,7 @@
             :items="$store.state.detail.photowalk.challenges"
             item-text="description"
             item-value="id"
-            label="Challenge auswählen"
+            :label="$t('photoUpload.selectChallengeId')"
             return-object
             single-line
         ></v-select>

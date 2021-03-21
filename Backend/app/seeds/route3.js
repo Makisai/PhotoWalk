@@ -6,10 +6,18 @@ const Challenge = db.challenges;
 const seeder = {
     route3: async ()=>{
         const photowalk3 = Photowalk.build({
-            name: 'Alsterlauf',
-            length: .5,
-            region:'Innenstadt',
-            description:'Alles dreht sich um die Alster',
+            name: 'Alster Rundfahrt',
+            length: 30,
+            region:'Binnenalster',
+            description:'Dieser kurze PhotoWalk führt Dich einmal um die Binnenalster in der Hamburger Innenstadt. ' +
+                'Die Binnenalster hat eine Fläche von etwa 18 Hektar und ist der kleinere, südliche Teil des Alstersees. ' +
+                'Die weißen Fassaden und kupfergedeckten Dächer der Gebäude, bieten Dir ein ganz besonderes Panorama. ' +
+                'Besonders in den frühen Abendstunden kannst Du hier ein paar einzigartige Aufnahmen machen. ' +
+                'Das Areal an der Hamburger Binnenalster wird nicht ohne Grund auch die »Gute Stube Hamburgs« genannt. ' +
+                'Gehe doch vielleicht einmal zu verschiedenen Tageszeiten auf diesen PhotoWalk und schaue, wie Du die ' +
+                'Challenges auf unterschiedliche Arten lösen kannst. ' +
+                'Dieser PhotoWalk führt Dich außerdem direkt zum Eingang von Planten un Blomen, falls Du Deinen ' +
+                'Spaziergang in Hamburgs bekanntester Parkanlage fortsetzen möchtest.',
         });
 //warten bis photowalk erstellt ist und speichert ihn dann
         await photowalk3.save();

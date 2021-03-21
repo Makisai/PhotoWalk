@@ -4,7 +4,7 @@
       @mouseenter="imageSrc = imageHover"
       @mouseleave="imageSrc = image"
       :lazy-src="`images/gradient.png`"
-      class="rounded-lg elevation-1 grid-image"
+      class="rounded-lg elevation-2 grid-image"
       aspect-ratio="1">
   </v-img>
 </template>

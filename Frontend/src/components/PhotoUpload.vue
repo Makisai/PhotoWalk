@@ -1,10 +1,10 @@
  <template>
    <div>
       <v-col v-if="internalError">
-        <p>{{$t('error.internalError')}} </p>
+        <p class="errorMessage"> {{$t('error.internalError')}} </p>
       </v-col>
         <v-col v-if="incompleteError">
-        <p>{{$t('error.incompleteError')}} </p>
+        <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
       </v-col>
       <v-col class="py-2" cols="12">
       <v-file-input
@@ -16,9 +16,14 @@
         ref="fileInput"
       ></v-file-input>
       </v-col>
-     <v-btn @click="submitUpload" :disabled="!challengeIsSelected()">{{ $t('labels.submit') }}</v-btn>
+     <v-btn
+       @click="submitUpload"
+       :disabled="!challengeIsSelected()"
+        class="submitButton"
+        color="primary">
+       {{ $t('labels.submit') }}</v-btn>
     <v-col v-if="uploaded">
-      <p>{{$t('success.photoUpload')}} </p>
+      <p class="successMessage"> {{$t('success.photoUpload')}} </p>
     </v-col>
    </div>
  </template>
@@ -46,8 +51,8 @@
     },
     methods: {
       challengeIsSelected() {
-        const challengeIds = this.$store.state.detail.photowalk.challenges.map(challenge => challenge.id);
-        return challengeIds.includes(this.$store.state.detail.selectedChallenge.id);
+          const challengeIds = this.$store.state.detail.photowalk.challenges.map(challenge => challenge.id);
+          return challengeIds.includes(this.$store.state.detail.selectedChallenge.id);
       },
       submitUpload(){ 
         let formData = new FormData();

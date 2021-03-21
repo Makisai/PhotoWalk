@@ -48,7 +48,7 @@
     "notRegistered": "No account yet?"
   },
   "photoUpload": {
-    "selectChallengeId": "Please select a challenge."
+    "selectChallengeId": "Please select a challenge"
   },
   "settings": {
     "changeMail": "Change your E-mail here.",
@@ -81,17 +81,21 @@
     "descriptionFriendsPhotos": "Here you can view all photos your friends took on their Photowalks. Do you recognize any of the motifs? Show your friends that you like a photo they took by clicking on the heart icon!",
     "walk1": "Kreise ziehen im Park",
     "walk2": "Bei Wind und Wellen",
-    "walk3": "Alster Rundfahrt"
+    "walk3": "Alster Rundfahrt",
+    "description1": "This PhotoWalk leads you straight through the green heart of Hamburg. This park was opened in 1914 and is for most people living in Hamburg the best place for a barbecue with friends or a nice sunday walk. This PhotoWalk guides you along some of the 23 artworks displayed in the park. Can you use these statues to master our Photochallenges? Apart from the statues you will pass one of Hamburg’s most famous buildings: the 1930 rebuilt water tower, today known as the city's planetarium. This walk begins and ends near Hamburg’s subway stations. We recommend starting from the Saarlandstraße subway station and finish the walk near Borgweg subway station.",
+    "description2": "Even though being Hamburg’s newest district the Hafencity holds a lot of tradition and history. On this PhotoWalk you will see the many facets which make Hamburg in our opinion the most beautiful city in the north: the proximity to the water, the fresh breeze which is even welcome in Hamburg’s renowned Schietwetter, the UNESCO world heritage the Speicherstadt, as well as a lot of innovative and modern architecture with lots of glas. \nLet the PhotoWalk lead you from the Elbbrücken to the Elbphilharmonie. Try going on this walk once a month and be surprised by the growth and change of this district. Maybe you can even capture the evolution of a new part of the Hafencity with your photos.",
+    "description3": "This short PhotoWalk takes you around the Binnenalster in the downtown area of Hamburg. The Binnenalster has an area of nearly 18 hectare and is the smaller and southern part of the Alster lake. The white facades and copper-covered roofs of the surrounding buildings present an unique panorama. You can take some great shots from here, especially in the early evening hours. Not without reason is the area around the Binnenalster called “Gute Stube Hamburgs”. Why don’t you try doing this PhotoWalk a couple of times during different times of day and see if you can solve the challenges in different ways! This PhotoWalk leads you right to the entrance to the most famous park in Hamburg. If you haven't had enough after this PhotoWalk you can keep going and continue exploring Planten un Blomen."
+
   },
   "photowalks": {
     "chooseWalk": "Choose a Photowalk.",
     "startWalk": "start Walk"
   },
   "welcome": {
-    "welcomePhrase": "Welcome to Photowalk.",
-    "lastPhotowalk": "This was your last Photowalk.",
+    "welcomePhrase": "Welcome to Photowalk",
+    "lastPhotowalk": "This was your last Photowalk",
     "tutorial": "How does Photowalk work?",
-    "navigate":"Take a Photowalk.",
+    "navigate":"Take a Photowalk",
     "step1":"This is step one.",
     "step2":"This is step two.",
     "step3":"This is step three.",

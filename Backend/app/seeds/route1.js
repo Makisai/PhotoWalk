@@ -6,10 +6,18 @@ const Challenge = db.challenges;
 const seeder = {
     route1: async ()=>{
         const photowalk1 = Photowalk.build({
-            name: 'Stadtpark',
-            length: 2,
-            region:'jhoto',
-            description:'This is our first walk, uuuuuuhiiiiiii',
+            name: 'Kreise ziehen im Park',
+            length: 180,
+            region:'Hamburger Stadtpark',
+            description:'Dieser PhotoWalk führt Dich einmal durch das grüne Herz von Hamburg. ' +
+                'Der 1914 eröffnete Park ist für viele in Hamburg Lebende der beste Ort zum gemeinsamen ' +
+                'Grillen oder ideal für einen Sonntagsspaziergang. Dieser PhotoWalk führt Dich an einigen ' +
+                'der 23 Kunstwerke vorbei, die im Park zu finden sind. Kannst Du mit Hilfe der Statuen ' +
+                'die Photochallenges bewältigen? Neben den Statuen wird Dir auf diesem Spaziergang ' +
+                'auch eins von Hamburgs bekanntesten Gebäuden begegnen: Der 1930 zum Planetarium umgebaute ' +
+                'Wasserturm. Dieser PhotoWalk beginnt und endet in sehr kurzer Laufreichweite zur Hamburger U-Bahn. ' +
+                'Wir empfehlen aus Richtung der U-Bahn Saarlandstraße zu beginnen und den Spaziergang nahe ' +
+                'der U-Bahn Borgweg abzuschließen.',
         });
         //warten bis photowalk erstellt ist und speichert ihn dann
         await photowalk1.save();

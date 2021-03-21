@@ -5,21 +5,16 @@
         v-for="(photo, index) in lastPhotos"
         :key="index"
         class="d-flex child-flex"
-        cols="2"
-      >
+        cols="2">
         <v-img
           :src="picture(photo.photo_link)"
-          aspect-ratio="1"
-        >
+          aspect-ratio="1">
           <template v-slot:placeholder>
             <v-row
               class="fill-height ma-0"
               align="center"
-              justify="center"
-            >
-              <v-progress-circular
-                indeterminate
-              ></v-progress-circular>
+              justify="center">
+              <v-progress-circular indeterminate/>
             </v-row>
           </template>
         </v-img>

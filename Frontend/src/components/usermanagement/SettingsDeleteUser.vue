@@ -2,10 +2,10 @@
   <div>
     <p>{{$t('settings.deleteQuestion')}} </p>
     <v-col v-if="deleteUserError" cols="12">
-      <p class ="error">{{$t('error.deleteUser')}}</p>
+      <p class ="errorMessage">{{$t('error.deleteUser')}}</p>
     </v-col>
     <v-col v-if="deletePicturesError" cols="12">
-      <p class ="error">{{$t('error.deleteAllPictures')}}</p>
+      <p class ="errorMessage">{{$t('error.deleteAllPictures')}}</p>
     </v-col>
     <v-dialog
       v-model="dialog"
@@ -13,7 +13,7 @@
     >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        color="red lighten-2"
+        color="secondary"
         dark
         v-bind="attrs"
         v-on="on"
@@ -30,11 +30,9 @@
         <v-card-text>
           {{$t('settings.deleteHint')}}
         </v-card-text>
-
-        <v-divider></v-divider>
-
+        <v-divider/>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer/>
           <v-btn
             color="primary"
             text
