@@ -51,10 +51,10 @@
     "selectChallengeId": "Please select a challenge"
   },
   "settings": {
-    "changeMail": "Change your E-mail here.",
-    "changeUsername": "Change your username here.",
-    "changePassword":"Change your password here.",
-    "changeProfilePicture": "Change your profile picture here",
+    "changeMail": "Change your E-mail here:",
+    "changeUsername": "Change your username here:",
+    "changePassword":"Change your password here:",
+    "changeProfilePicture": "Change your profile picture here:",
     "deleteQuestion": "Delete your Account?",
     "deleteAccount": "DELETE",
     "oldPassword": "old password",
@@ -64,7 +64,7 @@
     "deleteYes": "DELETE",
     "deleteNo": "BACK",
     "profile": "Profile",
-    "advice": "Maximum filesize: 50MB. We recommend a square picture format.",
+    "advice": "Maximum filesize: 50MB. <br>We recommend a square picture format.",
     "profilePicture": "profile picture"
   },
 

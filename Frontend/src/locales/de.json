@@ -51,12 +51,12 @@
     "selectChallengeId": "Bitte wähle eine Challenge aus"
   },
   "settings": {
-    "changeMail": "Hier kannst Du Deine E-Mail ändern.",
-    "changeUsername": "Hier kannst Du Deinen Benutzernamen ändern.",
-    "changePassword":"Hier kannst Du Dein Passwort ändern.",
+    "changeMail": "Hier kannst Du Deine E-Mail ändern:",
+    "changeUsername": "Hier kannst Du Deinen Benutzernamen ändern:",
+    "changePassword":"Hier kannst Du Dein Passwort ändern:",
     "oldPassword": "altes Passwort",
     "newPassword": "neues Passwort",
-    "changeProfilePicture": "Hier kannst Du Dein Profilbild ändern",
+    "changeProfilePicture": "Hier kannst Du Dein Profilbild ändern:",
     "deleteQuestion": "Deinen Account löschen?",
     "deleteAccount": "Löschen",
     "deleteSure": "Bist Du Dir sicher, dass Du Deinen Account endgültig löschen möchtest?",
@@ -64,7 +64,7 @@
     "deleteYes": "Löschen",
     "deleteNo": "Abbrechen",
     "profile": "Profil",
-    "advice": "Maximale Bildgröße: 50MB. Wir empfehlen ein quadratisches Bildformat.",
+    "advice": "Maximale Bildgröße: 50MB. <br>Wir empfehlen ein quadratisches Bildformat.",
     "profilePicture": "Profilbild"
   },
   "friends": {

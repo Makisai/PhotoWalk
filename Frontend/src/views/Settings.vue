@@ -1,14 +1,13 @@
 <template>
-  <!--vuetify div-->
   <v-container>
-    <div class="div1"> 
+    <v-card class="div1" elevation="2">
       <SettingsProfilePicture/>  
       <SettingsUsername/>
-    </div>
-    <div class="div2">
+    </v-card>
+    <v-card class="div2" elevation="2">
       <SettingsPassword/>
       <SettingsDeleteUser/>
-    </div> 
+    </v-card>
   </v-container>
 </template>
 
@@ -25,13 +24,16 @@ export default {
 
 <style scoped>
 .div1{ 
-  background-color: #e3e3e3;
   text-align: left;
-  padding: 2em;
- 
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+
 }
 .div2 {
   text-align: left;
-  padding: 2em;
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 </style>

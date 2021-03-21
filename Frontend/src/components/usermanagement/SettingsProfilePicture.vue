@@ -1,6 +1,7 @@
 <template>
   <div> 
-    <h3 class="text-h3">{{($t('settings.profile'))}} </h3>
+    <h3 class="text-h3 my-2">{{($t('settings.profile'))}} </h3>
+    <v-divider class="mt-5 mb-10"/>
     <v-row>
       <v-col v-if="incompleteError" cols="12">
         <p class ="errorMessage">{{$t('error.incompleteError')}}</p>
@@ -8,28 +9,28 @@
       <v-col v-if="internalError" cols="12">
         <p class ="errorMessage">{{$t('error.internalError')}}</p>
       </v-col>
-      <v-col cols="4">
-        <p>{{ $t('settings.changeProfilePicture') }} <br> {{ $t('settings.advice') }}</p>
+      <v-col cols="12" md="5">
+        <h5 class="text-h6">{{ $t('settings.changeProfilePicture') }}</h5>
+        <p class="adviceText" v-html="$t('settings.advice')"/>
       </v-col>
-      <v-col col="4" >
-        <v-list-item>
-          <v-list-item-avatar size="120">
-            <v-img :src="profilePicture"></v-img>
-          </v-list-item-avatar>
-        </v-list-item>
+      <v-col col="12" md="3" >
+        <v-avatar size="130" justify-center>
+          <v-img :src="profilePicture"/>
+        </v-avatar>
       </v-col>
-      <v-col cols="5">
+      <v-col cols="12" md="4">
         <v-file-input
             :rules="[rules.required,rules.mimetype,rules.size]"
             :label="$t('settings.profilePicture')"
             filled
+            show-size
             name="profile-picture"
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
         ></v-file-input>
         <v-btn
             @click="updatePhoto"
-            class="submitButton"
+            class="submitButton ml-9"
             color="primary">
           {{$t('labels.submit')}}
         </v-btn>
@@ -101,5 +102,8 @@ export default {
 </script>
 
 <style scoped>
-
+.adviceText{
+  font-size: 12px;
+  color: #555555;
+}
 </style>

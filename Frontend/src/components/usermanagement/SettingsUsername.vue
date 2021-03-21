@@ -1,6 +1,7 @@
 <template>
   <div>
-  <v-col cols = "4">
+    <v-divider class="my-10"/>
+    <v-col cols = "4">
     <p> {{$t('settings.changeUsername')}} </p>
     <p> {{$store.state.user.username}} </p>
   </v-col>

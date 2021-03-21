@@ -3,18 +3,18 @@
       <v-col v-if="internalError">
         <p class="errorMessage"> {{$t('error.internalError')}} </p>
       </v-col>
-        <v-col v-if="incompleteError">
+      <v-col v-if="incompleteError">
         <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
       </v-col>
       <v-col class="py-2" cols="12">
-      <v-file-input
-        :rules="[rules.notEmpty,rules.size,rules.mimetype]"
-        label="File input"
-        filled
-        prepend-icon="mdi-camera"
-        v-model="upload"
-        ref="fileInput"
-      ></v-file-input>
+        <v-file-input
+          :rules="[rules.notEmpty,rules.size,rules.mimetype]"
+          label="File input"
+          filled
+          prepend-icon="mdi-camera"
+          v-model="upload"
+          ref="fileInput"
+        />
       </v-col>
      <v-btn
        @click="submitUpload"
