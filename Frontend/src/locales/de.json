@@ -23,7 +23,7 @@
     "usernameUpdated": "Dein Benutzername wurde erfolgreich geändert.",
     "passwordUpdated": "Dein Passwort wurde erfolgreich geändert.",
     "deleteAllPictures": "Alle Deine Photos wurden erfolgreich gelöscht.",
-    "deleteUsers": "Dein Account wurde erfolgreich gelöscht."
+    "deleteUser": "Dein Account wurde erfolgreich gelöscht."
   },
   "pages":{
     "friends": "Freunde",

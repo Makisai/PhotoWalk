@@ -13,7 +13,7 @@ import {
   SET_FOUND_USER,
   SET_PHOTOS_USER,
   SET_PHOTOS_FRIENDS,
-  SET_PHOTOS_LAST
+  SET_PHOTOS_LAST, SET_SNACKBARPICTURES, SET_SNACKBARACCOUNT
 } from "@/store/mutations";
 import {CLEAR_USER_DATA} from "@/store/actions";
 
@@ -26,6 +26,8 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
     drawer: false,
+    snackbarPictures: false,
+    snackbarAccount: false,
     user: {
       token: 'XXX',
       username: '',
@@ -49,6 +51,12 @@ export default new Vuex.Store({
   mutations: {
     [SET_DRAWER](state,drawer){
       state.drawer = drawer;
+    },
+    [SET_SNACKBARPICTURES](state,snackbarPictures){
+      state.snackbarPictures = snackbarPictures;
+    },
+    [SET_SNACKBARACCOUNT](state,snackbarAccount){
+      state.snackbarAccount = snackbarAccount;
     },
     [SET_TOKEN](state,token){
       state.user.token = token;
