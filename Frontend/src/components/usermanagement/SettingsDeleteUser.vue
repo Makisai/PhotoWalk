@@ -72,13 +72,12 @@ export default {
         if (response && response.status == 200) {
           this.$store.commit(SET_SNACKBARPICTURES,true);
           this.dialog = false;
-          this.deletedPicturesError = true;
+          this.deletedPicturesError = false;
         }
       }).catch((error) => {
         if (error.response && error.response.status == 500) {
           this.dialog = false;
-          this.deletedPhotosError = true;
-          this.deletedPicturesError = false;
+          this.deletedPicturesError = true;
         }
       }),
           this.axios.delete(`users/deleteUser`, {

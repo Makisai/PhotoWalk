@@ -7,7 +7,6 @@
     "profilePicture": "Das Profilbild konnte nicht geändert werden.",
     "changeUsername": "Der Benutzername konnte nicht geändert werden.",
     "usernameAssigned": "Dieser Benutzername ist bereits vergeben.",
-    "emailAssigned": "Diese E-Mail ist bereits vergeben.",
     "incompleteError": "Bitte überprüfe Deine Angaben auf Vollständigkeit.",
     "internalError": "Ein Fehler ist aufgetreten. Bitte lade die Seite erneut." ,
     "deleteUser": "Dein Account konnte nicht gelöscht werden.",
@@ -51,7 +50,6 @@
     "selectChallengeId": "Bitte wähle eine Challenge aus"
   },
   "settings": {
-    "changeMail": "Hier kannst Du Deine E-Mail ändern:",
     "currentUsername": "Dein Benutzername: ",
     "changeUsername": "Hier kannst Du Deinen Benutzernamen ändern:",
     "changePassword":"Hier kannst Du Dein Passwort ändern:",
