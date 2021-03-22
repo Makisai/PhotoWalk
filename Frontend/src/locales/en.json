@@ -7,7 +7,6 @@
     "profilePicture": "Couldn't update your profile picture.",
     "changeUsername": "Couldn't update your username.",
     "usernameAssigned": "This username is already assigned.",
-    "emailAssigned": "This email is already in use. Please pick another one.",
     "incompleteError": "Please make sure your input is complete.",
     "internalError": "An error has occured. Please reload this site." ,
     "deleteUser": "Your account could not be deleted.",
@@ -51,10 +50,10 @@
     "selectChallengeId": "Please select a challenge"
   },
   "settings": {
-    "changeMail": "Change your E-mail here.",
-    "changeUsername": "Change your username here.",
-    "changePassword":"Change your password here.",
-    "changeProfilePicture": "Change your profile picture here",
+    "currentUsername": "Current username: ",
+    "changeUsername": "Change your username here:",
+    "changePassword":"Change your password here:",
+    "changeProfilePicture": "Change your profile picture here:",
     "deleteQuestion": "Delete your Account?",
     "deleteAccount": "DELETE",
     "oldPassword": "old password",
@@ -64,7 +63,7 @@
     "deleteYes": "DELETE",
     "deleteNo": "BACK",
     "profile": "Profile",
-    "advice": "Maximum filesize: 50MB. We recommend a square picture format.",
+    "advice": "Maximum filesize: 50MB. <br>We recommend a square picture format.",
     "profilePicture": "profile picture"
   },
 

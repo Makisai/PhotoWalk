@@ -45,6 +45,16 @@
         </v-col>
       </v-row>
     </v-footer>
+    <v-snackbar
+        v-model="snackbarAccount"
+        :timeout="4000"
+        color="primary">
+      {{$t('success.deleteUser')}}</v-snackbar>
+    <v-snackbar
+        v-model="snackbarPictures"
+        :timeout="4000"
+        color="primary">
+      {{$t('success.deleteAllPictures')}}</v-snackbar>
   </v-app>
 </template>
 
@@ -55,9 +65,28 @@ import Impressum from "@/components/legal/Impressum";
 import DGSVO from "@/components/legal/DGSVO";
 import ImageGridBottom from "@/components/photos/ImageGridBottom";
 import LocaleChange from "@/components/LocaleChange";
+import {SET_SNACKBARACCOUNT, SET_SNACKBARPICTURES} from "@/store/mutations";
 export default {
   name: 'LandingPage',
-  components: {LocaleChange, ImageGridBottom, DGSVO, Impressum, ImageGridTop, LoginDialog}
+  components: {LocaleChange, ImageGridBottom, DGSVO, Impressum, ImageGridTop, LoginDialog},
+  computed: {
+    snackbarAccount:{
+      get(){
+        return this.$store.state.snackbarAccount;
+      },
+      set(value){
+        this.$store.commit(SET_SNACKBARACCOUNT,value);
+      }
+    },
+    snackbarPictures:{
+      get(){
+        return this.$store.state.snackbarPictures;
+      },
+      set(value){
+        this.$store.commit(SET_SNACKBARPICTURES,value);
+      }
+    }
+  }
 }
 </script>
 

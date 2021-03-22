@@ -3,7 +3,7 @@
       <v-col v-if="internalError">
         <p class="errorMessage"> {{$t('error.internalError')}} </p>
       </v-col>
-        <v-col v-if="incompleteError">
+      <v-col v-if="incompleteError">
         <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
       </v-col>
      <v-row>

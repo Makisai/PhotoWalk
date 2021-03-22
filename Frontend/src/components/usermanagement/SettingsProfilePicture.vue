@@ -1,6 +1,7 @@
 <template>
   <div> 
-    <h3 class="text-h3">{{($t('settings.profile'))}} </h3>
+    <h3 class="text-h3 my-2">{{($t('settings.profile'))}} </h3>
+    <v-divider class="mt-5 mb-10"/>
     <v-row>
       <v-col v-if="incompleteError" cols="12">
         <p class ="errorMessage">{{$t('error.incompleteError')}}</p>
@@ -8,17 +9,21 @@
       <v-col v-if="internalError" cols="12">
         <p class ="errorMessage">{{$t('error.internalError')}}</p>
       </v-col>
-      <v-col cols="4">
-        <p>{{ $t('settings.changeProfilePicture') }} <br> {{ $t('settings.advice') }}</p>
+      <v-col v-if="updated" cols="12">
+        <p class="successMessage">{{$t('success.profilePictureUpdated')}}</p>
       </v-col>
-      <v-col col="4" >
-        <v-list-item>
-          <v-list-item-avatar size="120">
-            <v-img :src="profilePicture"></v-img>
-          </v-list-item-avatar>
-        </v-list-item>
+    </v-row>
+    <v-row>
+      <v-col cols="12" md="5">
+        <h6 class="text-h6">{{ $t('settings.changeProfilePicture') }}</h6>
+        <p class="adviceText" v-html="$t('settings.advice')"/>
       </v-col>
-      <v-col cols="5">
+      <v-col col="12" md="3" >
+        <v-avatar size="130" justify-center>
+          <v-img :src="profilePicture"/>
+        </v-avatar>
+      </v-col>
+      <v-col cols="12" md="4">
         <v-file-input
             :rules="[rules.required,rules.mimetype,rules.size]"
             :label="$t('settings.profilePicture')"
@@ -26,17 +31,15 @@
             name="profile-picture"
             prepend-icon="mdi-camera"
             v-model="updateProfilePicture"
+            ref="profilePicture"
         ></v-file-input>
         <v-btn
             @click="updatePhoto"
-            class="submitButton"
+            class="submitButton ml-9"
             color="primary">
           {{$t('labels.submit')}}
         </v-btn>
       </v-col>
-      <v-col v-if="updated">
-      <p class="successMessage"> {{$t('success.profilePictureUpdated')}} </p>
-    </v-col>
     </v-row>
   </div>
 </template>
@@ -57,11 +60,11 @@ export default {
       internalError: false,
       updated: false,
       rules: {
-          notEmpty: v => !!v ||'file is required',
-          size: v => v.size <= 1024*1024* 50 || 'filesize too big',
-          mimetype: v => {
-            const pattern = /.*(\.png|\.jpg|\.jpeg|\.JPG|\.JPEG|\.PNG){1}$/mg
-            return pattern.test(v.name)  || 'Invalid mimetype'
+          notEmpty: value => !!value ||'file is required',
+          size: value => !value || value.size <= 1024*1024* 50 || 'filesize too big',
+          mimetype: value => {
+            const pattern = /.*(\.png|\.jpg|\.jpeg){1}$/mg
+            return !value || pattern.test(value.name.toLowerCase())  || 'Invalid mimetype'
           },
       },
     }
@@ -82,6 +85,7 @@ export default {
             this.incompleteError = false;
             this.$store.commit(SET_PROFILEPICTURE, response.data.path);
             this.updateProfilePicture = "";
+            this.$refs.profilePicture.reset();
           }  
       }).catch((error) => {
           if(error.response && error.response.status == 400){
@@ -101,5 +105,8 @@ export default {
 </script>
 
 <style scoped>
-
+.adviceText{
+  font-size: 12px;
+  color: #555555;
+}
 </style>
