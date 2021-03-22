@@ -7,10 +7,10 @@ export default new Vuetify({
     theme: {
         themes: {
             light: {
-                primary: '#00bcd4',
-                secondary: '#e91e63',
-                accent: '#E91E63',
-                error: '#f44336',
+                primary: '#00BCD4',
+                secondary: '#E91E63',
+                accent: '#e91e63',
+                error: '#E91E63',
                 warning: '#ff9800',
                 info: '#009688',
                 success: '#E91E63'

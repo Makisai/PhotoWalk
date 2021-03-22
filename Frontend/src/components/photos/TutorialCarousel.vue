@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid >
-    <v-carousel height="90%" v-model="currentIndex">
+  <v-container>
+    <v-carousel height="400px" v-model="currentIndex">
       <v-carousel-item v-for="item in items" :key="item.src" :src="item.src"/>
     </v-carousel>
 	<v-card-text>{{$t('welcome.step'+(currentIndex+1))}}</v-card-text>

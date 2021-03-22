@@ -114,7 +114,4 @@ export default {
 .registerText{
   font-size: 20px;
 }
-.cardcolor{
-  background-color: #4db6ac;
-}
 </style>

@@ -1,11 +1,16 @@
  <template>
    <div>
+     <v-row>
       <v-col v-if="internalError">
         <p class="errorMessage"> {{$t('error.internalError')}} </p>
       </v-col>
       <v-col v-if="incompleteError">
         <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
       </v-col>
+       <v-col v-if="uploaded">
+         <p class="successMessage"> {{$t('success.photoUpload')}} </p>
+       </v-col>
+     </v-row>
      <v-row>
       <v-col class="pa-4" cols="12" sm="8">
         <v-file-input
@@ -27,9 +32,6 @@
        {{ $t('labels.submit') }}</v-btn>
      </v-col>
      </v-row>
-    <v-col v-if="uploaded">
-      <p class="successMessage"> {{$t('success.photoUpload')}} </p>
-    </v-col>
    </div>
  </template>
 
