@@ -2,13 +2,14 @@
   <v-app>
     <v-app-bar class="gradient" app>
       <v-app-bar-nav-icon class="mr-0" @click.stop="drawer = !drawer" color="white"/>
-      <v-toolbar-title class="title mr-auto">Photowalk</v-toolbar-title>
       <v-img
-          max-height="50px"
-          max-width="50px"
+          max-height="30px"
+          max-width="30px"
+          class="mx-1"
           :src="'/photowalk_logo_white.png'"
           @click="navigateToStart"
       />
+      <v-toolbar-title class="title mr-auto" @click="navigateToStart">Photowalk</v-toolbar-title>
       <LocaleChange class="mr-0"/>
     </v-app-bar>
     <Navigation-drawer/>
