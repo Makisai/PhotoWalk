@@ -4,11 +4,13 @@
       <v-col
         v-for="(photo, index) in lastPhotos"
         :key="index"
-        class="d-flex child-flex"
+        class="d-flex child-flex my-5"
         cols="2">
         <v-img
           :src="picture(photo.photo_link)"
-          aspect-ratio="1">
+          aspect-ratio="1"
+          class="rounded-lg grid-image elevation-2"
+          >
           <template v-slot:placeholder>
             <v-row
               class="fill-height ma-0"
