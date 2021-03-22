@@ -51,7 +51,6 @@ export default {
       }
     }).then(response =>{
       this.editedPhotowalks = response.data.editedPhotowalks;
-      console.log(response.data)
     })
   },
 }

@@ -2,14 +2,14 @@
   <v-container>
     <div v-if="!isLoading">
       <h3 class="text-h3 pa-4">{{ $t('photos.myPhotos') }}</h3>
-      <p>{{$t('photos.descriptionMyPhotos')}}</p>
+      <p v-html="$t('photos.descriptionMyPhotos')"></p>
       <PhotosUserGrid walk="1"></PhotosUserGrid>
       <PhotosUserGrid walk="2"></PhotosUserGrid>
       <PhotosUserGrid walk="3"></PhotosUserGrid>
     </div>
     <div v-if="!isLoadingFriends">
       <h3 class="text-h3 pa-4">{{ $t('photos.friendsPhotos') }}</h3>
-      <p>{{$t('photos.descriptionFriendsPhotos')}}</p>
+      <p v-html="$t('photos.descriptionFriendsPhotos')"></p>
       <PhotosFriendsGrid walk="1"></PhotosFriendsGrid>
       <PhotosFriendsGrid walk="2"></PhotosFriendsGrid>
       <PhotosFriendsGrid walk="3"></PhotosFriendsGrid>

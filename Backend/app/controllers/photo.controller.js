@@ -36,7 +36,7 @@ exports.create = async (req, res) => {
         );
 
     await sharp(req.file.path, { failOnError: false })
-        .resize(1280,null, {withoutEnlargement: true})
+        .resize(640,null, {withoutEnlargement: true})
         .withMetadata()
         .jpeg({
             quality: 90
