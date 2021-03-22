@@ -6,22 +6,27 @@
       <v-col v-if="incompleteError">
         <p class="errorMessage"> {{$t('error.incompleteError')}} </p>
       </v-col>
-      <v-col class="py-2" cols="12">
+     <v-row>
+      <v-col class="pa-4" cols="12" sm="8">
         <v-file-input
           :rules="[rules.notEmpty,rules.size,rules.mimetype]"
           label="File input"
           filled
           prepend-icon="mdi-camera"
           v-model="upload"
-          ref="fileInput"
-        />
+          ref="fileInput"/>
       </v-col>
+     <v-col cols="12" sm="3">
      <v-btn
        @click="submitUpload"
        :disabled="!challengeIsSelected()"
-        class="submitButton"
-        color="primary">
+        class="submitButton ma-2"
+        color="primary"
+        height="50px"
+        width="180px">
        {{ $t('labels.submit') }}</v-btn>
+     </v-col>
+     </v-row>
     <v-col v-if="uploaded">
       <p class="successMessage"> {{$t('success.photoUpload')}} </p>
     </v-col>
