@@ -9,7 +9,7 @@
           :src="'/photowalk_logo_white.png'"
           @click="navigateToStart"
       />
-      <v-toolbar-title class="title mr-auto" @click="navigateToStart">Photowalk</v-toolbar-title>
+      <v-toolbar-title class="title mr-auto" @click="navigateToStart">PhotoWalk</v-toolbar-title>
       <LocaleChange class="mr-0"/>
     </v-app-bar>
     <Navigation-drawer/>
@@ -19,7 +19,7 @@
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
         <v-col cols="6">
-          <Impressum/> — <DGSVO/> — Photowalk
+          <Impressum/> — <DGSVO/> — 2021 — PhotoWalk
         </v-col>
       </v-row>
     </v-footer>

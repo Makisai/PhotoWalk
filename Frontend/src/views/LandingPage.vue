@@ -41,7 +41,7 @@
     <v-footer class="gradient">
       <v-row justify="center" no-gutters>
         <v-col cols="12">
-          <Impressum/>  — <DGSVO/>— Photowalk
+          <Impressum/>  — <DGSVO/>— 2021 — PhotoWalk
         </v-col>
       </v-row>
     </v-footer>
