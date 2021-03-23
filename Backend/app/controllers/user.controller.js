@@ -320,14 +320,15 @@ exports.isloggedin = (req,res) =>{
 exports.register = (req,res) => {
     const {username,email,password} = req.body;
     let errors= [];
+    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
 
     //Überprüfen, ob alle notwendigen Felder ausgefüllt sind
     //Username- und Passwordlänge überprüfen
-    if(!username || !email || !password || username.length > 18 || password.length < 8) {
+    //Überprüfen, ob die Email ein EMail Format
+    if(!username || !email || !password || username.length > 18 || password.length < 8 || !pattern.test(email)) {
         errors.push({msg: 'Please fill out all fields'});
     }
-
-    //TODO Überprüfen, ob die E-Mail eine E-Mail ist
 
     if(errors.length > 0) {
         res.json(500, {

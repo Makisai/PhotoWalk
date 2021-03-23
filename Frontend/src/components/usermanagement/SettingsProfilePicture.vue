@@ -25,7 +25,7 @@
       </v-col>
       <v-col cols="12" md="4">
         <v-file-input
-            :rules="[rules.required,rules.mimetype,rules.size]"
+            :rules="[rules.notEmpty,rules.mimetype,rules.size]"
             :label="$t('settings.profilePicture')"
             filled
             name="profile-picture"
