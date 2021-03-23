@@ -12,7 +12,7 @@
     <p class="feedback errorMessage">{{ $t(feedback) }}</p>
     <v-card
         width="80%"
-        class="mx-auto card"
+        class="mx-auto card elevation-3"
         v-if="$store.state.search.foundUser !== null">
       <v-list one-line class="friendCard">
         <v-list-item>
@@ -113,7 +113,7 @@ export default {
 <style scoped>
 .friendCard{
   width: 100%;
-  height: 100px
+  height: 100px;
 }
 
 .username{

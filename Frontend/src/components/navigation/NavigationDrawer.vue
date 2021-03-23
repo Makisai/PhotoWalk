@@ -54,9 +54,9 @@ export default {
   data () {
     return {
       items:[
+        {title:'pages.overview',icon:'mdi-map',target:'WalksOverview'},
         {title:'pages.photos',icon:'mdi-image',target:'MyPhotos'},
         {title:'pages.friends',icon:'mdi-account-supervisor-circle',target: 'MyFriends'},
-        {title:'pages.overview',icon:'mdi-map',target:'WalksOverview'},
         {title:'pages.settings',icon:'mdi-cog',target:'Settings'},
       ],
       right: null,

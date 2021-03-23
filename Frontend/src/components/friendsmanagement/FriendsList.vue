@@ -7,7 +7,7 @@
             :key="index"
             v-if="friend.friendship.accepted"
             class="ma-3">
-          <v-card class="mx-auto" width="80%">
+          <v-card class="mx-auto elevation-3" width="80%">
             <v-list one-line class="friendCard">
               <v-list-item>
                 <v-list-item-avatar
@@ -36,7 +36,7 @@
             :key="index"
             v-if="!friend.friendship.accepted"
             class="ma-3" >
-          <v-card class="mx-auto" width="80%">
+          <v-card class="mx-auto elevation-3" width="80%">
             <v-list one-line class="friendCard">
               <v-list-item>
                 <v-list-item-avatar
