@@ -3,7 +3,7 @@
     <v-col cols="12" class="my-5">
       <v-expansion-panels v-model="panel" multiple focusable>
         <v-expansion-panel>
-          <v-expansion-panel-header>{{$t('welcome.tutorial')}}</v-expansion-panel-header>
+          <v-expansion-panel-header class="tutorialHead">{{$t('welcome.tutorial')}}</v-expansion-panel-header>
           <v-expansion-panel-content>
             <TutorialCarousel/>
           </v-expansion-panel-content>
@@ -32,3 +32,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.tutorialHead{
+  font-weight: bold ;
+}
+</style>

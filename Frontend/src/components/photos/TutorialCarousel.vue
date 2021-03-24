@@ -3,7 +3,7 @@
     <v-carousel height="400px" v-model="currentIndex">
       <v-carousel-item v-for="item in items" :key="item.src" :src="item.src" contain/>
     </v-carousel>
-	<v-card-text>{{$t('welcome.step'+(currentIndex+1))}}</v-card-text>
+	<v-card-text class="tutorialText">{{$t('welcome.step'+(currentIndex+1))}}</v-card-text>
   </v-container>
 </template>
 
@@ -28,5 +28,11 @@ export default {
 
 
 <style scoped>
-
+.tutorialText{
+  font-size: 16pt;
+  text-align: justify;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 3%;
+}
 </style>
