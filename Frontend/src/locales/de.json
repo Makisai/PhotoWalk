@@ -29,8 +29,8 @@
     "friends": "Freunde",
     "photos": "Meine Fotos",
     "settings":"Einstellungen",
-    "overview": "Alle Photowalks",
-    "details": "Photowalk"
+    "overview": "Alle PhotoWalks",
+    "details": "PhotoWalk"
   },
   "labels": {
     "submit": "Senden",
@@ -75,10 +75,10 @@
   },
   "photos":  {
     "myPhotos": "Meine Photos",
-    "descriptionMyPhotos": "Hier kannst Du Dir alle Photos ansehen, die Du zu den Challenges der Photowalks hochgeladen hast.<br> Bilder, die Deinen Freunden besonders gut gefallen, haben viele Herzen.",
+    "descriptionMyPhotos": "Hier kannst Du Dir alle Photos ansehen, die Du zu den Challenges der PhotoWalks hochgeladen hast.<br> Bilder, die Deinen Freunden besonders gut gefallen, haben viele Herzen.",
     "friendsPhotos": "Photos meiner Freunde",
     "descriptionFriendsPhotos":
-      "Hier kannst Du Dir alle Fotos ansehen, die Deine Freunde zu den Challenges der Photowalks hochgeladen haben.<br> Erkennst Du einige der Motive wieder? Gefällt Dir ein Bild besonders gut, dann zeige es Deinen Freunden, indem du auf das Herz klickst.",
+      "Hier kannst Du Dir alle Fotos ansehen, die Deine Freunde zu den Challenges der PhotoWalks hochgeladen haben.<br> Erkennst Du einige der Motive wieder? Gefällt Dir ein Bild besonders gut, dann zeige es Deinen Freunden, indem du auf das Herz klickst.",
     "walk1": "Kreise ziehen im Park",
     "walk2": "Bei Wind und Wellen",
     "walk3": "Alster Rundfahrt",
@@ -89,14 +89,14 @@
     "minutes": " Minuten"
   },
   "photowalks": {
-    "chooseWalk" : "Wähle einen Photowalk aus",
+    "chooseWalk" : "Wähle einen PhotoWalk aus",
     "startWalk": "Walk starten"
   },
   "welcome": {
-    "welcomePhrase": "Willkommen bei Photowalk",
-    "lastPhotowalk": "Das war Dein letzter Photowalk",
-    "tutorial": "Wie funktioniert das mit dem Photowalk?",
-    "navigate":"Gehe auf einen Photowalk",
+    "welcomePhrase": "Willkommen bei PhotoWalk",
+    "lastPhotowalk": "Das war Dein letzter PhotoWalk",
+    "tutorial": "Wie funktioniert das mit dem PhotoWalk?",
+    "navigate":"Gehe auf einen PhotoWalk",
     "step1":"Moin! Schön, dass Du PhotoWalk ausprobieren möchtest. Mit dieser Anleitung möchten wir Dir einen kleinen Überblick geben. Wenn Du gleich loslegen möchtest, dann klicke einfach auf den “GEHE AUF EINEN PHOTOWALK” Button, oder orientiere Dich erst einmal, indem Du die Navigation über das Menü oben links mit den 3 Strichen aufrufst. Über dieses Menü kannst Du in alle Bereiche der PhotoWalk Seite gelangen. Auf “Alle PhotoWalks” kannst Du einen der 3 PhotoWalks auswählen, “Meine Fotos” zeigt Dir alle Deine hochgeladenen Fotos und die Fotos aus Deinem Freundeskreis. Eine Übersicht über Deinen Freundeskreis auf PhotoWalk findest Du beim Menüpunkt “Freunde”. Solltest Du Dein Profilbild, Deinen Benutzernamen oder Dein Passwort ändern wollen, dann kannst Du das ganz einfach in den Einstellungen tun. Dort kannst Du auch Deinen Account löschen, wenn Du PhotoWalk nicht mehr nutzen möchtest.",
     "step2":"Klickst Du auf den “GEHE AUF EINEN PHOTOWALK” Button, oder “Alle PhotoWalks” in der Navigation, so gelangst Du auf diese Seite mit einer Übersicht aller PhotoWalks. Hier kannst Du einen von 3 PhotoWalks wählen, indem Du einfach auf die entsprechende Karte klickst. Bei einem bereits bearbeiteten PhotoWalk wird die Karte mit pinken Markierungen angezeigt, nicht bearbeitete PhotoWalks erscheinen grau.",
     "step3":"Wenn Du einen PhotoWalk ausgewählt hast, bekommst Du eine genauere Beschreibung des Walks angezeigt. Hier wird Dir die Karte mit dem genauen Pfad des PhotoWalks und eine Auflistung der von uns gestellten Challenges angezeigt. Wenn Du vor Ort angekommen und bereit bist, mit Deinem PhotoWalk zu beginnen, dann klicke einfach auf “WALK STARTEN”. Damit wird Dir während des Spaziergangs immer Deine aktuelle Position auf der Karte angezeigt.",

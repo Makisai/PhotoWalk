@@ -100,12 +100,20 @@ export default new Vuex.Store({
   },
   actions: {
     [CLEAR_USER_DATA]({commit}){
-      commit(SET_EMAIL,'');
-      commit(SET_USERNAME,'');
-      commit(SET_PROFILEPICTURE,'');
-      commit(SET_TOKEN,'XXX');
       commit(SET_DRAWER,false);
+      commit(SET_TOKEN,'XXX');
+      commit(SET_USERNAME,'');
+      commit(SET_EMAIL,'');
+      commit(SET_PROFILEPICTURE,'');
+      commit(SET_FRIENDS_LIST, null);
+      commit(SET_CURRENT_ID, 0);
+      commit(SET_PHOTOWALK, null);
       commit(SET_SELECTED_CHALLENGE,null);
+      commit(SET_SEARCH_USERNAME, '');
+      commit(SET_FOUND_USER, null);
+      commit(SET_PHOTOS_USER, null);
+      commit(SET_PHOTOS_FRIENDS, null);
+      commit(SET_PHOTOS_LAST, null);
     }
   },
   modules: {

@@ -9,7 +9,7 @@
     "usernameAssigned": "This username is already assigned.",
     "emailAssigned": "This email is already in use. Please pick another one.",
     "incompleteError": "Please make sure your input is complete.",
-    "internalError": "An error has occured. Please reload this site." ,
+    "internalError": "An error has occured. Please reload this site.",
     "deleteUser": "Your account could not be deleted.",
     "invalidMimetype": "This is an invalid mimetype.",
     "sameUsername": "You've already got this username.",
@@ -29,8 +29,8 @@
     "friends": "Friends",
     "photos": "My Photos",
     "settings":"Settings",
-    "overview": "All Photowalks",
-    "details": "Photowalk"
+    "overview": "All PhotoWalks",
+    "details": "PhotoWalk"
   },
   "labels": {
     "submit": "submit",
@@ -76,9 +76,9 @@
   },
   "photos":  {
     "myPhotos": "My Photos",
-    "descriptionMyPhotos": "Here you can view all the photos you've uploaded for the Photowalk challenges. <br> Photos your Friends like the best have the most heart icons.",
+    "descriptionMyPhotos": "Here you can view all the photos you've uploaded for the PhotoWalk challenges. <br> Photos your friends like the best have the most heart icons.",
     "friendsPhotos": "Photos my friends took",
-    "descriptionFriendsPhotos": "Here you can view all photos your friends took on their Photowalks. <br> Do you recognize any of the motifs? Show your friends that you like a photo they took by clicking on the heart icon!",
+    "descriptionFriendsPhotos": "Here you can view all photos your friends took on their PhotoWalks. <br> Do you recognize any of the motifs? Show your friends that you like a photo they took by clicking on the heart icon!",
     "walk1": "Kreise ziehen im Park",
     "walk2": "Bei Wind und Wellen",
     "walk3": "Alster Rundfahrt",
@@ -90,14 +90,14 @@
 
   },
   "photowalks": {
-    "chooseWalk": "Choose a Photowalk.",
+    "chooseWalk": "Choose a PhotoWalk",
     "startWalk": "start Walk"
   },
   "welcome": {
-    "welcomePhrase": "Welcome to Photowalk",
-    "lastPhotowalk": "This was your last Photowalk",
-    "tutorial": "How does Photowalk work?",
-    "navigate":"Take a Photowalk",
+    "welcomePhrase": "Welcome to PhotoWalk",
+    "lastPhotowalk": "This was your last PhotoWalk",
+    "tutorial": "How does PhotoWalk work?",
+    "navigate":"Take a PhotoWalk",
     "step1":"Hi! We’re very happy that you want to try out PhotoWalk. With this guide we would like to give you a little overview. If you just want to get going, press the “START A PHOTOWALK” button or orient yourself by looking at the navigation by pressing the menu button on the top left. This menu can take you directly to all pages of the PhotoWalk site. On the “All PhotoWalks” page you can choose one of three PhotoWalks. The “My Photos” page shows all of your uploaded photos as well as all photos your friends uploaded. You can see and manage your friends on PhotoWalk on the “My Friends” page. If you would like to change your username, your profile picture, or your password you can do so on the “Settings” page. You can even delete your account there if you don’t want to use PhotoWalk anymore.",
     "step2":"If you click on the “START A PHOTOWALK” Button here or use the navigation to go to the “All PhotoWalks” site, you will see this page with an overview of all PhotoWalks. You can choose one of these three PhotoWalks by simply clicking on the respective map. If you have already uploaded something to a PhotoWalk it will be displayed with a pink colour. PhotoWalks you haven’t done yet are displayed grey.",
     "step3":"After choosing a PhotoWalk you will get a more detailed description of it. Here you’ll see the exact route on the map as well as a list of our challenges for this PhotoWalk. When you have arrived at the actual location and are ready to start the walk you can press “START WALK”. The map will then show your current location while you’re taking the walk.",
