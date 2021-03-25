@@ -97,14 +97,12 @@
     "lastPhotowalk": "Das war Dein letzter PhotoWalk",
     "tutorial": "Wie funktioniert das mit dem PhotoWalk?",
     "navigate":"Gehe auf einen PhotoWalk",
-    "step1":"Dies ist Schritt 1 blabla.",
-    "step2":"Dies ist Schritt zwei. ",
-    "step3":"Dies ist Schritt drei.",
-    "step4":"Hier ist der vierte Schritt.",
-    "step5":"Hier ist der fuenfte Schritt.",
-    "step6":"Hallooooo. Hier ist Schritt 6.",
-    "step7":"Dies ist Schritt sieben.",
-    "step8":"Dies ist Schritt Acht."
+    "step1":"Moin! Schön, dass Du PhotoWalk ausprobieren möchtest. Mit dieser Anleitung möchten wir Dir einen kleinen Überblick geben. Wenn Du gleich loslegen möchtest, dann klicke einfach auf den “GEHE AUF EINEN PHOTOWALK” Button, oder orientiere Dich erst einmal, indem Du die Navigation über das Menü oben links mit den 3 Strichen aufrufst. Über dieses Menü kannst Du in alle Bereiche der PhotoWalk Seite gelangen. Auf “Alle PhotoWalks” kannst Du einen der 3 PhotoWalks auswählen, “Meine Fotos” zeigt Dir alle Deine hochgeladenen Fotos und die Fotos aus Deinem Freundeskreis. Eine Übersicht über Deinen Freundeskreis auf PhotoWalk findest Du beim Menüpunkt “Freunde”. Solltest Du Dein Profilbild, Deinen Benutzernamen oder Dein Passwort ändern wollen, dann kannst Du das ganz einfach in den Einstellungen tun. Dort kannst Du auch Deinen Account löschen, wenn Du PhotoWalk nicht mehr nutzen möchtest.",
+    "step2":"Klickst Du auf den “GEHE AUF EINEN PHOTOWALK” Button, oder “Alle PhotoWalks” in der Navigation, so gelangst Du auf diese Seite mit einer Übersicht aller PhotoWalks. Hier kannst Du einen von 3 PhotoWalks wählen, indem Du einfach auf die entsprechende Karte klickst. Bei einem bereits bearbeiteten PhotoWalk wird die Karte mit pinken Markierungen angezeigt, nicht bearbeitete PhotoWalks erscheinen grau.",
+    "step3":"Wenn Du einen PhotoWalk ausgewählt hast, bekommst Du eine genauere Beschreibung des Walks angezeigt. Hier wird Dir die Karte mit dem genauen Pfad des PhotoWalks und eine Auflistung der von uns gestellten Challenges angezeigt. Wenn Du vor Ort angekommen und bereit bist, mit Deinem PhotoWalk zu beginnen, dann klicke einfach auf “WALK STARTEN”. Damit wird Dir während des Spaziergangs immer Deine aktuelle Position auf der Karte angezeigt.",
+    "step4":"Etwas weiter unten auf derselben Seite befindet sich ein Feld, über das Du Deine Fotos zu den jeweiligen Challenges hochladen und mit Deinem PhotoWalk Freundeskreis teilen kannst. Die Challenges kannst Du hierbei entweder direkt an der markierten Stelle bewältigen, oder die Challenge eher als Herausforderungen für die Streckenabschnitte zwischen den Markern sehen. Mit welcher Challenge Du startest, ist hierbei ganz Dir überlassen. Bewältige den PhotoWalk so, wie es Dir den meisten Spaß bringt.",
+    "step5":"Gemeinsam auf PhotoWalks zu gehen, macht am meisten Spaß. Damit Du Deine Bilder mit anderen Personen teilen kannst, auch wenn Du nur allein mit Deiner Kamera spazieren gehst, kannst Du unter “Meine Freunde” Personen aus Deinem Freundeskreis finden und zu Deiner Freundesliste hinzufügen. Frage die Personen in Deinem Freundeskreis einfach nach ihren Benutzernamen und suche sie hier in dem dafür vorgesehenen Feld. Dann kannst Du ihnen eine Freundschaftsanfrage senden, die sie dann akzeptieren können. Und schon seid Ihr befreundet und könnt Eure PhotoWalk Ergebnisse teilen.",
+    "step6":"Auf der “Meine Fotos” Seite kannst Du Dir gesammelt alle Bilder, die Du zu allen PhotoWalks hochgeladen hast, angucken. Hier werden Dir außerdem alle Bilder Deiner Freunde angezeigt. Bilder, die Du besonders gerne magst, kannst Du hier mit einem Herz bewerten. So könnt Ihr euch gegenseitig anspornen noch schönere Aufnahmen zu machen."
   },
   "mobileView": {
     "mapTab": "Karte",

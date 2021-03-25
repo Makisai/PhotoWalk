@@ -98,15 +98,12 @@
     "lastPhotowalk": "This was your last PhotoWalk",
     "tutorial": "How does PhotoWalk work?",
     "navigate":"Take a PhotoWalk",
-    "step1":"This is step one.",
-    "step2":"This is step two.",
-    "step3":"This is step three.",
-    "step4":"This is step four.",
-    "step5":"This is step five.",
-    "step6":"This is step six.",
-    "step7":"This is step seven.",
-    "step8":"This is step eight."
- 
+    "step1":"Hi! We’re very happy that you want to try out PhotoWalk. With this guide we would like to give you a little overview. If you just want to get going, press the “START A PHOTOWALK” button or orient yourself by looking at the navigation by pressing the menu button on the top left. This menu can take you directly to all pages of the PhotoWalk site. On the “All PhotoWalks” page you can choose one of three PhotoWalks. The “My Photos” page shows all of your uploaded photos as well as all photos your friends uploaded. You can see and manage your friends on PhotoWalk on the “My Friends” page. If you would like to change your username, your profile picture, or your password you can do so on the “Settings” page. You can even delete your account there if you don’t want to use PhotoWalk anymore.",
+    "step2":"If you click on the “START A PHOTOWALK” Button here or use the navigation to go to the “All PhotoWalks” site, you will see this page with an overview of all PhotoWalks. You can choose one of these three PhotoWalks by simply clicking on the respective map. If you have already uploaded something to a PhotoWalk it will be displayed with a pink colour. PhotoWalks you haven’t done yet are displayed grey.",
+    "step3":"After choosing a PhotoWalk you will get a more detailed description of it. Here you’ll see the exact route on the map as well as a list of our challenges for this PhotoWalk. When you have arrived at the actual location and are ready to start the walk you can press “START WALK”. The map will then show your current location while you’re taking the walk.",
+    "step4":"Farther down on the same page you can upload the photos you took for the challenges. That way you can share your photos with your friends. You can do the challenges right where it’s marked on the map or on the way between the markers. How you do the PhotoWalk and where you start it is totally up to you. We want you to have the most fun while doing our PhotoWalks.",
+    "step5":"Going on a PhotoWalk together is the most fun. So even though you are walking alone with your camera, you can share your pictures on PhotoWalk. On the “My Friends” page you can find other users by their username and add them to your friends list. Ask a person in your friend group what their username is and search for them in the provided field. When you find them, you can send them a friend request which they can accept. And just like that you two are friends and can share your PhotoWalk results with each other.",
+    "step6":"On the “My Photos” page you can have a look at all photos that you have uploaded. Also, you’ll see all photos of your friends. If you like a picture a lot, you can show it to your friends by clicking on the heart icon. This way you can motivate each other to take even more amazing pictures."
   },
   "mobileView": {
     "mapTab": "Map",
